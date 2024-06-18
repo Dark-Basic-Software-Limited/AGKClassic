@@ -1,0 +1,77 @@
+Finalise build version number in AGK.txt (based on date)
+Change IDE version number
+Update bytecode version in AGKInstructions.h if incompatible with previous versions
+Update debug message version in AGKInstructions.h if debug message have been added or removed
+If changed, update AndroidManifest.xml in IDE source folder, be sure to maintain the GOOGLE_PLAY_APPLICATION_ID etc constants
+Check for any added or removed files and add them to the destination build folders
+
+If doing a clean build (freshly checkout out files from SVN/Github):
+    * Populate IDE/data/android and ios folders with non-versioned files
+    * All 3 Android interpreter projects must be opened in Android Studio to auto-generate some files
+    * Help generator and help reference builder must be compiled
+    * Copy CommandParser command list files into Final folder
+
+Browse to AGKTrunk/tools/AGKBuildSystem/Windows
+Build Windows build system if necessary
+Run Windows build system
+
+Check Whats_new.html file
+
+**Turn on Linux 64 bit to receive shared files**
+
+**Switch to Linux 32 bit**
+Check shared folder ~/NetworkShare is connected to 64 bit Linux Receive folder (sometimes isn't)
+Update SVN
+If doing a clean build then IDE ./autogen.sh --prefix="$HOME/Programs/AGKIDE" -- disable-vte
+Browse to AGKTrunk/tools/AGKBuildSystem/Linux
+Run LinuxBuilder32.sh
+32 bit machine no longer needed
+
+**Switch to Linux 64 bit**
+Check shared folder ~/Shares/FilesAlphaLinux is connected to Windows
+Check shared folder ~/Shares/WindowsReceive is connected to Windows
+Update SVN
+If doing a clean build then IDE ./autogen.sh --prefix="$HOME/Programs/AGKIDE" -- disable-vte
+Browse to AGKTrunk/tools/AGKBuildSystem/Linux
+make AGKBuild
+Run AGKBuild
+
+**Switch to MAC**
+Update SVN
+If doing a clean build then IDE ./autogen.sh --prefix="$HOME/Programs/AGKIDE" -- disable-vte
+Activate Receive and FilesMacAlpha folders for file copying (/Volumes)
+Change interpreter_ios build number
+Browse to AGKTrunk/tools/AGKBuildSystem/Mac
+make AGKBuild
+Run AGKBuild
+(If bundle error about Mac SDK not being found then XCode SDK version doesn't match OS version, edit .jhbuildrc-custom to set the right version)
+
+Check Info.plist file in IDE source folder vs the exported version
+Run sign.sh
+(Test ios templates/apps)
+Test IDE
+Notorize IDE
+Update Android export files through Github
+Mac version complete
+
+**Switch to Linux 64 bit**
+Copy Mac Player to Linux build folder
+Linux build complete
+
+**Switch to PC**
+Copy HTML5 files to Windows IDE build folder
+Copy Mac Player to Windows build folder
+Copy Linux Player to Windows build folder
+Sign Windows AGKBroadcaster
+Sign Windows AGKCompiler
+Sign Windows IDE
+Edit nsi version number
+Run nsi Windows script
+Sign Windows installer
+Windows version complete
+
+Update IDE on Github
+Update Tier2 repository on Github
+Update online help (through GitHub)
+
+Raspberry Pi version

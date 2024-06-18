@@ -1,0 +1,145 @@
+_header
+Microsoft Windows
+
+_text
+This guide explains the process involved in creating projects when using Tier 2 on the Microsoft Windows platform. It will primarily deal with Visual Studio 2008 but the steps for VS2010 and VS2013 should be similar.
+
+_sheader
+What you need
+
+_text
+You will need the following files and packages. The total download size for Visual Studio can be several gigabytes, and varies greatly between versions.
+
+_listbegin
+Microsoft Visual C++ 2008, 2010, or 2013 (available from <b><a href="http://www.visualstudio.com" target="_blank">here</a></b>)
+Microsoft Windows SDK 7.1 (available from <b><a href="http://www.microsoft.com/en-gb/download/details.aspx?id=8279" target="_blank">here</a></b>) (7.1 is the last release to target XP)
+Windows XP / Vista / Windows 7 / Windows 8 / Windows 8.1
+_listend
+
+_sheader
+Preparation: AGK Files
+
+_text
+The following steps will show you how to set up the necessary files for the project.
+
+_text
+<b>NOTE:</b> This section is only necessary if you can't write to Program Files (x86). If you have admin rights or otherwise have write access to Program Files (x86), you can skip straight to <b>Creating a New Game Project</b>.
+
+_listbegin
+Open AGK2. If you've launched it previously, click on <b>Tools > Install Additional Files</b>. If you haven't previously launched AGK2, the dialogue should open automatically.
+In the <b>C++ Libraries</b> box, type or browse for a folder where you have write access (eg. <b>C:\Users\[Name]\Documents\AGKLibs\</b>) and click <b>Install</b>. Close AGK.
+_listend
+
+_text
+<b>NOTE:</b> If you want to manually link the include files and libraries, they can be found at these locations:
+
+_listbegin
+<b>Include Files:</b>
+C:\Program Files (x86)\The Game Creators\AGK2\Tier 2\common\include\
+<b>Libraries (VS 2008)</b>
+C:\Program Files (x86)\The Game Creators\AGK2\Tier 2\platform\windows\Lib\Debug\
+C:\Program Files (x86)\The Game Creators\AGK2\Tier 2\platform\windows\Lib\Release\
+<b>Libraries (VS 2010)</b>
+C:\Program Files (x86)\The Game Creators\AGK2\Tier 2\platform\windows\Lib\VS2010\Debug\
+C:\Program Files (x86)\The Game Creators\AGK2\Tier 2\platform\windows\Lib\VS2010\Release\
+<b>Libraries (VS 2013)</b>
+C:\Program Files (x86)\The Game Creators\AGK2\Tier 2\platform\windows\Lib\VS2013\Debug\
+C:\Program Files (x86)\The Game Creators\AGK2\Tier 2\platform\windows\Lib\VS2013\Release\
+_listend
+
+_sheader
+Creating a New Game Project
+
+_text
+The following steps will show you how to set up a new project. Once you've completed all the <b>Preparation</b> sections of this guide, this is where you should start from each time you want to make a new project.
+
+_listbegin
+<b>NOTE:</b> If you completed the <b>Prepatation: AGK Files</b> section, the <b>apps\</b> folder will be found in whichever folder you decided to use. Otherwise, it will be found in <b>C:\Program Files (x86)\The Game Creators\AGK2\Tier 2\</b>
+Navigate to <b>apps\</b> and make a copy of the <b>template_windows</b> or <b>template_windows_vs2010</b> folder, depending on which version of Visual Studio you have. This will be your new project folder, and you can rename it as you wish. In this example I've created one called <b>Really Cool Program</b>.
+_listend
+
+_image
+windows_gfx/1.png
+
+_sheader
+Modifying Your Game
+
+_text
+The following steps will show you how to make to modifications to your code, recompile and run your project.
+
+_listbegin
+You can now open the project by double-clicking on <b>Template.sln</b> in your project's folder. This should launch Visual Studio.
+In the Solution Explorer on the left-hand side, you should see <b>template.h</b> and <b>template.cpp</b> - these are you main two source code files. For now, double-click <b>template.cpp</b> to open it for editing.
+_listend
+
+_image
+windows_gfx/2.png
+
+_listbegin
+<b>NOTE:</b> As you can see, the code is very simply broken into three functions:<ul><li>Begin: This is where you can place your inital setup code.</li><li>Loop: This is where you can place your main game logic.</li><li>End: This is where you can place resource clean-up code.</li></ul>
+Just before the Sync command, add a Print command and save the file. I used the following:
+_listend
+
+_tier1
+agk::Print( "Hello! I'm speaking to you from inside AGK-land!" );
+_tier1
+
+_tier2
+agk::Print( "Hello! I'm speaking to you from inside AGK-land!" );
+_tier2
+
+_image
+windows_gfx/3.png
+
+_listbegin
+Click on <b>Build > Build Solution</b> (or just press <b>F7</b>) to compile the project.
+If you get errors saying something about <b>HTOUCHINPUT</b>, you need to link the Windows SDK:<ul><li>Click on <b>Project > Template Properties</b>, then on the left-hand side, open <b>Configuration Properties > C/C++ > General</b>. Click on <b>Additional Include Directories</b>, then click the small ellipsis (three-dots) button that appears</li></ul>
+_listend
+
+_image
+windows_gfx/4.png
+
+_listbegin
+<ul><li>In the dialogue that appears, add a new folder: <b>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1\Include\</b> (or wherever you installed the Windows SDK). Click OK.</li></ul>
+_listend
+
+_image
+windows_gfx/5.png
+
+_listbegin
+<ul><li>Now open Configuration <b>Properties > Linker > General</b> and click on <b>Additional Library Directories</b>, then click the small ellipsis button.</li></ul>
+_listend
+
+_image
+windows_gfx/6.png
+
+_listbegin
+<ul><li>Add a new folder: <b>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1\Lib\</b>. Click OK, and then OK again. Now try recompiling (press <b>F7</b>).</li></ul>
+_listend
+
+_image
+windows_gfx/7.png
+
+_listbegin
+If you get errors saying something about <b>cannot open include file 'afxres.h'</b>, you're probably using an Express version of Visual Studio, which doesn't include the MFC libraries. To fix:<ul><li>Double-click the error to open its location in the source code. This should open <b>template.rc</b>.</li></ul>
+_listend
+
+_image
+windows_gfx/8.png
+
+_listbegin
+<ul><li>Change the line <b>#include "afxres.h"</b> to <b>#include "windows.h"</b> and save the file.</li></ul>
+_listend
+
+_image
+windows_gfx/9.png
+
+_listbegin
+<ul><li>Now try recompiling (press <b>F7</b>).</li></ul>
+Click on <b>Debug > Start Debugging</b> (or just press <b>F5</b>) to run your project!
+_listend
+
+_text
+</br><b>Last Updated:</b> 22 Nov 2014
+
+

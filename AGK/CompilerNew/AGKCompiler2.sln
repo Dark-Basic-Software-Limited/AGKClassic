@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AGKCompiler2", "AGKCompiler2.vcxproj", "{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+		ReleaseFree|Win32 = ReleaseFree|Win32
+		ReleaseStaticLib|Win32 = ReleaseStaticLib|Win32
+		ReleaseWeekend|Win32 = ReleaseWeekend|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.Debug|Win32.Build.0 = Debug|Win32
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.Release|Win32.ActiveCfg = Release|Win32
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.Release|Win32.Build.0 = Release|Win32
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.ReleaseFree|Win32.ActiveCfg = ReleaseFree|Win32
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.ReleaseFree|Win32.Build.0 = ReleaseFree|Win32
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.ReleaseStaticLib|Win32.ActiveCfg = ReleaseStaticLib|Win32
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.ReleaseStaticLib|Win32.Build.0 = ReleaseStaticLib|Win32
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.ReleaseWeekend|Win32.ActiveCfg = ReleaseWeekend|Win32
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.ReleaseWeekend|Win32.Build.0 = ReleaseWeekend|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

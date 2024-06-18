@@ -1,0 +1,52 @@
+_header
+iOS (iPad/iPhone/iPod)
+
+_text
+This guide explains the process involved in creating projects when using Tier 2 when using the iOS platform.
+
+_sheader
+What you need
+
+_listbegin
+Xcode 6
+Mountain Lion 10.8 or higher
+_listend
+
+_sheader
+Setup
+
+_text
+When you first run the AGK IDE you will be prompted to install the AGK Projects and C++ libraries to a location of your choice. If you only intend to use the C++ libraries you can ignore the AGK Projects and just install the C++ libraries, then close the AGK IDE. If you wish to do this process again at a later date you can access it from the <b>Tools -> Install Addiitonal Files</b> menu option.
+
+_sheader
+Creating a project
+
+_text
+Within the <b>apps</b> folder there is a folder named template_ios. This is the template that contains all the project settings and initial code to get you started on the iOS platform. You can either open the project and start editing it, make a copy in the same folder, or copy the project and place it elsewhere. Please bear in mind that if you take the latter option you will need to update links to the include and library files.
+
+_text
+You link to the Release version of the library for both Debug and Release builds.
+
+_sheader
+Project files
+_text
+The main project files are in the "classes" folder, the main source files of interest are template.cpp and template.h. The file template.h contains a class definition for our application and template.cpp contains the implementation, which has three functions laid out. The function Begin gets called at the start of the application and can be used to handle initial set up. The function Loop gets called on a continual basis and is effectively your main loop. Finally the function End will be called when the application is about to terminate.
+
+_text
+Projects using AGK must compile with the iOS 8.0 SDK or above. You can still target down to iOS 5.1.1 using the target field in the build settings.
+
+_text
+To fix the orientation to landscape or portrait you can change the define at the top of template.h that looks like this
+
+_tier1
+//#define AGK_LANDSCAPE
+//#define AGK_PORTRAIT
+_tier1
+
+_tier2
+//#define AGK_LANDSCAPE
+//#define AGK_PORTRAIT
+_tier2
+
+_text
+simply uncomment the one you want to use, leaving both commented will allow all 4 orientations. Then open the agkinterpreter-info.plist file and field the line "Initial interface orientation" and set it to your desired startup orientation.

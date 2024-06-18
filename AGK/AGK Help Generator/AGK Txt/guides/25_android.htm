@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Tier 2 (C++) Publishing for Android 2.3 - AGK Help</title>
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css">
+<link href="../prettify.css" rel="styleSheet" type="text/css">
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+</head>
+<body>
+<div class="header" style="background: rgb(0, 0, 0) url(../gfx/header-back.png) no-repeat scroll center top; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" alt="" height="44" width="76"></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" alt="" height="44" width="71"></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" alt="" height="44" width="75"></a><a style="cursor: pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" alt="" id="basicCodeBlock0" border="0" height="44" width="253"></a><a style="cursor: pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" alt="" id="cppCodeBlock0" style="display: none;" border="0" height="44" width="253"></a></div><a href="http://www.appgamekit.com/" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" alt="" height="40" width="1158"></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Android</div><div class="page">
+
+<h1>Android</h1>
+<p>This guide explains the process involved in creating projects when using Tier 2 for the Android platform. As the requirement is for Android 2.3.3 and above, you are able to code in native C/C++, rather than Java.</p>
+
+<p><span style="font-weight: bold;">NOTE:</span> This guide is intended to be used when compiling on Windows. However, it can be used on Linux with some adjustments. For example, instead of <span style="font-weight: bold;">C:\AndroidDev\</span>, you might use <span style="font-weight: bold;">/home/[NAME]/AndroidDev/</span>.</p>
+
+<h2>What you need</h2>
+You will need to download the following files and packages. This assumes you have a 64-bit computer, if you have a 32-bit computer then download the 32-bit (x86) versions instead.
+<ul>
+    <li>Java JDK. ~200MB.</li>
+    <ul>
+        <li>Go to <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html"><span style="font-weight: bold;">http://www.oracle.com/technetwork/java/javase/downloads/index.html</span></a> and download the latest version of the JDK, as of writing this is <span style="font-weight: bold;">Java SE 8u77</span>. Click the download button next to the JDK, accept the license, and download the <b>Windows x64</b> package (file should be called something like <span style="font-weight: bold;">jdk-8u77-windows-x64.exe</span>).</li>
+    </ul>
+    <li>Android NDK. ~400MB.</li>
+    <ul>
+        <li>Go to <a href="https://developer.android.com/ndk/downloads/index.html"><span style="font-weight: bold;">https://developer.android.com/ndk/downloads/index.html</span></a> and download the 64-bit package for Windows. At time of writing the latest version is r16b, but it may be higher now.</li>
+    </ul>
+    <li>Android Studio. ~350MB.</li>
+    <ul>
+        <li>Go to <a href="http://developer.android.com/sdk/index.html"><span style="font-weight: bold;">http://developer.android.com/sdk/index.html</span></a> and download the latest version of Android Studio for your platform. At time of writing this is version 3.1.2, but it may be higher now.</li>
+    </ul>
+</ul>
+
+<p><span style="font-weight: bold;">NOTE:</span> The AGK Tier 2 files must be installed in a path with <b>no spaces</b>, otherwise the NDK will fail to compile the necessary files.</p>
+
+<p>The <span style="font-weight: bold;">Preparation</span> sections only need be completed once. After that, you can just start from <span style="font-weight: bold;">Creating a New Game Project</span>.</p>
+
+<h2>Preparation: JDK</h2>
+The following steps will show you how to install the JDK.<br>
+<ul>
+    <li>Run the downloaded file, it should look something like <span style="font-weight: bold;">jdk-8u77-windows-x64.exe</span>, and install it to a location of your choice.</li>
+</ul>
+
+<h2>Preparation: Android NDK</h2>
+The following steps will show you how to set up the Android NDK.
+<ul>
+    <li>Run the downloaded file, it should look something like <span style="font-weight: bold;">android-ndk-rxxb-windows-x64.exe</span>. It should extract somes files to a new folder in the same location as the downloaded file.</li>
+    <li>Move the new folder to a location of your choice, for example <span style="font-weight: bold;">C:\AndroidDev\</span>, this path should not have any spaces.</li>
+</ul>
+
+<h2>Preparation: Android Studio</h2>
+The following steps will show you how to set up the Android Studio.<br>
+<ul>
+    <li>Run the downloaded file, it should look something like <span style="font-weight: bold;">android-studio-ide-141.2456560-windows.exe</span>, the numbers will vary based on the latest version at the time.</li>
+    <li>When asked to choose components the Android Virtual Device is optional and can be unticked if you will be testing on a real Android device.</li>
+    <li>Agree to the license agreement and install to a location of your choice.</li>
+    <li>If you downloaded the 32-bit version of the JDK then on the final screen after installation untick <b>Start Android Studio</b> as this will try to start the 64-bit version and cause an error. Using the generated shortcut will also try to start the 64-bit version, so instead you will need to find the 32-bit exectuable in the installation folder.</li>
+    <li>To find the executable, browse to the Android Studio install folder, by default this is <b>C:\Program Files\Android\Android Studio\</b> then open the <b>bin</b> folder and run <b>studio.exe</b> for 32-bit or <b>studio64.exe</b> for the 64-bit version.</li>
+    <li>Note that the version of Android Studio that you use (32-bit or 64-bit) depends on the JDK version you have installed, they must match or you will get an error.</li>
+    <li>Android Studio should automatically detect your Java installation, if not you will get an error message saying that Android Studio can't find it and ask you to set a JAVA_HOME variable. Double check your Java installation and set up a JAVA_HOME variable if necessary.</li>
+    <li>When Android Studio first runs it will present an <b>SDK Components Setup</b> dialog, click Next or Finish and let it install the default components.</li>
+    <li>When completed you should see a list of options such as <b>Start a new Android Studio Project</b> and <b>Open and existing Android Studio Project</b>, select <b>Configure</b> and then <b>SDK Manager</b>.</li>
+    <li>In the <b>SDK Platforms</b> tab Android Studio will have automatically installed the latest SDK Platform, but we need to install a specific version. If the latest version is not 8.0 (API 26) then tick the box next to <b>Android 8.0 (API 26)</b>. You only need the Platform option, not the Google APIs or any of the others.
+    <li>Now switch to the <b>SDK Tools</b> tab and tick <b>Android Support Repository</b>, <b>Google Play Services</b>, and <b>Google USB driver</b>, then click <b>OK</b> and let it install.</li>
+    <li>Come back out of the Configure option and choose <b>Open an existing Android Studio Project</b>, browse to your AGK Tier 2 folder, then apps, select the <b>template_android_google</b> folder and click ok.</li>
+    <li>When the project first loads, Gradle will attempt to sync and build the project, Grade is the build manager that ships with Android Studio. You will likely get some messages from Grade Sync saying it failed to find the correct Build Tools version, click the provided link to install the missing version</li>
+    <li>Now Android Studio should be working without error, however it will not produce a valid application until we compile the NDK libraries for our project.</li>
+    <li>Minimize Android Studio and browse to the location you installed the AGK Tier 2 files, then go to <b>apps\template_android_google\AGK2Template\src\main</b></li>
+    <li>In here you will see a file named <b>jniCompile.bat</b>, right click on it and choose <b>Edit</b></li>
+    <li>Change the line that starts <b>set NDKBUILDCMD=</b> to point to your NDK location, for example <b>set NDKBUILDCMD="C:\AndroidDev\android-ndk-r16b\ndk-build"</b>, save this file and close it, then double click it to run the NDK compile process for this project. The NDK folder name may vary based on which version of the NDK you downloaded. The folder name itself is not important as long as it points to the NDK you downloaded.</li>
+    <li>It will compile three libraries, one for arm64-v8a, one for armeabi-v7a, and one for x86, these cover the three most popular architectures that run Android. The libraries will be placed in the appropriate folders for Android Studio to pick up next time it builds an APK of your project.</li>
+    <li>When it is done it should end with a line starting <b>[x86] Install</b>, if not then there was an error and you should check the log.txt file in the same folder as the jniCompile.bat file for details</li>
+    <li>Now return to Android Studio and choose <b>Build->Make Project</b> it should display the Grade Console window with its progress and end with a BUILD SUCCESSFUL message. You can attempt to run this project on your device if you have already enabled it for USB Debugging, if not continue to the next section, or you can create a virtual device to test the project in an emulator.</li>
+    <li>The template_android_google app should display a pale blue screen with the framerate displayed near the top left. It is not recommended that you make changes to this project as it can serve as the template for future projects. The recommended approach is to copy the template project and make changes to the copy, see the <b>Creating a New Game Project</b> for details.</li>
+</ul>
+
+<h2>Preparation: Running On A Device</h2>
+The following steps will show you how to setup your device for testing your apps.<br>
+<ul>
+    <li>Connect your Android device (your phone or tablet) to your PC by USB and turn on USB Debugging in Android's settings. To turn on USB Debugging:</li>
+    <ul>
+        <li>Plug in your device.</li>
+        <li>Open <span style="font-weight: bold;">Settings</span>, scroll down to and tap on <span style="font-weight: bold;">Developer Options</span>, and tap the on-off switch at the top-right.</li>
+        <li>Tap <span style="font-weight: bold;">USB Debugging</span> and accept the warning to enable it.</li>
+        <li>This should trigger windows to re-detect your device with additional device components, this is where the Google USB Driver comes in that we downloaded earlier. Windows may automatically detect the debug portion of your device successfully, or it may require you install the Google USB Driver to detect it correctly.</li>
+        <li>More detailed instructions on USB Debugging and how to install the USB debug driver vary by device, and are outside the scope of this guide, but there are plenty of tutorials online.</li>
+    </ul>
+    <li>You will also need to enable the <b>Unknown Sources</b> option in the security section so that apps can be installed that have not been downloaded through Google Play.</li>
+    <li>Once your device is setup to receive debug apps you can click the Run icon in Android Studio and it should automatically detect your connected device and upload your newly compiled app to it.
+</ul>
+    
+<h2>Creating a New Game Project</h2>
+The following steps will show you how to set up a new project. Once you've completed all the <span style="font-weight: bold;">Preparation</span> sections of this guide, this is where you should start from each time you want to make a new project.<br>
+
+<ul>
+    <li>Navigate to your AGK Tier 2 files folder, open the <span style="font-weight: bold;">apps</span> folder and make a copy of the <span style="font-weight: bold;">template_android_google</span> folder. This will be your new project folder, and you can rename it as you wish as long as you don't use spaces.</li>
+    <li>Note that for simplicity your new folder should remain within the <b>apps</b> folder as it contains relative paths to other areas of the AGK Tier 2 folder, notably the <b>platform/android/jni</b> folder.</li> 
+    <li>When you open Android Studio it will default to opening the last project you had open, go to File->Close Project to return to the main menu if you no longer want to work with it, you can then open your new project with <b>Open an existing Android Studio Project</b> and browsing to the new project folder you created.</li>
+    <li>NDK support in Android Studio is still experimental so we use the <b>jniCompile.bat</b> file mentioned earlier, but you can still edit the C++ files (those with the .cpp or .h extensions) inside Android Studio. Be sure to call the jniCompile.bat file after you make any changes to those files.</li>
+    <li>To change the package name for your app open the AndroidManifest.xml file and edit the package field from its default of <b>com.mycompany.mytemplate</b>. Note that when you do this you will need to go through the other files and change any instance of <b>com.mycompany.mytemplate</b> to your new package name, you will get an error if you forget to do this.</li>
+    <li>Leave any instances of <b>com.thegamecreators.agk_player</b> as they are, it does not affect the final app and is used to tie together lots of parts of the app, so handle with care.</li>
+    <li>Open the build.gradle file for the AGK2Template module and edit the applicationId field from its default of <b>com.mycompany.mytemplate</b> to your chosen package name.</li>
+    <li>To change the name of the app, open the <b>res/values/strings.xml</b> file and edit the <b>app_name</b> field.</li>
+    <li>To write your app code you only need to modify the template.h and template.cpp files, these files are only read by the Android NDK when you run jniCompile.bat (or compile manually using the command line)</li>
+    <li>If you wish to add more .cpp files you will need to edit the <b>AGK2Template\src\main\jni\Android.mk</b> file in notepad, look for the <b>LOCAL_SRC_FILES :=</b> line and add additional .cpp files there, save it, and run jniCompile.bat again to recompile.</li>
+    <li>To add media to your project, create an assets folder at <b>[project_folder_name]\AGK2Template\src\main\assets</b> replacing <b>[project_folder_name]</b> with your renamed folder. Note that in Tier 2 a folder named <b>media</b> is not required and you can place images, sounds, etc, directly in the assets folder. If you do use a media folder then remember to use agk::SetFolder("/media") near the start of your program to make it behave more like Tier 1.</li>
+</ul>
+
+<br><br>
+<span style="font-weight: bold;">Last Updated:</span> 25th April 2018<br>
+</div>
+
+<div class="footer" style="background: rgb(0, 0, 0) url(../gfx/footer-back.png) no-repeat scroll center top; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial;"><div><p><a href="http://www.thegamecreators.com/" target="_blank" style="float: none;"><img style="float: right; margin-top: 2px;" src="./Android%20-%20AGK%20Help_files/tgc-logo.png" alt="" border="0" height="27" width="188"></a><br><strong>App Game Kit</strong>
+&nbsp;© The Game Creators Ltd. All Rights
+Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float: none;"><font color="FFFFFF">Report an issue</font></a></p><p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

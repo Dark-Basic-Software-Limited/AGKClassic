@@ -1,0 +1,6160 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: AGK IDE\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: data/geany.glade:89
+msgid "Export Android APK"
+msgstr "Экспорт Android APK"
+
+#: data/geany.glade:120 data/geany.glade:2094 data/geany.glade:2149
+#: data/geany.glade:3454
+msgid "Export"
+msgstr "экспорт"
+
+#: data/geany.glade:161
+msgid "This will build an APK from your media and bytecode that will run on any Android device running 4.0.3 or above. It can also be used to produce an APK suitable for the Google Play, Amazon, or Ouya store if you also provide a keystore file for signing. If you don't yet have a keystore file you can generate one from the Tools menu or in Android Studio."
+msgstr "Это создаст APK с вашего медиа и байт-кода, который будет работать на любом Android-устройстве под управлением 4.0.3 или выше. Его также можно использовать для создания APK, подходящего для магазина Google Play, Amazon или Ouya, если вы также предоставляете файл хранилища ключей для подписания. Если у вас еще нет файла хранилища ключей, вы можете создать его в меню «Инструменты» или в Android Studio."
+
+#: data/geany.glade:171
+msgid "<b>APK Export</b>"
+msgstr "<b> Экспорт APK </ b>"
+
+#: data/geany.glade:218 data/geany.glade:3521
+msgid "App Name:"
+msgstr "Имя приложения:"
+
+#: data/geany.glade:232
+msgid "Package Name:"
+msgstr "Имя пакета:"
+
+#: data/geany.glade:246 data/geany.glade:3693
+msgid "App Icon:"
+msgstr "Значок приложения:"
+
+#: data/geany.glade:260 data/geany.glade:3646
+msgid "Orientation:"
+msgstr "Ориентация:"
+
+#: data/geany.glade:273
+msgid "A-Z . and underscore only, should be in the format com.mycompany.my_app"
+msgstr "A-Z. и только подчеркивание, должно быть в формате com.mycompany.my_app"
+
+#: data/geany.glade:298
+msgid "should be at least 192x192 pixels, PNG only, can contain transparency"
+msgstr "должно быть не менее 192x192 пикселей, только PNG, может содержать прозрачность"
+
+#: data/geany.glade:351 data/geany.glade:3666
+msgid "Landscape"
+msgstr "Пейзаж"
+
+#: data/geany.glade:352 data/geany.glade:3667
+msgid "Portrait"
+msgstr "Портрет"
+
+#: data/geany.glade:353
+msgid "All"
+msgstr "Все"
+
+#: data/geany.glade:381 data/geany.glade:3550
+msgid "A-Z, 0-9, spaces or underscore allowed"
+msgstr "A-Z, 0-9, пробелы или подчеркивание разрешено"
+
+#: data/geany.glade:413
+msgid "APK Type:"
+msgstr "APK Тип:"
+
+#: data/geany.glade:428
+msgid "Select whether this APK will be used on a Google, Amazon, or Ouya device"
+msgstr "Выберите, будет ли этот APK использоваться на устройстве Google, Amazon или Ouya"
+
+#: data/geany.glade:457
+msgid "Ouya Large Icon:"
+msgstr "Значок Оуи Большой:"
+
+#: data/geany.glade:475
+msgid "must be 732x412 pixels, PNG only"
+msgstr "должно быть 732x412 пикселей, только PNG"
+
+#: data/geany.glade:524
+msgid "Notification Icon:"
+msgstr "Значок уведомлений:"
+
+#: data/geany.glade:541
+msgid "Used in the Android notification bar if you display local or push notifications. Should be at least 96x96, PNG only. It must be all white with the shape defined by the alpha channel"
+msgstr "Используется в панели уведомлений Android, если вы показываете локальные или push-уведомления. Должно быть не менее 96x96, только PNG. Должно быть все белое с формой, определяемой альфа-каналом"
+
+#: data/geany.glade:589
+msgid "Minimum Android Version:"
+msgstr "Минимальная версия Android:"
+
+#: data/geany.glade:606
+msgid "Only applies to Google and Amazon export. For maximum compatibility choose 4.0.3, or restrict your app to chosen minimum version. If you choose 6.0 (API 23) or above then you must use the RequestPermission command to request any required permissions before using certain commands "
+msgstr "Используется только для экспорта Google и Amazon. Для максимальной совместимости выберите 4.0.3 или ограничьте свое приложение на выбранную минимальную версию. Если вы выберете 6.0 (API 23) или выше, вы должны использовать команду RequestPermission для запроса любых необходимых разрешений перед использованием определенных команд"
+
+#: data/geany.glade:644
+msgid "ARCore:"
+msgstr "ARCORE:"
+
+#: data/geany.glade:661
+msgid "Sets whether your app uses or requires ARCore to be installed on the user's device. Requiring ARCore will limit your app to Android 7.0 or above"
+msgstr "Устанавливает, использует ли ваше приложение или требует, чтобы ARCore был установлен на устройстве пользователя. Требование, что ARCore ограничит ваше приложение Android 7.0 или выше"
+
+#: data/geany.glade:664
+msgid "Not Used"
+msgstr "Не используется"
+
+#: data/geany.glade:665
+msgid "Optional"
+msgstr "Необязательный"
+
+#: data/geany.glade:666
+msgid "Required"
+msgstr "необходимые"
+
+#: data/geany.glade:695
+msgid "<b>APK Settings</b>"
+msgstr "<b> Настройки APK </ b>"
+
+#: data/geany.glade:728
+msgid "Write External Storage"
+msgstr "Запись внешнего хранилища"
+
+#: data/geany.glade:732
+msgid "Used for camera capture images, shared variables, and \"raw:\" file access"
+msgstr "Используется для изображений захвата камеры, общих переменных и доступа к файлам «raw:»"
+
+#: data/geany.glade:739
+msgid "Precise Location"
+msgstr "Точное местоположение"
+
+#: data/geany.glade:743
+msgid "Used by the GPS commands for exact location"
+msgstr "Используется командами GPS для точного местоположения"
+
+#: data/geany.glade:753
+msgid "Internet/Network"
+msgstr "Интернет / Сеть"
+
+#: data/geany.glade:757
+msgid "Used for network or internet access"
+msgstr "Используется для доступа к сети или интернету"
+
+#: data/geany.glade:768
+msgid "Wake Lock"
+msgstr "Wake Lock"
+
+#: data/geany.glade:772
+msgid "Used to prevent the device from sleeping"
+msgstr "Используется для предотвращения сна снаружи устройства"
+
+#: data/geany.glade:783
+msgid "Coarse Location"
+msgstr "Грубое местоположение"
+
+#: data/geany.glade:787
+msgid "Used by the GPS commands for rough location"
+msgstr "Используется командами GPS для грубого местоположения"
+
+#: data/geany.glade:797
+msgid "In App Purchase"
+msgstr "Покупки в приложении"
+
+#: data/geany.glade:801
+msgid "Used by the In App Purchase commands"
+msgstr "Используется командами покупки приложения"
+
+#: data/geany.glade:813
+msgid "Push Notifications"
+msgstr "Всплывающее уведомление"
+
+#: data/geany.glade:817
+msgid "Used by the Push Notification command"
+msgstr "Используется командой Push Notification"
+
+#: data/geany.glade:829
+msgid "Expansion Files"
+msgstr "Файлы расширения"
+
+#: data/geany.glade:833
+msgid "Adds the Get Accounts and Google Licensing permissions used by the expansion file commands"
+msgstr "Добавляет разрешения Get Accounts и Google Licensing, используемые командами файла расширения"
+
+#: data/geany.glade:845
+msgid "Camera"
+msgstr "камера"
+
+#: data/geany.glade:849
+msgid "Used by the SetDeviceCameraToImage command"
+msgstr "Используется командой SetDeviceCameraToImage"
+
+#: data/geany.glade:861
+msgid "Vibrate"
+msgstr "вибрировать"
+
+#: data/geany.glade:865
+msgid "Used to allow vibration of the device"
+msgstr "Используется для вибрации устройства"
+
+#: data/geany.glade:875
+msgid "Record Audio"
+msgstr "Запись аудио"
+
+#: data/geany.glade:879
+msgid "Used to allow recording from the microphone when recording the screen"
+msgstr "Используется для записи с микрофона при записи экрана"
+
+#: data/geany.glade:897
+msgid "<b>Permissions</b>"
+msgstr "<Б> Права доступа </ B>"
+
+#: data/geany.glade:933 data/geany.glade:4341 data/geany.glade:4876
+msgid "Output File Location:"
+msgstr "Расположение выходного файла:"
+
+#: data/geany.glade:948 data/geany.glade:1996 data/geany.glade:2353
+#: data/geany.glade:4356
+msgid "The location to save the final APK file"
+msgstr "Место для сохранения окончательного файла APK"
+
+#: data/geany.glade:996 data/geany.glade:2044 data/geany.glade:2401
+#: data/geany.glade:4404 data/geany.glade:4939
+msgid "<b>Output</b>"
+msgstr "<B> Выход </ B>"
+
+#: data/geany.glade:1049
+msgid "Google Play Application ID:"
+msgstr "Идентификатор приложения Google Play:"
+
+#: data/geany.glade:1065
+msgid "The 12 digit application ID assigned by Google Game Services to your app"
+msgstr "12-значный идентификатор приложения, присвоенный Google Play Services для вашего приложения."
+
+#: data/geany.glade:1095
+msgid "GameCircle API Key:"
+msgstr "Ключ API GameCircle:"
+
+#: data/geany.glade:1109
+msgid "The very long API Key string generated by Amazon in the GameCircle setup process, note that this varies based on what keystore you are using to sign the APK"
+msgstr "Очень длинная строка API Key, созданная Amazon в процессе установки GameCircle, обратите внимание, что это зависит от того, какое хранилище ключей вы используете для подписания APK"
+
+#: data/geany.glade:1139
+msgid "When GameCircle asks for a Signature you can use the following for unsigned apps \n"
+"77:5F:98:ED:6E:C3:D9:57:4F:EA:63:7A:BB:E7:2D:4C\n"
+"For signed apps you must generate the Signature from your keystore file"
+msgstr "Когда GameCircle запрашивает подпись, вы можете использовать следующие для неподписанных приложений\n"
+"77: 5F: 98: ED: 6E: С3: D9: 57: 4F: ЕА: 63: 7A: BB: Е7: 2D: 4C\n"
+"Для подписанных приложений вы должны сгенерировать подпись из файла хранилища ключей"
+
+#: data/geany.glade:1158
+msgid "<b>Google Game Services/GameCircle Integration</b> (optional)"
+msgstr "<b> Интеграция Google Game Services / GameCircle </ b> (необязательно)"
+
+#: data/geany.glade:1195
+msgid "Firebase Config File (.json):"
+msgstr "Файл конфигурации Firebase (.json):"
+
+#: data/geany.glade:1210
+msgid "The google-services.json file that you downloaded when setting up your Firebase project, this is different for every app."
+msgstr "Файл google-services.json, который вы загрузили при настройке проекта Firebase, для каждого приложения отличается."
+
+#: data/geany.glade:1258
+msgid "<b>Firebase Integration</b> (optional)"
+msgstr "<b> Интеграция Firebase </ b> (необязательно)"
+
+#: data/geany.glade:1293
+msgid "The following must be filled out if you want an APK suitable for submitting to the Google Play, Amazon, or Ouya store."
+msgstr "При желании APK подходит для отправки в магазин Google Play, Amazon или Ouya."
+
+#: data/geany.glade:1316
+msgid "Keystore File:"
+msgstr "Файл Keystore:"
+
+#: data/geany.glade:1331
+msgid "If you don't have this you can generate one from the Tools menu"
+msgstr "Если у вас его нет, вы можете сгенерировать его в меню «Сервис»"
+
+#: data/geany.glade:1378
+msgid "Keystore Password:"
+msgstr "Пароль Keystore:"
+
+#: data/geany.glade:1395 data/geany.glade:1904
+msgid "The password used to create the keystore"
+msgstr "Пароль, используемый для создания хранилища ключей"
+
+#: data/geany.glade:1428 data/geany.glade:1795
+msgid "Version Name:"
+msgstr "Название версии:"
+
+#: data/geany.glade:1446 data/geany.glade:1825 data/geany.glade:1857
+msgid "e.g. 1.0.1"
+msgstr "например 1.0.1"
+
+#: data/geany.glade:1476 data/geany.glade:1807 data/geany.glade:3758
+msgid "Version Number:"
+msgstr "Номер версии:"
+
+#: data/geany.glade:1494
+msgid "Must be an integer, must be higher than any value already submitted to the store"
+msgstr "Должно быть целое число, должно быть выше любого значения, уже отправленного в хранилище"
+
+#: data/geany.glade:1542
+msgid "<b>Advanced</b>:  If you are providing a keystore generated by Android Studio please enter the alias name and password used to access it."
+msgstr "<b> Дополнительно </ b>. Если вы предоставляете хранилище ключей, созданное Android Studio, введите имя псевдонима и пароль, используемые для доступа к нему."
+
+#: data/geany.glade:1562
+msgid "Alias:"
+msgstr "Alias:"
+
+#: data/geany.glade:1574
+msgid "Alias Password:"
+msgstr "Пароль псевдонима:"
+
+#: data/geany.glade:1592
+msgid "The name of the alias used when the keystore file was generated"
+msgstr "Имя псевдонима, используемого при создании файла хранилища ключей"
+
+#: data/geany.glade:1626
+msgid "The alias password used when the keystore file was generated"
+msgstr "Пароль псевдонима, используемый при создании файла хранилища ключей"
+
+#: data/geany.glade:1676
+msgid "<b>Signing</b> (optional)"
+msgstr "<b> Подписание </ b> (необязательно)"
+
+#: data/geany.glade:1773
+msgid "Exports both Amazon and Google Play APKs for all currently open projects, using the settings contained in their project files"
+msgstr "Экспортирует как Amazon, так и APK для Google Play для всех открытых в настоящее время проектов, используя настройки, содержащиеся в их файлах проектов"
+
+#: data/geany.glade:1887
+msgid "Keystore/Alias Password:"
+msgstr "Пароль Keystore / Alias:"
+
+#: data/geany.glade:1947 data/geany.glade:2304 data/geany.glade:4306
+msgid "<b>App Settings</b>"
+msgstr "<b> Настройки приложения </ b>"
+
+#: data/geany.glade:1981 data/geany.glade:2338
+msgid "Output Folder:"
+msgstr "Папки вывода:"
+
+#: data/geany.glade:2081 data/geany.glade:2136
+msgid "Cancel"
+msgstr "Отмена"
+
+#: data/geany.glade:2194
+msgid "This will the HTML5 necessary to host your app on a website. You will need to upload these files somewhere to make your game accessible to others.\n"
+"\n"
+"For the best experience we recommend you use Firefox or Chrome to view the HTML5 app. When testing the files locally, without uploading them to a server, Chrome will not work. When testing on an Android device, Chrome is the best choice as Firefox has trouble when the app goes full screen. iOS devices do not support full screen at all, and tend to have much lower HTML5 performance than other platforms.\n"
+"\n"
+"Note that HTML5 only has partial support for the AGK command set so not all commands will work. In particular the Networking commands HostNetwork and JoinNetwork are not functional in HTML5 apps. Also the file commands will work but are not persistent, so any saved files will be lost when the user closes or reloads the app.\n"
+"\n"
+"File size is very important when hosting apps online, so you should remove any unnecessary files from the project's media folder before exporting."
+msgstr "Это будет HTML5, необходимый для размещения вашего приложения на веб-сайте. Вам нужно будет загрузить эти файлы где-нибудь, чтобы сделать вашу игру доступной для других.\n"
+"\n"
+"Для лучшего опыта рекомендуем использовать Firefox или Chrome для просмотра приложения HTML5. При локальном тестировании файлов, не загружая их на сервер, Chrome не работает. При тестировании на Android-устройстве Chrome - лучший выбор, так как Firefox имеет проблемы, когда приложение переходит в полноэкранный режим. Устройства iOS полностью не поддерживают полный экран и, как правило, имеют гораздо более низкую производительность HTML5, чем другие платформы.\n"
+"\n"
+"Обратите внимание, что HTML5 имеет частичную поддержку набора команд AGK, поэтому не все команды будут работать. В частности, команды Networking HostNetwork и JoinNetwork не работают в приложениях HTML5. Кроме того, команды файлов будут работать, но не будут сохраняться, поэтому любые сохраненные файлы будут потеряны, когда пользователь закроет или перезагрузит приложение.\n"
+"\n"
+"Размер файла очень важен при размещении приложений в Интернете, поэтому перед экспортом вы должны удалить ненужные файлы из папки мультимедиа проекта."
+
+#: data/geany.glade:2222
+msgid "Commands Used:"
+msgstr "Используемые команды:"
+
+#: data/geany.glade:2237
+msgid "Selecting 2D Only will reduce the file size which will improve loading times, but all 3D commands will be disabled."
+msgstr "Выбор 2D Only уменьшит размер файла, что улучшит время загрузки, но все 3D-команды будут отключены."
+
+#: data/geany.glade:2241
+msgid "2D Only"
+msgstr "Только 2D"
+
+#: data/geany.glade:2242
+msgid "2D and 3D"
+msgstr "2D и 3D"
+
+#: data/geany.glade:2265
+msgid "Disables some optimizations, but allows your app to use more than 256MB of RAM"
+msgstr "Отключает некоторые оптимизации, но позволяет вашему приложению использовать более 256 МБ ОЗУ"
+
+#: data/geany.glade:2280
+msgid "Dynamic Memory:"
+msgstr "Динамическая память:"
+
+#: data/geany.glade:2527
+msgid "_Toolbar Preferences"
+msgstr "Настройки _Toolbar"
+
+#: data/geany.glade:2544
+msgid "_Hide Toolbar"
+msgstr "Панель инструментов _Hide"
+
+#: data/geany.glade:2600 data/geany.glade:12382
+msgid "Go to _Tag Definition"
+msgstr "Перейти к определению _Tag"
+
+#: data/geany.glade:2611 data/geany.glade:12343 src/symbols.c:2067
+msgid "Find _Usage"
+msgstr "Найти _Usage"
+
+#: data/geany.glade:2622
+msgid "Open Selected F_ile"
+msgstr "Открыть выбранный F_ile"
+
+#: data/geany.glade:2729 data/geany.glade:11764
+msgid "_Edit"
+msgstr "_Редактировать"
+
+#: data/geany.glade:2737 data/geany.glade:11978
+msgid "_Format"
+msgstr "_Формат"
+
+#: data/geany.glade:2745 data/geany.glade:12174
+msgid "_Search"
+msgstr "_Поиск"
+
+#: data/geany.glade:2759
+msgid "Passes the selected word to the command set in Preferences->Tools"
+msgstr "Пропускает выбранное слово к набору команд в настройках-> Инструменты"
+
+#: data/geany.glade:2760
+msgid "Conte_xt Action"
+msgstr "Действие Conte_xt"
+
+#: data/geany.glade:2978 src/filetypes.c:137 src/filetypes.c:1386
+msgid "None"
+msgstr "Никто"
+
+#: data/geany.glade:2981
+msgid "Basic"
+msgstr "основной"
+
+#: data/geany.glade:2984
+msgid "Current chars"
+msgstr "Текущие символы"
+
+#: data/geany.glade:2987
+msgid "Match braces"
+msgstr "Скобки"
+
+#: data/geany.glade:2995 src/callbacks.c:2180
+msgid "Install Additional Files"
+msgstr "Установка дополнительных файлов"
+
+#: data/geany.glade:3024
+msgid "AGK comes with a set of example projects for BASIC and a set of native libraries for development with C++. By default these are located in the AGK installation folder but it might be more convenient to store them elsewhere, and in the case of Windows the Program Files directory is not writeable so is not suitable for projects. This dialog will let you copy these additional files to a location of your choice, and optionally keep those locations up to date as the local files are updated. \n"
+"You can close this dialog and come back to it at any time from the Tools->Install Additional Files menu option. You can leave either path blank if you do not want to install these files."
+msgstr "AGK поставляется с набором примеров проектов для BASIC и набора собственных библиотек для разработки с C ++. По умолчанию они находятся в папке установки AGK, но было бы удобнее хранить их в другом месте, а в случае Windows каталог Program Files не может быть записан, поэтому он не подходит для проектов. В этом диалоговом окне вы можете скопировать эти дополнительные файлы в выбранное вами местоположение и, при необходимости, обновить эти местоположения по мере обновления локальных файлов.\n"
+"Вы можете закрыть это диалоговое окно и вернуться к нему в любое время в меню «Инструменты -> Установить дополнительные файлы». Вы можете оставить пустой путь, если вы не хотите устанавливать эти файлы."
+
+#: data/geany.glade:3035
+msgid "<b>Additional Files</b>"
+msgstr "<b> Дополнительные файлы </ b>"
+
+#: data/geany.glade:3071 data/geany.glade:3219
+msgid "New Location:"
+msgstr "Новое место:"
+
+#: data/geany.glade:3086
+msgid "The location to place the example projects, leave blank to ignore these"
+msgstr "Место размещения примеров проектов, оставьте пустым, чтобы игнорировать эти"
+
+#: data/geany.glade:3131 data/geany.glade:3279
+msgid "When AGK Updates:"
+msgstr "Когда обновления AGK:"
+
+#: data/geany.glade:3148 data/geany.glade:3296
+msgid "What to do when AGK detects that it has updated since you installed the files"
+msgstr "Что делать, когда AGK обнаруживает, что он обновлен с момента установки файлов"
+
+#: data/geany.glade:3151 data/geany.glade:3299
+msgid "Update these files"
+msgstr "Обновление этих файлов"
+
+#: data/geany.glade:3152 data/geany.glade:3300
+msgid "Ask me what to do"
+msgstr "Спросите меня, что делать"
+
+#: data/geany.glade:3153 data/geany.glade:3301
+msgid "Do nothing"
+msgstr "Ничего не делать"
+
+#: data/geany.glade:3182
+msgid "<b>AGK Projects</b>"
+msgstr "<b> Проекты AGK </ b>"
+
+#: data/geany.glade:3234
+msgid "The location to place the c++ libraries, leave blank to ignore these"
+msgstr "Место для размещения библиотек c ++, оставьте пустым, чтобы игнорировать эти"
+
+#: data/geany.glade:3330
+msgid "<b>C++ Libraries</b>"
+msgstr "<b> Библиотеки C ++ </ b>"
+
+#: data/geany.glade:3382
+msgid "Apply"
+msgstr "Подать заявление"
+
+#: data/geany.glade:3386
+msgid "Apply settings only, no files will be copied"
+msgstr "Применить настройки только, файлы не будут скопированы"
+
+#: data/geany.glade:3396
+msgid "Install"
+msgstr "устанавливать"
+
+#: data/geany.glade:3400
+msgid "Apply settings and copy the files to the specified locations"
+msgstr "Применить настройки и скопировать файлы в указанные местоположения"
+
+#: data/geany.glade:3498
+msgid "This will build an IPA from your media and bytecode that will run on any iOS device running iOS 7 or greater. You must have the correct distribution certificate and corresponding private key in your keychain for the provisioning profile you are using. It can also be used to produce an IPA suitable for the uploading if you use an AppStore provisioning profile, you will need to install Application Loader, or install XCode and use its Application Loader, to submit the actual IPA to iTunes Connect.\n"
+"Note that only AdHoc and App Store provisioning profiles will work with this exporter."
+msgstr "Это создаст IPA с вашего носителя и байт-код, который будет работать на любом устройстве iOS под управлением iOS 7 или выше. У вас должен быть правильный сертификат распространения и соответствующий закрытый ключ в вашей цепочке ключей для профиля обеспечения, который вы используете. Он также может использоваться для создания IPA, подходящего для загрузки, если вы используете профиль подготовки AppStore, вам нужно будет установить Application Loader или установить XCode и использовать его Application Loader для отправки фактического IPA в iTunes Connect.\n"
+"Обратите внимание, что с этим экспортером будут работать только профили подготовки AdHoc и App Store."
+
+#: data/geany.glade:3533
+msgid "Facebook App ID:"
+msgstr "Facebook ID приложения:"
+
+#: data/geany.glade:3581
+msgid "Provisioning Profile:"
+msgstr "Профиль профилирования:"
+
+#: data/geany.glade:3598
+msgid "Provisioning profile downloaded from your Apple developer account containing the list of devices this build will work on (or the App Store)"
+msgstr "Профиль профилирования, загруженный с вашего аккаунта разработчика Apple, содержащий список устройств, в которых эта сборка будет работать (или в App Store)"
+
+#: data/geany.glade:3663
+msgid "Sets the initial orientation when your app starts. To limit the device orientation you must use SetOrientationAllowed() in your code"
+msgstr "Устанавливает начальную ориентацию при запуске приложения. Чтобы ограничить ориентацию устройства, вы должны использовать SetOrientationAllowed () в своем коде"
+
+#: data/geany.glade:3668
+msgid "Both"
+msgstr "И то и другое"
+
+#: data/geany.glade:3710
+msgid "Must be at least 1024x1024 pixels, PNG only, can contain transparency"
+msgstr "Должно быть не менее 1024x1024 пикселей, только PNG, может содержать прозрачность"
+
+#: data/geany.glade:3776
+msgid "0-9 and . only, this must match the version number you use in iTunes Connect"
+msgstr "0-9 и. только это должно соответствовать номеру версии, который вы используете в iTunes Connect"
+
+#: data/geany.glade:3812
+msgid "(optional) if you use the Facebook commands you must put the Facebook App ID here"
+msgstr "(необязательно), если вы используете команды Facebook, вы должны разместить здесь идентификатор Facebook"
+
+#: data/geany.glade:3844
+msgid "Build Number:"
+msgstr "Номер сборки:"
+
+#: data/geany.glade:3862
+msgid "0-9 and . only"
+msgstr "0-9 и. только"
+
+#: data/geany.glade:3894
+msgid "Device Type:"
+msgstr "Тип устройства:"
+
+#: data/geany.glade:3911
+msgid "Choose what type of devices will be able to see this app on the AppStore"
+msgstr "Выберите тип устройств, которые смогут увидеть это приложение в AppStore."
+
+#: data/geany.glade:3914
+msgid "iPhone and iPad"
+msgstr "iPhone и iPad"
+
+#: data/geany.glade:3915
+msgid "iPhone Only"
+msgstr "Только iPhone"
+
+#: data/geany.glade:3916
+msgid "iPad Only"
+msgstr "Только iPad"
+
+#: data/geany.glade:3941
+msgid "Splash Screen (640x960):"
+msgstr "Экран заставки (640x960):"
+
+#: data/geany.glade:3955
+msgid "Splash Screen (640x1136):"
+msgstr "Экран заставки (640x1136):"
+
+#: data/geany.glade:3969
+msgid "Splash Screen (1125x2436):"
+msgstr "Экран заставки (1125x2436):"
+
+#: data/geany.glade:3986
+msgid "Displayed whilst your app is launching on iPhone 4 and below, should be at least 640x960. Landscape splash screens should be rotated 90 degrees clockwise so the bottom of the image is to the left"
+msgstr "Отображается, пока ваше приложение запускается на iPhone 4 и ниже, должно быть не менее 640x960. Пейзажные заставки должны быть повернуты на 90 градусов по часовой стрелке, так что нижняя часть изображения находится слева"
+
+#: data/geany.glade:4037
+msgid "(Optional) Displayed whilst your app is launching on iPhone 5 and above, should be at least 640x1136. Landscape splash screens should be rotated 90 degrees clockwise so the bottom of the image is to the left"
+msgstr "(Необязательно) Отображается, пока ваше приложение запускается на iPhone 5 и выше, должно быть не менее 640x1136. Пейзажные заставки должны быть повернуты на 90 градусов по часовой стрелке, так что нижняя часть изображения находится слева"
+
+#: data/geany.glade:4088
+msgid "(Optional) Displayed whilst your app is launching on iPad, should be at least 1536x2048. Landscape splash screens should be rotated 90 degrees clockwise so the bottom of the image is to the left"
+msgstr "(Необязательно) Отображается, пока ваше приложение запускается на iPad, должно быть не менее 1536x2048. Пейзажные заставки должны быть повернуты на 90 градусов по часовой стрелке, так что нижняя часть изображения находится слева"
+
+#: data/geany.glade:4136
+msgid "Uses Adverts or Facebook \n"
+"Install Tracking:"
+msgstr "Использует рекламу или Facebook\n"
+"Установить отслеживание:"
+
+#: data/geany.glade:4151
+msgid "Tick this box if your app uses the AdMob, Amazon Ads, or Chartboost commands, or the Facebook install tracking command. This will include the Advertising Identifier (IDFA) in your exported app. If you only use the Facebook comands but NOT the Facebook install tracking then you should not tick this box"
+msgstr "Отметьте этот флажок, если ваше приложение использует команды AdMob, Amazon Ads или Chartboost или команду отслеживания установки Facebook. Это будет включать в себя идентификатор рекламы (IDFA) в экспортированном приложении. Если вы используете только комманды Facebook, но НЕ устанавливаете отслеживание Facebook, тогда вы не должны указывать этот флажок"
+
+#: data/geany.glade:4166
+msgid "Firebase Config File (.plist):"
+msgstr "Файл конфигурации Firebase (.plist):"
+
+#: data/geany.glade:4183
+msgid "(Optional) The GoogleService-Info.plist file you downloaded when setting up your Firebase project, this is different for every app."
+msgstr "(Необязательно) Файл GoogleService-Info.plist, загруженный при настройке проекта Firebase, для каждого приложения отличается."
+
+#: data/geany.glade:4231
+msgid "Splash Screen (1536x2048):"
+msgstr "Экран заставки (1536x2048):"
+
+#: data/geany.glade:4248
+msgid "(Optional) Displayed whilst your app is launching on iPhone X, should be at least 1125x2436. Landscape splash screens should be rotated 90 degrees clockwise so the bottom of the image is to the left"
+msgstr "(Необязательно) Отображается, пока ваше приложение запускается на iPhone X, должно быть не менее 1125x2436. Пейзажные заставки должны быть повернуты на 90 градусов по часовой стрелке, так что нижняя часть изображения находится слева"
+
+#: data/geany.glade:4461
+msgid "Generate"
+msgstr "генерировать"
+
+#: data/geany.glade:4505
+msgid "A keystore is a container file for a private key that is used to sign your app so that it can be submitted to the Google Play or Amazon store. If you are distributing outside either of these app stores, or you just want to test on your device, then you do not need this.\n"
+"\n"
+"Once you have submitted your signed app, all updates to it must be signed with the same keystore. Keystores are protected with a password, if you lose your keystore file or forget its password then <b>you will not be able to submit updates to any apps that were signed with it</b>.\n"
+"\n"
+"Each of your apps could use a separate keystore, but for simplicity it is easier to have a single keystore for all your apps. For those of you that want to use this keystore with other programs the alias name will be \"mykeystore\" and the alias password will be the same as the one you type below.\n"
+"\n"
+"To generate a keystore file you need to submit some information about you or your company that will tell people who signed it. You may leave these blank (except the password) but anyone inspecting the key used to sign an app may be less likely to trust it if all the fields are blank."
+msgstr "Хранилище ключей - это файл контейнера для закрытого ключа, который используется для подписи вашего приложения, чтобы его можно было отправить в магазин Google Play или Amazon. Если вы распространяете данные из любой из этих магазинов приложений или просто хотите протестировать на своем устройстве, вам это не нужно.\n"
+"\n"
+"После того, как вы отправили подписанное приложение, все обновления к нему должны быть подписаны с тем же хранилищем ключей. Keystores защищены паролем, если вы потеряете файл хранилища ключей или забыли его пароль, тогда <b> вы не сможете отправлять обновления в любые приложения, которые были подписаны с ним </ b>.\n"
+"\n"
+"Каждое из ваших приложений может использовать отдельное хранилище ключей, но для простоты проще иметь одно хранилище ключей для всех ваших приложений. Для тех из вас, кто хочет использовать это хранилище ключей с другими программами, псевдоним будет «mykeystore», а пароль псевдонима будет таким же, как тот, который вы наберете ниже.\n"
+"\n"
+"Чтобы создать файл хранилища ключей, вам необходимо предоставить некоторую информацию о вас или вашей компании, которая сообщит тем, кто ее подписал. Вы можете оставить эти пробелы (кроме пароля), но любой, кто проверяет ключ, используемый для подписи приложения, может с меньшей вероятностью доверять ему, если все поля пустые."
+
+#: data/geany.glade:4534
+msgid "Your Full Name:"
+msgstr "Ваше полное имя:"
+
+#: data/geany.glade:4546
+msgid "Re-enter Password:"
+msgstr "Повторно введите пароль:"
+
+#: data/geany.glade:4564 data/geany.glade:4655 data/geany.glade:4691
+msgid "A-Z and spaces only"
+msgstr "A-Z и только пробелы"
+
+#: data/geany.glade:4595
+msgid "City:"
+msgstr "Город:"
+
+#: data/geany.glade:4609
+msgid "Two Letter Country Code:"
+msgstr "Код страны с двумя буквами:"
+
+#: data/geany.glade:4623
+msgid "Company Name:"
+msgstr "Название компании:"
+
+#: data/geany.glade:4637
+msgid "Create a Password:"
+msgstr "Создайте пароль:"
+
+#: data/geany.glade:4727
+msgid "A-Z only"
+msgstr "Только A-Z"
+
+#: data/geany.glade:4841
+msgid "<b>Keystore Details</b>"
+msgstr "<b> Детали хранилища </ b>"
+
+#: data/geany.glade:4891
+msgid "The location to save the keystore file"
+msgstr "Место для сохранения файла хранилища ключей"
+
+#: data/geany.glade:4973 data/geany.glade:5797 data/geany.glade:6224
+msgid "Left"
+msgstr "Оставил"
+
+#: data/geany.glade:4976 data/geany.glade:5813 data/geany.glade:5902
+#: data/geany.glade:6241
+msgid "Right"
+msgstr "Правильно"
+
+#: data/geany.glade:4979
+msgid "Top"
+msgstr "верхний"
+
+#: data/geany.glade:4982 data/geany.glade:5887
+msgid "Bottom"
+msgstr "Дно"
+
+#: data/geany.glade:4988 src/keybindings.c:431
+msgid "Preferences"
+msgstr "предпочтения"
+
+#: data/geany.glade:5103
+msgid "Load virtual terminal support"
+msgstr "Загрузка поддержки виртуального терминала"
+
+#: data/geany.glade:5117
+msgid "Enable plugin support"
+msgstr "Включить поддержку плагинов"
+
+#: data/geany.glade:5132
+msgid "Remember open projects"
+msgstr "Помните открытые проекты"
+
+#: data/geany.glade:5136
+msgid "When active, any projects that were open when the IDE was closed will be reopened when the IDE is restarted"
+msgstr "Когда активен, любые проекты, которые были открыты при закрытии IDE, будут снова открываться при повторном запуске IDE"
+
+#: data/geany.glade:5154
+msgid "<b>Startup</b>"
+msgstr "<Б> Запуск </ B>"
+
+#: data/geany.glade:5182
+msgid "Save window position and geometry"
+msgstr "Сохранить положение окна и геометрию"
+
+#: data/geany.glade:5186
+msgid "Saves the window position and geometry and restores it at the start"
+msgstr "Сохраняет положение окна и геометрию и восстанавливает его в начале"
+
+#: data/geany.glade:5198
+msgid "Confirm exit"
+msgstr "Подтвердить выход"
+
+#: data/geany.glade:5202
+msgid "Shows a confirmation dialog on exit"
+msgstr "Показывает окно подтверждения при выходе"
+
+#: data/geany.glade:5220
+msgid "<b>Shutdown</b>"
+msgstr "<Б> Выключение </ B>"
+
+#: data/geany.glade:5255
+msgid "Startup path:"
+msgstr "Путь запуска:"
+
+#: data/geany.glade:5266
+msgid "Path to start in when opening or saving files. Must be an absolute path."
+msgstr "Путь к началу при открытии или сохранении файлов. Должен быть абсолютный путь."
+
+#: data/geany.glade:5304
+msgid "Project files:"
+msgstr "Файлы проекта:"
+
+#: data/geany.glade:5317
+msgid "Path to start in when opening project files"
+msgstr "Путь к началу при открытии файлов проекта"
+
+#: data/geany.glade:5359
+msgid "Extra plugin path:"
+msgstr "Дополнительный путь к плагину:"
+
+#: data/geany.glade:5372
+msgid "Geany looks by default in the global installation path and in the configuration directory. The path entered here will be searched additionally for plugins. Leave blank to disable."
+msgstr "Geany выглядит по умолчанию в глобальном пути установки и в каталоге конфигурации. Путь, введенный здесь, будет искать дополнительно для плагинов. Оставьте пустым для отключения."
+
+#: data/geany.glade:5417
+msgid "<b>Paths</b>"
+msgstr "<Б> Дорожки </ B>"
+
+#: data/geany.glade:5434
+msgid "Startup"
+msgstr "Запускать"
+
+#: data/geany.glade:5463
+msgid "Beep on errors or when compilation has finished"
+msgstr "Звуковой сигнал при ошибках или когда компиляция завершена"
+
+#: data/geany.glade:5467
+msgid "Whether to beep if an error occurred or when the compilation process has finished"
+msgstr "Должен ли звуковой сигнал, произошла ли ошибка или когда процесс компиляции завершен"
+
+#: data/geany.glade:5479
+msgid "Switch to status message list at new message"
+msgstr "Переключиться на список сообщений о состоянии в новом сообщении"
+
+#: data/geany.glade:5483
+msgid "Switch to the status message tab (in the notebook window at the bottom) if a new status message arrives"
+msgstr "Перейдите на вкладку сообщений о состоянии (в окне ноутбука внизу), если появится новое сообщение о состоянии"
+
+#: data/geany.glade:5495
+msgid "Suppress status messages in the status bar"
+msgstr "Подавлять сообщения о состоянии в строке состояния"
+
+#: data/geany.glade:5499
+msgid "Removes all messages from the status bar. The messages are still displayed in the status messages window."
+msgstr "Удаляет все сообщения из строки состояния. Сообщения все еще отображаются в окне сообщений о состоянии."
+
+#: data/geany.glade:5511
+msgid "Auto-focus widgets (focus follows mouse)"
+msgstr "Виджеты автоматической фокусировки (фокус следует за мышью)"
+
+#: data/geany.glade:5515
+msgid "Gives the focus automatically to widgets below the mouse cursor. Works for the main editor widget, the scribble, the toolbar search and goto line fields and the VTE."
+msgstr "Автоматически выделяет фокус для виджетов под курсором мыши. Работает для главного редактора виджета, каракули, поиска на панели инструментов и полей линии goto и VTE."
+
+#: data/geany.glade:5527
+msgid "Use Windows native dialogs"
+msgstr "Использовать собственные диалоги Windows"
+
+#: data/geany.glade:5531
+msgid "Defines whether to use the Windows native dialogs or whether to use the GTK default dialogs"
+msgstr "Определяет, следует ли использовать собственные диалоги Windows или использовать диалоги по умолчанию GTK"
+
+#: data/geany.glade:5549 data/geany.glade:6121 data/geany.glade:8740
+msgid "<b>Miscellaneous</b>"
+msgstr "<Б> Разное </ b>"
+
+#: data/geany.glade:5577
+msgid "Always wrap search"
+msgstr "Всегда включать поиск"
+
+#: data/geany.glade:5581
+msgid "Always wrap search around the document"
+msgstr "Всегда заверните поиск по документу"
+
+#: data/geany.glade:5593
+msgid "Hide the Find dialog"
+msgstr "Скрыть диалог поиска"
+
+#: data/geany.glade:5597
+msgid "Hide the Find dialog after clicking Find Next/Previous"
+msgstr "Скрыть диалоговое окно «Поиск» после нажатия «Найти следующий / предыдущий»"
+
+#: data/geany.glade:5609
+msgid "Use the current word under the cursor for Find dialogs"
+msgstr "Используйте текущее слово под курсором для диалогов «Найти»"
+
+#: data/geany.glade:5613
+msgid "Use current word under the cursor when opening the Find, Find in Files or Replace dialog and there is no selection"
+msgstr "Используйте текущее слово под курсором при открытии диалогового окна «Найти», «Найти в файлах» или «Заменить», и нет выбора"
+
+#: data/geany.glade:5625
+msgid "Use the current file's directory for Find in Files"
+msgstr "Используйте каталог текущего файла для поиска в файлах"
+
+#: data/geany.glade:5646
+msgid "<b>Search</b>"
+msgstr "<Б> Поиск </ b>"
+
+#: data/geany.glade:5666
+msgid "Miscellaneous"
+msgstr "Разное"
+
+#: data/geany.glade:5679 src/prefs.c:1643
+msgid "General"
+msgstr "Генеральная"
+
+#: data/geany.glade:5727
+msgid "Show symbol list"
+msgstr "Показать список символов"
+
+#: data/geany.glade:5731
+msgid "Toggle the symbol list on and off"
+msgstr "Включение и выключение списка символов"
+
+#: data/geany.glade:5743
+msgid "Show documents list"
+msgstr "Показать список документов"
+
+#: data/geany.glade:5747
+msgid "Toggle the documents list on and off"
+msgstr "Включение и выключение списка документов"
+
+#: data/geany.glade:5763
+msgid "Show sidebar"
+msgstr "Показать боковую панель"
+
+#: data/geany.glade:5787 data/geany.glade:5877
+msgid "Position:"
+msgstr "Должность:"
+
+#: data/geany.glade:5842
+msgid "<b>Sidebar</b>"
+msgstr "<Б> Боковая панель </ B>"
+
+#: data/geany.glade:5925
+msgid "Auto hide message window"
+msgstr "Автоматическое скрытие окна сообщений"
+
+#: data/geany.glade:5945
+msgid "<b>Message window</b>"
+msgstr "<b> Окно сообщений </ b>"
+
+#: data/geany.glade:5981
+msgid "Symbol list:"
+msgstr "Список символов:"
+
+#: data/geany.glade:5995 data/geany.glade:6362
+msgid "Message window:"
+msgstr "Окно сообщений:"
+
+#: data/geany.glade:6009 data/geany.glade:6432
+msgid "Editor:"
+msgstr "Редактор:"
+
+#: data/geany.glade:6021
+msgid "Sets the font for the message window"
+msgstr "Устанавливает шрифт для окна сообщения"
+
+#: data/geany.glade:6038
+msgid "Sets the font for the symbol list"
+msgstr "Устанавливает шрифт для списка символов"
+
+#: data/geany.glade:6054
+msgid "Sets the editor font"
+msgstr "Устанавливает шрифт редактора"
+
+#: data/geany.glade:6071
+msgid "<b>Fonts</b>"
+msgstr "<Б> Шрифты </ b>"
+
+#: data/geany.glade:6099
+msgid "Show status bar"
+msgstr "Показать строку состояния"
+
+#: data/geany.glade:6103
+msgid "Whether to show the status bar at the bottom of the main window"
+msgstr "Показывать ли строку состояния в нижней части главного окна"
+
+#: data/geany.glade:6138 data/geany.glade:6891 src/prefs.c:1645
+msgid "Interface"
+msgstr "Интерфейс"
+
+#: data/geany.glade:6167
+msgid "Show editor tabs"
+msgstr "Показать вкладки редактора"
+
+#: data/geany.glade:6182
+msgid "Show close buttons"
+msgstr "Показать кнопки закрытия"
+
+#: data/geany.glade:6186
+msgid "Shows a small cross button in the file tabs to easily close files when clicking on it (requires restart of Geany)"
+msgstr "Показывает небольшую кросс-кнопку на вкладках файлов, чтобы легко закрыть файлы при нажатии на нее (требуется перезапуск Geany)"
+
+#: data/geany.glade:6210
+msgid "Placement of new file tabs:"
+msgstr "Размещение новых вкладок файлов:"
+
+#: data/geany.glade:6228
+msgid "File tabs will be placed on the left of the notebook"
+msgstr "Вкладки слева от ноутбука будут помещены в закладки"
+
+#: data/geany.glade:6245
+msgid "File tabs will be placed on the right of the notebook"
+msgstr "Справа от ноутбука будут помещены вкладки для файлов."
+
+#: data/geany.glade:6265
+msgid "Next to current"
+msgstr "Рядом с текущим"
+
+#: data/geany.glade:6269
+msgid "Whether to place file tabs next to the current tab rather than at the edges of the notebook"
+msgstr "Не добавлять ли вкладки файлов рядом с текущей вкладкой, а не по краям ноутбука"
+
+#: data/geany.glade:6291
+msgid "Double-clicking hides all additional widgets"
+msgstr "Двойной щелчок скрывает все дополнительные виджеты"
+
+#: data/geany.glade:6295
+msgid "Calls the View->Toggle All Additional Widgets command"
+msgstr "Вызывает команду View-> Toggle All Additional Widgets"
+
+#: data/geany.glade:6307
+msgid "Switch to last used document after closing a tab"
+msgstr "Переключиться на последний использованный документ после закрытия вкладки"
+
+#: data/geany.glade:6327
+msgid "<b>Editor tabs</b>"
+msgstr "<b> вкладки редактора </ b>"
+
+#: data/geany.glade:6397
+msgid "Sidebar:"
+msgstr "Боковая панель:"
+
+#: data/geany.glade:6466
+msgid "<b>Tab positions</b>"
+msgstr "<b> Позиции табуляции </ b>"
+
+#: data/geany.glade:6486
+msgid "Notebook tabs"
+msgstr "Вкладки для ноутбуков"
+
+#: data/geany.glade:6526
+msgid "Show t_oolbar"
+msgstr "Показать t_oolbar"
+
+#: data/geany.glade:6541
+msgid "_Append toolbar to the menu"
+msgstr "Панель инструментов _Append в меню"
+
+#: data/geany.glade:6545
+msgid "Pack the toolbar to the main menu to save vertical space"
+msgstr "Установите панель инструментов в главное меню, чтобы сохранить вертикальное пространство"
+
+#: data/geany.glade:6599 src/toolbar.c:950
+msgid "Customize Toolbar"
+msgstr "Настройка панели инструментов"
+
+#: data/geany.glade:6657
+msgid "System _default"
+msgstr "Системные установки по умолчанию"
+
+#: data/geany.glade:6671
+msgid "Images _and text"
+msgstr "Изображения _ и текст"
+
+#: data/geany.glade:6688
+msgid "_Images only"
+msgstr "_Имеется только"
+
+#: data/geany.glade:6705
+msgid "_Text only"
+msgstr "_Только текст"
+
+#: data/geany.glade:6730
+msgid "<b>Icon style</b>"
+msgstr "<b> Стиль значков </ b>"
+
+#: data/geany.glade:6763
+msgid "S_ystem default"
+msgstr "Системные установки по умолчанию"
+
+#: data/geany.glade:6777
+msgid "_Small icons"
+msgstr "Значки _Small"
+
+#: data/geany.glade:6794
+msgid "_Very small icons"
+msgstr "_Все маленькие значки"
+
+#: data/geany.glade:6811
+msgid "_Large icons"
+msgstr "_Большие иконки"
+
+#: data/geany.glade:6836
+msgid "<b>Icon size</b>"
+msgstr "<b> Размер значка </ b>"
+
+#: data/geany.glade:6855
+msgid "<b>Toolbar</b>"
+msgstr "<Б> Панель инструментов </ b>"
+
+#: data/geany.glade:6875 src/prefs.c:1647
+msgid "Toolbar"
+msgstr "Панель инструментов"
+
+#: data/geany.glade:6925
+msgid "Line wrapping"
+msgstr "Линейная упаковка"
+
+#: data/geany.glade:6929
+msgid "Wrap the line at the window border and continue it on the next line. Note: line wrapping has a high performance cost for large documents so should be disabled on slow machines."
+msgstr "Оберните линию на границе окна и продолжите ее на следующей строке. Примечание. Линейная упаковка имеет высокую производительность для больших документов, поэтому ее следует отключать на медленных машинах."
+
+#: data/geany.glade:6941
+msgid "\"Smart\" home key"
+msgstr "«Умный» домашний ключ"
+
+#: data/geany.glade:6945
+msgid "When \"smart\" home is enabled, the HOME key will move the caret to the first non-blank character of the line, unless it is already there, it moves to the very beginning of the line. When this feature is disabled, the HOME key always moves the caret to the start of the current line, regardless of its current position."
+msgstr "Когда «умный» дом включен, клавиша HOME переместит курсор на первый непустой символ строки, если он уже не существует, он перемещается в самое начало строки. Когда эта функция отключена, кнопка HOME всегда перемещает каретку в начало текущей строки независимо от ее текущей позиции."
+
+#: data/geany.glade:6957
+msgid "Disable Drag and Drop"
+msgstr "Отключить перетаскивание"
+
+#: data/geany.glade:6961
+msgid "Disable drag and drop completely in the editor window so you can't drag and drop any selections within or outside of the editor window"
+msgstr "Отключить перетаскивание полностью в окне редактора, чтобы вы не могли перетаскивать любые выделения внутри или вне окна редактора"
+
+#: data/geany.glade:6973
+msgid "Code folding"
+msgstr "Сгибание кода"
+
+#: data/geany.glade:6988
+msgid "Fold/unfold all children of a fold point"
+msgstr "Складывать / разворачивать всех детей точки сгиба"
+
+#: data/geany.glade:6992
+msgid "Fold or unfold all children of a fold point. By pressing the Shift key while clicking on a fold symbol the contrary behavior is used."
+msgstr "Сложите или разворачивайте всех детей точки сгиба. При нажатии клавиши Shift при нажатии на символ сгиба используется противоположное поведение."
+
+#: data/geany.glade:7004
+msgid "Use indicators to show compile errors"
+msgstr "Использовать индикаторы для отображения ошибок компиляции"
+
+#: data/geany.glade:7008
+msgid "Whether to use indicators (a squiggly underline) to highlight the lines where the compiler found a warning or an error"
+msgstr "Использовать индикаторы (подчеркнуто подчеркивание), чтобы выделить строки, где компилятор обнаружил предупреждение или ошибку"
+
+#: data/geany.glade:7020
+msgid "Newline strips trailing spaces"
+msgstr "Новые строки перекрывают пробелы"
+
+#: data/geany.glade:7024
+msgid "Enable newline to strip the trailing spaces on the previous line"
+msgstr "Включить новую строку для удаления конечных пробелов на предыдущей строке"
+
+#: data/geany.glade:7036
+msgid "Highlight instances of selected word"
+msgstr "Выделите экземпляры выбранного слова"
+
+#: data/geany.glade:7040
+msgid "When selecting a word other instances of that word will be highlighted in the current document"
+msgstr "При выборе слова другие экземпляры этого слова будут выделены в текущем документе"
+
+#: data/geany.glade:7058
+msgid "Line breaking column:"
+msgstr "Столбец разрыва строки:"
+
+#: data/geany.glade:7100
+msgid "Comment toggle marker:"
+msgstr "Комментарий toggle marker:"
+
+#: data/geany.glade:7112
+msgid "A string which is added when toggling a line comment in a source file, it is used to mark the comment as toggled."
+msgstr "Строка, которая добавляется при переключении комментария строки в исходном файле, используется для пометки комментария как переведенного."
+
+#: data/geany.glade:7139
+msgid "<b>Features</b>"
+msgstr "<Б> Функции </ b>"
+
+#: data/geany.glade:7156
+msgid "Features"
+msgstr "Особенности"
+
+#: data/geany.glade:7196 data/geany.glade:14100
+msgid "Width:"
+msgstr "Ширина:"
+
+#: data/geany.glade:7207 data/geany.glade:14111
+msgid "The width in chars of a single indent"
+msgstr "Ширина в символах одного отступа"
+
+#: data/geany.glade:7229 data/geany.glade:14133
+msgid "Auto-indent mode:"
+msgstr "Автоматический отступ:"
+
+#: data/geany.glade:7261 data/geany.glade:14184
+msgid "T_abs and spaces"
+msgstr "T_abs и пробелы"
+
+#: data/geany.glade:7265
+msgid "Same as Tabs except backspacing will treat groups of spaces at the beginning of lines like tabs"
+msgstr "То же, что и вкладки, кроме обратного прокрутки, будут обрабатывать группы пробелов в начале строк, таких как вкладки"
+
+#: data/geany.glade:7280 data/geany.glade:14203
+msgid "_Spaces"
+msgstr "_Spaces"
+
+#: data/geany.glade:7284
+msgid "Use spaces when indenting"
+msgstr "Использовать пробелы при отступе"
+
+#: data/geany.glade:7300 data/geany.glade:14223
+msgid "_Tabs"
+msgstr "_Tabs"
+
+#: data/geany.glade:7304
+msgid "Uses tabs when indenting"
+msgstr "Использование вкладок при отступов"
+
+#: data/geany.glade:7323 data/geany.glade:8024 data/geany.glade:14246
+#: data/geany.glade:14692
+msgid "Type:"
+msgstr "Тип:"
+
+#: data/geany.glade:7341
+msgid "Tab key indents"
+msgstr "Вкладки клавиш"
+
+#: data/geany.glade:7345
+msgid "Pressing tab/shift-tab indents/unindents instead of inserting a tab character"
+msgstr "Нажатие вкладки / сдвига-вставки / отступов вместо ввода символа табуляции"
+
+#: data/geany.glade:7363
+msgid "<b>Indentation</b>"
+msgstr "<Б> Отступ </ B>"
+
+#: data/geany.glade:7376 data/geany.glade:14283
+msgid "Indentation"
+msgstr "вдавливание"
+
+#: data/geany.glade:7406
+msgid "Snippet completion"
+msgstr "Завершение фрагмента"
+
+#: data/geany.glade:7410
+msgid "Type a defined short character sequence and complete it to a more complex string using a single keypress"
+msgstr "Введите определенную короткую последовательность символов и завершите ее до более сложной строки с помощью одного нажатия клавиши"
+
+#: data/geany.glade:7422
+msgid "XML/HTML tag auto-closing"
+msgstr "Автоматическое закрытие тега XML / HTML"
+
+#: data/geany.glade:7426
+msgid "Insert matching closing tag for XML/HTML"
+msgstr "Вставить соответствующий тег закрытия для XML / HTML"
+
+#: data/geany.glade:7438
+msgid "Automatic continuation of multi-line comments"
+msgstr "Автоматическое продолжение многострочных комментариев"
+
+#: data/geany.glade:7442
+msgid "Continue automatically multi-line comments in languages like C, C++ and Java when a new line is entered inside such a comment"
+msgstr "Продолжайте автоматически многострочные комментарии на таких языках, как C, C ++ и Java, когда в такой комментарий вводится новая строка"
+
+#: data/geany.glade:7454
+msgid "Autocomplete symbols"
+msgstr "Автозаполненные символы"
+
+#: data/geany.glade:7458
+msgid "Automatic completion of known symbols in open files (function names, global variables, ...)"
+msgstr "Автоматическое завершение известных символов в открытых файлах (имена функций, глобальные переменные, ...)"
+
+#: data/geany.glade:7470
+msgid "Autocomplete all words in document"
+msgstr "Автозаполнение всех слов в документе"
+
+#: data/geany.glade:7485
+msgid "Drop rest of word on completion"
+msgstr "Оставьте слово на завершении"
+
+#: data/geany.glade:7511
+msgid "Max. symbol name suggestions:"
+msgstr "Максимум. предложение названия символа:"
+
+#: data/geany.glade:7525
+msgid "Completion list height:"
+msgstr "Высота списка завершений:"
+
+#: data/geany.glade:7539
+msgid "Characters to type for autocompletion:"
+msgstr "Символы для ввода автозаполнения:"
+
+#: data/geany.glade:7550
+msgid "The amount of characters which are necessary to show the symbol autocompletion list"
+msgstr "Количество символов, необходимых для отображения списка автозаполнения символа"
+
+#: data/geany.glade:7569
+msgid "Display height in rows for the autocompletion list"
+msgstr "Отображать высоту в строках для списка автозаполнения"
+
+#: data/geany.glade:7590
+msgid "Maximum number of entries to display in the autocompletion list"
+msgstr "Максимальное количество записей, отображаемых в списке автозаполнения"
+
+#: data/geany.glade:7612
+msgid "Symbol list update frequency:"
+msgstr "Частота обновления списка символов:"
+
+#: data/geany.glade:7625
+msgid "Minimal delay (in milliseconds) between two automatic updates of the symbol list. Note that a too short delay may have performance impact, especially with large files. A delay of 0 disables real-time updates."
+msgstr "Минимальная задержка (в миллисекундах) между двумя автоматическими обновлениями списка символов. Обратите внимание, что слишком короткая задержка может повлиять на производительность, особенно с большими файлами. Задержка 0 отключает обновления в режиме реального времени."
+
+#: data/geany.glade:7657
+msgid "<b>Completions</b>"
+msgstr "<Б> заканчивания </ B>"
+
+#: data/geany.glade:7702
+msgid "Parenthesis ( )"
+msgstr "Скобки ()"
+
+#: data/geany.glade:7706
+msgid "Auto-close parenthesis when typing an opening one"
+msgstr "Автоматическое закрытие круглых скобок при вводе открывающего"
+
+#: data/geany.glade:7717
+msgid "Single quotes ' '"
+msgstr "Одиночные кавычки ''"
+
+#: data/geany.glade:7721
+msgid "Auto-close single quote when typing an opening one"
+msgstr "Автоматическое закрытие одиночной кавычки при вводе открывающего"
+
+#: data/geany.glade:7734
+msgid "Curly brackets { }"
+msgstr "Фигурные скобки { }"
+
+#: data/geany.glade:7738
+msgid "Auto-close curly bracket when typing an opening one"
+msgstr "Автоматически закрывать фигурные скобки при вводе открывающего"
+
+#: data/geany.glade:7751
+msgid "Square brackets [ ]"
+msgstr "Квадратные скобки [ ]"
+
+#: data/geany.glade:7755
+msgid "Auto-close square-bracket when typing an opening one"
+msgstr "Автоматическое закрытие квадратного кронштейна при вводе открывающего"
+
+#: data/geany.glade:7768
+msgid "Double quotes \" \""
+msgstr "Двойные кавычки \" \""
+
+#: data/geany.glade:7772
+msgid "Auto-close double quote when typing an opening one"
+msgstr "Автоматическая закрытие двойной кавычки при вводе"
+
+#: data/geany.glade:7791
+msgid "<b>Auto-close quotes and brackets</b>"
+msgstr "<b> Автоматическое закрытие цитат и скобок </ b>"
+
+#: data/geany.glade:7811
+msgid "Completions"
+msgstr "Пополнения"
+
+#: data/geany.glade:7843
+msgid "Invert syntax highlighting colors"
+msgstr "Инвертировать подсветку синтаксиса"
+
+#: data/geany.glade:7847
+msgid "Invert all colors, by default using white text on a black background"
+msgstr "Инвертировать все цвета, по умолчанию, используя белый текст на черном фоне"
+
+#: data/geany.glade:7859
+msgid "Show indentation guides"
+msgstr "Показать руководства по отстукам"
+
+#: data/geany.glade:7863
+msgid "Shows small dotted lines to help you to use the right indentation"
+msgstr "Показывает небольшие пунктирные линии, которые помогут вам использовать правый углубление"
+
+#: data/geany.glade:7875
+msgid "Show white space"
+msgstr "Показать пробел"
+
+#: data/geany.glade:7879
+msgid "Marks spaces with dots and tabs with arrows"
+msgstr "Помечает пробелы точками и вкладками со стрелками"
+
+#: data/geany.glade:7891
+msgid "Show line endings"
+msgstr "Показать окончания строки"
+
+#: data/geany.glade:7895
+msgid "Shows the line ending character"
+msgstr "Показывает символ окончания строки"
+
+#: data/geany.glade:7907
+msgid "Show line numbers"
+msgstr "Показать номера строк"
+
+#: data/geany.glade:7911
+msgid "Shows or hides the Line Number margin"
+msgstr "Показывает или скрывает маркер номера строки"
+
+#: data/geany.glade:7923
+msgid "Show markers margin"
+msgstr "Показывать маркеры"
+
+#: data/geany.glade:7927
+msgid "Shows or hides the small margin right of the line numbers, which is used to mark lines"
+msgstr "Показывает или скрывает небольшое поле справа от номеров строк, которое используется для обозначения строк"
+
+#: data/geany.glade:7939
+msgid "Stop scrolling at last line"
+msgstr "Остановить прокрутку последней строки"
+
+#: data/geany.glade:7943
+msgid "Whether to stop scrolling one page past the last line of a document"
+msgstr "Отключение прокрутки одной страницы за последней строкой документа"
+
+#: data/geany.glade:7961
+msgid "<b>Display</b>"
+msgstr "<Б> Дисплей </ b>"
+
+#: data/geany.glade:7996 data/geany.glade:14338
+msgid "Column:"
+msgstr "Колонка:"
+
+#: data/geany.glade:8010
+msgid "Color:"
+msgstr "Цвет:"
+
+#: data/geany.glade:8038
+msgid "Sets the color of the long line marker"
+msgstr "Устанавливает цвет маркера длинной строки"
+
+#: data/geany.glade:8039 data/geany.glade:10916 data/geany.glade:10933
+#: src/toolbar.c:73 src/tools.c:996
+msgid "Color Chooser"
+msgstr "Выбор цвета"
+
+#: data/geany.glade:8054
+msgid "The long line marker is a thin vertical line in the editor, it helps to mark long lines, or as a hint to break the line. Set this value to a value greater than 0 to specify the column where it should appear."
+msgstr "Маркер длинной строки - это тонкая вертикальная линия в редакторе, она помогает отмечать длинные строки или как подсказку, чтобы сломать линию. Установите для этого значения значение больше 0, чтобы указать столбец, в котором он должен появиться."
+
+#: data/geany.glade:8080
+msgid "Line"
+msgstr "Линия"
+
+#: data/geany.glade:8084
+msgid "Prints a vertical line in the editor window at the given cursor position (see below)"
+msgstr "Распечатывает вертикальную линию в окне редактора в указанной позиции курсора (см. Ниже)"
+
+#: data/geany.glade:8096
+msgid "Background"
+msgstr "Задний план"
+
+#: data/geany.glade:8100
+msgid "The background color of characters after the given cursor position (see below) changed to the color set below, (this is recommended if you use proportional fonts)"
+msgstr "Цвет фона символов после заданной позиции курсора (см. Ниже) изменился на цвет, указанный ниже (это рекомендуется, если вы используете пропорциональные шрифты)"
+
+#: data/geany.glade:8123
+msgid "Enabled"
+msgstr "Включено"
+
+#: data/geany.glade:8144 data/geany.glade:14431
+msgid "<b>Long line marker</b>"
+msgstr "<b> Маркер длинной строки </ b>"
+
+#: data/geany.glade:8172 data/geany.glade:14349
+msgid "Disabled"
+msgstr "Отключено"
+
+#: data/geany.glade:8176
+msgid "Do not show virtual spaces"
+msgstr "Не показывать виртуальные пространства"
+
+#: data/geany.glade:8188
+msgid "Only for rectangular selections"
+msgstr "Только для прямоугольных выборов"
+
+#: data/geany.glade:8192
+msgid "Only show virtual spaces beyond the end of lines when drawing a rectangular selection"
+msgstr "Показывать только виртуальные пространства за пределами строк при рисовании прямоугольного выделения"
+
+#: data/geany.glade:8205
+msgid "Always"
+msgstr "Всегда"
+
+#: data/geany.glade:8209
+msgid "Always show virtual spaces beyond the end of lines"
+msgstr "Всегда показывать виртуальные пространства за пределами строк"
+
+#: data/geany.glade:8228
+msgid "<b>Virtual spaces</b>"
+msgstr "<b> Виртуальные пространства </ b>"
+
+#: data/geany.glade:8248
+msgid "Display"
+msgstr "дисплей"
+
+#: data/geany.glade:8264 data/geany.glade:14451 src/keybindings.c:236
+#: src/prefs.c:1649
+msgid "Editor"
+msgstr "редактор"
+
+#: data/geany.glade:8299
+msgid "Open new documents from the command-line"
+msgstr "Открытие новых документов из командной строки"
+
+#: data/geany.glade:8303
+msgid "Start a new file for each command-line filename that doesn't exist"
+msgstr "Запустите новый файл для каждого имени файла командной строки, который не существует"
+
+#: data/geany.glade:8344
+msgid "Default end of line characters:"
+msgstr "По умолчанию символы конца строки:"
+
+#: data/geany.glade:8373
+msgid "<b>New files</b>"
+msgstr "<b> Новые файлы </ b>"
+
+#: data/geany.glade:8409
+msgid "Default encoding (new files):"
+msgstr "Кодировка по умолчанию (новые файлы):"
+
+#: data/geany.glade:8421
+msgid "Sets the default encoding for newly created files"
+msgstr "Устанавливает кодировку по умолчанию для вновь созданных файлов"
+
+#: data/geany.glade:8451
+msgid "Use fixed encoding when opening non-Unicode files"
+msgstr "Использовать фиксированную кодировку при открытии файлов без Unicode"
+
+#: data/geany.glade:8455
+msgid "This option disables the automatic detection of the file encoding when opening non-Unicode files and opens the file with the specified encoding (usually not needed)"
+msgstr "Этот параметр отключает автоматическое обнаружение кодировки файла при открытии файлов, отличных от Unicode, и открывает файл с указанной кодировкой (как правило, не требуется)"
+
+#: data/geany.glade:8474
+msgid "Default encoding (existing non-Unicode files):"
+msgstr "Кодировка по умолчанию (существующие файлы, отличные от Unicode):"
+
+#: data/geany.glade:8486
+msgid "Sets the default encoding for opening existing non-Unicode files"
+msgstr "Устанавливает кодировку по умолчанию для открытия существующих файлов, отличных от Unicode"
+
+#: data/geany.glade:8522
+msgid "<b>Encodings</b>"
+msgstr "<Б> Кодировки </ B>"
+
+#: data/geany.glade:8550 data/geany.glade:14481
+msgid "Ensure new line at file end"
+msgstr "Убедитесь, что новая строка в конце файла"
+
+#: data/geany.glade:8554
+msgid "Ensures that at the end of the file is a new line"
+msgstr "Обеспечивает, чтобы в конце файла появилась новая строка"
+
+#: data/geany.glade:8566 data/geany.glade:14496
+msgid "Ensure consistent line endings"
+msgstr "Обеспечить согласованные окончания строк"
+
+#: data/geany.glade:8570
+msgid "Ensures that newline characters always get converted before saving, avoiding mixed line endings in the same file"
+msgstr "Обеспечивает, чтобы символы новой строки всегда преобразовывались перед сохранением, избегая контуров смешанных строк в одном файле"
+
+#: data/geany.glade:8582 data/geany.glade:14511
+msgid "Strip trailing spaces and tabs"
+msgstr "Полосы пробелов и вкладки"
+
+#: data/geany.glade:8586
+msgid "Removes trailing spaces and tabs and the end of lines"
+msgstr "Удаляет конечные пробелы и вкладки и конец строк"
+
+#: data/geany.glade:8598
+msgid "Replace tabs with spaces"
+msgstr "Заменить вкладки пробелами"
+
+#: data/geany.glade:8602
+msgid "Replaces all tabs in document with spaces"
+msgstr "Заменяет все вкладки в документе пробелами"
+
+#: data/geany.glade:8620 data/geany.glade:14547
+msgid "<b>Saving files</b>"
+msgstr "<b> Сохранение файлов </ b>"
+
+#: data/geany.glade:8660
+msgid "Recent files list length:"
+msgstr "Длина списка последних файлов:"
+
+#: data/geany.glade:8671
+msgid "Specifies the number of files which are stored in the Recent files list"
+msgstr "Указывает количество файлов, которые хранятся в списке последних файлов"
+
+#: data/geany.glade:8693
+msgid "Disk check timeout:"
+msgstr "Тайм-аут проверки диска:"
+
+#: data/geany.glade:8706
+msgid "How often to check for changes to document files on disk, in seconds. Zero disables checking."
+msgstr "Как часто проверять изменения файлов документов на диске за считанные секунды. Zero отключает проверку."
+
+#: data/geany.glade:8760 data/geany.glade:14570 src/prefs.c:1651
+msgid "Files"
+msgstr "файлы"
+
+#: data/geany.glade:8804 data/geany.glade:14021 src/project.c:156
+msgid "Base directory of all files that make up the project. This can be a new path, or an existing directory tree. Must be an absolute path."
+msgstr "Базовый каталог всех файлов, составляющих проект. Это может быть новый путь или существующее дерево каталогов. Должен быть абсолютный путь."
+
+#: data/geany.glade:8850
+msgid "Path To Compiler:"
+msgstr "Путь к компилятору:"
+
+#: data/geany.glade:8865
+msgid "<b>Build Options</b>"
+msgstr "<b> Параметры сборки </ b>"
+
+#: data/geany.glade:8900
+msgid "Broadcast Port:"
+msgstr "Порт трансляции:"
+
+#: data/geany.glade:8935
+msgid "(Default: 5689) (Currently has no affect)"
+msgstr "(По умолчанию: 5689) (В настоящее время не влияет)"
+
+#: data/geany.glade:8959 data/geany.glade:9079
+msgid "Device IP Address:"
+msgstr "IP-адрес устройства:"
+
+#: data/geany.glade:8974
+msgid "Use Steam Integration:"
+msgstr "Использование интеграции Steam:"
+
+#: data/geany.glade:8992
+msgid "If checked then the Steam overlay will be active when testing apps with the IDE. Only applies if using the Steam version of AGK, currently Windows only."
+msgstr "Если этот флажок установлен, то при тестировании приложений с помощью среды ID будет активным наложение Steam. Действует только при использовании версии Steam AGK, в настоящее время только для Windows."
+
+#: data/geany.glade:9019
+msgid "Enter the IP of a device to broadcast apps directly to it, this is useful if AGK has trouble detecting the device. This can be IPv4 or IPv6"
+msgstr "Введите IP-адрес устройства для непосредственного вещания приложений, это полезно, если у AGK есть проблемы с обнаружением устройства. Это может быть IPv4 или IPv6"
+
+#: data/geany.glade:9044
+msgid "<b>Broadcast</b>"
+msgstr "<Б> Broadcast </ b>"
+
+#: data/geany.glade:9090
+msgid "Enter the IP of a device to use for debugging, leaving it blank will debug on the local machine. This can be IPv4 or IPv6"
+msgstr "Введите IP-адрес устройства, которое будет использоваться для отладки, оставив его пустым, будет отлаживаться на локальном компьютере. Это может быть IPv4 или IPv6"
+
+#: data/geany.glade:9113
+msgid "<b>Debug</b>"
+msgstr "<Б> Отладка </ B>"
+
+#: data/geany.glade:9130
+msgid "AGK "
+msgstr "АГК"
+
+#: data/geany.glade:9145 data/geany.glade:12830 src/keybindings.c:247
+#: src/ui_utils.c:2481
+msgid "Build"
+msgstr "строить"
+
+#: data/geany.glade:9201
+msgid "Terminal:"
+msgstr "Терминал:"
+
+#: data/geany.glade:9215
+msgid "Browser:"
+msgstr "Браузер:"
+
+#: data/geany.glade:9228
+msgid "A terminal emulator command (%c is substituted with the Geany run script filename)"
+msgstr "Команда эмулятора терминала (% c заменяется именем файла сценария Geany)"
+
+#: data/geany.glade:9246
+msgid "Path (and possibly additional arguments) to your favorite browser"
+msgstr "Путь (и, возможно, дополнительные аргументы) в ваш любимый браузер"
+
+#: data/geany.glade:9309
+msgid "Grep:"
+msgstr "Grep:"
+
+#: data/geany.glade:9930
+msgid "<b>Tool paths</b>"
+msgstr "<b> Пути инструментов </ b>"
+
+#: data/geany.glade:9973
+msgid "Context action:"
+msgstr "Контекстное действие:"
+
+#: data/geany.glade:9984
+msgid "Context action command. The currently selected word can be used with %s. It can appear anywhere in the given command and will be replaced before execution."
+msgstr "Команда контекстного действия. В настоящее время выбранное слово можно использовать с% s. Он может появляться в любой точке данной команды и будет заменен перед выполнением."
+
+#: data/geany.glade:10025
+msgid "<b>Commands</b>"
+msgstr "<Б> Команды </ B>"
+
+#: data/geany.glade:10045 src/keybindings.c:249 src/prefs.c:1653
+msgid "Tools"
+msgstr "инструменты"
+
+#: data/geany.glade:10100
+msgid "email address of the developer"
+msgstr "адрес электронной почты разработчика"
+
+#: data/geany.glade:10118
+msgid "Initials of the developer name"
+msgstr "Инициалы имени разработчика"
+
+#: data/geany.glade:10137
+msgid "Initial version:"
+msgstr "Первоначальная версия:"
+
+#: data/geany.glade:10150
+msgid "Version number, which a new file initially has"
+msgstr "Номер версии, который изначально имеет новый файл"
+
+#: data/geany.glade:10168
+msgid "Company name"
+msgstr "Название компании"
+
+#: data/geany.glade:10187
+msgid "Developer:"
+msgstr "Разработчик:"
+
+#: data/geany.glade:10199
+msgid "Company:"
+msgstr "Компания:"
+
+#: data/geany.glade:10213
+msgid "Mail address:"
+msgstr "Почта Адрес:"
+
+#: data/geany.glade:10227
+msgid "Initials:"
+msgstr "Инициалы:"
+
+#: data/geany.glade:10240
+msgid "The name of the developer"
+msgstr "Имя разработчика"
+
+#: data/geany.glade:10257
+msgid "Year:"
+msgstr "Год:"
+
+#: data/geany.glade:10271
+msgid "Date:"
+msgstr "Дата:"
+
+#: data/geany.glade:10285
+msgid "Date & time:"
+msgstr "Дата и время:"
+
+#: data/geany.glade:10298
+msgid "Specify a format for the the {datetime} wildcard. You can use any conversion specifiers which can be used with the ANSI C strftime function."
+msgstr "Укажите формат для шаблона {datetime}. Вы можете использовать любые спецификаторы преобразования, которые могут использоваться с функцией ANSI C strftime."
+
+#: data/geany.glade:10316
+msgid "Specify a format for the the {year} wildcard. You can use any conversion specifiers which can be used with the ANSI C strftime function."
+msgstr "Укажите формат для шаблона {year}. Вы можете использовать любые спецификаторы преобразования, которые могут использоваться с функцией ANSI C strftime."
+
+#: data/geany.glade:10334
+msgid "Specify a format for the the {date} wildcard. You can use any conversion specifiers which can be used with the ANSI C strftime function."
+msgstr "Укажите формат для шаблона {date}. Вы можете использовать любые спецификаторы преобразования, которые могут использоваться с функцией ANSI C strftime."
+
+#: data/geany.glade:10363
+msgid "<b>Template data</b>"
+msgstr "<b> Данные шаблона </ b>"
+
+#: data/geany.glade:10383 src/prefs.c:1655
+msgid "Templates"
+msgstr "Шаблоны"
+
+#: data/geany.glade:10448
+msgid "C_hange"
+msgstr "Изменить"
+
+#: data/geany.glade:10470
+msgid "<b>Keyboard shortcuts</b>"
+msgstr "<b> Ярлыки клавиш </ b>"
+
+#: data/geany.glade:10483 src/plugins.c:1465 src/prefs.c:1657
+msgid "Keybindings"
+msgstr "Сочетания клавиш"
+
+#: data/geany.glade:10527
+msgid "Command:"
+msgstr "Команда:"
+
+#: data/geany.glade:10539
+msgid "Path to the command for printing files (use %f for the filename)"
+msgstr "Путь к команде для печати файлов (используйте файл% f для имени файла)"
+
+#: data/geany.glade:10576
+msgid "Use an external command for printing"
+msgstr "Использовать внешнюю команду для печати"
+
+#: data/geany.glade:10608 src/printing.c:234
+msgid "Print line numbers"
+msgstr "Номера строк печати"
+
+#: data/geany.glade:10612 src/printing.c:236
+msgid "Add line numbers to the printed page"
+msgstr "Добавить номера строк на распечатанную страницу"
+
+#: data/geany.glade:10624 src/printing.c:239
+msgid "Print page numbers"
+msgstr "Печать номеров страниц"
+
+#: data/geany.glade:10628 src/printing.c:241
+msgid "Add page numbers at the bottom of each page. It takes 2 lines of the page."
+msgstr "Добавьте номера страниц в нижней части каждой страницы. Он занимает 2 строки страницы."
+
+#: data/geany.glade:10640 src/printing.c:244
+msgid "Print page header"
+msgstr "Заголовок страницы печати"
+
+#: data/geany.glade:10644 src/printing.c:246
+msgid "Add a little header to every page containing the page number, the filename and the current date (see below). It takes 3 lines of the page."
+msgstr "Добавьте немного заголовка на каждую страницу, содержащую номер страницы, имя файла и текущую дату (см. Ниже). Он занимает 3 строки страницы."
+
+#: data/geany.glade:10674 src/printing.c:262
+msgid "Use the basename of the printed file"
+msgstr "Используйте базовое имя печатного файла"
+
+#: data/geany.glade:10678
+msgid "Print only the basename (without the path) of the printed file"
+msgstr "Распечатайте только базовое имя (без пути) отпечатанного файла"
+
+#: data/geany.glade:10697 src/printing.c:270
+msgid "Date format:"
+msgstr "Формат даты:"
+
+#: data/geany.glade:10709 src/printing.c:276
+msgid "Specify a format for the date and time stamp which is added to the page header on each page. You can use any conversion specifiers which can be used with the ANSI C strftime function."
+msgstr "Укажите формат даты и времени, который добавляется в заголовок страницы на каждой странице. Вы можете использовать любые спецификаторы преобразования, которые могут использоваться с функцией ANSI C strftime."
+
+#: data/geany.glade:10746
+msgid "Use native GTK printing"
+msgstr "Использовать собственную печать GTK"
+
+#: data/geany.glade:10770
+msgid "<b>Printing</b>"
+msgstr "<Б> Печать </ b>"
+
+#: data/geany.glade:10783 src/prefs.c:1659
+msgid "Printing"
+msgstr "печать"
+
+#: data/geany.glade:10819
+msgid "Font:"
+msgstr "Шрифт:"
+
+#: data/geany.glade:10831
+msgid "Sets the font for the terminal widget"
+msgstr "Устанавливает шрифт для виджета терминала"
+
+#: data/geany.glade:10832
+msgid "Choose Terminal Font"
+msgstr "Выберите Terminal Font"
+
+#: data/geany.glade:10845
+msgid "Foreground color:"
+msgstr "Цвет переднего плана:"
+
+#: data/geany.glade:10859
+msgid "Background color:"
+msgstr "Фоновый цвет:"
+
+#: data/geany.glade:10873
+msgid "Background image:"
+msgstr "Изображение на заднем плане:"
+
+#: data/geany.glade:10887
+msgid "Scrollback lines:"
+msgstr "Линии прокрутки:"
+
+#: data/geany.glade:10901
+msgid "Shell:"
+msgstr "Оболочка:"
+
+#: data/geany.glade:10915
+msgid "Sets the foreground color of the text in the terminal widget"
+msgstr "Устанавливает цвет переднего плана текста в виде виджета терминала"
+
+#: data/geany.glade:10932
+msgid "Sets the background color of the text in the terminal widget"
+msgstr "Устанавливает фоновый цвет текста в виджетах терминала"
+
+#: data/geany.glade:10948
+msgid "Sets the path to the background image in the terminal widget"
+msgstr "Устанавливает путь к фоновому изображению в виджетах терминала"
+
+#: data/geany.glade:10990
+msgid "Specifies the history in lines, which you can scroll back in the terminal widget"
+msgstr "Указывает историю в строках, которые вы можете прокручивать назад в виджет терминала"
+
+#: data/geany.glade:11012
+msgid "Sets the path to the shell which should be started inside the terminal emulation"
+msgstr "Устанавливает путь к оболочке, которая должна запускаться внутри эмуляции терминала"
+
+#: data/geany.glade:11089
+msgid "Scroll on keystroke"
+msgstr "Прокрутка по нажатию клавиши"
+
+#: data/geany.glade:11093
+msgid "Whether to scroll to the bottom if a key was pressed"
+msgstr "Независимо от того, чтобы прокручивать нижнюю часть, если нажата клавиша"
+
+#: data/geany.glade:11103
+msgid "Scroll on output"
+msgstr "Прокрутка на выходе"
+
+#: data/geany.glade:11107
+msgid "Whether to scroll to the bottom when output is generated"
+msgstr "Независимо от того, чтобы прокручивать нижнюю часть при выходе"
+
+#: data/geany.glade:11119
+msgid "Cursor blinks"
+msgstr "Курсор мигает"
+
+#: data/geany.glade:11123
+msgid "Whether to blink the cursor"
+msgstr "Следует ли мигать курсором"
+
+#: data/geany.glade:11135
+msgid "Override Geany keybindings"
+msgstr "Переопределение привязок Geany"
+
+#: data/geany.glade:11139
+msgid "Allows the VTE to receive keyboard shortcuts (apart from focus commands)"
+msgstr "Позволяет VTE получать быстрые клавиши (кроме команд фокуса)"
+
+#: data/geany.glade:11151
+msgid "Disable menu shortcut key (F10 by default)"
+msgstr "Отключить контекстную клавишу меню (по умолчанию F10)"
+
+#: data/geany.glade:11155
+msgid "This option disables the keybinding to popup the menu bar (default is F10). Disabling it can be useful if you use, for example, Midnight Commander within the VTE."
+msgstr "Эта опция отключает привязку клавиш для всплытия панели меню (по умолчанию F10). Отключение его может быть полезно, если вы используете, например, Midnight Commander в VTE."
+
+#: data/geany.glade:11167
+msgid "Follow path of the current file"
+msgstr "Следуйте по пути к текущему файлу"
+
+#: data/geany.glade:11171
+msgid "Whether to execute \\\"cd $path\\\" when you switch between opened files"
+msgstr "Выполнять \\ \"cd $ path \\\" при переключении между открытыми файлами"
+
+#: data/geany.glade:11183
+msgid "Execute programs in the VTE"
+msgstr "Выполнять программы в VTE"
+
+#: data/geany.glade:11187
+msgid "Run programs in VTE instead of opening a terminal emulation window. Please note, programs executed in VTE cannot be stopped"
+msgstr "Запускать программы в VTE вместо открытия окна эмуляции терминала. Обратите внимание, что программы, выполняемые в ВТЭ, не могут быть остановлены"
+
+#: data/geany.glade:11199
+msgid "Don't use run script"
+msgstr "Не использовать сценарий запуска"
+
+#: data/geany.glade:11204
+msgid "Don't use the simple run script which is usually used to display the exit status of the executed program"
+msgstr "Не используйте простой сценарий запуска, который обычно используется для отображения статуса выхода исполняемой программы"
+
+#: data/geany.glade:11229
+msgid "<b>Terminal</b>"
+msgstr "<Б> Терминал </ B>"
+
+#: data/geany.glade:11242 src/prefs.c:1663 src/vte.c:298
+msgid "Terminal"
+msgstr "Терминал"
+
+#: data/geany.glade:11330
+msgid "<i>Warning: read the manual before changing these preferences.</i>"
+msgstr "<i> Предупреждение: прочитайте руководство перед изменением этих настроек. </ i>"
+
+#: data/geany.glade:11356
+msgid "<b>Various preferences</b>"
+msgstr "<b> Различные настройки </ b>"
+
+#: data/geany.glade:11369 src/prefs.c:1661
+msgid "Various"
+msgstr "Различный"
+
+#: data/geany.glade:11396
+msgid "AGK"
+msgstr "АГК"
+
+#: data/geany.glade:11400
+msgid "Geany"
+msgstr "Geany"
+
+#: data/geany.glade:11422
+msgid "_File"
+msgstr "_Файл"
+
+#: data/geany.glade:11430
+msgid "_New Project..."
+msgstr "_Новый проект..."
+
+#: data/geany.glade:11441
+msgid "_New File"
+msgstr "_Новый файл"
+
+#: data/geany.glade:11452
+msgid "New File (from _Template)"
+msgstr "Новый файл (из _Template)"
+
+#: data/geany.glade:11468
+msgid "_Open Project..."
+msgstr "_Открыть проект ..."
+
+#: data/geany.glade:11479
+msgid "_Open File..."
+msgstr "_Открыть файл..."
+
+#: data/geany.glade:11492
+msgid "Recent _Projects"
+msgstr "Недавние Проекты"
+
+#: data/geany.glade:11500
+msgid "Recent _Files"
+msgstr "Недавние файлы"
+
+#: data/geany.glade:11514
+msgid "Import an old AGK project and convert it to the new format"
+msgstr "Импортируйте старый проект AGK и преобразуйте его в новый формат."
+
+#: data/geany.glade:11515
+msgid "_Import AGK Project..."
+msgstr "_Import AGK Project ..."
+
+#: data/geany.glade:11524 src/callbacks.c:277
+msgid "E_xport Project"
+msgstr "Проект E_xport"
+
+#: data/geany.glade:11534
+msgid "As Android AP_K"
+msgstr "Как Android AP_K"
+
+#: data/geany.glade:11543
+msgid "As iOS IPA"
+msgstr "Как iOS IPA"
+
+#: data/geany.glade:11552
+msgid "As HTML5"
+msgstr "Как HTML5"
+
+#: data/geany.glade:11579
+msgid "Save _As..."
+msgstr "Сохранить как..."
+
+#: data/geany.glade:11590
+msgid "Save A_ll"
+msgstr "Сохранить все"
+
+#: data/geany.glade:11601 src/callbacks.c:584 src/document.c:3149
+msgid "_Reload"
+msgstr "_Reload"
+
+#: data/geany.glade:11612
+msgid "R_eload As"
+msgstr "R_eload As"
+
+#: data/geany.glade:11624 data/geany.glade:12089 data/geany.glade:12121
+#: data/geany.glade:12662 data/geany.glade:12682
+msgid "invisible"
+msgstr "невидимый"
+
+#: data/geany.glade:11658
+msgid "Page Set_up"
+msgstr "Настройка страницы"
+
+#: data/geany.glade:11665
+msgid "_Print..."
+msgstr "_Распечатать..."
+
+#: data/geany.glade:11682 src/callbacks.c:276
+msgid "_Close Project"
+msgstr "_Закрыть проект"
+
+#: data/geany.glade:11693
+msgid "Close All Projects"
+msgstr "Закрыть все проекты"
+
+#: data/geany.glade:11709
+msgid "_Close Document"
+msgstr "_Закрыть документ"
+
+#: data/geany.glade:11720 src/notebook.c:490
+msgid "Close Ot_her Documents"
+msgstr "Закрыть Отправление документов"
+
+#: data/geany.glade:11731
+msgid "C_lose All Documents"
+msgstr "C_lose Все документы"
+
+#: data/geany.glade:11862
+msgid "_Commands"
+msgstr "_Commands"
+
+#: data/geany.glade:11869 src/keybindings.c:356
+msgid "_Cut Current Line(s)"
+msgstr "Текущая линия (ы)"
+
+#: data/geany.glade:11880 src/keybindings.c:353
+msgid "_Copy Current Line(s)"
+msgstr "_Copy Current Line (s)"
+
+#: data/geany.glade:11893 src/keybindings.c:307
+msgid "_Delete Current Line(s)"
+msgstr "_Удалить текущую линию (линии)"
+
+#: data/geany.glade:11902 src/keybindings.c:304
+msgid "_Duplicate Line or Selection"
+msgstr "_ Дубликат строки или выделения"
+
+#: data/geany.glade:11917 src/keybindings.c:366
+msgid "_Select Current Line(s)"
+msgstr "_Выберите текущую линию (линий)"
+
+#: data/geany.glade:11926 src/keybindings.c:369
+msgid "_Select Current Paragraph"
+msgstr "_Выберите текущий абзац"
+
+#: data/geany.glade:11941
+msgid "_Move Line(s) Up"
+msgstr "_Move Line (s) Вверх"
+
+#: data/geany.glade:11950
+msgid "_Move Line(s) Down"
+msgstr "_Move Line (s) Down"
+
+#: data/geany.glade:11965 src/keybindings.c:408
+msgid "_Send Selection to Terminal"
+msgstr "_Отправить выбор в терминал"
+
+#: data/geany.glade:11987 src/keybindings.c:410
+msgid "_Reflow Lines/Block"
+msgstr "_Reflow Lines / Block"
+
+#: data/geany.glade:11996 src/keybindings.c:380
+msgid "T_oggle Case of Selection"
+msgstr "T_oggle Случай выбора"
+
+#: data/geany.glade:12011
+msgid "_Comment Line(s)"
+msgstr "_Комментарная линия (ы)"
+
+#: data/geany.glade:12020
+msgid "U_ncomment Line(s)"
+msgstr "U_ncomment Line (s)"
+
+#: data/geany.glade:12029
+msgid "_Toggle Line Commentation"
+msgstr "Комментарий _Toggle Line"
+
+#: data/geany.glade:12042
+msgid "_Increase Indent"
+msgstr "_Увеличить отступ"
+
+#: data/geany.glade:12053
+msgid "_Decrease Indent"
+msgstr "_Decrease Indent"
+
+#: data/geany.glade:12066 src/keybindings.c:399
+msgid "_Smart Line Indent"
+msgstr "_Smart Line Indent"
+
+#: data/geany.glade:12081
+msgid "_Send Selection to"
+msgstr "_Отправить выбор в"
+
+#: data/geany.glade:12109
+msgid "Insert Dat_e"
+msgstr "Вставить Dat_e"
+
+#: data/geany.glade:12133 src/keybindings.c:421
+msgid "_Insert Alternative White Space"
+msgstr "_Изменить альтернативное белое пространство"
+
+#: data/geany.glade:12146
+msgid "Preference_s"
+msgstr "Preference_s"
+
+#: data/geany.glade:12157 src/keybindings.c:434
+msgid "P_lugin Preferences"
+msgstr "Настройки P_lugin"
+
+#: data/geany.glade:12182
+msgid "_Find..."
+msgstr "_Найти..."
+
+#: data/geany.glade:12195
+msgid "Find _Next"
+msgstr "Найти следующее"
+
+#: data/geany.glade:12204
+msgid "Find _Previous"
+msgstr "Найти _Предыдущий"
+
+#: data/geany.glade:12217 src/symbols.c:2077
+msgid "Find in F_iles..."
+msgstr "Найти в F_iles ..."
+
+#: data/geany.glade:12228
+msgid "_Replace..."
+msgstr "_Replace ..."
+
+#: data/geany.glade:12245
+msgid "Next _Message"
+msgstr "Следующий _Message"
+
+#: data/geany.glade:12256
+msgid "Pr_evious Message"
+msgstr "Сообщение Pr_evious"
+
+#: data/geany.glade:12275 src/keybindings.c:483
+msgid "_Go to Next Marker"
+msgstr "_Перейти к следующему маркеру"
+
+#: data/geany.glade:12284 src/keybindings.c:486
+msgid "_Go to Previous Marker"
+msgstr "_Go к предыдущему маркеру"
+
+#: data/geany.glade:12297
+msgid "_Go to Line..."
+msgstr "_Go to Line ..."
+
+#: data/geany.glade:12310
+msgid "_More"
+msgstr "_Больше"
+
+#: data/geany.glade:12319 src/keybindings.c:446
+msgid "Find Next _Selection"
+msgstr "Найти Next _Selection"
+
+#: data/geany.glade:12328 src/keybindings.c:448
+msgid "Find Pre_vious Selection"
+msgstr "Найти предварительный выбор"
+
+#: data/geany.glade:12352 src/symbols.c:2072
+msgid "Find _Document Usage"
+msgstr "Найти использование _Document"
+
+#: data/geany.glade:12367 src/keybindings.c:465
+msgid "_Mark All"
+msgstr "_Пометить все"
+
+#: data/geany.glade:12391
+msgid "Go to T_ag Declaration"
+msgstr "Перейти к заявке T_ag"
+
+#: data/geany.glade:12408 src/dialogs.c:358
+msgid "_View"
+msgstr "_Посмотреть"
+
+#: data/geany.glade:12415
+msgid "Change _Font..."
+msgstr "Изменить _Font ..."
+
+#: data/geany.glade:12426
+msgid "Change _Color Scheme..."
+msgstr "Изменить _Color Scheme ..."
+
+#: data/geany.glade:12445
+msgid "Show _Markers Margin"
+msgstr "Показать марку _Markers"
+
+#: data/geany.glade:12455
+msgid "Show _Line Numbers"
+msgstr "Показать номера _Line"
+
+#: data/geany.glade:12465
+msgid "Show _White Space"
+msgstr "Показать _White Space"
+
+#: data/geany.glade:12474
+msgid "Show Line _Endings"
+msgstr "Показать строку _Endings"
+
+#: data/geany.glade:12483
+msgid "Show _Indentation Guides"
+msgstr "Показать _Интентификационные руководства"
+
+#: data/geany.glade:12498
+msgid "Full_screen"
+msgstr "Полноэкранный"
+
+#: data/geany.glade:12507
+msgid "To_ggle All Additional Widgets"
+msgstr "To_ggle Все дополнительные виджеты"
+
+#: data/geany.glade:12516
+msgid "Show Message _Window"
+msgstr "Показать сообщение _Window"
+
+#: data/geany.glade:12526
+msgid "Show _Toolbar"
+msgstr "Показать _Toolbar"
+
+#: data/geany.glade:12536
+msgid "Show Side_bar"
+msgstr "Показать Side_bar"
+
+#: data/geany.glade:12586
+msgid "_Document"
+msgstr "_Документ"
+
+#: data/geany.glade:12595
+msgid "_Line Wrapping"
+msgstr "_Line Wrapping"
+
+#: data/geany.glade:12605
+msgid "Line _Breaking"
+msgstr "Линия _Breaking"
+
+#: data/geany.glade:12614
+msgid "_Auto-indentation"
+msgstr "_Auto-отступы"
+
+#: data/geany.glade:12630
+msgid "Read _Only"
+msgstr "Прочитать _Одно"
+
+#: data/geany.glade:12639
+msgid "_Write Unicode BOM"
+msgstr "_Write Unicode BOM"
+
+#: data/geany.glade:12654
+msgid "Set File_type"
+msgstr "Установить File_type"
+
+#: data/geany.glade:12674
+msgid "Set _Encoding"
+msgstr "Установить _Encoding"
+
+#: data/geany.glade:12694
+msgid "Set Line E_ndings"
+msgstr "Установить строку E_ndings"
+
+#: data/geany.glade:12703
+msgid "Convert and Set to _CR/LF (Win)"
+msgstr "Преобразовать и установить на _CR / LF (Win)"
+
+#: data/geany.glade:12712
+msgid "Convert and Set to _LF (Unix)"
+msgstr "Преобразовать и установить в _LF (Unix)"
+
+#: data/geany.glade:12723
+msgid "Convert and Set to CR (_Mac)"
+msgstr "Преобразовать и установить в CR (_Mac)"
+
+#: data/geany.glade:12743 src/keybindings.c:574
+msgid "_Clone"
+msgstr "_Clone"
+
+#: data/geany.glade:12752
+msgid "_Strip Trailing Spaces"
+msgstr "_Strip Trailing Spaces"
+
+#: data/geany.glade:12761
+msgid "_Replace Tabs with Spaces"
+msgstr "_Выполнить вкладки пространством"
+
+#: data/geany.glade:12770
+msgid "Re_place Spaces with Tabs..."
+msgstr "Re_place Spaces с вкладками ..."
+
+#: data/geany.glade:12785
+msgid "_Fold All"
+msgstr "_Fold All"
+
+#: data/geany.glade:12794
+msgid "_Unfold All"
+msgstr "_Unfold All"
+
+#: data/geany.glade:12809
+msgid "Remove Brea_kpoints"
+msgstr "Удалить Brea_kpoints"
+
+#: data/geany.glade:12818
+msgid "Remove Error _Indicators"
+msgstr "Удалить ошибку _Индикаторы"
+
+#: data/geany.glade:12838 src/build.c:3767 src/build.c:4008
+msgid "_Build"
+msgstr "_Build"
+
+#: data/geany.glade:12847 src/build.c:3751 src/callbacks.c:2436
+msgid "_Compile"
+msgstr "_Compile"
+
+#: data/geany.glade:12858 src/callbacks.c:2437
+msgid "_Run"
+msgstr "_Бег"
+
+#: data/geany.glade:12861
+msgid "Run your project on the local machine"
+msgstr "Запустите проект на локальной машине"
+
+#: data/geany.glade:12870 src/callbacks.c:2438
+msgid "_Broadcast"
+msgstr "_Broadcast"
+
+#: data/geany.glade:12873
+msgid "Broadcast your project to any listening devices"
+msgstr "Трансляция вашего проекта на любые прослушивающие устройства"
+
+#: data/geany.glade:12882 src/callbacks.c:2439
+msgid "_Debug"
+msgstr "_Отлаживать"
+
+#: data/geany.glade:12885
+msgid "Debug your project on a particular device, set the IP address of the device in the build options"
+msgstr "Отлаживайте проект на определенном устройстве, задайте IP-адрес устройства в настройках сборки"
+
+#: data/geany.glade:12900
+msgid "Build _Options..."
+msgstr "Построить _Опции ..."
+
+#: data/geany.glade:12917
+msgid "D_ebug"
+msgstr "Отлаживать"
+
+#: data/geany.glade:12929
+msgid "Pause/Continue the current program"
+msgstr "Пауза / Продолжить текущую программу"
+
+#: data/geany.glade:12937 src/keybindings.c:625
+msgid "Step"
+msgstr "шаг"
+
+#: data/geany.glade:12940
+msgid "Execute the current line and pause on the next one, if the line contains a function call it will pause on the first line of that function"
+msgstr "Выполните текущую строку и выполните паузу на следующей, если строка содержит вызов функции, она будет приостановлена ​​в первой строке этой функции"
+
+#: data/geany.glade:12954
+msgid "Step Over Function"
+msgstr "Шаг за функцией"
+
+#: data/geany.glade:12957
+msgid "Execute the current line and pause on the next one, if the line contains any function calls it will execute them silently"
+msgstr "Выполните текущую строку и выполните паузу на следующей, если строка содержит любые вызовы функций, она будет выполнять их молча"
+
+#: data/geany.glade:12965
+msgid "Step Out Of Function"
+msgstr "Выход из функции"
+
+#: data/geany.glade:12968
+msgid "Executes all the lines left in this function and then pauses on the line that called this function"
+msgstr "Выполняет все строки, оставшиеся в этой функции, а затем останавливается на строке, вызывающей эту функцию"
+
+#: data/geany.glade:12984
+msgid "Toggle Breakpoint"
+msgstr "Переключить точку останова"
+
+#: data/geany.glade:12993
+msgid "Delete All Breakpoints"
+msgstr "Удалить все точки останова"
+
+#: data/geany.glade:13006
+msgid "_Tools"
+msgstr "_Инструменты"
+
+#: data/geany.glade:13013
+msgid "_Reload Configuration"
+msgstr "Конфигурация загрузки"
+
+#: data/geany.glade:13024
+msgid "C_onfiguration Files"
+msgstr "Файлы C_onfiguration"
+
+#: data/geany.glade:13040
+msgid "_Color Chooser"
+msgstr "_Color Chooser"
+
+#: data/geany.glade:13053
+msgid "_Word Count"
+msgstr "_Word Count"
+
+#: data/geany.glade:13062
+msgid "Load Ta_gs..."
+msgstr "Загрузить Ta_gs ..."
+
+#: data/geany.glade:13077
+msgid "Android"
+msgstr "Android"
+
+#: data/geany.glade:13087
+msgid "Generate Keystore File"
+msgstr "Генерировать файл Keystore"
+
+#: data/geany.glade:13096
+msgid "Browse to AGK Player"
+msgstr "Поиск в AGK Player"
+
+#: data/geany.glade:13109
+msgid "iOS"
+msgstr "IOS"
+
+#: data/geany.glade:13119
+msgid "Export AGK Player"
+msgstr "Экспорт AGK Player"
+
+#: data/geany.glade:13138
+msgid "Install Additional Files..."
+msgstr "Установка дополнительных файлов ..."
+
+#: data/geany.glade:13150
+msgid "D_LC"
+msgstr "D_LC"
+
+#: data/geany.glade:13164
+msgid "_Help"
+msgstr "_Помогите"
+
+#: data/geany.glade:13173
+msgid "_Command Help"
+msgstr "_Command Help"
+
+#: data/geany.glade:13180
+msgid "_Help Home"
+msgstr "Главная |"
+
+#: data/geany.glade:13192
+msgid "_Video Tutorials"
+msgstr "_Видео-учебники"
+
+#: data/geany.glade:13201
+msgid "_Keyboard Shortcuts"
+msgstr "_Горячие клавиши"
+
+#: data/geany.glade:13216
+msgid "AppGameKit _Website"
+msgstr "AppGameKit _Website"
+
+#: data/geany.glade:13225
+msgid "_TGC Website"
+msgstr "Сайт _TGC"
+
+#: data/geany.glade:13234
+msgid "Community _Forum"
+msgstr "Форум сообщества"
+
+#: data/geany.glade:13243
+msgid "_Upgrade To Full Version"
+msgstr "_Обновить до полной версии"
+
+#: data/geany.glade:13258
+msgid "Debug _Messages"
+msgstr "Debug _Messages"
+
+#: data/geany.glade:13319
+msgid "Current Project:"
+msgstr "Текущий проект:"
+
+#: data/geany.glade:13332
+msgid "The currently active project used for building"
+msgstr "Текущий активный проект, используемый для строительства"
+
+#: data/geany.glade:13382 data/geany.glade:14068 src/keybindings.c:246
+msgid "Project"
+msgstr "проект"
+
+#: data/geany.glade:13411 src/sidebar.c:123
+msgid "Symbols"
+msgstr "Символы"
+
+#: data/geany.glade:13446
+msgid "Call Stack"
+msgstr "Стек вызовов"
+
+#: data/geany.glade:13506 src/symbols.c:676 src/symbols.c:700
+msgid "Variables"
+msgstr "переменные"
+
+#: data/geany.glade:13558 src/keybindings.c:248 src/keybindings.c:603
+#: src/toolbar.c:72
+msgid "Debug"
+msgstr "Отлаживать"
+
+#: data/geany.glade:13624
+msgid "Status"
+msgstr "Положение дел"
+
+#: data/geany.glade:13652
+msgid "Compiler"
+msgstr "составитель"
+
+#: data/geany.glade:13682
+msgid "Search Results"
+msgstr "результаты поиска"
+
+#: data/geany.glade:13711
+msgid "Scribble"
+msgstr "мазня"
+
+#: data/geany.glade:13740
+msgid "Debug Log"
+msgstr "Журнал отладки"
+
+#: data/geany.glade:13797
+msgid "Project Properties"
+msgstr "Свойства проекта"
+
+#: data/geany.glade:13868 src/plugins.c:1491
+msgid "Filename:"
+msgstr "Имя файла:"
+
+#: data/geany.glade:13880 src/project.c:139
+msgid "Name:"
+msgstr "Имя:"
+
+#: data/geany.glade:13895
+msgid "Description:"
+msgstr "Описание:"
+
+#: data/geany.glade:13909 src/project.c:149
+msgid "Base path:"
+msgstr "Базовый путь:"
+
+#: data/geany.glade:13923
+msgid "File patterns:"
+msgstr "Шаблоны файлов:"
+
+#: data/geany.glade:13984
+msgid "Space separated list of file patterns used for the find in files dialog (e.g. *.c *.h)"
+msgstr "Пространственный список файлов, используемых для диалога поиска в файлах (например, * .c * .h)"
+
+#: data/geany.glade:14165
+msgid "Detect type from file"
+msgstr "Тип обнаружения из файла"
+
+#: data/geany.glade:14169
+msgid "Whether to detect the indentation type from file contents when a file is opened"
+msgstr "Независимо от того, следует ли определять тип отступов из содержимого файла при открытии файла"
+
+#: data/geany.glade:14188
+msgid "Use spaces if the total indent is less than the tab width, otherwise use both"
+msgstr "Используйте пробелы, если общий отступ меньше ширины табуляции, в противном случае используйте оба"
+
+#: data/geany.glade:14207
+msgid "Use spaces when inserting indentation"
+msgstr "Использовать пробелы при вставке отступов"
+
+#: data/geany.glade:14227
+msgid "Use one tab per indent"
+msgstr "Использовать одну вкладку для каждого отступа"
+
+#: data/geany.glade:14257
+msgid "Detect width from file"
+msgstr "Определить ширину из файла"
+
+#: data/geany.glade:14261
+msgid "Whether to detect the indentation width from file contents when a file is opened"
+msgstr "Независимо от того, следует ли определять ширину отступа из содержимого файла при открытии файла"
+
+#: data/geany.glade:14326
+msgid "Display:"
+msgstr "Дисплей:"
+
+#: data/geany.glade:14365
+msgid "Custom"
+msgstr "изготовленный на заказ"
+
+#: data/geany.glade:14384
+msgid "Use global settings"
+msgstr "Использовать глобальные настройки"
+
+#: data/geany.glade:14526
+msgid "Replace tabs with space"
+msgstr "Заменить вкладки пробелом"
+
+#: data/geany.glade:14716
+msgid "Size:"
+msgstr "Размер:"
+
+#: data/geany.glade:14731
+msgid "Location:"
+msgstr "Место нахождения:"
+
+#: data/geany.glade:14746
+msgid "Read-only:"
+msgstr "Только для чтения:"
+
+#: data/geany.glade:14761
+msgid "Encoding:"
+msgstr "Кодирование:"
+
+#: data/geany.glade:14776
+msgid "Modified:"
+msgstr "Изменен:"
+
+#: data/geany.glade:14791
+msgid "Changed:"
+msgstr "Изменен:"
+
+#: data/geany.glade:14806
+msgid "Accessed:"
+msgstr "Accessed:"
+
+#: data/geany.glade:14848
+msgid "(only inside Geany)"
+msgstr "(только внутри Geany)"
+
+#: data/geany.glade:14948
+msgid "Permissions:"
+msgstr "Разрешения:"
+
+#: data/geany.glade:14962
+msgid "Read:"
+msgstr "Читать:"
+
+#: data/geany.glade:14976
+msgid "Write:"
+msgstr "Написать:"
+
+#: data/geany.glade:14990
+msgid "Execute:"
+msgstr "Выполнение:"
+
+#: data/geany.glade:15004
+msgid "Owner:"
+msgstr "Владелец:"
+
+#: data/geany.glade:15016
+msgid "Group:"
+msgstr "Группа:"
+
+#: data/geany.glade:15028
+msgid "Other:"
+msgstr "Другие:"
+
+#: data/geany.glade:15202
+msgid "AGK Trial Version"
+msgstr "Испытательная версия AGK"
+
+#: data/geany.glade:15217
+msgid "_Upgrade Now"
+msgstr "_Обнови сейчас"
+
+#: data/geany.glade:15231
+msgid "_Continue With Trial"
+msgstr "_Continue With Trial"
+
+#: src/about.c:41
+msgid "<span>Built on Geany 1.24.1</span>"
+msgstr "<span> Построено на Geany 1.24.1 </ span>"
+
+#: src/about.c:43
+msgid "App Game Kit (c) 2014\n"
+"The Game Creators Ltd. All Rights Reserved.\n"
+"\n"
+"Geany Copyright (c)  2005-2014\n"
+"Colomban Wendling\n"
+"Nick Treleaven\n"
+"Matthew Brush\n"
+"Enrico Tröger\n"
+"Frank Lanitz\n"
+"All rights reserved."
+msgstr "Комплект игровых приложений (c) 2014\n"
+"The Game Creators Ltd. Все права защищены.\n"
+"\n"
+"Geany Copyright (c) 2005-2014\n"
+"Коломан Вендлинг\n"
+"Ник Треливен\n"
+"Мэтью Киш\n"
+"Энрико Трёгер\n"
+"Фрэнк Ланиц\n"
+"Все права защищены."
+
+#: src/about.c:114
+msgid "About AppGameKit"
+msgstr "О приложении AppGameKit"
+
+#: src/about.c:160
+msgid "A fast and lightweight IDE"
+msgstr "Быстрая и легкая среда IDE"
+
+#: src/about.c:182
+msgid "(built on %s)"
+msgstr "(построено на% s)"
+
+#: src/about.c:201
+msgid "Info"
+msgstr "Информация"
+
+#: src/about.c:217
+msgid "AppGameKit Credits"
+msgstr "Кредиты AppGameKit"
+
+#: src/about.c:224
+msgid "Producer"
+msgstr "Режиссер"
+
+#: src/about.c:228 src/about.c:232
+msgid "Developer"
+msgstr "разработчик"
+
+#: src/about.c:236
+msgid "Examples, Demos, and Help"
+msgstr "Примеры, демонстрации и помощь"
+
+#: src/about.c:240 src/about.c:244
+msgid "Graphics"
+msgstr "Графика"
+
+#: src/about.c:255
+msgid "Geany Credits"
+msgstr "Кредиты Geany"
+
+#: src/about.c:262
+msgid "maintainer"
+msgstr "сопровождающий"
+
+#: src/about.c:266 src/about.c:270 src/about.c:274
+msgid "developer"
+msgstr "разработчик"
+
+#: src/about.c:278
+msgid "translation maintainer"
+msgstr "переводчик"
+
+#: src/about.c:286
+msgid "Geany Contributors"
+msgstr "Участники форума"
+
+#: src/about.c:306
+msgid "Credits"
+msgstr "кредиты"
+
+#: src/about.c:330
+msgid "The following license applies to the IDE only\n"
+"The source code can be found at https://github.com/TheGameCreators/AGKIDE"
+msgstr "Следующая лицензия распространяется только на IDE\n"
+"Исходный код можно найти на странице https://github.com/TheGameCreators/AGKIDE"
+
+#: src/about.c:347
+msgid "License text could not be found, please visit http://www.gnu.org/licenses/gpl-2.0.txt to view it online."
+msgstr "Текст лицензии не найден, посетите http://www.gnu.org/licenses/gpl-2.0.txt, чтобы просмотреть его онлайн."
+
+#: src/about.c:354
+msgid "License"
+msgstr "Лицензия"
+
+#: src/about.c:381
+msgid "EULA text could not be found, please visit http://www.appgamekit.com for more information."
+msgstr "Текст EULA не найден, пожалуйста, посетите страницу http://www.appgamekit.com для получения дополнительной информации."
+
+#: src/about.c:388
+msgid "EULA"
+msgstr "EULA"
+
+#: src/build.c:764
+msgid "failed to substitute %%p, no project active"
+msgstr "не удалось заменить %% p, нет активного проекта"
+
+#: src/build.c:803
+msgid "Process failed, no working directory"
+msgstr "Не удалось выполнить процесс, нет рабочего каталога"
+
+#: src/build.c:826
+msgid "%s (in directory: %s)"
+msgstr "% s (в каталоге:% s)"
+
+#: src/build.c:861 src/build.c:1161
+msgid "build command spawning failed: %s"
+msgstr "Не удалось создать командную команду:% s"
+
+#: src/build.c:862 src/build.c:1162 src/build.c:1288 src/build.c:1388
+#: src/build.c:1497 src/build.c:1572 src/build.c:1852 src/callbacks.c:2344
+#: src/search.c:1725
+msgid "Process failed (%s)"
+msgstr "Не удалось выполнить процесс (% s)"
+
+#: src/build.c:1053 src/build.c:1054
+msgid "Failed to compile project, it must contain a 'main.agc' file in the project directory"
+msgstr "Не удалось скомпилировать проект, он должен содержать файл «main.agc» в каталоге проекта"
+
+#: src/build.c:1084 src/build.c:1085
+msgid "Could not find compiler, please check the compiler path in the build options"
+msgstr "Не удалось найти компилятор, проверьте путь компилятора в параметрах сборки."
+
+#: src/build.c:1113
+msgid "Running %s (in directory: %s)"
+msgstr "Запуск% s (в каталоге:% s)"
+
+#: src/build.c:1210 src/build.c:1211
+msgid "Failed to run project locally, project is already running"
+msgstr "Не удалось запустить проект локально, проект уже запущен"
+
+#: src/build.c:1255 src/build.c:1256
+msgid "Failed to run project locally, program not found"
+msgstr "Не удалось запустить проект локально, программа не найдена"
+
+#: src/build.c:1287 src/build.c:1387 src/build.c:1571 src/build.c:1851
+msgid "g_spawn_async() failed: %s"
+msgstr "Ошибка g_spawn_async ():% s"
+
+#: src/build.c:1335 src/build.c:1336
+msgid "Failed to broadcast project, broadcaster is already running"
+msgstr "Не удалось передать проект, вещатель уже запущен"
+
+#: src/build.c:1342 src/build.c:1343
+msgid "Failed to broadcast project, debugger is currently running"
+msgstr "Не удалось выполнить трансляцию проекта, в настоящее время работает отладчик"
+
+#: src/build.c:1370 src/build.c:1371
+msgid "Failed to broadcast project, broadcaster program not found"
+msgstr "Не удалось передать проект, программа вещателя не найдена"
+
+#: src/build.c:1436 src/build.c:1437
+msgid "Failed to debug project, broadcaster is already running"
+msgstr "Не удалось отладить проект, вещатель уже запущен"
+
+#: src/build.c:1443 src/build.c:1444
+msgid "Failed to debug project, debugger is already running"
+msgstr "Не удалось отладить проект, отладчик уже запущен"
+
+#: src/build.c:1473
+msgid "Failed to debug project, debug broadcaster not found"
+msgstr "Не удалось отладить проект, отладка вещателя не найдена"
+
+#: src/build.c:1474
+msgid "Failed to broadcast project, debug broadcaster not found"
+msgstr "Не удалось передать проект, отладка вещателя не найдена"
+
+#: src/build.c:1517
+msgid "Debugging on remote devices is disabled in the trial version. Remove the debug IP address in the build settings to stop this message"
+msgstr "Отладка на удаленных устройствах отключена в пробной версии. Удалите IP-адрес отладки в настройках сборки, чтобы остановить это сообщение."
+
+#: src/build.c:1534
+msgid "Debugging on local machine, to debug on a device set its IP address in the build options"
+msgstr "Отладка на локальном компьютере, отладка на устройстве, установка его IP-адреса в настройках сборки"
+
+#: src/build.c:1555 src/build.c:1556
+msgid "Failed to debug project locally, interpreter program not found"
+msgstr "Не удалось отладить проект локально, программа-интерпретатор не найдена"
+
+#: src/build.c:1570 src/build.c:1601 src/build.c:1602
+msgid "Failed to debug project locally, interpreter failed to run"
+msgstr "Не удалось отладить проект локально, интерпретатор не смог выполнить"
+
+#: src/build.c:1704
+msgid "Failed to change the working directory to \"%s\""
+msgstr "Не удалось изменить рабочий каталог на \"% s\""
+
+#: src/build.c:1734
+msgid "Failed to execute \"%s\" (start-script could not be created: %s)"
+msgstr "Не удалось выполнить «% s» (start-script не удалось создать:% s)"
+
+#: src/build.c:1789 src/build.c:1790
+msgid "Could not execute the file in the VTE because it probably contains a command."
+msgstr "Не удалось выполнить файл в VTE, потому что он, вероятно, содержит команду."
+
+#: src/build.c:1816
+msgid "Could not parse terminal command \"%s\" (check Terminal tool setting in Preferences)"
+msgstr "Не удалось разобрать команду терминала «% s» (проверьте настройку инструмента терминала в настройках)"
+
+#: src/build.c:1835
+msgid "Could not find terminal \"%s\" (check path for Terminal tool setting in Preferences)"
+msgstr "Не удалось найти терминал «% s» (проверить путь для параметра «Установка терминала» в «Настройки»)"
+
+#: src/build.c:2173
+msgid "Entering directory"
+msgstr "Вход в каталог"
+
+#: src/build.c:2195
+msgid "Leaving directory"
+msgstr "Выход из каталога"
+
+#: src/build.c:2211
+msgid "Compilation failed."
+msgstr "Ошибка компиляции."
+
+#: src/build.c:2225
+msgid "Compilation finished successfully."
+msgstr "Компиляция завершена успешно."
+
+#: src/build.c:2505
+msgid "Custom Text"
+msgstr "Пользовательский текст"
+
+#: src/build.c:2506
+msgid "Enter custom text here, all entered text is appended to the command."
+msgstr "Введите здесь специальный текст, добавленный текст добавляется к команде."
+
+#: src/build.c:2574
+msgid "_Next Error"
+msgstr "Ошибка _Next"
+
+#: src/build.c:2575
+msgid "_Previous Error"
+msgstr "_Подробная ошибка"
+
+#: src/build.c:2580 src/build.c:4057
+msgid "_Set Build Commands"
+msgstr "Команды создания сборки"
+
+#: src/build.c:2852
+msgid "You must open a project before you can compile"
+msgstr "Вы должны открыть проект, прежде чем сможете скомпилировать"
+
+#: src/build.c:2853
+msgid "You must open a project before you can run"
+msgstr "Вы должны открыть проект, прежде чем сможете запустить"
+
+#: src/build.c:2854
+msgid "You must open a project before you can broadcast"
+msgstr "Вы должны открыть проект, прежде чем вы сможете транслировать"
+
+#: src/build.c:2855
+msgid "You must open a project before you can debug"
+msgstr "Вы должны открыть проект, прежде чем сможете отлаживать"
+
+#: src/build.c:2860
+msgid "Compile the project '%s'"
+msgstr "Скомпилировать проект «% s»"
+
+#: src/build.c:2863
+msgid "Run the project '%s' on the local machine"
+msgstr "Запустите проект «% s» на локальной машине"
+
+#: src/build.c:2866
+msgid "Broadcast the project '%s' to any listening devices"
+msgstr "Передавать проект «% s» на любые прослушивающие устройства"
+
+#: src/build.c:2869
+msgid "Debug the project '%s' on a particular device"
+msgstr "Отладить проект «% s» на конкретном устройстве"
+
+#: src/build.c:3000
+msgid "Build the current file with Make and the default target"
+msgstr "Создайте текущий файл с помощью Make и целевой по умолчанию"
+
+#: src/build.c:3002
+msgid "Build the current file with Make and the specified target"
+msgstr "Создайте текущий файл с помощью Make и указанной цели."
+
+#: src/build.c:3004
+msgid "Compile the current file with Make"
+msgstr "Скомпилируйте текущий файл с помощью Make"
+
+#: src/build.c:3028
+msgid "Process could not be stopped (%s)."
+msgstr "Процесс не может быть остановлен (% s)."
+
+#: src/build.c:3045 src/build.c:3057
+msgid "No more build errors."
+msgstr "Больше ошибок сборки."
+
+#: src/build.c:3156 src/build.c:3158
+msgid "Set menu item label"
+msgstr "Установить ярлык элемента меню"
+
+#: src/build.c:3183 src/tools.c:568
+msgid "Label"
+msgstr "метка"
+
+#: src/build.c:3184 src/tools.c:553
+msgid "Command"
+msgstr "команда"
+
+#: src/build.c:3185
+msgid "Working directory"
+msgstr "Рабочий каталог"
+
+#: src/build.c:3186
+msgid "Reset"
+msgstr "Сброс"
+
+#: src/build.c:3233
+msgid "Click to set menu item label"
+msgstr "Нажмите, чтобы установить ярлык элемента меню"
+
+#: src/build.c:3317 src/build.c:3319
+msgid "%s commands"
+msgstr "Команды% s"
+
+#: src/build.c:3319
+msgid "No filetype"
+msgstr "Нет типа файла"
+
+#: src/build.c:3328 src/build.c:3363
+msgid "Error regular expression:"
+msgstr "Ошибка регулярного выражения:"
+
+#: src/build.c:3356
+msgid "Independent commands"
+msgstr "Независимые команды"
+
+#: src/build.c:3388
+msgid "Note: Item 2 opens a dialog and appends the response to the command."
+msgstr "Примечание. Пункт 2 открывает диалог и добавляет ответ на команду."
+
+#: src/build.c:3397
+msgid "Execute commands"
+msgstr "Выполнять команды"
+
+#: src/build.c:3409
+msgid "%d, %e, %f, %p are substituted in command and directory fields, see manual for details."
+msgstr "% d,% e,% f,% p заменены в командных и справочных полях, см. руководство для деталей."
+
+#: src/build.c:3567
+msgid "Set Build Commands"
+msgstr "Установить команды сборки"
+
+#: src/build.c:3774 src/build.c:3957
+msgid "_Execute"
+msgstr "_Execute"
+
+#: src/build.c:3785
+msgid "Make Custom _Target..."
+msgstr "Сделать Custom _Target ..."
+
+#: src/build.c:3787
+msgid "Make _Object"
+msgstr "Сделать _Object"
+
+#: src/build.c:3789
+msgid "_Make"
+msgstr "_Делать"
+
+#: src/build.c:4095 src/callbacks.c:224
+msgid "%d file saved."
+msgid_plural "%d files saved."
+msgstr[0] "Файл% d сохранен."
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: src/callbacks.c:138
+msgid "Cannot quit whilst an update is in progress, please wait"
+msgstr "Не удается завершить работу, пока обновление не выполняется, подождите"
+
+#: src/callbacks.c:167
+msgid "Do you really want to quit?"
+msgstr "Вы действительно хотите бросить курить?"
+
+#: src/callbacks.c:585
+msgid "Any unsaved changes will be lost."
+msgstr "Любые несохраненные изменения будут потеряны."
+
+#: src/callbacks.c:586
+msgid "Are you sure you want to reload '%s'?"
+msgstr "Вы действительно хотите перезагрузить '% s'?"
+
+#: src/callbacks.c:1303 src/keybindings.c:474
+msgid "Go to Line"
+msgstr "Перейти к строке"
+
+#: src/callbacks.c:1304
+msgid "Enter the line you want to go to:"
+msgstr "Введите строку, в которую хотите перейти:"
+
+#: src/callbacks.c:1620 src/callbacks.c:1645
+msgid "Please set the filetype for the current file before using this function."
+msgstr "Перед использованием этой функции установите тип файла для текущего файла."
+
+#: src/callbacks.c:1750 src/ui_utils.c:693
+msgid "dd.mm.yyyy"
+msgstr "дд.мм.гггг"
+
+#: src/callbacks.c:1752 src/ui_utils.c:694
+msgid "mm.dd.yyyy"
+msgstr "mm.dd.yyyy"
+
+#: src/callbacks.c:1754 src/ui_utils.c:695
+msgid "yyyy/mm/dd"
+msgstr "дд гггг / мм /"
+
+#: src/callbacks.c:1756 src/ui_utils.c:707
+msgid "dd.mm.yyyy hh:mm:ss"
+msgstr "dd.mm.yyyy hh: mm: ss"
+
+#: src/callbacks.c:1758 src/ui_utils.c:708
+msgid "mm.dd.yyyy hh:mm:ss"
+msgstr "mm.dd.yyyy hh: mm: ss"
+
+#: src/callbacks.c:1760 src/ui_utils.c:709
+msgid "yyyy/mm/dd hh:mm:ss"
+msgstr "yyyy / mm / dd hh: mm: ss"
+
+#: src/callbacks.c:1762 src/ui_utils.c:721
+msgid "_Use Custom Date Format"
+msgstr "_Используйте пользовательский формат даты"
+
+#: src/callbacks.c:1766
+msgid "Custom Date Format"
+msgstr "Пользовательский формат даты"
+
+#: src/callbacks.c:1767
+msgid "Enter here a custom date and time format. You can use any conversion specifiers which can be used with the ANSI C strftime function."
+msgstr "Введите здесь специальный формат даты и времени. Вы можете использовать любые спецификаторы преобразования, которые могут использоваться с функцией ANSI C strftime."
+
+#: src/callbacks.c:1790
+msgid "Date format string could not be converted (possibly too long)."
+msgstr "Строка формата даты не может быть преобразована (возможно, слишком длинная)."
+
+#: src/callbacks.c:1992 src/callbacks.c:2000
+msgid "No more message items."
+msgstr "Больше элементов сообщения."
+
+#: src/callbacks.c:2062 src/callbacks.c:2076
+msgid "Unfortunately exporting is not supported on Raspberry Pi"
+msgstr "К сожалению, экспорт не поддерживается на малине Pi"
+
+#: src/callbacks.c:2098
+msgid "Generating a keystore is not available in the trial version"
+msgstr "Генерация хранилища ключей недоступна в пробной версии"
+
+#: src/callbacks.c:2101
+msgid "Unfortunately generating a keystore is not supported on Raspberry Pi"
+msgstr "К сожалению, создание хранилища ключей не поддерживается на малине Pi"
+
+#: src/callbacks.c:2111 src/callbacks.c:2131
+msgid "Exporting to IPA is only possible on Mac"
+msgstr "Экспорт в IPA возможен только на Mac"
+
+#: src/callbacks.c:2119 src/project.c:823 src/project.c:2741
+msgid "You must have a project open to export it"
+msgstr "У вас должен быть открытый проект для экспорта"
+
+#: src/callbacks.c:2134
+msgid "iOS player is not available in the trial version"
+msgstr "iOS-плеер недоступен в пробной версии"
+
+#: src/callbacks.c:2147
+msgid "Android player is not available in the trial version"
+msgstr "Android-плеер недоступен в пробной версии"
+
+#: src/callbacks.c:2437
+msgid "Stop _Running"
+msgstr "Прекратить бег"
+
+#: src/callbacks.c:2438
+msgid "Stop _Broadcasting"
+msgstr "Остановка _Broadcasting"
+
+#: src/callbacks.c:2439
+msgid "Stop _Debugging"
+msgstr "Остановить _Debugging"
+
+#: src/callbacks.c:2586
+msgid "Could not open file %s (File not found)"
+msgstr "Не удалось открыть файл% s (Файл не найден)"
+
+#: src/dialogs.c:220
+msgid "Detect from file"
+msgstr "Обнаружение из файла"
+
+#: src/dialogs.c:223
+msgid "West European"
+msgstr "Западно-Европейский"
+
+#: src/dialogs.c:225
+msgid "East European"
+msgstr "Восточно-Европейский"
+
+#: src/dialogs.c:227
+msgid "East Asian"
+msgstr "Восточная Азия"
+
+#: src/dialogs.c:229
+msgid "SE & SW Asian"
+msgstr "SE & SW Asian"
+
+#: src/dialogs.c:231
+msgid "Middle Eastern"
+msgstr "Ближневосточный"
+
+#: src/dialogs.c:233 src/encodings.c:112 src/encodings.c:113
+#: src/encodings.c:114 src/encodings.c:115 src/encodings.c:116
+#: src/encodings.c:117 src/encodings.c:118 src/encodings.c:119
+msgid "Unicode"
+msgstr "Unicode"
+
+#: src/dialogs.c:282
+msgid "_More Options"
+msgstr "_Больше вариантов"
+
+#: src/dialogs.c:289
+msgid "Show _hidden files"
+msgstr "Показать скрытые файлы"
+
+#: src/dialogs.c:300
+msgid "Set encoding:"
+msgstr "Установить кодировку:"
+
+#: src/dialogs.c:309
+msgid "Explicitly defines an encoding for the file, if it would not be detected. This is useful when you know that the encoding of a file cannot be detected correctly by Geany.\n"
+"Note if you choose multiple files, they will all be opened with the chosen encoding."
+msgstr "Явно определяет кодировку для файла, если он не будет обнаружен. Это полезно, если вы знаете, что кодировка файла не может быть обнаружена Geany.\n"
+"Обратите внимание, что если вы выберете несколько файлов, все они будут открыты с выбранной кодировкой."
+
+#: src/dialogs.c:316
+msgid "Set filetype:"
+msgstr "Установить тип файла:"
+
+#: src/dialogs.c:325
+msgid "Explicitly defines a filetype for the file, if it would not be detected by filename extension.\n"
+"Note if you choose multiple files, they will all be opened with the chosen filetype."
+msgstr "Явно определяет тип файла для файла, если он не будет обнаружен расширением имени файла.\n"
+"Обратите внимание, что если вы выберете несколько файлов, все они будут открыты с выбранным типом файла."
+
+#: src/dialogs.c:354 src/dialogs.c:460
+msgid "Open File"
+msgstr "Открыть файл"
+
+#: src/dialogs.c:360
+msgid "Opens the file in read-only mode. If you choose more than one file to open, all files will be opened read-only."
+msgstr "Открывает файл в режиме только для чтения. Если вы выберете более одного файла для открытия, все файлы будут открыты только для чтения."
+
+#: src/dialogs.c:380
+msgid "Detect by file extension"
+msgstr "Обнаружение по расширению файла"
+
+#: src/dialogs.c:525
+msgid "Overwrite?"
+msgstr "Переписать?"
+
+#: src/dialogs.c:526
+msgid "Filename already exists!"
+msgstr "Имя файла уже существует!"
+
+#: src/dialogs.c:555 src/dialogs.c:684
+msgid "Save File"
+msgstr "Сохранить файл"
+
+#: src/dialogs.c:564
+msgid "R_ename"
+msgstr "R_ename"
+
+#: src/dialogs.c:565
+msgid "Save the file and rename it"
+msgstr "Сохраните файл и переименуйте его"
+
+#: src/dialogs.c:702 src/win32.c:912
+msgid "Error"
+msgstr "ошибка"
+
+#: src/dialogs.c:705 src/dialogs.c:783 src/dialogs.c:1352 src/win32.c:918
+msgid "Question"
+msgstr "Вопрос"
+
+#: src/dialogs.c:708 src/win32.c:924
+msgid "Warning"
+msgstr "Предупреждение"
+
+#: src/dialogs.c:711 src/win32.c:930
+msgid "Information"
+msgstr "Информация"
+
+#: src/dialogs.c:787
+msgid "_Don't save"
+msgstr "_Не сохраняйте"
+
+#: src/dialogs.c:816
+msgid "The file '%s' is not saved."
+msgstr "Файл «% s» не сохраняется."
+
+#: src/dialogs.c:817
+msgid "Do you want to save it before closing?"
+msgstr "Вы хотите сохранить его перед закрытием?"
+
+#: src/dialogs.c:897
+msgid "Choose font"
+msgstr "Выберите шрифт"
+
+#: src/dialogs.c:1199
+msgid "An error occurred or file information could not be retrieved (e.g. from a new file)."
+msgstr "Произошла ошибка или не удалось получить информацию о файле (например, из нового файла)."
+
+#: src/dialogs.c:1218 src/dialogs.c:1219 src/dialogs.c:1220 src/dialogs.c:1226
+#: src/dialogs.c:1227 src/dialogs.c:1228 src/symbols.c:1883 src/symbols.c:1899
+#: src/ui_utils.c:293
+msgid "unknown"
+msgstr "неизвестный"
+
+#: src/dialogs.c:1233
+msgid "%s Properties"
+msgstr "% s Свойства"
+
+#: src/dialogs.c:1266 src/ui_utils.c:297
+msgid "(with BOM)"
+msgstr "(с BOM)"
+
+#: src/dialogs.c:1266
+msgid "(without BOM)"
+msgstr "(без спецификации)"
+
+#: src/document.c:623
+msgid "File %s closed."
+msgstr "Файл% s закрыт."
+
+#: src/document.c:717
+msgid "Do you want to add the new file to the current project '%s'? (This will require you to save the new document somewhere)"
+msgstr "Вы хотите добавить новый файл в текущий проект «% s»? (Это потребует, чтобы вы где-то сохранили новый документ)"
+
+#: src/document.c:808
+msgid "New file \"%s\" opened."
+msgstr "Открывается новый файл «% s»."
+
+#: src/document.c:865 src/project.c:251 src/project.c:289 src/project.c:333
+#: src/project.c:413 src/project.c:6093
+msgid "Project file \"%s\" could not be loaded."
+msgstr "Файл проекта «% s» не может быть загружен."
+
+#: src/document.c:901 src/document.c:1450
+msgid "Could not open file %s (%s)"
+msgstr "Не удалось открыть файл% s (% s)"
+
+#: src/document.c:921
+msgid "The file \"%s\" is not valid %s."
+msgstr "Файл% s недействителен% s."
+
+#: src/document.c:927
+msgid "The file \"%s\" does not look like a text file or the file encoding is not supported."
+msgstr "Файл «% s» не похож на текстовый файл или кодировка файла не поддерживается."
+
+#: src/document.c:937
+msgid "The file \"%s\" could not be opened properly and has been truncated. This can occur if the file contains a NULL byte. Be aware that saving it can cause data loss.\n"
+"The file was set to read-only."
+msgstr "Файл «% s» не может быть правильно открыт и усечен. Это может произойти, если файл содержит NULL-байт. Имейте в виду, что сохранение может привести к потере данных.\n"
+"Файл был настроен только на чтение."
+
+#: src/document.c:1338
+msgid "File %s reloaded."
+msgstr "Файл% s перезагружен."
+
+#: src/document.c:1346
+msgid "File %s opened(%d%s)."
+msgstr "Файл% s открыт (% d% s)."
+
+#: src/document.c:1348
+msgid ", read-only"
+msgstr ", только для чтения"
+
+#: src/document.c:1545
+msgid "Error renaming file."
+msgstr "Ошибка переименования файла."
+
+#: src/document.c:1640
+msgid "An error occurred while converting the file from UTF-8 in \"%s\". The file remains unsaved."
+msgstr "Произошла ошибка при преобразовании файла из UTF-8 в «% s». Файл остается несохраненным."
+
+#: src/document.c:1661
+msgid "Error message: %s\n"
+"The error occurred at \"%s\" (line: %d, column: %d)."
+msgstr "Сообщения об ошибках\n"
+"Ошибка произошла при «% s» (строка:% d, столбец:% d)."
+
+#: src/document.c:1665
+msgid "Error message: %s."
+msgstr "Сообщения об ошибках."
+
+#: src/document.c:1725
+msgid "Failed to open file '%s' for writing: fopen() failed: %s"
+msgstr "Не удалось открыть файл «% s» для записи: fopen () не удалось:% s"
+
+#: src/document.c:1743
+msgid "Failed to write file '%s': fwrite() failed: %s"
+msgstr "Не удалось записать файл «% s»: сбой fwrite ():% s"
+
+#: src/document.c:1757
+msgid "Failed to close file '%s': fclose() failed: %s"
+msgstr "Не удалось закрыть файл «% s»: fclose () не удалось:% s"
+
+#: src/document.c:1906
+msgid "Error saving file (%s)."
+msgstr "Ошибка сохранения файла (% s)."
+
+#: src/document.c:1911
+msgid "%s\n"
+"\n"
+"The file on disk may now be truncated!"
+msgstr "% s\n"
+"\n"
+"Файл на диске теперь может быть усечен!"
+
+#: src/document.c:1913
+msgid "Error saving file."
+msgstr "Ошибка сохранения файла."
+
+#: src/document.c:1937
+msgid "File %s saved."
+msgstr "Файл% s сохранен."
+
+#: src/document.c:2014 src/document.c:2079 src/document.c:2087
+msgid "\"%s\" was not found."
+msgstr "«% s» не найден."
+
+#: src/document.c:2087
+msgid "Wrap search and find again?"
+msgstr "Оберните поиск и найдите еще раз?"
+
+#: src/document.c:2176 src/search.c:1357 src/search.c:1408 src/search.c:2219
+#: src/search.c:2220
+msgid "No matches found for \"%s\"."
+msgstr "Не найдено совпадений для «% s»."
+
+#: src/document.c:2182
+msgid "%s: replaced %d occurrence of \"%s\" with \"%s\"."
+msgid_plural "%s: replaced %d occurrences of \"%s\" with \"%s\"."
+msgstr[0] "% s: заменил% d нахождение «% s» на «% s»."
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: src/document.c:3150
+msgid "Do you want to reload it?"
+msgstr "Вы хотите перезагрузить его?"
+
+#: src/document.c:3151
+msgid "The file '%s' on the disk is more recent than\n"
+"the current buffer."
+msgstr "Файл «% s» на диске более поздний, чем\n"
+"текущий буфер."
+
+#: src/document.c:3169
+msgid "Close _without saving"
+msgstr "Закрыть _without save"
+
+#: src/document.c:3172
+msgid "Try to resave the file?"
+msgstr "Попробуйте сохранить файл?"
+
+#: src/document.c:3173
+msgid "File \"%s\" was not found on disk!"
+msgstr "Файл «% s» не найден на диске!"
+
+#: src/document.c:3241
+msgid "%s: Something is wrong with the time stamps."
+msgstr "% s: Что-то не так с отметками времени."
+
+#: src/editor.c:232
+msgid "Can not parse accelerator \"%s\" from user snippets.conf"
+msgstr "Невозможно разобрать ускоритель «% s» от пользователя snippets.conf"
+
+#: src/editor.c:4384
+msgid "Enter Tab Width"
+msgstr "Введите ширину вклада"
+
+#: src/editor.c:4385
+msgid "Enter the amount of spaces which should be replaced by a tab character."
+msgstr "Введите количество пробелов, которое должно быть заменено символом табуляции."
+
+#: src/editor.c:4743
+msgid "failed to load icon '%s': %s"
+msgstr "не удалось загрузить значок «% s»:% s"
+
+#: src/editor.c:4758
+msgid "incompatible image data for icon '%s'"
+msgstr "несовместимые данные изображения для значка «% s»"
+
+#: src/encodings.c:67
+msgid "Celtic"
+msgstr "кельтская"
+
+#: src/encodings.c:68 src/encodings.c:69
+msgid "Greek"
+msgstr "греческий"
+
+#: src/encodings.c:70
+msgid "Nordic"
+msgstr "нордический"
+
+#: src/encodings.c:71
+msgid "South European"
+msgstr "Юго-европейский"
+
+#: src/encodings.c:72 src/encodings.c:73 src/encodings.c:74 src/encodings.c:75
+msgid "Western"
+msgstr "вестерн"
+
+#: src/encodings.c:77 src/encodings.c:78 src/encodings.c:79
+msgid "Baltic"
+msgstr "балтийский"
+
+#: src/encodings.c:80 src/encodings.c:81 src/encodings.c:82
+msgid "Central European"
+msgstr "Центральная Европа"
+
+#: src/encodings.c:83 src/encodings.c:84 src/encodings.c:86 src/encodings.c:87
+#: src/encodings.c:88
+msgid "Cyrillic"
+msgstr "кириллица"
+
+#: src/encodings.c:89
+msgid "Cyrillic/Russian"
+msgstr "Кириллица / русский"
+
+#: src/encodings.c:90
+msgid "Cyrillic/Ukrainian"
+msgstr "Кириллица / Украинский"
+
+#: src/encodings.c:91
+msgid "Romanian"
+msgstr "румынский"
+
+#: src/encodings.c:93 src/encodings.c:94 src/encodings.c:95
+msgid "Arabic"
+msgstr "арабский"
+
+#: src/encodings.c:96 src/encodings.c:98 src/encodings.c:99
+msgid "Hebrew"
+msgstr "иврит"
+
+#: src/encodings.c:100
+msgid "Hebrew Visual"
+msgstr "Иврит Визуальный"
+
+#: src/encodings.c:102
+msgid "Armenian"
+msgstr "армянин"
+
+#: src/encodings.c:103
+msgid "Georgian"
+msgstr "грузинский"
+
+#: src/encodings.c:104
+msgid "Thai"
+msgstr "тайский"
+
+#: src/encodings.c:105 src/encodings.c:106 src/encodings.c:107
+msgid "Turkish"
+msgstr "турецкий"
+
+#: src/encodings.c:108 src/encodings.c:109 src/encodings.c:110
+msgid "Vietnamese"
+msgstr "вьетнамский"
+
+#: src/encodings.c:121 src/encodings.c:122 src/encodings.c:123
+#: src/encodings.c:125
+msgid "Chinese Simplified"
+msgstr "Китайский упрощенный"
+
+#: src/encodings.c:126 src/encodings.c:127 src/encodings.c:128
+msgid "Chinese Traditional"
+msgstr "Китайский традиционный"
+
+#: src/encodings.c:129 src/encodings.c:130 src/encodings.c:131
+#: src/encodings.c:132
+msgid "Japanese"
+msgstr "Японский"
+
+#: src/encodings.c:133 src/encodings.c:134 src/encodings.c:135
+#: src/encodings.c:136
+msgid "Korean"
+msgstr "Корейский"
+
+#: src/encodings.c:138
+msgid "Without encoding"
+msgstr "Без кодирования"
+
+#: src/encodings.c:420
+msgid "_West European"
+msgstr "_Все европейский"
+
+#: src/encodings.c:426
+msgid "_East European"
+msgstr "_Есть европейский"
+
+#: src/encodings.c:432
+msgid "East _Asian"
+msgstr "Восточная Азия"
+
+#: src/encodings.c:438
+msgid "_SE & SW Asian"
+msgstr "_SE & SW Asian"
+
+#: src/encodings.c:444
+msgid "_Middle Eastern"
+msgstr "_Ближневосточный"
+
+#: src/encodings.c:450
+msgid "_Unicode"
+msgstr "_UNICODE"
+
+#: src/filetypes.c:91
+msgid "%s source file"
+msgstr "Исходный файл% s"
+
+#: src/filetypes.c:92
+msgid "%s file"
+msgstr "Файл% s"
+
+#: src/filetypes.c:93
+msgid "%s script"
+msgstr "Скрипт% s"
+
+#: src/filetypes.c:94
+msgid "%s document"
+msgstr "Документ% s"
+
+#: src/filetypes.c:142
+msgid "Config"
+msgstr "конфиг"
+
+#: src/filetypes.c:1049 src/win32.c:201
+msgid "All Source"
+msgstr "Все источники"
+
+#: src/filetypes.c:1074 src/win32.c:191 src/win32.c:236 src/win32.c:257
+#: src/win32.c:262
+msgid "All files"
+msgstr "Все файлы"
+
+#: src/filetypes.c:1122
+msgid "Bad regex for filetype %s: %s"
+msgstr "Плохое регулярное выражение для типа файла% s:% s"
+
+#: src/geany.h:51
+msgid "untitled"
+msgstr "без названия"
+
+#: src/highlighting.c:1144 src/main.c:936 src/socket.c:166 src/templates.c:222
+#: src/templates.c:262
+msgid "Could not find file '%s'."
+msgstr "Не удалось найти файл «% s»."
+
+#: src/highlighting.c:1216
+msgid "Default"
+msgstr "По умолчанию"
+
+#: src/highlighting.c:1255
+msgid "The current filetype overrides the default style."
+msgstr "Текущий тип файла отменяет стиль по умолчанию."
+
+#: src/highlighting.c:1256
+msgid "This may cause color schemes to display incorrectly."
+msgstr "Это может привести к неправильной отображению цветовых схем."
+
+#: src/highlighting.c:1277
+msgid "Color Schemes"
+msgstr "Цветовые схемы"
+
+#: src/keybindings.c:235
+msgid "File"
+msgstr "файл"
+
+#: src/keybindings.c:237
+msgid "Clipboard"
+msgstr "буфер обмена"
+
+#: src/keybindings.c:238
+msgid "Select"
+msgstr "Выбрать"
+
+#: src/keybindings.c:239
+msgid "Format"
+msgstr "Формат"
+
+#: src/keybindings.c:240
+msgid "Insert"
+msgstr "Вставить"
+
+#: src/keybindings.c:241
+msgid "Settings"
+msgstr "настройки"
+
+#: src/keybindings.c:242
+msgid "Search"
+msgstr "Поиск"
+
+#: src/keybindings.c:243
+msgid "Go to"
+msgstr "Идти к"
+
+#: src/keybindings.c:244
+msgid "View"
+msgstr "Посмотреть"
+
+#: src/keybindings.c:245
+msgid "Document"
+msgstr "Документ"
+
+#: src/keybindings.c:250 src/keybindings.c:639
+msgid "Help"
+msgstr "Помогите"
+
+#: src/keybindings.c:251
+msgid "Focus"
+msgstr "фокус"
+
+#: src/keybindings.c:252
+msgid "Notebook tab"
+msgstr "Вкладка Notebook"
+
+#: src/keybindings.c:261
+msgid "New File"
+msgstr "Новый файл"
+
+#: src/keybindings.c:263 src/keybindings.c:293
+msgid "Open"
+msgstr "открыто"
+
+#: src/keybindings.c:268
+msgid "Save"
+msgstr "Сохранить"
+
+#: src/keybindings.c:270 src/toolbar.c:56
+msgid "Save as"
+msgstr "Сохранить как"
+
+#: src/keybindings.c:272
+msgid "Save all"
+msgstr "Сохранить все"
+
+#: src/keybindings.c:275
+msgid "Print"
+msgstr "Распечатать"
+
+#: src/keybindings.c:277 src/keybindings.c:295
+msgid "Close"
+msgstr "Закрыть"
+
+#: src/keybindings.c:279
+msgid "Close all"
+msgstr "Закрыть все"
+
+#: src/keybindings.c:282
+msgid "Reload file"
+msgstr "Обновить файл"
+
+#: src/keybindings.c:284
+msgid "Re-open last closed tab"
+msgstr "Повторно открыть последнюю закрытую вкладку"
+
+#: src/keybindings.c:286
+msgid "Quit"
+msgstr "Уволиться"
+
+#: src/keybindings.c:291
+msgid "New"
+msgstr "новый"
+
+#: src/keybindings.c:300
+msgid "Undo"
+msgstr "расстегивать"
+
+#: src/keybindings.c:302
+msgid "Redo"
+msgstr "переделывать"
+
+#: src/keybindings.c:311
+msgid "Delete to line end"
+msgstr "Удалить до конца строки"
+
+#: src/keybindings.c:314
+msgid "_Transpose Current Line"
+msgstr "_Трансляция текущей линии"
+
+#: src/keybindings.c:316
+msgid "Scroll to current line"
+msgstr "Прокрутите до текущей строки"
+
+#: src/keybindings.c:318
+msgid "Scroll up the view by one line"
+msgstr "Прокрутка просмотра по одной строке"
+
+#: src/keybindings.c:320
+msgid "Scroll down the view by one line"
+msgstr "Прокрутите вниз по одной строке"
+
+#: src/keybindings.c:322
+msgid "Complete snippet"
+msgstr "Полный фрагмент"
+
+#: src/keybindings.c:324
+msgid "Move cursor in snippet"
+msgstr "Перемещение курсора в фрагмент"
+
+#: src/keybindings.c:326
+msgid "Suppress snippet completion"
+msgstr "Подавление завершения фрагмента"
+
+#: src/keybindings.c:328
+msgid "Context Action"
+msgstr "Контекстное действие"
+
+#: src/keybindings.c:330
+msgid "Complete word"
+msgstr "Полное слово"
+
+#: src/keybindings.c:332
+msgid "Show calltip"
+msgstr "Показать подсказку"
+
+#: src/keybindings.c:334
+msgid "Show macro list"
+msgstr "Показать список макросов"
+
+#: src/keybindings.c:336
+msgid "Word part completion"
+msgstr "Завершение части слова"
+
+#: src/keybindings.c:339
+msgid "Move line(s) up"
+msgstr "Перемещение линий (линий) вверх"
+
+#: src/keybindings.c:342
+msgid "Move line(s) down"
+msgstr "Перемещение строк вниз"
+
+#: src/keybindings.c:347
+msgid "Cut"
+msgstr "Порез"
+
+#: src/keybindings.c:349
+msgid "Copy"
+msgstr "копия"
+
+#: src/keybindings.c:351
+msgid "Paste"
+msgstr "Вставить"
+
+#: src/keybindings.c:362
+msgid "Select All"
+msgstr "Выбрать все"
+
+#: src/keybindings.c:364
+msgid "Select current word"
+msgstr "Выберите текущее слово"
+
+#: src/keybindings.c:372
+msgid "Select to previous word part"
+msgstr "Выбрать предыдущую часть слова"
+
+#: src/keybindings.c:374
+msgid "Select to next word part"
+msgstr "Выберите следующую часть слова"
+
+#: src/keybindings.c:382
+msgid "Toggle line commentation"
+msgstr "Комментировать"
+
+#: src/keybindings.c:385
+msgid "Comment line(s)"
+msgstr "Строка комментариев"
+
+#: src/keybindings.c:387
+msgid "Uncomment line(s)"
+msgstr "Uncomment line (s)"
+
+#: src/keybindings.c:389
+msgid "Increase indent"
+msgstr "Увеличить отступ"
+
+#: src/keybindings.c:392
+msgid "Decrease indent"
+msgstr "Уменьшить отступ"
+
+#: src/keybindings.c:395
+msgid "Increase indent by one space"
+msgstr "Увеличение отступа на один пробел"
+
+#: src/keybindings.c:397
+msgid "Decrease indent by one space"
+msgstr "Уменьшить отступ на одно место"
+
+#: src/keybindings.c:401
+msgid "Send to Custom Command 1"
+msgstr "Отправить в пользовательскую команду 1"
+
+#: src/keybindings.c:403
+msgid "Send to Custom Command 2"
+msgstr "Отправить в пользовательскую команду 2"
+
+#: src/keybindings.c:405
+msgid "Send to Custom Command 3"
+msgstr "Отправить в пользовательскую команду 3"
+
+#: src/keybindings.c:413
+msgid "Join lines"
+msgstr "Присоединительные линии"
+
+#: src/keybindings.c:418
+msgid "Insert date"
+msgstr "Вставить дату"
+
+#: src/keybindings.c:424
+msgid "Insert New Line Before Current"
+msgstr "Вставить новую линию перед током"
+
+#: src/keybindings.c:426
+msgid "Insert New Line After Current"
+msgstr "Вставить новую строку после текущего"
+
+#: src/keybindings.c:439 src/search.c:455
+msgid "Find"
+msgstr "найти"
+
+#: src/keybindings.c:441
+msgid "Find Next"
+msgstr "Найти следующее"
+
+#: src/keybindings.c:443
+msgid "Find Previous"
+msgstr "Найти Предыдущая"
+
+#: src/keybindings.c:450 src/search.c:608
+msgid "Replace"
+msgstr "замещать"
+
+#: src/keybindings.c:452 src/search.c:856
+msgid "Find in Files"
+msgstr "Найти в файлах"
+
+#: src/keybindings.c:455
+msgid "Next Message"
+msgstr "Следующее сообщение"
+
+#: src/keybindings.c:457
+msgid "Previous Message"
+msgstr "Предыдущее сообщение"
+
+#: src/keybindings.c:460
+msgid "Find Usage"
+msgstr "Найти Usage"
+
+#: src/keybindings.c:463
+msgid "Find Document Usage"
+msgstr "Поиск документов"
+
+#: src/keybindings.c:470 src/toolbar.c:67
+msgid "Navigate back a location"
+msgstr "Переместить назад местоположение"
+
+#: src/keybindings.c:472 src/toolbar.c:68
+msgid "Navigate forward a location"
+msgstr "Перемещение вперед по местоположению"
+
+#: src/keybindings.c:477
+msgid "Go to matching brace"
+msgstr "Перейти к соответствующей скобе"
+
+#: src/keybindings.c:480
+msgid "Toggle marker"
+msgstr "Переключить маркер"
+
+#: src/keybindings.c:489
+msgid "Go to Tag Definition"
+msgstr "Перейти к определению метки"
+
+#: src/keybindings.c:492
+msgid "Go to Tag Declaration"
+msgstr "Перейти к Декларации тегов"
+
+#: src/keybindings.c:494
+msgid "Go to Start of Line"
+msgstr "Перейти к началу строки"
+
+#: src/keybindings.c:496
+msgid "Go to End of Line"
+msgstr "Перейти к концу строки"
+
+#: src/keybindings.c:498
+msgid "Go to Start of Display Line"
+msgstr "Перейти к началу строки отображения"
+
+#: src/keybindings.c:500
+msgid "Go to End of Display Line"
+msgstr "Перейти к концу строки отображения"
+
+#: src/keybindings.c:502
+msgid "Go to Previous Word Part"
+msgstr "Перейти к части предыдущего слова"
+
+#: src/keybindings.c:504
+msgid "Go to Next Word Part"
+msgstr "Перейти к части следующего слова"
+
+#: src/keybindings.c:509
+msgid "Toggle All Additional Widgets"
+msgstr "Переключить все дополнительные виджеты"
+
+#: src/keybindings.c:512
+msgid "Fullscreen"
+msgstr "Полноэкранный"
+
+#: src/keybindings.c:514
+msgid "Toggle Messages Window"
+msgstr "Окно «Переключить сообщения»"
+
+#: src/keybindings.c:517
+msgid "Toggle Sidebar"
+msgstr "Переключить боковую панель"
+
+#: src/keybindings.c:519
+msgid "Zoom In"
+msgstr "Приблизить"
+
+#: src/keybindings.c:521
+msgid "Zoom Out"
+msgstr "Уменьшить"
+
+#: src/keybindings.c:523
+msgid "Zoom Reset"
+msgstr "Сброс зума"
+
+#: src/keybindings.c:528
+msgid "Switch to Editor"
+msgstr "Переключить в Редактор"
+
+#: src/keybindings.c:530
+msgid "Switch to Search Bar"
+msgstr "Переключиться на панель поиска"
+
+#: src/keybindings.c:532
+msgid "Switch to Message Window"
+msgstr "Перейти к окну сообщений"
+
+#: src/keybindings.c:534
+msgid "Switch to Compiler"
+msgstr "Переключиться на компилятор"
+
+#: src/keybindings.c:536
+msgid "Switch to Messages"
+msgstr "Переключиться на сообщения"
+
+#: src/keybindings.c:538
+msgid "Switch to Scribble"
+msgstr "Переключить на Scribble"
+
+#: src/keybindings.c:540
+msgid "Switch to VTE"
+msgstr "Переключиться на VTE"
+
+#: src/keybindings.c:542
+msgid "Switch to Sidebar"
+msgstr "Переключиться на боковую панель"
+
+#: src/keybindings.c:544
+msgid "Switch to Sidebar Symbol List"
+msgstr "Переключиться на список символов боковой панели"
+
+#: src/keybindings.c:546
+msgid "Switch to Sidebar Document List"
+msgstr "Переключиться на список документов боковой панели"
+
+#: src/keybindings.c:551
+msgid "Switch to left document"
+msgstr "Переключиться на левый документ"
+
+#: src/keybindings.c:553
+msgid "Switch to right document"
+msgstr "Переключиться на правый документ"
+
+#: src/keybindings.c:555
+msgid "Switch to last used document"
+msgstr "Переключиться на последний использованный документ"
+
+#: src/keybindings.c:558
+msgid "Move document left"
+msgstr "Переместить документ влево"
+
+#: src/keybindings.c:561
+msgid "Move document right"
+msgstr "Переместить документ вправо"
+
+#: src/keybindings.c:563
+msgid "Move document first"
+msgstr "Перенесите документ первым"
+
+#: src/keybindings.c:565
+msgid "Move document last"
+msgstr "Переместить документ последним"
+
+#: src/keybindings.c:570
+msgid "Toggle Line wrapping"
+msgstr "Переключить перенос строк"
+
+#: src/keybindings.c:572
+msgid "Toggle Line breaking"
+msgstr "Переключение разрыва строки"
+
+#: src/keybindings.c:576
+msgid "Replace tabs by space"
+msgstr "Замена вкладок пробелом"
+
+#: src/keybindings.c:578
+msgid "Replace spaces by tabs"
+msgstr "Заменить пробелы вкладками"
+
+#: src/keybindings.c:580
+msgid "Toggle current fold"
+msgstr "Переключить текущую складку"
+
+#: src/keybindings.c:582
+msgid "Fold all"
+msgstr "Сложить все"
+
+#: src/keybindings.c:584
+msgid "Unfold all"
+msgstr "Развернуть все"
+
+#: src/keybindings.c:586
+msgid "Reload symbol list"
+msgstr "Обновить список символов"
+
+#: src/keybindings.c:588
+msgid "Remove Markers"
+msgstr "Удалить маркеры"
+
+#: src/keybindings.c:590
+msgid "Remove Error Indicators"
+msgstr "Удалить индикаторы ошибок"
+
+#: src/keybindings.c:592
+msgid "Remove Markers and Error Indicators"
+msgstr "Удаление маркеров и индикаторов ошибок"
+
+#: src/keybindings.c:597 src/toolbar.c:69
+msgid "Compile"
+msgstr "компилировать"
+
+#: src/keybindings.c:599 src/toolbar.c:70
+msgid "Run"
+msgstr "Бег"
+
+#: src/keybindings.c:601 src/toolbar.c:71
+msgid "Broadcast"
+msgstr "Broadcast"
+
+#: src/keybindings.c:618
+msgid "Build options"
+msgstr "Варианты сборки"
+
+#: src/keybindings.c:623
+msgid "Pause/Continue"
+msgstr "Пауза / Продолжить"
+
+#: src/keybindings.c:627
+msgid "Step Over"
+msgstr "Переступить"
+
+#: src/keybindings.c:629
+msgid "Step Out"
+msgstr "Выйти"
+
+#: src/keybindings.c:634
+msgid "Show Color Chooser"
+msgstr "Показать выбор цвета"
+
+#: src/keybindings.c:887
+msgid "Keyboard Shortcuts"
+msgstr "Горячие клавиши"
+
+#: src/keybindings.c:899
+msgid "The following keyboard shortcuts are configurable:"
+msgstr "Доступны следующие сочетания клавиш:"
+
+#: src/keyfile.c:1373
+msgid "Type here what you want, use it as a notice/scratch board"
+msgstr "Напечатайте здесь то, что вы хотите, используйте его как уведомление / царапины"
+
+#: src/keyfile.c:1628
+msgid "Failed to load one or more session files."
+msgstr "Не удалось загрузить один или несколько файлов сеанса."
+
+#: src/log.c:181
+msgid "Debug Messages"
+msgstr "Отладочные сообщения"
+
+#: src/log.c:183
+msgid "Cl_ear"
+msgstr "Очистить"
+
+#: src/main.c:127
+msgid "Set initial column number for the first opened file (useful in conjunction with --line)"
+msgstr "Установить начальный номер столбца для первого открытого файла (полезно в сочетании с -line)"
+
+#: src/main.c:128
+msgid "Use an alternate configuration directory"
+msgstr "Используйте альтернативный каталог конфигурации"
+
+#: src/main.c:129
+msgid "Print internal filetype names"
+msgstr "Печать внутренних имен файлов"
+
+#: src/main.c:130
+msgid "Generate global tags file (see documentation)"
+msgstr "Создание файла глобальных тегов (см. Документацию)"
+
+#: src/main.c:131
+msgid "Don't preprocess C/C++ files when generating tags"
+msgstr "Не препроизводить файлы C / C ++ при создании тегов"
+
+#: src/main.c:133
+msgid "Don't open files in a running instance, force opening a new instance"
+msgstr "Не открывайте файлы в запущенном экземпляре, чтобы открыть новый экземпляр"
+
+#: src/main.c:134
+msgid "Use this socket filename for communication with a running Geany instance"
+msgstr "Используйте это имя файла сокета для связи с запущенным экземпляром Geany"
+
+#: src/main.c:135
+msgid "Return a list of open documents in a running Geany instance"
+msgstr "Вернуть список открытых документов в запущенном экземпляре Geany"
+
+#: src/main.c:137
+msgid "Set initial line number for the first opened file"
+msgstr "Установить начальный номер строки для первого открытого файла"
+
+#: src/main.c:138
+msgid "Don't show message window at startup"
+msgstr "Не показывать окно сообщения при запуске"
+
+#: src/main.c:139
+msgid "Don't load auto completion data (see documentation)"
+msgstr "Не загружать данные автозаполнения (см. Документацию)"
+
+#: src/main.c:141
+msgid "Don't load plugins"
+msgstr "Не загружать плагины"
+
+#: src/main.c:143
+msgid "Print Geany's installation prefix"
+msgstr "Печать префикса установки Geany"
+
+#: src/main.c:144
+msgid "Open all FILES in read-only mode (see documention)"
+msgstr "Откройте все ФАЙЛЫ в режиме только для чтения (см. Документацию)"
+
+#: src/main.c:145
+msgid "Don't load the previous session's files"
+msgstr "Не загружать файлы предыдущего сеанса"
+
+#: src/main.c:147
+msgid "Don't load terminal support"
+msgstr "Не загружать поддержку терминала"
+
+#: src/main.c:148
+msgid "Filename of libvte.so"
+msgstr "Имя файла libvte.so"
+
+#: src/main.c:150
+msgid "Be verbose"
+msgstr "Быть подробным"
+
+#: src/main.c:151
+msgid "Show version and exit"
+msgstr "Показать версию и выйти"
+
+#: src/main.c:613
+msgid "[FILES...]"
+msgstr "[FILES ...]"
+
+#: src/main.c:646
+msgid "built on %s with "
+msgstr "построено на% s с"
+
+#: src/main.c:738
+msgid "Move it now?"
+msgstr "Переместить его сейчас?"
+
+#: src/main.c:740
+msgid "Geany needs to move your old configuration directory before starting."
+msgstr "Перед запуском Geany необходимо переместить старый каталог конфигурации."
+
+#: src/main.c:749
+msgid "Your configuration directory has been successfully moved from \"%s\" to \"%s\"."
+msgstr "Ваш каталог конфигурации успешно перемещен с «% s» на «% s»."
+
+#: src/main.c:759
+msgid "Your old configuration directory \"%s\" could not be moved to \"%s\" (%s). Please move manually the directory to the new location."
+msgstr "Ваш старый каталог конфигурации «% s» не может быть перенесен в «% s» (% s). Переместите вручную каталог в новое место."
+
+#: src/main.c:844
+msgid "Configuration directory could not be created (%s).\n"
+"There could be some problems using Geany without a configuration directory.\n"
+"Start Geany anyway?"
+msgstr "Не удалось создать каталог конфигурации (% s).\n"
+"Могут быть некоторые проблемы с использованием Geany без каталога конфигурации.\n"
+"Начните Geany в любом случае?"
+
+#: src/main.c:1325
+msgid "Configuration directory could not be created (%s)."
+msgstr "Не удалось создать каталог конфигурации (% s)."
+
+#: src/main.c:1665
+msgid "Configuration files reloaded."
+msgstr "Файлы конфигурации перезагружены."
+
+#: src/msgwindow.c:162
+msgid "Status messages"
+msgstr "Сообщения о состоянии"
+
+#: src/msgwindow.c:649
+msgid "C_opy"
+msgstr "C_opy"
+
+#: src/msgwindow.c:658
+msgid "Copy _All"
+msgstr "Копировать _Все"
+
+#: src/msgwindow.c:688
+msgid "_Hide Message Window"
+msgstr "_Hide Message Window"
+
+#: src/msgwindow.c:744
+msgid "Could not find file '%s' - trying the current document path."
+msgstr "Не удалось найти файл «% s» - пробовать текущий путь к документу."
+
+#: src/notebook.c:196
+msgid "Switch to Document"
+msgstr "Переключиться на документ"
+
+#: src/notebook.c:496
+msgid "C_lose All"
+msgstr "Закрыть все"
+
+#: src/plugins.c:497
+msgid "The plugin \"%s\" is not binary compatible with this release of Geany - please recompile it."
+msgstr "Плагин «% s» не является бинарным, совместимым с этой версией Geany, пожалуйста, перекомпилируйте его."
+
+#: src/plugins.c:1060
+msgid "_Plugin Manager"
+msgstr "_Plugin Manager"
+
+#: src/plugins.c:1235
+msgid "%s %s"
+msgstr "% s% s"
+
+#: src/plugins.c:1311
+msgid "Active"
+msgstr "активный"
+
+#: src/plugins.c:1317
+msgid "Plugin"
+msgstr "Plugin"
+
+#: src/plugins.c:1323
+msgid "Description"
+msgstr "Описание"
+
+#: src/plugins.c:1341
+msgid "No plugins available."
+msgstr "Плагинов нет."
+
+#: src/plugins.c:1443
+msgid "Plugins"
+msgstr "Плагины"
+
+#: src/plugins.c:1463
+msgid "Choose which plugins should be loaded at startup:"
+msgstr "Выберите, какие плагины должны быть загружены при запуске:"
+
+#: src/plugins.c:1480
+msgid "<b>Plugin details:</b>"
+msgstr "<b> Сведения о плагине: </ b>"
+
+#: src/plugins.c:1489
+msgid "Plugin:"
+msgstr "Плагин:"
+
+#: src/plugins.c:1490
+msgid "Author(s):"
+msgstr "Авторы):"
+
+#: src/pluginutils.c:343
+msgid "Configure Plugins"
+msgstr "Настройка плагинов"
+
+#: src/prefs.c:179
+msgid "Grab Key"
+msgstr "Клавиша захвата"
+
+#: src/prefs.c:185
+msgid "Press the combination of the keys you want to use for \"%s\"."
+msgstr "Нажмите комбинацию клавиш, которые вы хотите использовать для «% s»."
+
+#: src/prefs.c:226 src/sidebar.c:1173 src/symbols.c:2035
+msgid "_Expand All"
+msgstr "_Расширить все"
+
+#: src/prefs.c:231 src/sidebar.c:1180 src/symbols.c:2040
+msgid "_Collapse All"
+msgstr "_Свернуть все"
+
+#: src/prefs.c:291
+msgid "Action"
+msgstr "действие"
+
+#: src/prefs.c:296
+msgid "Shortcut"
+msgstr "кратчайший путь"
+
+#: src/prefs.c:1524
+msgid "_Allow"
+msgstr "_Позволять"
+
+#: src/prefs.c:1526
+msgid "_Override"
+msgstr "_Override"
+
+#: src/prefs.c:1527
+msgid "Override that keybinding?"
+msgstr "Отменить эту привязку?"
+
+#: src/prefs.c:1528
+msgid "The combination '%s' is already used for \"%s\"."
+msgstr "Комбинация «% s» уже используется для «% s»."
+
+#: src/prefs.c:1732
+msgid "Enter tool paths below. Tools you do not need can be left blank."
+msgstr "Введите пути инструмента ниже. Инструменты, которые вам не нужны, могут быть пустыми."
+
+#: src/prefs.c:1737
+msgid "Set the information to be used in templates. See the documentation for details."
+msgstr "Задайте информацию, которая будет использоваться в шаблонах. Подробнее см. В документации."
+
+#: src/prefs.c:1742
+msgid "Here you can change keyboard shortcuts for various actions. Select one and press the Change button to enter a new shortcut, or double click on an action to edit the string representation of the shortcut directly."
+msgstr "Здесь вы можете изменить сочетания клавиш для различных действий. Выберите один и нажмите кнопку «Изменить», чтобы ввести новый ярлык, или дважды щелкните действие, чтобы напрямую отредактировать строковое представление ярлыка."
+
+#: src/printing.c:159
+msgid "<b>Page %d of %d</b>"
+msgstr "<b> Страница% d из% d </ b>"
+
+#: src/printing.c:229
+msgid "Document Setup"
+msgstr "Настройка документа"
+
+#: src/printing.c:264
+msgid "Print only the basename(without the path) of the printed file"
+msgstr "Распечатайте только базовое имя (без пути) отпечатанного файла"
+
+#: src/printing.c:414
+msgid "Paginating"
+msgstr "Разбиение"
+
+#: src/printing.c:438
+msgid "Page %d of %d"
+msgstr "Страница% d из% d"
+
+#: src/printing.c:494
+msgid "Did not send document %s to the printing subsystem."
+msgstr "Не отправлял документ% s в подсистему печати."
+
+#: src/printing.c:496
+msgid "Document %s was sent to the printing subsystem."
+msgstr "Документ% s был отправлен в подсистему печати."
+
+#: src/printing.c:549
+msgid "Printing of %s failed (%s)."
+msgstr "Печать% s не выполнена (% s)."
+
+#: src/printing.c:587
+msgid "Please set a print command in the preferences dialog first."
+msgstr "Сначала установите команду печати в диалоговом окне настроек."
+
+#: src/printing.c:595
+msgid "The file \"%s\" will be printed with the following command:\n"
+"\n"
+"%s"
+msgstr "Файл «% s» будет напечатан следующей командой:\n"
+"\n"
+"% s"
+
+#: src/printing.c:611
+msgid "Printing of \"%s\" failed (return code: %s)."
+msgstr "Печать «% s» не выполнена (код возврата:% s)."
+
+#: src/printing.c:617
+msgid "File %s printed."
+msgstr "Файл% s напечатан."
+
+#: src/project.c:94
+msgid "projects"
+msgstr "проектов"
+
+#: src/project.c:114
+msgid "New Project"
+msgstr "Новый проект"
+
+#: src/project.c:124
+msgid "C_reate"
+msgstr "Создайте"
+
+#: src/project.c:159 src/project.c:5580
+msgid "Choose Project Base Path"
+msgstr "Выберите базовый путь проекта"
+
+#: src/project.c:180 src/project.c:5815
+msgid "Project file could not be written"
+msgstr "Файл проекта не может быть записан"
+
+#: src/project.c:183
+msgid "Project \"%s\" created."
+msgstr "Создан проект «% s»."
+
+#: src/project.c:240 src/project.c:279
+msgid "Project file \"%s\" is already open"
+msgstr "Файл проекта «% s» уже открыт"
+
+#: src/project.c:315 src/project.c:341
+msgid "Open Project"
+msgstr "Открытый проект"
+
+#: src/project.c:357
+msgid "AGK Project files"
+msgstr "Файлы проекта AGK"
+
+#: src/project.c:388 src/project.c:422
+msgid "Import Project"
+msgstr "Импорт проекта"
+
+#: src/project.c:438
+msgid "Old AGK Projects"
+msgstr "Проекты старого AGK"
+
+#: src/project.c:514
+msgid "You must choose an output location to save your HTML5 files"
+msgstr "Вы должны выбрать местоположение вывода для сохранения файлов HTML5"
+
+#: src/project.c:515
+msgid "Unrecognised choice for 'commands used' drop down box"
+msgstr "Непризнанный выбор для раскрывающегося списка команд"
+
+#: src/project.c:566 src/project.c:1425 src/project.c:3805
+msgid "Failed to copy source folder"
+msgstr "Не удалось скопировать исходную папку"
+
+#: src/project.c:578
+msgid "Failed to open HTML5 data file for writing"
+msgstr "Не удалось открыть файл данных HTML5 для записи"
+
+#: src/project.c:596
+msgid "Failed to write HTML5 data file"
+msgstr "Не удалось записать файл данных HTML5"
+
+#: src/project.c:619
+msgid "Failed to read AGKPlayer.js file: %s"
+msgstr "Не удалось прочитать файл AGKPlayer.js:% s"
+
+#: src/project.c:646
+msgid "AGKPlayer.js is corrupt, it is missing the %%ADDITIONALFOLDERS%% variable"
+msgstr "AGKPlayer.js поврежден, отсутствует переменная %% ADDITIONALFOLDERS %%"
+
+#: src/project.c:664
+msgid "AGKPlayer.js is corrupt, it is missing the %%LOADPACKAGE%% variable"
+msgstr "AGKPlayer.js поврежден, отсутствует переменная %% LOADPACKAGE %%"
+
+#: src/project.c:674
+msgid "Failed to write AGKPlayer.js file: %s"
+msgstr "Не удалось записать файл AGKPlayer.js:% s"
+
+#: src/project.c:833
+msgid "Export HTML5"
+msgstr "Экспорт HTML5"
+
+#: src/project.c:1178
+msgid "You must choose an output location to save your APK"
+msgstr "Вы должны выбрать местоположение вывода, чтобы сохранить APK"
+
+#: src/project.c:1179 src/project.c:3599
+msgid "The output location must be a file not a directory"
+msgstr "Место вывода должно быть файлом, а не каталогом"
+
+#: src/project.c:1182 src/project.c:3602
+msgid "You must enter an app name"
+msgstr "Введите имя приложения"
+
+#: src/project.c:1183 src/project.c:3603
+msgid "App name must be less than 30 characters"
+msgstr "Имя приложения должно быть меньше 30 символов"
+
+#: src/project.c:1201
+msgid "App name contains invalid characters, it must not contain quotes or < > characters."
+msgstr "Имя приложения содержит недопустимые символы, оно не должно содержать кавычек или <> символов."
+
+#: src/project.c:1207
+msgid "You must enter a package name"
+msgstr "Необходимо ввести имя пакета"
+
+#: src/project.c:1208
+msgid "Package name must be less than 100 characters"
+msgstr "Имя пакета должно быть менее 100 символов."
+
+#: src/project.c:1209
+msgid "Package name must contain at least one dot character"
+msgstr "Имя пакета должно содержать хотя бы один символ точки"
+
+#: src/project.c:1210
+msgid "Package name must not begin or end with a dot"
+msgstr "Имя пакета не должно начинаться или заканчиваться точкой"
+
+#: src/project.c:1217
+msgid "Package name invalid, a dot must be followed by a letter"
+msgstr "Недопустимое имя пакета, точка должна сопровождаться буквой"
+
+#: src/project.c:1227
+msgid "Package name contains invalid characters, must be A-Z 0-9 . and undersore only"
+msgstr "Имя пакета содержит недопустимые символы, должно быть A-Z 0-9. и только снизу"
+
+#: src/project.c:1238 src/project.c:3635
+msgid "App icon must be a PNG file"
+msgstr "Значок приложения должен быть PNG-файлом"
+
+#: src/project.c:1239 src/project.c:3636
+msgid "Could not find app icon location"
+msgstr "Не удалось найти местоположение значка приложения"
+
+#: src/project.c:1244
+msgid "Notification icon must be a PNG file"
+msgstr "Значок уведомлений должен быть PNG-файлом"
+
+#: src/project.c:1245
+msgid "Could not find notification icon location"
+msgstr "Не удалось найти местоположение значка уведомлений"
+
+#: src/project.c:1250
+msgid "You must select an Ouya large icon"
+msgstr "Вы должны выбрать большой значок Ouya"
+
+#: src/project.c:1251
+msgid "Ouya large icon must be a PNG file"
+msgstr "Большой значок Ouya должен быть PNG-файлом"
+
+#: src/project.c:1252
+msgid "Could not find ouya large icon location"
+msgstr "Не удалось найти большое расположение значка ouya"
+
+#: src/project.c:1258
+msgid "Google services config file must be a .json file"
+msgstr "Файл конфигурации служб Google должен быть .json-файлом"
+
+#: src/project.c:1259
+msgid "Could not find Google services config file"
+msgstr "Не удалось найти файл конфигурации служб Google"
+
+#: src/project.c:1269
+msgid "Version name contains invalid characters, must be 0-9 and . only"
+msgstr "Имя версии содержит недопустимые символы, должно быть 0-9 и. только"
+
+#: src/project.c:1278
+msgid "Could not find keystore file location"
+msgstr "Не удалось найти местоположение файла хранилища ключей"
+
+#: src/project.c:1282
+msgid "Keystore password cannot contain double quotes"
+msgstr "Пароль ключа не может содержать двойные кавычки"
+
+#: src/project.c:1283
+msgid "Alias password cannot contain double quotes"
+msgstr "Пароль псевдонима не может содержать двойные кавычки"
+
+#: src/project.c:1287
+msgid "You must enter your keystore password when using your own keystore"
+msgstr "Вы должны ввести свой пароль хранилища ключей при использовании своего собственного хранилища ключей"
+
+#: src/project.c:1292
+msgid "You must enter your alias password when using a custom alias"
+msgstr "Вы должны ввести свой пароль псевдонима при использовании пользовательского псевдонима"
+
+#: src/project.c:1437
+msgid "Failed to read AndroidManifest.xml file"
+msgstr "Не удалось прочитать файл AndroidManifest.xml"
+
+#: src/project.c:1683
+msgid "Failed to write AndroidManifest.xml file: %s"
+msgstr "Не удалось написать файл AndroidManifest.xml:% s"
+
+#: src/project.c:1696
+msgid "Failed to read resource values.xml file: %s"
+msgstr "Не удалось прочитать файл ресурсов .xml:% s"
+
+#: src/project.c:1705
+msgid "Could not find app name entry in values.xml file"
+msgstr "Не удалось найти запись имени приложения в файле values.xml"
+
+#: src/project.c:1716
+msgid "Could not find end of app name entry in values.xml file"
+msgstr "Не удалось найти конец записи имени приложения в файле values.xml"
+
+#: src/project.c:1735
+msgid "Could not find games_app_id entry in values.xml file"
+msgstr "Не удалось найти запись games_app_id в файле values.xml"
+
+#: src/project.c:1746
+msgid "Could not find end of games_app_id entry in values.xml file"
+msgstr "Не удалось найти конец записи games_app_id в файле values.xml"
+
+#: src/project.c:1766
+msgid "Failed to read firebase config file: %s"
+msgstr "Не удалось прочитать конфигурационный файл firebase:% s"
+
+#: src/project.c:1779
+msgid "Could not find project_number entry in Firebase config file"
+msgstr "Не удалось найти запись project_number в файле конфигурации Firebase"
+
+#: src/project.c:1787
+msgid "Could not find end of project_number entry in Firebase config file"
+msgstr "Не удалось найти конец записи project_number в файле конфигурации Firebase"
+
+#: src/project.c:1796
+msgid "Could not find gcm_defaultSenderId entry in values.xml file"
+msgstr "Не удалось найти запись gcm_defaultSenderId в файле values.xml"
+
+#: src/project.c:1807
+msgid "Could not find end of gcm_defaultSenderId entry in values.xml file"
+msgstr "Не удалось найти конец записи gcm_defaultSenderId в файле values.xml"
+
+#: src/project.c:1827
+msgid "Could not find firebase_url entry in Firebase config file"
+msgstr "Не удалось найти запись firebase_url в файле конфигурации Firebase"
+
+#: src/project.c:1835
+msgid "Could not find end of firebase_url entry in Firebase config file"
+msgstr "Не удалось найти конец записи firebase_url в файле конфигурации Firebase"
+
+#: src/project.c:1844
+msgid "Could not find firebase_database_url entry in values.xml file"
+msgstr "Не удалось найти запись firebase_database_url в файле values.xml"
+
+#: src/project.c:1855
+msgid "Could not find end of firebase_database_url entry in values.xml file"
+msgstr "Не удалось найти конец записи firebase_database_url в файле values.xml"
+
+#: src/project.c:1890
+msgid "Could not find android package_name \"%s\" in the Firebase config file"
+msgstr "Не удалось найти файл android package_name «% s» в файле конфигурации Firebase"
+
+#: src/project.c:1908
+msgid "Could not find matching mobilesdk_app_id entry in Firebase config file"
+msgstr "Не удалось найти соответствующую запись mobilesdk_app_id в файле конфигурации Firebase"
+
+#: src/project.c:1916
+msgid "Could not find end of mobilesdk_app_id entry in Firebase config file"
+msgstr "Не удалось найти конец записи mobilesdk_app_id в файле конфигурации Firebase"
+
+#: src/project.c:1925
+msgid "Could not find google_app_id entry in values.xml file"
+msgstr "Не удалось найти запись google_app_id в файле values.xml"
+
+#: src/project.c:1936
+msgid "Could not find end of google_app_id entry in values.xml file"
+msgstr "Не удалось найти конец записи google_app_id в файле values.xml"
+
+#: src/project.c:1956
+msgid "Could not find current_key entry in Firebase config file"
+msgstr "Не удалось найти текущую запись в файле конфигурации Firebase"
+
+#: src/project.c:1964
+msgid "Could not find end of current_key entry in Firebase config file"
+msgstr "Не удалось найти конец текущей записи в файле конфигурации Firebase"
+
+#: src/project.c:1973
+msgid "Could not find google_api_key entry in values.xml file"
+msgstr "Не удалось найти запись google_api_key в файле values.xml"
+
+#: src/project.c:1984
+msgid "Could not find end of google_api_key entry in values.xml file"
+msgstr "Не удалось найти конец записи google_api_key в файле values.xml"
+
+#: src/project.c:2001
+msgid "Could not find google_crash_reporting_api_key entry in values.xml file"
+msgstr "Не удалось найти запись google_crash_reporting_api_key в файле values.xml"
+
+#: src/project.c:2012
+msgid "Could not find end of google_crash_reporting_api_key entry in values.xml file"
+msgstr "Не удалось найти конец записи google_crash_reporting_api_key в файле values.xml"
+
+#: src/project.c:2033
+msgid "Failed to write resource values.xml file: %s"
+msgstr "Не удалось записать файл ресурсов. Xml-файл:% s"
+
+#: src/project.c:2046
+msgid "Failed to export project, AAPT2 program not found"
+msgstr "Не удалось экспортировать проект, программа AAPT2 не найдена"
+
+#: src/project.c:2068
+msgid "Failed to start packaging tool"
+msgstr "Не удалось запустить инструмент упаковки"
+
+#: src/project.c:2093 src/project.c:4316
+msgid "Failed to load image icon: %s"
+msgstr "Не удалось загрузить значок изображения:% s"
+
+#: src/project.c:2107 src/project.c:2262
+msgid "Failed to save xxxhdpi icon: %s"
+msgstr "Не удалось сохранить значок xxxhdpi:% s"
+
+#: src/project.c:2127 src/project.c:2282
+msgid "Failed to save xxhdpi icon: %s"
+msgstr "Не удалось сохранить значок xxhdpi:% s"
+
+#: src/project.c:2155 src/project.c:2307
+msgid "Failed to save xhdpi icon: %s"
+msgstr "Не удалось сохранить значок xhdpi:% s"
+
+#: src/project.c:2177 src/project.c:2329
+msgid "Failed to save hdpi icon: %s"
+msgstr "Не удалось сохранить значок hdpi:% s"
+
+#: src/project.c:2199 src/project.c:2351
+msgid "Failed to save mdpi icon: %s"
+msgstr "Не удалось сохранить значок mdpi:% s"
+
+#: src/project.c:2221 src/project.c:2373
+msgid "Failed to save ldpi icon: %s"
+msgstr "Не удалось сохранить значок ldpi:% s"
+
+#: src/project.c:2250
+msgid "Failed to load notification icon: %s"
+msgstr "Не удалось загрузить значок уведомления:% s"
+
+#: src/project.c:2402
+msgid "Failed to load Ouya large icon: %s"
+msgstr "Не удалось загрузить большой значок Ouya:% s"
+
+#: src/project.c:2410
+msgid "Ouya large icon must be 732x412 pixels"
+msgstr "Ouya большой значок должен быть 732x412 пикселей"
+
+#: src/project.c:2431
+msgid "Failed to save lean back icon: %s"
+msgstr "Не удалось сохранить значок с откидной назад:% s"
+
+#: src/project.c:2521
+msgid "Failed to write output files, check that your project directory is not in a write protected location"
+msgstr "Не удалось записать выходные файлы, убедитесь, что каталог проекта не находится в защищенном от записи месте"
+
+#: src/project.c:2533
+msgid "Failed to initialise zip file for reading"
+msgstr "Не удалось инициализировать zip-файл для чтения"
+
+#: src/project.c:2538
+msgid "Failed to open zip file for writing"
+msgstr "Не удалось открыть почтовый файл для записи"
+
+#: src/project.c:2582
+msgid "Failed to add media files to APK"
+msgstr "Не удалось добавить файлы мультимедиа в APK"
+
+#: src/project.c:2588
+msgid "Failed to add finalize zip file"
+msgstr "Не удалось добавить финализацию zip-файла"
+
+#: src/project.c:2593
+msgid "Failed to end zip file"
+msgstr "Не удалось завершить zip-файл"
+
+#: src/project.c:2627
+msgid "Failed to run signing tool: %s"
+msgstr "Не удалось запустить инструмент подписи:% s"
+
+#: src/project.c:2635
+msgid "Failed to sign APK, is your keystore password and alias correct? (error: %s)"
+msgstr "Не удалось подписать APK, правильно ли пароль вашего пароля и псевдоним? (ошибка:% s)"
+
+#: src/project.c:2655
+msgid "Failed to run zipalign tool: %s"
+msgstr "Не удалось запустить zipalign tool:% s"
+
+#: src/project.c:2663
+msgid "Zip align tool returned error: %s"
+msgstr "Инструмент выравнивания Zip возвратил ошибку:% s"
+
+#: src/project.c:2934
+msgid "You must choose an output folder to save your APKs"
+msgstr "Вы должны выбрать папку вывода для сохранения APK."
+
+#: src/project.c:3106
+msgid "You must have at least one project open to export all"
+msgstr "У вас должен быть хотя бы один проект, открытый для экспорта всех"
+
+#: src/project.c:3201
+msgid "You must choose an output location to save your keystore file"
+msgstr "Вы должны выбрать местоположение вывода, чтобы сохранить файл хранилища ключей"
+
+#: src/project.c:3205
+msgid "\"%s\" already exists. Do you want to overwrite it?"
+msgstr "«% s» уже существует. Вы хотите переписать его?"
+
+#: src/project.c:3212
+msgid "Full name must be less than 30 characters"
+msgstr "Полное имя должно быть менее 30 символов."
+
+#: src/project.c:3219
+msgid "Full name contains invalid characters, must be A-Z and spaces only"
+msgstr "Полное имя содержит недопустимые символы, должно быть только A-Z и только пробелы"
+
+#: src/project.c:3230
+msgid "Company name must be less than 30 characters"
+msgstr "Название компании должно быть не менее 30 символов"
+
+#: src/project.c:3237
+msgid "Company name contains invalid characters, must be A-Z and spaces only"
+msgstr "Название компании содержит недопустимые символы, должно быть только A-Z и только пробелы"
+
+#: src/project.c:3248
+msgid "City must be less than 30 characters"
+msgstr "Город должен быть менее 30 символов"
+
+#: src/project.c:3255
+msgid "City contains invalid characters, must be A-Z and spaces only"
+msgstr "Город содержит недопустимые символы, должен быть только A-Z и только пробелы"
+
+#: src/project.c:3266
+msgid "Country code must be 2 characters"
+msgstr "Код страны должен быть 2 символа"
+
+#: src/project.c:3272
+msgid "Country code contains invalid characters, must be A-Z only"
+msgstr "Код страны содержит недопустимые символы, должен быть только A-Z"
+
+#: src/project.c:3283
+msgid "Password cannot be blank"
+msgstr "Пароль не может быть пустым"
+
+#: src/project.c:3284
+msgid "Password must be at least 6 characters long"
+msgstr "пароль должен содержать как минимум 6 символов"
+
+#: src/project.c:3285
+msgid "Password cannot contain double quotes"
+msgstr "Пароль не может содержать двойные кавычки"
+
+#: src/project.c:3286
+msgid "Passwords do not match"
+msgstr "Пароли не совпадают"
+
+#: src/project.c:3340
+msgid "Could not find keytool program, the path \"%s\" is incorrect"
+msgstr "Не удалось найти программу keytool, путь «% s» неверен"
+
+#: src/project.c:3370
+msgid "Failed to run keytool program: %s"
+msgstr "Не удалось запустить программу keytool:% s"
+
+#: src/project.c:3378
+msgid "keytool program returned error: %s"
+msgstr "Ошибка программы keytool:% s"
+
+#: src/project.c:3415
+msgid "Generate Keystore"
+msgstr "Создать Keystore"
+
+#: src/project.c:3598
+msgid "You must choose an output location to save your IPA"
+msgstr "Вы должны выбрать местоположение вывода для сохранения IPA"
+
+#: src/project.c:3626
+msgid "App name contains invalid characters, it must not contain quotes or any of the following < > * . / \\ : ; | = , &"
+msgstr "Имя приложения содержит недопустимые символы, оно не должно содержать кавычек или любое из следующих <> *. / \\:; | знак равно"
+
+#: src/project.c:3641
+msgid "Firebase config file must be a .plist file"
+msgstr "Файл конфигурации Firebase должен быть .plist-файлом"
+
+#: src/project.c:3642
+msgid "Could not find Firebase config file"
+msgstr "Не удалось найти файл конфигурации Firebase"
+
+#: src/project.c:3648
+msgid "Splash screen (640x960) must be a PNG file"
+msgstr "Заставка (640x960) должна быть PNG-файлом"
+
+#: src/project.c:3649
+msgid "Could not find splash screen (640x960) location"
+msgstr "Не удалось найти местоположение заставки (640x960)"
+
+#: src/project.c:3654
+msgid "Splash screen (640x1136) must be a PNG file"
+msgstr "Заставка (640x1136) должна быть PNG-файлом"
+
+#: src/project.c:3655
+msgid "Could not find splash screen (640x1136) location"
+msgstr "Не удалось найти экран заставки (640x1136)"
+
+#: src/project.c:3660
+msgid "Splash screen (1536x2048) must be a PNG file"
+msgstr "Заставка (1536x2048) должна быть PNG-файлом"
+
+#: src/project.c:3661
+msgid "Could not find splash screen (1536x2048) location"
+msgstr "Не удалось найти местоположение заставки (1536x2048)"
+
+#: src/project.c:3666
+msgid "Splash screen (1125x2436) must be a PNG file"
+msgstr "Заставка (1125x2436) должна быть PNG-файлом"
+
+#: src/project.c:3667
+msgid "Could not find splash screen (1125x2436) location"
+msgstr "Не удалось найти заставку (1125x2436)."
+
+#: src/project.c:3671
+msgid "You must select a provisioning profile"
+msgstr "Вы должны выбрать профиль подготовки"
+
+#: src/project.c:3672
+msgid "Provisioning profile must have .mobileprovision extension"
+msgstr "Профиль предоставления должен иметь расширение .mobileprovision"
+
+#: src/project.c:3673
+msgid "Could not find provisioning profile location"
+msgstr "Не удалось найти расположение профиля для профайла"
+
+#: src/project.c:3676
+msgid "You must enter a version number, e.g. 1.0.0"
+msgstr "Вы должны ввести номер версии, например. 1.0.0"
+
+#: src/project.c:3681
+msgid "Version number contains invalid characters, must be 0-9 and . only"
+msgstr "Номер версии содержит недопустимые символы, должен быть 0-9 и. только"
+
+#: src/project.c:3693
+msgid "Facebook App ID must be numbers only"
+msgstr "Идентификатор приложения Facebook должен быть только номером"
+
+#: src/project.c:3701
+msgid "As of iOS 11 you must install XCode to export iOS apps from the AGK IDE. XCode can be downloaded from the Mac AppStore"
+msgstr "Начиная с iOS 11 вы должны установить XCode для экспорта приложений iOS из среды AGK. XCode можно загрузить из Mac AppStore"
+
+#: src/project.c:3826
+msgid "Failed to read provisioning profile"
+msgstr "Не удалось прочитать профиль подготовки"
+
+#: src/project.c:3834
+msgid "Failed to read certificate from provisioning profile"
+msgstr "Не удалось прочитать сертификат из профиля обеспечения"
+
+#: src/project.c:3841
+msgid "Failed to read certificate data from provisioning profile"
+msgstr "Не удалось прочитать данные сертификата из профиля обеспечения"
+
+#: src/project.c:3849
+msgid "Failed to read certificate end data from provisioning profile"
+msgstr "Не удалось прочитать данные о завершении сертификации из профиля подготовки"
+
+#: src/project.c:3865
+msgid "Failed to read bundle ID from provisioning profile"
+msgstr "Не удалось прочитать идентификатор пакета из профиля обеспечения"
+
+#: src/project.c:3872
+msgid "Failed to read bundle ID data from provisioning profile"
+msgstr "Не удалось прочитать данные идентификатора пакета из профиля обеспечения"
+
+#: src/project.c:3880
+msgid "Failed to read bundle ID end data from provisioning profile"
+msgstr "Не удалось прочитать конечные данные идентификатора пакета из профиля обеспечения"
+
+#: src/project.c:3916
+msgid "Failed to read App Group data from provisioning profile"
+msgstr "Не удалось прочитать данные группы приложений из профиля обеспечения"
+
+#: src/project.c:3923 src/project.c:3943
+msgid "Failed to read App Group end data from provisioning profile"
+msgstr "Не удалось прочитать конечные данные группы приложений из профиля подготовки"
+
+#: src/project.c:3971
+msgid "Failed to read team ID from provisioning profile"
+msgstr "Не удалось прочитать идентификатор команды из профиля обеспечения"
+
+#: src/project.c:3979
+msgid "Failed to read team ID data from provisioning profile"
+msgstr "Не удалось прочитать данные идентификатора команды из профиля обеспечения"
+
+#: src/project.c:3987
+msgid "Failed to read team ID end data from provisioning profile"
+msgstr "Не удалось прочитать конечные данные идентификатора команды из профиля обеспечения"
+
+#: src/project.c:4022 src/project.c:4114
+msgid "Failed to run \"security\" program: %s"
+msgstr "Не удалось запустить программу «security»:% s"
+
+#: src/project.c:4030 src/project.c:4122
+msgid "Failed to get code signing identities (error %d: %s)"
+msgstr "Не удалось получить идентификаторы подписи кода (ошибка% d:% s)"
+
+#: src/project.c:4031 src/project.c:4123
+msgid "Failed to get code signing identities (error: %d)"
+msgstr "Не удалось получить идентификаторы подписи кода (ошибка:% d)"
+
+#: src/project.c:4043
+msgid "Failed to read code signing identity from certificate list"
+msgstr "Не удалось прочитать идентификатор подписи кода из списка сертификатов"
+
+#: src/project.c:4059
+msgid "Failed to read certificate data from certificate list"
+msgstr "Не удалось прочитать данные сертификата из списка сертификатов"
+
+#: src/project.c:4067
+msgid "Failed to read certificate end data from certificate list"
+msgstr "Не удалось прочитать данные сертификата из списка сертификатов"
+
+#: src/project.c:4094
+msgid "Could not find the certificate used to create the provisioning profile, have you added the certificate to your keychain?"
+msgstr "Не удалось найти сертификат, используемый для создания профиля подготовки, добавили ли вы сертификат в цепочку ключей?"
+
+#: src/project.c:4130
+msgid "Signing certificate is not valid, either the private key is missing from your keychain, or the certificate has expired"
+msgstr "Сертификат подписи недействителен, либо отсутствует секретный ключ в вашей цепочке ключей, либо срок действия сертификата истек."
+
+#: src/project.c:4181
+msgid "Failed to write entitlements file: %s"
+msgstr "Не удалось написать файл прав:% s"
+
+#: src/project.c:4207
+msgid "Failed to write expanded entitlements file: %s"
+msgstr "Не удалось создать файл расширенных прав:% s"
+
+#: src/project.c:4232
+msgid "Failed to read Info.plist file"
+msgstr "Не удалось прочитать файл Info.plist"
+
+#: src/project.c:4271
+msgid "Failed to write Info.plist file"
+msgstr "Не удалось записать файл Info.plist"
+
+#: src/project.c:4289 src/project.c:4750
+msgid "Failed to run userid program: %s"
+msgstr "Не удалось запустить программу userid:% s"
+
+#: src/project.c:4309
+msgid "Failed to create icon asset catalog"
+msgstr "Не удалось создать каталог активов значков"
+
+#: src/project.c:4328
+msgid "Failed to save 152x152 icon: %s"
+msgstr "Не удалось сохранить значок 152x152:% s"
+
+#: src/project.c:4341
+msgid "Failed to save 180x180 icon: %s"
+msgstr "Не удалось сохранить значок 180x180:% s"
+
+#: src/project.c:4354
+msgid "Failed to save 167x167 icon: %s"
+msgstr "Не удалось сохранить значок 167x167:% s"
+
+#: src/project.c:4367
+msgid "Failed to save 120x120 icon: %s"
+msgstr "Не удалось сохранить значок 120x120:% s"
+
+#: src/project.c:4380
+msgid "Failed to save 76x76 icon: %s"
+msgstr "Не удалось сохранить значок 76x76:% s"
+
+#: src/project.c:4393
+msgid "Failed to save 60x60 icon: %s"
+msgstr "Не удалось сохранить значок 60x60:% s"
+
+#: src/project.c:4406
+msgid "Failed to save 1024x1024 icon: %s"
+msgstr "Не удалось сохранить значок 1024x1024:% s"
+
+#: src/project.c:4441
+msgid "Failed to run \"actool\" program: %s"
+msgstr "Не удалось запустить программу «actool»:% s"
+
+#: src/project.c:4449
+msgid "Failed to compile asset catalog (error %d: %s)"
+msgstr "Не удалось скомпилировать каталог активов (ошибка% d:% s)"
+
+#: src/project.c:4450
+msgid "Failed to get compile asset catalog (error: %d)"
+msgstr "Не удалось получить каталог активов компиляции (ошибка:% d)"
+
+#: src/project.c:4470
+msgid "Failed to load splash screen (640x960): %s"
+msgstr "Не удалось загрузить заставку (640x960):% s"
+
+#: src/project.c:4481
+msgid "Splash screen (640x960) should have an aspect ratio near 0.66 (e.g. 320x480 or 640x960) otherwise it will look stretched when scaled. Export will continue."
+msgstr "Заставка (640x960) должна иметь соотношение сторон около 0,66 (например, 320x480 или 640x960), иначе она будет выглядеть растянутой при масштабировании. Экспорт будет продолжен."
+
+#: src/project.c:4490
+msgid "Failed to save Default@2x.png splash screen: %s"
+msgstr "Не удалось сохранить заставку default@2x.png:% s"
+
+#: src/project.c:4511
+msgid "Failed to load splash screen (640x1136): %s"
+msgstr "Не удалось загрузить экран заставки (640x1136):% s"
+
+#: src/project.c:4522
+msgid "Splash screen (640x1136) should have an aspect ratio near 0.56 (e.g. 640x1136 or 1080x1920) otherwise it will look stretched when scaled. Export will continue."
+msgstr "Заставка (640x1136) должна иметь соотношение сторон около 0,56 (например, 640x1136 или 1080x1920), иначе она будет выглядеть растянутой при масштабировании. Экспорт будет продолжен."
+
+#: src/project.c:4531
+msgid "Failed to save Default-568h@2x.png splash screen: %s"
+msgstr "Не удалось сохранить заставку по умолчанию: 568h@2x.png:% s"
+
+#: src/project.c:4544
+msgid "Failed to save Default-375w-667h@2x.png splash screen: %s"
+msgstr "Не удалось сохранить заставку по умолчанию: 375w-667h@2x.png:% s"
+
+#: src/project.c:4557
+msgid "Failed to save Default-414w-736h@3x.png splash screen: %s"
+msgstr "Не удалось сохранить заставку по умолчанию: 414w-736h@3x.png:% s"
+
+#: src/project.c:4578
+msgid "Failed to load splash screen (1125x2436): %s"
+msgstr "Не удалось загрузить заставку (1125x2436):% s"
+
+#: src/project.c:4589
+msgid "Splash screen (1125x2436) should have an aspect ratio near 0.46 otherwise it will look stretched when scaled. Export will continue."
+msgstr "Заставка (1125x2436) должна иметь соотношение сторон около 0,46, иначе она будет выглядеть растянутой при масштабировании. Экспорт будет продолжен."
+
+#: src/project.c:4598
+msgid "Failed to save Default-375w-812h@3x.png splash screen: %s"
+msgstr "Не удалось сохранить заставку по умолчанию: 375w-812h@3x.png:% s"
+
+#: src/project.c:4619
+msgid "Failed to load splash screen (1536x2048): %s"
+msgstr "Не удалось загрузить заставку (1536x2048):% s"
+
+#: src/project.c:4630
+msgid "Splash screen (1536x2048) should have an aspect ratio near 0.75 (e.g. 768x1024 or 1536x2048) otherwise it will look stretched when scaled. Export will continue."
+msgstr "Экран заставки (1536x2048) должен иметь соотношение сторон около 0,75 (например, 768x1024 или 1536x2048), иначе оно будет выглядеть растянутым при масштабировании. Экспорт будет продолжен."
+
+#: src/project.c:4639
+msgid "Failed to save Default-Portrait~ipad.png splash screen: %s"
+msgstr "Не удалось сохранить всплывающий экран Default-Portrait ~ ipad.png:% s"
+
+#: src/project.c:4652
+msgid "Failed to save Default-Portrait@2x~ipad.png splash screen: %s"
+msgstr "Не удалось сохранить всплывающий экран Default-Portrait@2x~ipad.png:% s"
+
+#: src/project.c:4665
+msgid "Failed to save Default-Portrait-1366h@2x~ipad.png splash screen: %s"
+msgstr "Не удалось сохранить Default -Portrait-1366h@2x~ipad.png заставку:% s"
+
+#: src/project.c:4680
+msgid "Failed to save Default-Landscape~ipad.png splash screen: %s"
+msgstr "Не удалось сохранить всплывающий экран Default-Landscape ~ ipad.png:% s"
+
+#: src/project.c:4695
+msgid "Failed to save Default-Landscape@2x~ipad.png splash screen: %s"
+msgstr "Не удалось сохранить всплывающий экран Default-Landscape@2x~ipad.png:% s"
+
+#: src/project.c:4710
+msgid "Failed to save Default-Landscape-1366h@2x~ipad.png splash screen: %s"
+msgstr "Не удалось сохранить заставку Default-Landscape-1366h@2x~ipad.png:% s"
+
+#: src/project.c:4758
+msgid "Failed to get user name (error: %d)"
+msgstr "Не удалось получить имя пользователя (ошибка:% d)"
+
+#: src/project.c:4778
+msgid "Failed to run groupid program: %s"
+msgstr "Не удалось запустить программу groupid:% s"
+
+#: src/project.c:4786
+msgid "Failed to get group name (error: %d)"
+msgstr "Не удалось получить имя группы (ошибка:% d)"
+
+#: src/project.c:4807
+msgid "Failed to run chown program: %s"
+msgstr "Не удалось запустить программу chown:% s"
+
+#: src/project.c:4836
+msgid "Failed to run chmod program: %s"
+msgstr "Не удалось запустить программу chmod:% s"
+
+#: src/project.c:4870
+msgid "Failed to run codesign program: %s"
+msgstr "Не удалось запустить программу кодирования:% s"
+
+#: src/project.c:4888
+msgid "Failed to initialise zip file for writing"
+msgstr "Не удалось инициализировать zip-файл для записи"
+
+#: src/project.c:4896
+msgid "Failed to add files to IPA"
+msgstr "Не удалось добавить файлы в IPA"
+
+#: src/project.c:4902
+msgid "Failed to finalize IPA file"
+msgstr "Не удалось завершить файл IPA"
+
+#: src/project.c:4907
+msgid "Failed to end IPA file"
+msgstr "Не удалось завершить файл IPA"
+
+#: src/project.c:4990
+msgid "Export IPA"
+msgstr "Экспорт IPA"
+
+#: src/project.c:5397
+msgid "Project file \"%s\" could not be written"
+msgstr "Файл проекта «% s» не может быть записан"
+
+#: src/project.c:5405
+msgid "Project \"%s\" closed."
+msgstr "Проект «% s» закрыт."
+
+#: src/project.c:5503
+msgid "Failed to add file to project, no current project selected. Click Project in the menu bar to create a new project or open an existing one."
+msgstr "Не удалось добавить файл в проект, не выбран текущий проект. Нажмите «Проект» в строке меню, чтобы создать новый проект или открыть существующий."
+
+#: src/project.c:5523 src/project.c:5557
+msgid "Project file could not be saved"
+msgstr "Файл проекта не может быть сохранен"
+
+#: src/project.c:5525 src/project.c:5559
+msgid "Project \"%s\" saved."
+msgstr "Проект «% s» сохранен."
+
+#: src/project.c:5537
+msgid "Failed to remove file from project, no current project selected"
+msgstr "Не удалось удалить файл из проекта, не выбран текущий проект"
+
+#: src/project.c:5663
+msgid "Do you want to close it before proceeding?"
+msgstr "Вы хотите закрыть его перед продолжением?"
+
+#: src/project.c:5664
+msgid "The '%s' project is open."
+msgstr "Проект «% s» открыт."
+
+#: src/project.c:5774
+msgid "Failed to import project source file, project file may be corrupt"
+msgstr "Не удалось импортировать исходный файл проекта, файл проекта может быть поврежден"
+
+#: src/project.c:5817
+msgid "Project \"%s\" imported."
+msgstr "Проект «% s» импортирован."
+
+#: src/project.c:5845
+msgid "The specified project name is too short."
+msgstr "Указанное название проекта слишком короткое."
+
+#: src/project.c:5851
+msgid "The specified project name is too long (max. %d characters)."
+msgstr "Указанное название проекта слишком велико (максимум% d символов)."
+
+#: src/project.c:5859
+msgid "The project must have a base path"
+msgstr "Проект должен иметь базовый путь"
+
+#: src/project.c:5870
+msgid "The project path must be an absolute path"
+msgstr "Путь к проекту должен быть абсолютным путем"
+
+#: src/project.c:5884
+msgid "Project base directory could not be created (%s)."
+msgstr "Не удалось создать каталог проекта (% s)."
+
+#: src/project.c:5908
+msgid "You have specified an invalid project filename."
+msgstr "Вы указали недопустимое имя файла проекта."
+
+#: src/project.c:5920
+msgid "Project file could not be written (%s)."
+msgstr "Файл проекта не может быть записан (% s)."
+
+#: src/project.c:6005 src/project.c:6016
+msgid "Choose Project Filename"
+msgstr "Выберите «Имя файла проекта»"
+
+#: src/project.c:6080
+msgid "Project \"%s\" opened."
+msgstr "Проект «% s» открыт."
+
+#: src/search.c:302 src/search.c:956
+msgid "_Use regular expressions"
+msgstr "_Используйте регулярные выражения"
+
+#: src/search.c:305
+msgid "Use POSIX-like regular expressions. For detailed information about using regular expressions, please read the documentation."
+msgstr "Используйте регулярные выражения типа POSIX. Подробную информацию об использовании регулярных выражений см. В документации."
+
+#: src/search.c:312
+msgid "Search _backwards"
+msgstr "Поиск _backwards"
+
+#: src/search.c:325
+msgid "Use _escape sequences"
+msgstr "Использовать последовательности _escape"
+
+#: src/search.c:329
+msgid "Replace \\\\, \\t, \\n, \\r and \\uXXXX (Unicode chararacters) with the corresponding control characters"
+msgstr "Замените \\\\, \\ t, \\ n, \\ r и \\ uXXXX (символы Unicode) с соответствующими управляющими символами"
+
+#: src/search.c:338 src/search.c:965
+msgid "C_ase sensitive"
+msgstr "Деликатный случай"
+
+#: src/search.c:342 src/search.c:970
+msgid "Match only a _whole word"
+msgstr "Сопоставьте только одно слово"
+
+#: src/search.c:346
+msgid "Match from s_tart of word"
+msgstr "Матч из слова s_tart"
+
+#: src/search.c:462
+msgid "_Previous"
+msgstr "_Previous"
+
+#: src/search.c:467
+msgid "_Next"
+msgstr "_Следующий"
+
+#: src/search.c:471 src/search.c:629 src/search.c:866
+msgid "_Search for:"
+msgstr "_Искать:"
+
+#: src/search.c:499
+msgid "_Find All"
+msgstr "_Найти все"
+
+#: src/search.c:506
+msgid "_Mark"
+msgstr "_Отметка"
+
+#: src/search.c:508
+msgid "Mark all matches in the current document"
+msgstr "Отметьте все совпадения в текущем документе"
+
+#: src/search.c:513 src/search.c:688
+msgid "In Sessi_on"
+msgstr "В сессии"
+
+#: src/search.c:518 src/search.c:693
+msgid "_In Document"
+msgstr "_В документе"
+
+#: src/search.c:524 src/search.c:706
+msgid "Close _dialog"
+msgstr "Закрыть _dialog"
+
+#: src/search.c:528 src/search.c:710
+msgid "Disable this option to keep the dialog open"
+msgstr "Отключите эту опцию, чтобы открыть диалоговое окно"
+
+#: src/search.c:618
+msgid "_Replace"
+msgstr "_Replace"
+
+#: src/search.c:623
+msgid "Replace & Fi_nd"
+msgstr "Заменить & Fi_nd"
+
+#: src/search.c:632
+msgid "Replace wit_h:"
+msgstr "Заменить:"
+
+#: src/search.c:681
+msgid "Re_place All"
+msgstr "Заменить все"
+
+#: src/search.c:698
+msgid "In Se_lection"
+msgstr "В Se_lection"
+
+#: src/search.c:700
+msgid "Replace all matches found in the currently selected text"
+msgstr "Заменить все совпадения, найденные в текущем выделенном тексте"
+
+#: src/search.c:813
+msgid "all"
+msgstr "все"
+
+#: src/search.c:815
+msgid "project"
+msgstr "проект"
+
+#: src/search.c:817
+msgid "custom"
+msgstr "обычай"
+
+#: src/search.c:821
+msgid "All: search all files in the directory\n"
+"Project: use file patterns defined in the project settings\n"
+"Custom: specify file patterns manually"
+msgstr "Все: поиск всех файлов в каталоге\n"
+"Проект: использование шаблонов файлов, определенных в настройках проекта\n"
+"Пользовательский: укажите шаблоны файлов вручную"
+
+#: src/search.c:885
+msgid "Fi_les:"
+msgstr "Fi_les:"
+
+#: src/search.c:897
+msgid "File patterns, e.g. *.c *.h"
+msgstr "Шаблоны файлов, например. * .c * .h"
+
+#: src/search.c:909
+msgid "_Directory:"
+msgstr "_Directory:"
+
+#: src/search.c:928
+msgid "E_ncoding:"
+msgstr "E_ncoding:"
+
+#: src/search.c:959
+msgid "See grep's manual page for more information"
+msgstr "Дополнительную информацию см. На странице руководства пользователя grep."
+
+#: src/search.c:961
+msgid "_Recurse in subfolders"
+msgstr "_Recurse в подпапках"
+
+#: src/search.c:974
+msgid "_Invert search results"
+msgstr "_Инвестировать результаты поиска"
+
+#: src/search.c:978
+msgid "Invert the sense of matching, to select non-matching lines"
+msgstr "Инвертируйте смысл соответствия, чтобы выбрать несогласованные строки"
+
+#: src/search.c:995
+msgid "E_xtra options:"
+msgstr "Дополнительные опции:"
+
+#: src/search.c:1003
+msgid "Other options to pass to Grep"
+msgstr "Другие варианты, чтобы перейти к Grep"
+
+#: src/search.c:1360 src/search.c:2225 src/search.c:2228
+msgid "Found %d match for \"%s\"."
+msgid_plural "Found %d matches for \"%s\"."
+msgstr[0] "Найдено% d для «% s»."
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: src/search.c:1414
+msgid "Replaced %u matches in %u documents."
+msgstr "Заменено% u соответствует в% u документах."
+
+#: src/search.c:1605
+msgid "Invalid directory for find in files."
+msgstr "Недопустимый каталог для поиска в файлах."
+
+#: src/search.c:1626
+msgid "No text to find."
+msgstr "Нет текста для поиска."
+
+#: src/search.c:1659
+msgid "Cannot execute grep tool '%s'; check the path setting in Preferences."
+msgstr "Не удается выполнить grep tool '% s'; проверьте настройку пути в настройках."
+
+#: src/search.c:1666
+msgid "Cannot parse extra options: %s"
+msgstr "Невозможно проанализировать дополнительные параметры:% s"
+
+#: src/search.c:1733
+msgid "Searching..."
+msgstr "Поиск ..."
+
+#: src/search.c:1744
+msgid "%s %s -- %s (in directory: %s)"
+msgstr "% s% s -% s (в каталоге:% s)"
+
+#: src/search.c:1784
+msgid "Could not open directory (%s)"
+msgstr "Не удалось открыть каталог (% s)"
+
+#: src/search.c:1889
+msgid "Search failed."
+msgstr "Поиск не удался."
+
+#: src/search.c:1916
+msgid "Search completed with %d match."
+msgid_plural "Search completed with %d matches."
+msgstr[0] "Поиск завершен с соответствием% d."
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: src/search.c:1925
+msgid "No matches found."
+msgstr "Совпадений не найдено."
+
+#: src/search.c:1953
+msgid "Bad regex: %s"
+msgstr "Плохое регулярное выражение:% s"
+
+#: src/sidebar.c:174
+msgid "No tags found"
+msgstr "Не найдено тегов"
+
+#: src/sidebar.c:410
+msgid "Variable"
+msgstr "переменная"
+
+#: src/sidebar.c:424 src/stash.c:1125
+msgid "Value"
+msgstr "Стоимость"
+
+#: src/sidebar.c:1135
+msgid "Open Containing Folder"
+msgstr "Открыть содержащую папку"
+
+#: src/sidebar.c:1150 src/sidebar.c:1666
+msgid "Remove From Project"
+msgstr "Удалить из проекта"
+
+#: src/sidebar.c:1160
+msgid "Add To Current Project"
+msgstr "Добавить в текущий проект"
+
+#: src/sidebar.c:1667
+msgid "Close Project"
+msgstr "Закрыть проект"
+
+#: src/sidebar.c:1672
+msgid "Close Document"
+msgstr "Закрыть документ"
+
+#: src/socket.c:232
+msgid "Geany tried to access the Unix Domain socket of another instance running as another user.\n"
+"This is a fatal error and Geany will now quit."
+msgstr "Geany попытался получить доступ к сокету Unix домена другого экземпляра, запущенного как другой пользователь.\n"
+"Это фатальная ошибка, и теперь Geany уйдет."
+
+#: src/stash.c:1118
+msgid "Name"
+msgstr "имя"
+
+#: src/symbols.c:668
+msgid "Sections"
+msgstr "Разделы"
+
+#: src/symbols.c:669
+msgid "Keys"
+msgstr "Ключи"
+
+#: src/symbols.c:675 src/symbols.c:693
+msgid "Functions"
+msgstr "функции"
+
+#: src/symbols.c:677
+msgid "Constants"
+msgstr "Константы"
+
+#: src/symbols.c:678
+msgid "Types"
+msgstr "Типы"
+
+#: src/symbols.c:679
+msgid "Labels"
+msgstr "Этикетки"
+
+#: src/symbols.c:680 src/symbols.c:694
+msgid "Members"
+msgstr "члены"
+
+#: src/symbols.c:681 src/symbols.c:702
+msgid "Other"
+msgstr "Другие"
+
+#: src/symbols.c:688
+msgid "Namespaces"
+msgstr "Пространства имен"
+
+#: src/symbols.c:691
+msgid "Classes"
+msgstr "Классы"
+
+#: src/symbols.c:692
+msgid "Interfaces"
+msgstr "Интерфейсы"
+
+#: src/symbols.c:695
+msgid "Structs"
+msgstr "Структуры"
+
+#: src/symbols.c:696
+msgid "Typedefs / Enums"
+msgstr "Typedefs / Enums"
+
+#: src/symbols.c:701
+msgid "Extern Variables"
+msgstr "Внешние переменные"
+
+#: src/symbols.c:1461
+msgid "Unknown filetype extension for \"%s\".\n"
+""
+msgstr "Неизвестное расширение типа файла для «% s».\n"
+""
+
+#: src/symbols.c:1487
+msgid "Failed to create tags file, perhaps because no tags were found.\n"
+""
+msgstr "Не удалось создать файл тегов, возможно, из-за отсутствия тегов.\n"
+""
+
+#: src/symbols.c:1494
+msgid "Usage: %s -g <Tag File> <File list>\n"
+"\n"
+""
+msgstr "Использование:% s -g <Файл тега> <Список файлов>\n"
+"\n"
+""
+
+#: src/symbols.c:1495
+msgid "Example:\n"
+"CFLAGS=`pkg-config gtk+-2.0 --cflags` %s -g gtk2.c.tags /usr/include/gtk-2.0/gtk/gtk.h\n"
+""
+msgstr "Пример:\n"
+"CFLAGS = `pkg-config gtk + -2.0 --cflags`% s -g gtk2.c.tags /usr/include/gtk-2.0/gtk/gtk.h\n"
+""
+
+#: src/symbols.c:1509
+msgid "Load Tags"
+msgstr "Загрузить теги"
+
+#: src/symbols.c:1516
+msgid "Geany tag files (*.*.tags)"
+msgstr "Файлы тегов Geany (*. *. Теги)"
+
+#: src/symbols.c:1536
+msgid "Loaded %s tags file '%s'."
+msgstr "Загрузил% s теги файл '% s'."
+
+#: src/symbols.c:1539
+msgid "Could not load tags file '%s'."
+msgstr "Не удалось загрузить файл тэга '% s'."
+
+#: src/symbols.c:1677
+msgid "Forward declaration \"%s\" not found."
+msgstr "Вперед декларация «% s» не найдена."
+
+#: src/symbols.c:1679
+msgid "Definition of \"%s\" not found."
+msgstr "Определение «% s» не найдено."
+
+#: src/symbols.c:2050
+msgid "Sort by _Name"
+msgstr "Сортировать по имени"
+
+#: src/symbols.c:2057
+msgid "Sort by _Appearance"
+msgstr "Сортировать по _Appearance"
+
+#: src/templates.c:75
+msgid "Failed to convert template file \"%s\" to UTF-8"
+msgstr "Не удалось преобразовать файл шаблона «% s» в UTF-8"
+
+#: src/toolbar.c:54
+msgid "Create a new project"
+msgstr "Создать новый проект"
+
+#: src/toolbar.c:55
+msgid "Save the current file"
+msgstr "Сохранить текущий файл"
+
+#: src/toolbar.c:57
+msgid "Save all open files"
+msgstr "Сохранить все открытые файлы"
+
+#: src/toolbar.c:58
+msgid "Reload the current file from disk"
+msgstr "Перезагрузить текущий файл с диска"
+
+#: src/toolbar.c:59
+msgid "Close the current file"
+msgstr "Закройте текущий файл"
+
+#: src/toolbar.c:60
+msgid "Close all open files"
+msgstr "Закрыть все открытые файлы"
+
+#: src/toolbar.c:61
+msgid "Cut the current selection"
+msgstr "Вырезать текущий выбор"
+
+#: src/toolbar.c:62
+msgid "Copy the current selection"
+msgstr "Скопируйте текущий выбор"
+
+#: src/toolbar.c:63
+msgid "Paste the contents of the clipboard"
+msgstr "Вставить содержимое буфера обмена"
+
+#: src/toolbar.c:64
+msgid "Delete the current selection"
+msgstr "Удалить текущий выбор"
+
+#: src/toolbar.c:65
+msgid "Undo the last modification"
+msgstr "Отменить последнюю модификацию"
+
+#: src/toolbar.c:66
+msgid "Redo the last modification"
+msgstr "Повторить последнюю модификацию"
+
+#: src/toolbar.c:69
+msgid "Compile the current project"
+msgstr "Скомпилировать текущий проект"
+
+#: src/toolbar.c:70
+msgid "Run the current project on the local machine"
+msgstr "Запустить текущий проект на локальной машине"
+
+#: src/toolbar.c:71
+msgid "Broadcast the current project to devices"
+msgstr "Передача текущего проекта на устройства"
+
+#: src/toolbar.c:72
+msgid "Debug the current project"
+msgstr "Отладить текущий проект"
+
+#: src/toolbar.c:73
+msgid "Open a color chooser dialog, to interactively pick colors from a palette"
+msgstr "Откройте диалоговое окно выбора цвета, чтобы интерактивно выбрать цвета из палитры"
+
+#: src/toolbar.c:74
+msgid "Zoom in the text"
+msgstr "Увеличить текст"
+
+#: src/toolbar.c:75
+msgid "Zoom out the text"
+msgstr "Уменьшить текст"
+
+#: src/toolbar.c:76
+msgid "Decrease indentation"
+msgstr "Уменьшение отступа"
+
+#: src/toolbar.c:77
+msgid "Increase indentation"
+msgstr "Увеличить отступ"
+
+#: src/toolbar.c:78 src/toolbar.c:385
+msgid "Find the entered text in the current file"
+msgstr "Найти введенный текст в текущем файле"
+
+#: src/toolbar.c:80
+msgid "Show the preferences dialog"
+msgstr "Показать диалог настроек"
+
+#: src/toolbar.c:81
+msgid "Quit Geany"
+msgstr "Выйти из Geany"
+
+#: src/toolbar.c:82
+msgid "Print document"
+msgstr "Печатать документ"
+
+#: src/toolbar.c:83
+msgid "Replace text in the current document"
+msgstr "Заменить текст в текущем документе"
+
+#: src/toolbar.c:367
+msgid "Open an existing project"
+msgstr "Открыть существующий проект"
+
+#: src/toolbar.c:368
+msgid "Open a recent project"
+msgstr "Откройте недавний проект"
+
+#: src/toolbar.c:385
+msgid "Search Field"
+msgstr "Поле поиска"
+
+#: src/toolbar.c:589
+msgid "Separator"
+msgstr "Разделитель"
+
+#: src/toolbar.c:590
+msgid "--- Separator ---"
+msgstr "--- Разделитель ---"
+
+#: src/toolbar.c:966
+msgid "Select items to be displayed on the toolbar. Items can be reordered by drag and drop."
+msgstr "Выберите элементы, которые будут отображаться на панели инструментов. Элементы можно переупорядочить путем перетаскивания."
+
+#: src/toolbar.c:982
+msgid "Available Items"
+msgstr "Доступные предметы"
+
+#: src/toolbar.c:1003
+msgid "Displayed Items"
+msgstr "Отображаемые товары"
+
+#: src/tools.c:115 src/tools.c:120
+msgid "Invalid command: %s"
+msgstr "Недопустимая команда:% s"
+
+#: src/tools.c:115
+msgid "Command not found"
+msgstr "Команда не найдена"
+
+#: src/tools.c:271
+msgid "The executed custom command returned an error. Your selection was not changed. Error message: %s"
+msgstr "Выполненная пользовательская команда вернула ошибку. Ваш выбор не был изменен. Сообщения об ошибках"
+
+#: src/tools.c:338
+msgid "The executed custom command exited with an unsuccessful exit code."
+msgstr "Выполненная пользовательская команда вышла с неудачным кодом выхода."
+
+#: src/tools.c:366 src/tools.c:416
+msgid "Custom command failed: %s"
+msgstr "Не удалось выполнить команду:% s"
+
+#: src/tools.c:370
+msgid "Passing data and executing custom command: %s"
+msgstr "Передача данных и выполнение пользовательской команды:% s"
+
+#: src/tools.c:528 src/tools.c:791
+msgid "Set Custom Commands"
+msgstr "Установка пользовательских команд"
+
+#: src/tools.c:536
+msgid "You can send the current selection to any of these commands and the output of the command replaces the current selection."
+msgstr "Вы можете отправить текущий выбор в любую из этих команд, и вывод команды заменяет текущий выбор."
+
+#: src/tools.c:550
+msgid "ID"
+msgstr "Я БЫ"
+
+#: src/tools.c:762
+msgid "No custom commands defined."
+msgstr "Определенные пользовательские команды не определены."
+
+#: src/tools.c:860
+msgid "Word Count"
+msgstr "Количество слов"
+
+#: src/tools.c:869
+msgid "selection"
+msgstr "выбор"
+
+#: src/tools.c:874
+msgid "whole document"
+msgstr "весь документ"
+
+#: src/tools.c:883
+msgid "Range:"
+msgstr "Ассортимент:"
+
+#: src/tools.c:895
+msgid "Lines:"
+msgstr "линии:"
+
+#: src/tools.c:909
+msgid "Words:"
+msgstr "Слова:"
+
+#: src/tools.c:923
+msgid "Characters:"
+msgstr "Персонажи:"
+
+#: src/ui_utils.c:62
+msgid "line: %l / %L\t col: %c\t sel: %s\t %w      %t      %mmode: %M      encoding: %e      filetype: %f      scope: %S"
+msgstr "line:% l /% L col:% c sel:% s% w% t% mmode:% M кодировка:% e filetype:% f scope:% S"
+
+#: src/ui_utils.c:248
+msgid "%dL"
+msgstr "% дл"
+
+#: src/ui_utils.c:254 src/ui_utils.c:261
+msgid "RO "
+msgstr "RO"
+
+#: src/ui_utils.c:256
+msgid "OVR"
+msgstr "ОВР"
+
+#: src/ui_utils.c:256
+msgid "INS"
+msgstr "INS"
+
+#: src/ui_utils.c:270
+msgid "TAB"
+msgstr "TAB"
+
+#: src/ui_utils.c:273
+msgid "SP"
+msgstr "SP"
+
+#: src/ui_utils.c:276
+msgid "T/S"
+msgstr "T / S"
+
+#: src/ui_utils.c:284
+msgid "MOD"
+msgstr "MOD"
+
+#: src/ui_utils.c:412
+msgid " (new instance)"
+msgstr " (новый экземпляр)"
+
+#: src/ui_utils.c:442
+msgid "Font updated (%s)."
+msgstr "Обновлен шрифт (% s)."
+
+#: src/ui_utils.c:737
+msgid "_Set Custom Date Format"
+msgstr "_Настройка пользовательского формата даты"
+
+#: src/ui_utils.c:1925 src/ui_utils.c:1994 src/ui_utils.c:2063
+#: src/ui_utils.c:2130 src/ui_utils.c:2171 src/ui_utils.c:2240
+#: src/ui_utils.c:2306
+msgid "Select Folder"
+msgstr "Выберите папку"
+
+#: src/ui_utils.c:1925 src/ui_utils.c:1994 src/ui_utils.c:2063
+#: src/ui_utils.c:2130 src/ui_utils.c:2171 src/ui_utils.c:2240
+#: src/ui_utils.c:2306
+msgid "Select File"
+msgstr "Выберите файл"
+
+#: src/ui_utils.c:2479
+msgid "Save All"
+msgstr "Сохранить все"
+
+#: src/ui_utils.c:2480
+msgid "Close All"
+msgstr "Закрыть все"
+
+#: src/ui_utils.c:2746
+msgid "Geany cannot start!"
+msgstr "Geany не может начаться!"
+
+#: src/ui_utils.c:3475
+msgid "Installing: "
+msgstr "Установка:"
+
+#: src/ui_utils.c:3544
+msgid "Failed to get projects source folder"
+msgstr "Не удалось получить исходную папку проектов"
+
+#: src/ui_utils.c:3551
+msgid "Failed to get C++ libraries source folder"
+msgstr "Не удалось получить исходную папку библиотек C ++"
+
+#: src/ui_utils.c:3563
+msgid "Failed to find projects source folder at location: %s"
+msgstr "Не удалось найти исходную папку проектов по адресу:% s"
+
+#: src/ui_utils.c:3569
+msgid "Unexpected: Projects source folder is not a folder: %s"
+msgstr "Неожиданно: исходная папка проектов не является папкой:% s"
+
+#: src/ui_utils.c:3586
+msgid "Failed to find C++ libraries folder at location: %s"
+msgstr "Не удалось найти папку библиотек C ++ в папке:% s"
+
+#: src/ui_utils.c:3592
+msgid "Unexpected: C++ libraries folder is not a folder: %s"
+msgstr "Неожиданно: папка библиотек C ++ не является папкой:% s"
+
+#: src/utils.c:90
+msgid "Select Browser"
+msgstr "Выбрать браузер"
+
+#: src/utils.c:91
+msgid "Failed to spawn the configured browser command. Please correct it or enter another one."
+msgstr "Не удалось создать настроенную команду браузера. Пожалуйста, исправьте его или введите другой."
+
+#: src/utils.c:377
+msgid "Win (CRLF)"
+msgstr "Выиграть (CRLF)"
+
+#: src/utils.c:378
+msgid "Mac (CR)"
+msgstr "Mac (CR)"
+
+#: src/utils.c:379
+msgid "Unix (LF)"
+msgstr "Unix (LF)"
+
+#: src/vte.c:437
+msgid "invalid VTE library \"%s\": missing symbol \"%s\""
+msgstr "недействительная библиотека VTE «% s»: отсутствующий символ «% s»"
+
+#: src/vte.c:586
+msgid "_Set Path From Document"
+msgstr "_Написать путь из документа"
+
+#: src/vte.c:591
+msgid "_Restart Terminal"
+msgstr "Терминал _Restart"
+
+#: src/vte.c:614
+msgid "_Input Methods"
+msgstr "Вводные методы"
+
+#: src/vte.c:708
+msgid "Could not change the directory in the VTE because it probably contains a command."
+msgstr "Не удалось изменить каталог в VTE, потому что он, вероятно, содержит команду."
+
+#: src/win32.c:256
+msgid "Geany project files"
+msgstr "Файлы проекта Geany"
+
+#: src/win32.c:261
+msgid "Executables"
+msgstr "исполняемые"
+
+#: src/win32.c:1534
+msgid "Process timed out after %.02f s!"
+msgstr "Процесс истекает после% .02f s!"
+

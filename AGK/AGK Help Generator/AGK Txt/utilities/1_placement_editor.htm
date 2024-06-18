@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Placement Editor - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../utilities.html">Utilities</a> &gt; Placement Editor</div><div class="page"><h1>Placement Editor</h1><h2>Description</h2><p>The Placement Editor is a tool that allows you to visually design levels and screens for your games, which can then be exported and loaded directly into AGK.</p><div align="center"><img src="editor1.jpg"/></div><h2>Where is the Placement Editor?</h2><p>This utility is located within the IDE\Utilities folder for AGK e.g. C:\Program Files\The Game Creators\AGK\IDE\Utilities within the folder named Placement Editor.</p><div align="center"><img src="editor2.jpg"/></div><p>Within the Placement Editor folder are two folders named Editor (the actual editor) and Viewer (an AGK project to load data exported from the editor).</p><div align="center"><img src="editor3.jpg"/></div><p>The Placement Editor folder contains an executable named Placement Editor.exe. Launch this to start the editor.</p><div align="center"><img src="editor4.jpg"/></div><h2>Adding your own media into the editor</h2><p>Before you begin creating levels you must copy any media into the media folder of the Placement Editor. By default this is located at C:\Program Files\The Game Creators\AGK\IDE\Utilities\Placement Editor\Editor\media.</p><p>If no media is present within the media folder you will be presented with this message when running the editor:</p><div align="center"><img src="editor5.jpg"/></div><h2>Understanding the interface</h2><p>Once your media has been copied into the media folder and you launch the editor you will be presented with this:</p><div align="center"><img src="editor6.jpg"/></div><p>The following screen shots show the different components of the Placement Editor</p><div align="center"><img src="a.jpg"/></div><div align="center"><img src="b.jpg"/></div><div align="center"><img src="c.jpg"/></div><div align="center"><img src="d.jpg"/></div><div align="center"><img src="e.jpg"/></div><h2>Adding media into the scene</h2><p>You can drag media onto the main editing area, edit its properties and move it around.</p><div align="center"><img src="selected.jpg"/></div><h2>New</h2><div align="center"><img src="new.png"/></div><p>This button allows you to create a new project. When pressing it a dialog will be displayed on screen that allows you to specify the width and height of your screens and the number:</p><div align="center"><img src="new_button.jpg"/></div><h2>Load</h2><div align="center"><img src="load.png"/></div><p>This button will load any saved data. The file must be named export.txt and be placed in the same directory as the Placement Editor executable e.g. C:\Program Files\The Game Creators\AGK\IDE\Utilities\Placement Editor\Editor.</p><h2>Save</h2><div align="center"><img src="save.png"/></div><p>This will save your data into a text file named export.txt. The data will be saved alongside the Placement Editor executable in C:\Program Files\The Game Creators\AGK\IDE\Utilities\Placement Editor\Editor.</p><h2>Paint</h2><div align="center"><img src="paint.png"/></div><p>When the paint option is selected you can paste the last imported item. For example, import an image of a crate and drop this on the screen, now press the paint button, now click on the main editing area to drop another crate.</p><h2>Delete</h2><div align="center"><img src="delete.png"/></div><p>Select a sprite and then press the delete button to remove it from the sceene.</p><h2>Properties</h2><div align="center"><img src="properties.png"/></div><p>Select a sprite then press the properties icon to display a dialog allowing you to supply a name for the sprite along with rotation and scale values.</p><div align="center"><img src="properties_button.jpg"/></div><h2>Show Borders</h2><div align="center"><img src="borders.png"/></div><p>When you have multiple screens it may be useful to display the edge of each screen. When borders are displayed blue lines will surround the edge of each screen.</p><h2>Show Grid</h2><div align="center"><img src="grid.png"/></div><p>Press this button to show or hide the grid.</p><h2>Grid Width</h2><div align="center"><img src="width.png"/></div><p>This button controls the width of the grid.</p><h2>Grid Height</h2><div align="center"><img src="height.png"/></div><p>This button controls the height of the grid.</p><h2>Snap To Grid</h2><div align="center"><img src="snap.png"/></div><p>Press this button to ensure sprites snap to the grid when moving them around.</p><h2>Sprite Tools</h2><p>When a sprite is selected several tool icons will appear next to it.</p><div align="center"><img src="sprite_tools.jpg"/></div><p>The padlock icon at the top allows you to lock a sprite. When a sprite is locked it cannot be moved. This is followed by two icons that allow you to move a sprite up or down a layer. Click and hold the next icon to rotate the sprite. Click and hold the icon below to scale a sprite. The final two icons allow you to mirror and flip the sprite.</p><h2>Viewing data in AGK</h2><p>A Tier 1 AGK project is available within C:\Program Files\The Game Creators\AGK\IDE\Utilities\Placement Editor\Viewer. </p><p>Ensure you copy your saved data (export.txt) and any media into the media folder. Now open the project and you will be presented with this code:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">// placement editor loading code
+#include "placement_editor.agc"
+<br>
+// globals for the placement editor
+global dim g_Entities [ 1000 ] as tEntity
+global dim g_MediaList [ 1000 ] as tEntity
+global     g_iEntityCount = 0
+global     g_iMediaCount  = 1
+global	   g_fJoystickSpeed#
+<br>
+// load a level using a virtual resolution
+LoadFromPlacementEditor ( "export.txt", "virtual" )
+<br>
+// load a level using the percentage system
+// LoadFromPlacementEditor ( "export.txt", "percentage" )
+<br>
+// to delete data call
+// DeletePlacementEditorData ( )
+<br>
+// our main loop
+do
+    // scroll the screen
+    joystickX# = GetVirtualJoystickX ( 1 ) * g_fJoystickSpeed#
+    joystickY# = GetVirtualJoystickY ( 1 ) * g_fJoystickSpeed#
+<br>
+    SetViewOffset ( GetViewOffsetX ( ) + joystickX#, GetViewOffsetY ( ) + joystickY# )
+<br>
+    // update the screen
+    sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="// placement editor loading code
+#include &quot;placement_editor.agc&quot;
+
+// globals for the placement editor
+global dim g_Entities [ 1000 ] as tEntity
+global dim g_MediaList [ 1000 ] as tEntity
+global     g_iEntityCount = 0
+global     g_iMediaCount  = 1
+global	   g_fJoystickSpeed#
+
+// load a level using a virtual resolution
+LoadFromPlacementEditor ( &quot;export.txt&quot;, &quot;virtual&quot; )
+
+// load a level using the percentage system
+// LoadFromPlacementEditor ( &quot;export.txt&quot;, &quot;percentage&quot; )
+
+// to delete data call
+// DeletePlacementEditorData ( )
+
+// our main loop
+do
+    // scroll the screen
+    joystickX# = GetVirtualJoystickX ( 1 ) * g_fJoystickSpeed#
+    joystickY# = GetVirtualJoystickY ( 1 ) * g_fJoystickSpeed#
+
+    SetViewOffset ( GetViewOffsetX ( ) + joystickX#, GetViewOffsetY ( ) + joystickY# )
+
+    // update the screen
+    sync ( )
+loop
+">Copy Code</button></div><p>Run the program and your level will be displayed on screen ready to be used within your AGK game.</p><div align="center"><img src="final.jpg"/></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

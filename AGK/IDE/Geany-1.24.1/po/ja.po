@@ -1,0 +1,6148 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: AGK IDE\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: data/geany.glade:89
+msgid "Export Android APK"
+msgstr "Android APKをエクスポートする"
+
+#: data/geany.glade:120 data/geany.glade:2094 data/geany.glade:2149
+#: data/geany.glade:3454
+msgid "Export"
+msgstr "輸出する"
+
+#: data/geany.glade:161
+msgid "This will build an APK from your media and bytecode that will run on any Android device running 4.0.3 or above. It can also be used to produce an APK suitable for the Google Play, Amazon, or Ouya store if you also provide a keystore file for signing. If you don't yet have a keystore file you can generate one from the Tools menu or in Android Studio."
+msgstr "4.0.3以上のAndroid搭載端末で動作するメディアとバイトコードからAPKを作成します。また、署名用のキーストアファイルを提供する場合は、Google Play、Amazon、またはOuyaストアに適したAPKを作成するためにも使用できます。まだキーストアファイルがない場合は、ツールメニューまたはAndroid Studioで生成することができます。"
+
+#: data/geany.glade:171
+msgid "<b>APK Export</b>"
+msgstr "<b> APKエクスポート</ b>"
+
+#: data/geany.glade:218 data/geany.glade:3521
+msgid "App Name:"
+msgstr "アプリケーション名："
+
+#: data/geany.glade:232
+msgid "Package Name:"
+msgstr "パッケージ名："
+
+#: data/geany.glade:246 data/geany.glade:3693
+msgid "App Icon:"
+msgstr "アプリアイコン："
+
+#: data/geany.glade:260 data/geany.glade:3646
+msgid "Orientation:"
+msgstr "オリエンテーション："
+
+#: data/geany.glade:273
+msgid "A-Z . and underscore only, should be in the format com.mycompany.my_app"
+msgstr "A-Z。およびアンダースコアのみは、com.mycompany.my_appの形式にする必要があります"
+
+#: data/geany.glade:298
+msgid "should be at least 192x192 pixels, PNG only, can contain transparency"
+msgstr "少なくとも192x192ピクセル、PNGのみ、透過性を含むことができます"
+
+#: data/geany.glade:351 data/geany.glade:3666
+msgid "Landscape"
+msgstr "風景"
+
+#: data/geany.glade:352 data/geany.glade:3667
+msgid "Portrait"
+msgstr "ポートレート"
+
+#: data/geany.glade:353
+msgid "All"
+msgstr "すべて"
+
+#: data/geany.glade:381 data/geany.glade:3550
+msgid "A-Z, 0-9, spaces or underscore allowed"
+msgstr "A〜Z、0〜9、空白またはアンダースコア"
+
+#: data/geany.glade:413
+msgid "APK Type:"
+msgstr "APKタイプ："
+
+#: data/geany.glade:428
+msgid "Select whether this APK will be used on a Google, Amazon, or Ouya device"
+msgstr "このAPKをGoogle、Amazon、またはOuyaデバイスで使用するかどうかを選択します"
+
+#: data/geany.glade:457
+msgid "Ouya Large Icon:"
+msgstr "Ouya大きなアイコン："
+
+#: data/geany.glade:475
+msgid "must be 732x412 pixels, PNG only"
+msgstr "732x412ピクセル、PNGのみである必要があります"
+
+#: data/geany.glade:524
+msgid "Notification Icon:"
+msgstr "通知アイコン："
+
+#: data/geany.glade:541
+msgid "Used in the Android notification bar if you display local or push notifications. Should be at least 96x96, PNG only. It must be all white with the shape defined by the alpha channel"
+msgstr "ローカル通知またはプッシュ通知を表示する場合は、Android通知バーで使用されます。少なくとも96x96、PNGのみである必要があります。アルファチャンネルによって定義された形状を持つすべてが白でなければなりません"
+
+#: data/geany.glade:589
+msgid "Minimum Android Version:"
+msgstr "最小Androidバージョン："
+
+#: data/geany.glade:606
+msgid "Only applies to Google and Amazon export. For maximum compatibility choose 4.0.3, or restrict your app to chosen minimum version. If you choose 6.0 (API 23) or above then you must use the RequestPermission command to request any required permissions before using certain commands "
+msgstr "GoogleとAmazonの輸出にのみ適用されます。互換性を最大限に高めるには、4.0.3を選択するか、アプリを選択した最小バージョンに制限してください。 6.0（API 23）以上を選択した場合、特定のコマンドを使用する前にRequestPermissionコマンドを使用して必要な権限を要求する必要があります"
+
+#: data/geany.glade:644
+msgid "ARCore:"
+msgstr "ARCore："
+
+#: data/geany.glade:661
+msgid "Sets whether your app uses or requires ARCore to be installed on the user's device. Requiring ARCore will limit your app to Android 7.0 or above"
+msgstr "あなたのアプリがユーザーのデバイスにARCoreをインストールするかどうかを設定します。 ARCoreを要求すると、アプリがAndroid 7.0以上に制限されます"
+
+#: data/geany.glade:664
+msgid "Not Used"
+msgstr "使用されていない"
+
+#: data/geany.glade:665
+msgid "Optional"
+msgstr "オプション"
+
+#: data/geany.glade:666
+msgid "Required"
+msgstr "必須"
+
+#: data/geany.glade:695
+msgid "<b>APK Settings</b>"
+msgstr "<b> APKの設定</ b>"
+
+#: data/geany.glade:728
+msgid "Write External Storage"
+msgstr "外部ストレージの書き込み"
+
+#: data/geany.glade:732
+msgid "Used for camera capture images, shared variables, and \"raw:\" file access"
+msgstr "カメラキャプチャ画像、共有変数、および \"raw：\"ファイルアクセスに使用されます。"
+
+#: data/geany.glade:739
+msgid "Precise Location"
+msgstr "正確な場所"
+
+#: data/geany.glade:743
+msgid "Used by the GPS commands for exact location"
+msgstr "正確な位置を求めるためにGPSコマンドによって使用される"
+
+#: data/geany.glade:753
+msgid "Internet/Network"
+msgstr "インターネット/ネットワーク"
+
+#: data/geany.glade:757
+msgid "Used for network or internet access"
+msgstr "ネットワークまたはインターネットアクセスに使用"
+
+#: data/geany.glade:768
+msgid "Wake Lock"
+msgstr "ウェイクロック"
+
+#: data/geany.glade:772
+msgid "Used to prevent the device from sleeping"
+msgstr "デバイスがスリープ状態にならないようにするために使用されます。"
+
+#: data/geany.glade:783
+msgid "Coarse Location"
+msgstr "粗い場所"
+
+#: data/geany.glade:787
+msgid "Used by the GPS commands for rough location"
+msgstr "大まかな場所にGPSコマンドで使用される"
+
+#: data/geany.glade:797
+msgid "In App Purchase"
+msgstr "アプリ購入で"
+
+#: data/geany.glade:801
+msgid "Used by the In App Purchase commands"
+msgstr "アプリ内購入コマンドで使用されます"
+
+#: data/geany.glade:813
+msgid "Push Notifications"
+msgstr "プッシュ通知"
+
+#: data/geany.glade:817
+msgid "Used by the Push Notification command"
+msgstr "プッシュ通知コマンドで使用されます。"
+
+#: data/geany.glade:829
+msgid "Expansion Files"
+msgstr "拡張ファイル"
+
+#: data/geany.glade:833
+msgid "Adds the Get Accounts and Google Licensing permissions used by the expansion file commands"
+msgstr "拡張ファイルコマンドで使用されるアカウント取得権限とGoogleライセンス権限を追加します"
+
+#: data/geany.glade:845
+msgid "Camera"
+msgstr "カメラ"
+
+#: data/geany.glade:849
+msgid "Used by the SetDeviceCameraToImage command"
+msgstr "SetDeviceCameraToImageコマンドで使用されます。"
+
+#: data/geany.glade:861
+msgid "Vibrate"
+msgstr "振動する"
+
+#: data/geany.glade:865
+msgid "Used to allow vibration of the device"
+msgstr "装置の振動を許容するために使用される"
+
+#: data/geany.glade:875
+msgid "Record Audio"
+msgstr "レコードオーディオ"
+
+#: data/geany.glade:879
+msgid "Used to allow recording from the microphone when recording the screen"
+msgstr "画面の録音時にマイクからの録音を許可する場合に使用します"
+
+#: data/geany.glade:897
+msgid "<b>Permissions</b>"
+msgstr "<b>権限</ b>"
+
+#: data/geany.glade:933 data/geany.glade:4341 data/geany.glade:4876
+msgid "Output File Location:"
+msgstr "出力ファイルの場所："
+
+#: data/geany.glade:948 data/geany.glade:1996 data/geany.glade:2353
+#: data/geany.glade:4356
+msgid "The location to save the final APK file"
+msgstr "最終的なAPKファイルを保存する場所"
+
+#: data/geany.glade:996 data/geany.glade:2044 data/geany.glade:2401
+#: data/geany.glade:4404 data/geany.glade:4939
+msgid "<b>Output</b>"
+msgstr "<b>出力</ b>"
+
+#: data/geany.glade:1049
+msgid "Google Play Application ID:"
+msgstr "Google PlayアプリケーションID："
+
+#: data/geany.glade:1065
+msgid "The 12 digit application ID assigned by Google Game Services to your app"
+msgstr "Googleゲームサービスからアプリに割り当てられた12桁のアプリケーションID"
+
+#: data/geany.glade:1095
+msgid "GameCircle API Key:"
+msgstr "GameCircle APIキー："
+
+#: data/geany.glade:1109
+msgid "The very long API Key string generated by Amazon in the GameCircle setup process, note that this varies based on what keystore you are using to sign the APK"
+msgstr "GameCircleセットアッププロセスでAmazonによって生成された非常に長いAPIキー文字列。これは、APKに署名するために使用しているキーストアによって異なることに注意してください"
+
+#: data/geany.glade:1139
+msgid "When GameCircle asks for a Signature you can use the following for unsigned apps \n"
+"77:5F:98:ED:6E:C3:D9:57:4F:EA:63:7A:BB:E7:2D:4C\n"
+"For signed apps you must generate the Signature from your keystore file"
+msgstr "GameCircleが署名を要求すると、署名されていないアプリケーションに対して以下を使用できます\n"
+"77：5F：98：ED：6E：C3：D9：57：4F：EA：63：7A：BB：E7：2D：4C\n"
+"署名付きアプリケーションの場合は、キーストアファイルから署名を生成する必要があります"
+
+#: data/geany.glade:1158
+msgid "<b>Google Game Services/GameCircle Integration</b> (optional)"
+msgstr "<b> Googleゲームサービス/ GameCircle統合</ b>（オプション）"
+
+#: data/geany.glade:1195
+msgid "Firebase Config File (.json):"
+msgstr "Firebase設定ファイル（.json）："
+
+#: data/geany.glade:1210
+msgid "The google-services.json file that you downloaded when setting up your Firebase project, this is different for every app."
+msgstr "Firebaseプロジェクトを設定するときにダウンロードしたgoogle-services.jsonファイルは、すべてのアプリで異なります。"
+
+#: data/geany.glade:1258
+msgid "<b>Firebase Integration</b> (optional)"
+msgstr "<b> Firebase Integration </ b>（オプション）"
+
+#: data/geany.glade:1293
+msgid "The following must be filled out if you want an APK suitable for submitting to the Google Play, Amazon, or Ouya store."
+msgstr "APKをGoogle Play、Amazon、またはOuyaストアに送信するのに適したものにしたい場合は、次のように入力する必要があります。"
+
+#: data/geany.glade:1316
+msgid "Keystore File:"
+msgstr "キーストアファイル："
+
+#: data/geany.glade:1331
+msgid "If you don't have this you can generate one from the Tools menu"
+msgstr "あなたがこれを持っていない場合、あなたはツールメニューから1つを生成することができます"
+
+#: data/geany.glade:1378
+msgid "Keystore Password:"
+msgstr "キーストアのパスワード："
+
+#: data/geany.glade:1395 data/geany.glade:1904
+msgid "The password used to create the keystore"
+msgstr "キーストアを作成するために使用されるパスワード"
+
+#: data/geany.glade:1428 data/geany.glade:1795
+msgid "Version Name:"
+msgstr "バージョン名："
+
+#: data/geany.glade:1446 data/geany.glade:1825 data/geany.glade:1857
+msgid "e.g. 1.0.1"
+msgstr "例えば1.0.1"
+
+#: data/geany.glade:1476 data/geany.glade:1807 data/geany.glade:3758
+msgid "Version Number:"
+msgstr "バージョンナンバー："
+
+#: data/geany.glade:1494
+msgid "Must be an integer, must be higher than any value already submitted to the store"
+msgstr "整数である必要があります。すでにストアに送信されている値よりも大きい値である必要があります。"
+
+#: data/geany.glade:1542
+msgid "<b>Advanced</b>:  If you are providing a keystore generated by Android Studio please enter the alias name and password used to access it."
+msgstr "<b>高度な</ b>：Android Studioで生成されたキーストアを提供する場合は、アクセスに使用するエイリアス名とパスワードを入力してください。"
+
+#: data/geany.glade:1562
+msgid "Alias:"
+msgstr "エイリアス："
+
+#: data/geany.glade:1574
+msgid "Alias Password:"
+msgstr "エイリアスパスワード："
+
+#: data/geany.glade:1592
+msgid "The name of the alias used when the keystore file was generated"
+msgstr "キーストアファイルが生成されたときに使用されるエイリアスの名前"
+
+#: data/geany.glade:1626
+msgid "The alias password used when the keystore file was generated"
+msgstr "キーストアファイルが生成されたときに使用されるエイリアスパスワード"
+
+#: data/geany.glade:1676
+msgid "<b>Signing</b> (optional)"
+msgstr "<b>署名</ b>（オプション）"
+
+#: data/geany.glade:1773
+msgid "Exports both Amazon and Google Play APKs for all currently open projects, using the settings contained in their project files"
+msgstr "プロジェクトファイルに含まれている設定を使用して、現在開いているすべてのプロジェクトのAmazonおよびGoogle Play APKをエクスポートします。"
+
+#: data/geany.glade:1887
+msgid "Keystore/Alias Password:"
+msgstr "キーストア/エイリアスパスワード："
+
+#: data/geany.glade:1947 data/geany.glade:2304 data/geany.glade:4306
+msgid "<b>App Settings</b>"
+msgstr "<b>アプリの設定</ b>"
+
+#: data/geany.glade:1981 data/geany.glade:2338
+msgid "Output Folder:"
+msgstr "出力フォルダ："
+
+#: data/geany.glade:2081 data/geany.glade:2136
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: data/geany.glade:2194
+msgid "This will the HTML5 necessary to host your app on a website. You will need to upload these files somewhere to make your game accessible to others.\n"
+"\n"
+"For the best experience we recommend you use Firefox or Chrome to view the HTML5 app. When testing the files locally, without uploading them to a server, Chrome will not work. When testing on an Android device, Chrome is the best choice as Firefox has trouble when the app goes full screen. iOS devices do not support full screen at all, and tend to have much lower HTML5 performance than other platforms.\n"
+"\n"
+"Note that HTML5 only has partial support for the AGK command set so not all commands will work. In particular the Networking commands HostNetwork and JoinNetwork are not functional in HTML5 apps. Also the file commands will work but are not persistent, so any saved files will be lost when the user closes or reloads the app.\n"
+"\n"
+"File size is very important when hosting apps online, so you should remove any unnecessary files from the project's media folder before exporting."
+msgstr "これは、ウェブサイトでアプリケーションをホストするために必要なHTML5です。他の人がゲームにアクセスできるように、これらのファイルをどこかにアップロードする必要があります。\n"
+"\n"
+"最高の体験を得るには、FirefoxまたはChromeを使用してHTML5アプリを表示することをおすすめします。ファイルをサーバーにアップロードせずにローカルでテストすると、Chromeは動作しません。 Android搭載端末でテストするとき、ChromeがアプリがフルスクリーンになったときにFirefoxが問題を抱えているため、最良の選択です。 iOSデバイスはフルスクリーンをサポートしておらず、他のプラットフォームよりもHTML5のパフォーマンスがはるかに低い傾向があります。\n"
+"\n"
+"HTML5はAGKコマンドセットの部分的なサポートしか持たないので、すべてのコマンドが機能するわけではありません。特に、ネットワーキングコマンドHostNetworkとJoinNetworkは、HTML5アプリケーションでは機能しません。また、ファイルコマンドは機能しますが、永続的ではありません。したがって、ユーザーがアプリケーションを閉じるか再読み込みすると、保存されたファイルはすべて失われます。\n"
+"\n"
+"オンラインでアプリケーションをホスティングするときはファイルサイズが非常に重要なので、エクスポートする前にプロジェクトのメディアフォルダから不要なファイルを削除する必要があります。"
+
+#: data/geany.glade:2222
+msgid "Commands Used:"
+msgstr "使用されるコマンド："
+
+#: data/geany.glade:2237
+msgid "Selecting 2D Only will reduce the file size which will improve loading times, but all 3D commands will be disabled."
+msgstr "[2Dのみ]を選択するとファイルサイズが小さくなり、ロード時間が短縮されますが、すべての3Dコマンドは無効になります。"
+
+#: data/geany.glade:2241
+msgid "2D Only"
+msgstr "2Dのみ"
+
+#: data/geany.glade:2242
+msgid "2D and 3D"
+msgstr "2Dと3D"
+
+#: data/geany.glade:2265
+msgid "Disables some optimizations, but allows your app to use more than 256MB of RAM"
+msgstr "いくつかの最適化を無効にしますが、アプリは256MB以上のRAMを使用できます"
+
+#: data/geany.glade:2280
+msgid "Dynamic Memory:"
+msgstr "ダイナミックメモリ："
+
+#: data/geany.glade:2527
+msgid "_Toolbar Preferences"
+msgstr "_ツールバー設定"
+
+#: data/geany.glade:2544
+msgid "_Hide Toolbar"
+msgstr "_ツールバーを隠す"
+
+#: data/geany.glade:2600 data/geany.glade:12382
+msgid "Go to _Tag Definition"
+msgstr "_Tagの定義に移動"
+
+#: data/geany.glade:2611 data/geany.glade:12343 src/symbols.c:2067
+msgid "Find _Usage"
+msgstr "_Usageを検索"
+
+#: data/geany.glade:2622
+msgid "Open Selected F_ile"
+msgstr "選択したF_ileを開く"
+
+#: data/geany.glade:2729 data/geany.glade:11764
+msgid "_Edit"
+msgstr "_編集"
+
+#: data/geany.glade:2737 data/geany.glade:11978
+msgid "_Format"
+msgstr "_フォーマット"
+
+#: data/geany.glade:2745 data/geany.glade:12174
+msgid "_Search"
+msgstr "_サーチ"
+
+#: data/geany.glade:2759
+msgid "Passes the selected word to the command set in Preferences->Tools"
+msgstr "[設定]  - > [ツール]で設定したコマンドに選択した単語を渡します。"
+
+#: data/geany.glade:2760
+msgid "Conte_xt Action"
+msgstr "Conte_xtアクション"
+
+#: data/geany.glade:2978 src/filetypes.c:137 src/filetypes.c:1386
+msgid "None"
+msgstr "なし"
+
+#: data/geany.glade:2981
+msgid "Basic"
+msgstr "ベーシック"
+
+#: data/geany.glade:2984
+msgid "Current chars"
+msgstr "現在の文字"
+
+#: data/geany.glade:2987
+msgid "Match braces"
+msgstr "マッチブレース"
+
+#: data/geany.glade:2995 src/callbacks.c:2180
+msgid "Install Additional Files"
+msgstr "追加ファイルをインストールする"
+
+#: data/geany.glade:3024
+msgid "AGK comes with a set of example projects for BASIC and a set of native libraries for development with C++. By default these are located in the AGK installation folder but it might be more convenient to store them elsewhere, and in the case of Windows the Program Files directory is not writeable so is not suitable for projects. This dialog will let you copy these additional files to a location of your choice, and optionally keep those locations up to date as the local files are updated. \n"
+"You can close this dialog and come back to it at any time from the Tools->Install Additional Files menu option. You can leave either path blank if you do not want to install these files."
+msgstr "AGKには、BASIC用の一連のサンプルプロジェクトと、C ++による開発用のネイティブライブラリセットが付属しています。デフォルトでは、これらはAGKインストールフォルダにありますが、他の場所に保存する方が便利かもしれません.Windowsの場合、Program Filesディレクトリは書き込み可能ではないため、プロジェクトには適していません。このダイアログでは、これらの追加ファイルを任意の場所にコピーし、ローカルファイルが更新されるとその場所を最新の状態に保つことができます。\n"
+"このダイアログを閉じて、[ツール]  - > [追加ファイルのインストール]メニューオプションからいつでも戻ってくることができます。これらのファイルをインストールしない場合は、いずれかのパスを空白のままにしておくことができます。"
+
+#: data/geany.glade:3035
+msgid "<b>Additional Files</b>"
+msgstr "<b>追加ファイル</ b>"
+
+#: data/geany.glade:3071 data/geany.glade:3219
+msgid "New Location:"
+msgstr "新しい場所："
+
+#: data/geany.glade:3086
+msgid "The location to place the example projects, leave blank to ignore these"
+msgstr "サンプルプロジェクトを配置する場所。空白のままにしてこれらのプロジェクトを無視する"
+
+#: data/geany.glade:3131 data/geany.glade:3279
+msgid "When AGK Updates:"
+msgstr "AGK更新時："
+
+#: data/geany.glade:3148 data/geany.glade:3296
+msgid "What to do when AGK detects that it has updated since you installed the files"
+msgstr "ファイルをインストールしてからAGKがアップデートを検出したときの対処方法"
+
+#: data/geany.glade:3151 data/geany.glade:3299
+msgid "Update these files"
+msgstr "これらのファイルを更新する"
+
+#: data/geany.glade:3152 data/geany.glade:3300
+msgid "Ask me what to do"
+msgstr "何をすべきか教えてください"
+
+#: data/geany.glade:3153 data/geany.glade:3301
+msgid "Do nothing"
+msgstr "何もしない"
+
+#: data/geany.glade:3182
+msgid "<b>AGK Projects</b>"
+msgstr "<b> AGKプロジェクト</ b>"
+
+#: data/geany.glade:3234
+msgid "The location to place the c++ libraries, leave blank to ignore these"
+msgstr "C ++ライブラリを配置する場所は空白のままにして、これらを無視する"
+
+#: data/geany.glade:3330
+msgid "<b>C++ Libraries</b>"
+msgstr "<b> C ++ライブラリ</ b>"
+
+#: data/geany.glade:3382
+msgid "Apply"
+msgstr "適用"
+
+#: data/geany.glade:3386
+msgid "Apply settings only, no files will be copied"
+msgstr "設定を適用するだけで、ファイルはコピーされません"
+
+#: data/geany.glade:3396
+msgid "Install"
+msgstr "インストール"
+
+#: data/geany.glade:3400
+msgid "Apply settings and copy the files to the specified locations"
+msgstr "設定を適用し、ファイルを指定された場所にコピーします。"
+
+#: data/geany.glade:3498
+msgid "This will build an IPA from your media and bytecode that will run on any iOS device running iOS 7 or greater. You must have the correct distribution certificate and corresponding private key in your keychain for the provisioning profile you are using. It can also be used to produce an IPA suitable for the uploading if you use an AppStore provisioning profile, you will need to install Application Loader, or install XCode and use its Application Loader, to submit the actual IPA to iTunes Connect.\n"
+"Note that only AdHoc and App Store provisioning profiles will work with this exporter."
+msgstr "これにより、iOS 7以上のiOSデバイスで実行されるメディアとバイトコードからIPAが構築されます。使用しているプロビジョニングプロファイルのキーチェーンに、正しい配布証明書と対応する秘密鍵が必要です。また、AppStoreプロビジョニングプロファイルを使用する場合はアップロードに適したIPAを作成するために使用できます。実際にIPAをiTunes Connectに送信するには、Application Loaderをインストールするか、XCodeをインストールしApplication Loaderを使用する必要があります。\n"
+"AdHocとApp Storeのプロビジョニングプロファイルのみがこのエクスポータで動作することに注意してください。"
+
+#: data/geany.glade:3533
+msgid "Facebook App ID:"
+msgstr "Facebook App ID："
+
+#: data/geany.glade:3581
+msgid "Provisioning Profile:"
+msgstr "プロビジョニングプロファイル："
+
+#: data/geany.glade:3598
+msgid "Provisioning profile downloaded from your Apple developer account containing the list of devices this build will work on (or the App Store)"
+msgstr "このビルドが動作するデバイス（またはApp Store）のリストを含むApple開発者アカウントからダウンロードしたプロビジョニングプロファイル。"
+
+#: data/geany.glade:3663
+msgid "Sets the initial orientation when your app starts. To limit the device orientation you must use SetOrientationAllowed() in your code"
+msgstr "アプリの起動時の初期の向きを設定します。デバイスの向きを制限するには、コードでSetOrientationAllowed（）を使用する必要があります"
+
+#: data/geany.glade:3668
+msgid "Both"
+msgstr "どちらも"
+
+#: data/geany.glade:3710
+msgid "Must be at least 1024x1024 pixels, PNG only, can contain transparency"
+msgstr "少なくとも1024x1024ピクセル（PNGのみ）で透過性を含めることができます"
+
+#: data/geany.glade:3776
+msgid "0-9 and . only, this must match the version number you use in iTunes Connect"
+msgstr "0-9と。これは、iTunes Connectで使用しているバージョン番号と一致する必要があります"
+
+#: data/geany.glade:3812
+msgid "(optional) if you use the Facebook commands you must put the Facebook App ID here"
+msgstr "（オプション）Facebookコマンドを使用する場合は、FacebookのApp IDをここに入力する必要があります"
+
+#: data/geany.glade:3844
+msgid "Build Number:"
+msgstr "ビルド番号："
+
+#: data/geany.glade:3862
+msgid "0-9 and . only"
+msgstr "0-9と。のみ"
+
+#: data/geany.glade:3894
+msgid "Device Type:"
+msgstr "デバイスタイプ："
+
+#: data/geany.glade:3911
+msgid "Choose what type of devices will be able to see this app on the AppStore"
+msgstr "AppStoreでこのアプリを見ることができるデバイスのタイプを選択する"
+
+#: data/geany.glade:3914
+msgid "iPhone and iPad"
+msgstr "iPhoneとiPad"
+
+#: data/geany.glade:3915
+msgid "iPhone Only"
+msgstr "iPhone専用"
+
+#: data/geany.glade:3916
+msgid "iPad Only"
+msgstr "iPad専用"
+
+#: data/geany.glade:3941
+msgid "Splash Screen (640x960):"
+msgstr "スプラッシュスクリーン（640x960）："
+
+#: data/geany.glade:3955
+msgid "Splash Screen (640x1136):"
+msgstr "スプラッシュスクリーン（640x1136）："
+
+#: data/geany.glade:3969
+msgid "Splash Screen (1125x2436):"
+msgstr "スプラッシュ画面（1125x2436）："
+
+#: data/geany.glade:3986
+msgid "Displayed whilst your app is launching on iPhone 4 and below, should be at least 640x960. Landscape splash screens should be rotated 90 degrees clockwise so the bottom of the image is to the left"
+msgstr "あなたのアプリがiPhone 4以降で起動している間に表示される、少なくとも640x960である必要があります。風景のスプラッシュ画面は時計回りに90度回転して、画像の下端が左になるようにしてください"
+
+#: data/geany.glade:4037
+msgid "(Optional) Displayed whilst your app is launching on iPhone 5 and above, should be at least 640x1136. Landscape splash screens should be rotated 90 degrees clockwise so the bottom of the image is to the left"
+msgstr "（オプション）あなたのアプリがiPhone 5以上で起動している間に表示される、少なくとも640x1136である必要があります。風景のスプラッシュ画面は時計回りに90度回転して、画像の下端が左になるようにしてください"
+
+#: data/geany.glade:4088
+msgid "(Optional) Displayed whilst your app is launching on iPad, should be at least 1536x2048. Landscape splash screens should be rotated 90 degrees clockwise so the bottom of the image is to the left"
+msgstr "（オプション）アプリがiPadで起動している間に表示される、少なくとも1536x2048である必要があります。風景のスプラッシュ画面は時計回りに90度回転して、画像の下端が左になるようにしてください"
+
+#: data/geany.glade:4136
+msgid "Uses Adverts or Facebook \n"
+"Install Tracking:"
+msgstr "広告やFacebookを使用する\n"
+"トラッキングをインストールする："
+
+#: data/geany.glade:4151
+msgid "Tick this box if your app uses the AdMob, Amazon Ads, or Chartboost commands, or the Facebook install tracking command. This will include the Advertising Identifier (IDFA) in your exported app. If you only use the Facebook comands but NOT the Facebook install tracking then you should not tick this box"
+msgstr "アプリでAdMob、Amazon Ads、またはChartboostコマンド、またはFacebookインストールトラッキングコマンドを使用している場合は、このチェックボックスをオンにします。これには、エクスポートされたアプリに広告ID（IDFA）が含まれます。あなたがFacebookのcomandsを使うだけで、Facebookのインストールの追跡はしないなら、このボックスにチェックを入れてはいけません"
+
+#: data/geany.glade:4166
+msgid "Firebase Config File (.plist):"
+msgstr "Firebase設定ファイル（.plist）："
+
+#: data/geany.glade:4183
+msgid "(Optional) The GoogleService-Info.plist file you downloaded when setting up your Firebase project, this is different for every app."
+msgstr "（オプション）Firebaseプロジェクトの設定時にダウンロードしたGoogleService-Info.plistファイルです。これはアプリごとに異なります。"
+
+#: data/geany.glade:4231
+msgid "Splash Screen (1536x2048):"
+msgstr "スプラッシュ画面（1536x2048）："
+
+#: data/geany.glade:4248
+msgid "(Optional) Displayed whilst your app is launching on iPhone X, should be at least 1125x2436. Landscape splash screens should be rotated 90 degrees clockwise so the bottom of the image is to the left"
+msgstr "（オプション）あなたのアプリがiPhone Xで起動している間に表示される、少なくとも1125x2436である必要があります。風景のスプラッシュ画面は時計回りに90度回転して、画像の下端が左になるようにしてください"
+
+#: data/geany.glade:4461
+msgid "Generate"
+msgstr "生成する"
+
+#: data/geany.glade:4505
+msgid "A keystore is a container file for a private key that is used to sign your app so that it can be submitted to the Google Play or Amazon store. If you are distributing outside either of these app stores, or you just want to test on your device, then you do not need this.\n"
+"\n"
+"Once you have submitted your signed app, all updates to it must be signed with the same keystore. Keystores are protected with a password, if you lose your keystore file or forget its password then <b>you will not be able to submit updates to any apps that were signed with it</b>.\n"
+"\n"
+"Each of your apps could use a separate keystore, but for simplicity it is easier to have a single keystore for all your apps. For those of you that want to use this keystore with other programs the alias name will be \"mykeystore\" and the alias password will be the same as the one you type below.\n"
+"\n"
+"To generate a keystore file you need to submit some information about you or your company that will tell people who signed it. You may leave these blank (except the password) but anyone inspecting the key used to sign an app may be less likely to trust it if all the fields are blank."
+msgstr "キーストアは、Google PlayストアまたはAmazonストアに送信できるようにアプリに署名するために使用される秘密キーのコンテナファイルです。これらのApp Storeの外に配布している場合、またはあなたのデバイスでテストしたいだけの場合は、この必要はありません。\n"
+"\n"
+"署名付きアプリを提出したら、すべての更新プログラムに同じキーストアで署名する必要があります。キーストアファイルを紛失した場合やパスワードを忘れた場合は、<b>署名済みのアプリに更新を送信できません</ b>。キーストアはパスワードで保護されます。\n"
+"\n"
+"それぞれのアプリは別々のキーストアを使用できますが、簡単にするためにすべてのアプリに対して単一のキーストアを使用する方が簡単です。他のプログラムでこのキーストアを使いたいと思う人のために、エイリアス名は \"mykeystore\"になり、エイリアスパスワードはあなたが入力したものと同じになります。\n"
+"\n"
+"キーストアファイルを生成するには、署名した人に通知するあなたまたは会社に関する情報を提出する必要があります。これらは空白のままにしておくことができます（パスワードは除く）が、すべてのフィールドが空白の場合は、アプリに署名するために使用されたキーを検査する人はそれを信頼しない可能性があります。"
+
+#: data/geany.glade:4534
+msgid "Your Full Name:"
+msgstr "あなたのフルネーム："
+
+#: data/geany.glade:4546
+msgid "Re-enter Password:"
+msgstr "パスワード再入力："
+
+#: data/geany.glade:4564 data/geany.glade:4655 data/geany.glade:4691
+msgid "A-Z and spaces only"
+msgstr "A-Zとスペースのみ"
+
+#: data/geany.glade:4595
+msgid "City:"
+msgstr "シティ："
+
+#: data/geany.glade:4609
+msgid "Two Letter Country Code:"
+msgstr "2文字の国コード："
+
+#: data/geany.glade:4623
+msgid "Company Name:"
+msgstr "会社名："
+
+#: data/geany.glade:4637
+msgid "Create a Password:"
+msgstr "パスワードを作成："
+
+#: data/geany.glade:4727
+msgid "A-Z only"
+msgstr "A-Zのみ"
+
+#: data/geany.glade:4841
+msgid "<b>Keystore Details</b>"
+msgstr "<b>キーストアの詳細</ b>"
+
+#: data/geany.glade:4891
+msgid "The location to save the keystore file"
+msgstr "キーストアファイルを保存する場所"
+
+#: data/geany.glade:4973 data/geany.glade:5797 data/geany.glade:6224
+msgid "Left"
+msgstr "左"
+
+#: data/geany.glade:4976 data/geany.glade:5813 data/geany.glade:5902
+#: data/geany.glade:6241
+msgid "Right"
+msgstr "右"
+
+#: data/geany.glade:4979
+msgid "Top"
+msgstr "上"
+
+#: data/geany.glade:4982 data/geany.glade:5887
+msgid "Bottom"
+msgstr "ボトム"
+
+#: data/geany.glade:4988 src/keybindings.c:431
+msgid "Preferences"
+msgstr "設定"
+
+#: data/geany.glade:5103
+msgid "Load virtual terminal support"
+msgstr "仮想端末のサポートをロードする"
+
+#: data/geany.glade:5117
+msgid "Enable plugin support"
+msgstr "プラグインのサポートを有効にする"
+
+#: data/geany.glade:5132
+msgid "Remember open projects"
+msgstr "オープンプロジェクトを覚えて"
+
+#: data/geany.glade:5136
+msgid "When active, any projects that were open when the IDE was closed will be reopened when the IDE is restarted"
+msgstr "アクティブにすると、IDEが閉じられたときに開いていたプロジェクトは、IDEの再起動時に再び開きます"
+
+#: data/geany.glade:5154
+msgid "<b>Startup</b>"
+msgstr "<b>スタートアップ</ b>"
+
+#: data/geany.glade:5182
+msgid "Save window position and geometry"
+msgstr "ウィンドウの位置と形状を保存する"
+
+#: data/geany.glade:5186
+msgid "Saves the window position and geometry and restores it at the start"
+msgstr "ウィンドウの位置とジオメトリを保存し、開始時に復元します。"
+
+#: data/geany.glade:5198
+msgid "Confirm exit"
+msgstr "出口を確認する"
+
+#: data/geany.glade:5202
+msgid "Shows a confirmation dialog on exit"
+msgstr "終了時に確認ダイアログを表示します。"
+
+#: data/geany.glade:5220
+msgid "<b>Shutdown</b>"
+msgstr "<b>シャットダウン</ b>"
+
+#: data/geany.glade:5255
+msgid "Startup path:"
+msgstr "スタートアップパス："
+
+#: data/geany.glade:5266
+msgid "Path to start in when opening or saving files. Must be an absolute path."
+msgstr "ファイルを開くときや保存するときに始まるパス。絶対パスでなければなりません。"
+
+#: data/geany.glade:5304
+msgid "Project files:"
+msgstr "プロジェクトファイル："
+
+#: data/geany.glade:5317
+msgid "Path to start in when opening project files"
+msgstr "プロジェクトファイルを開くときに開始するパス"
+
+#: data/geany.glade:5359
+msgid "Extra plugin path:"
+msgstr "余分なプラグインのパス："
+
+#: data/geany.glade:5372
+msgid "Geany looks by default in the global installation path and in the configuration directory. The path entered here will be searched additionally for plugins. Leave blank to disable."
+msgstr "Geanyはデフォルトでグローバルインストールパスと設定ディレクトリにあります。ここに入力されたパスには、プラグインが追加検索されます。空白のままにすると無効になります。"
+
+#: data/geany.glade:5417
+msgid "<b>Paths</b>"
+msgstr "<b>パス</ b>"
+
+#: data/geany.glade:5434
+msgid "Startup"
+msgstr "起動"
+
+#: data/geany.glade:5463
+msgid "Beep on errors or when compilation has finished"
+msgstr "エラー時またはコンパイルが終了したらビープ音を鳴らす"
+
+#: data/geany.glade:5467
+msgid "Whether to beep if an error occurred or when the compilation process has finished"
+msgstr "エラーが発生したときにビープ音を鳴らすか、コンパイルプロセスが終了したか"
+
+#: data/geany.glade:5479
+msgid "Switch to status message list at new message"
+msgstr "新しいメッセージでステータスメッセージリストに切り替えます"
+
+#: data/geany.glade:5483
+msgid "Switch to the status message tab (in the notebook window at the bottom) if a new status message arrives"
+msgstr "新しいステータスメッセージが届いたら、ステータスメッセージタブ（ノートブックウィンドウの下部にある）に切り替えます。"
+
+#: data/geany.glade:5495
+msgid "Suppress status messages in the status bar"
+msgstr "ステータスバーのステータスメッセージを表示しない"
+
+#: data/geany.glade:5499
+msgid "Removes all messages from the status bar. The messages are still displayed in the status messages window."
+msgstr "ステータスバーからすべてのメッセージを削除します。メッセージはステータスメッセージウィンドウに表示されたままです。"
+
+#: data/geany.glade:5511
+msgid "Auto-focus widgets (focus follows mouse)"
+msgstr "自動フォーカスウィジェット（フォーカスはマウスの後に表示されます）"
+
+#: data/geany.glade:5515
+msgid "Gives the focus automatically to widgets below the mouse cursor. Works for the main editor widget, the scribble, the toolbar search and goto line fields and the VTE."
+msgstr "マウスカーソルの下のウィジェットにフォーカスを自動的に与えます。メインエディタウィジェット、落書き、ツールバーの検索とGoto行フィールド、VTEに対応しています。"
+
+#: data/geany.glade:5527
+msgid "Use Windows native dialogs"
+msgstr "Windowsのネイティブダイアログを使用する"
+
+#: data/geany.glade:5531
+msgid "Defines whether to use the Windows native dialogs or whether to use the GTK default dialogs"
+msgstr "Windowsネイティブダイアログを使用するかどうか、またはGTKのデフォルトダイアログを使用するかどうかを定義します"
+
+#: data/geany.glade:5549 data/geany.glade:6121 data/geany.glade:8740
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>その他</ b>"
+
+#: data/geany.glade:5577
+msgid "Always wrap search"
+msgstr "常にラップ検索"
+
+#: data/geany.glade:5581
+msgid "Always wrap search around the document"
+msgstr "ドキュメントの周囲を常にラップする"
+
+#: data/geany.glade:5593
+msgid "Hide the Find dialog"
+msgstr "検索ダイアログを非表示にする"
+
+#: data/geany.glade:5597
+msgid "Hide the Find dialog after clicking Find Next/Previous"
+msgstr "[次へ] / [前を検索]をクリックした後に[検索]"
+
+#: data/geany.glade:5609
+msgid "Use the current word under the cursor for Find dialogs"
+msgstr "カーソルの下にある現在の単語を検索ダイアログに使用する"
+
+#: data/geany.glade:5613
+msgid "Use current word under the cursor when opening the Find, Find in Files or Replace dialog and there is no selection"
+msgstr "[検索]、[ファイルで検索]または[置換]ダイアログを開くときにカーソルの下にある現在の単語を使用し、選択がない"
+
+#: data/geany.glade:5625
+msgid "Use the current file's directory for Find in Files"
+msgstr "現在のファイルのディレクトリを使用してファイルで検索する"
+
+#: data/geany.glade:5646
+msgid "<b>Search</b>"
+msgstr "<b>検索</ b>"
+
+#: data/geany.glade:5666
+msgid "Miscellaneous"
+msgstr "雑"
+
+#: data/geany.glade:5679 src/prefs.c:1643
+msgid "General"
+msgstr "一般"
+
+#: data/geany.glade:5727
+msgid "Show symbol list"
+msgstr "シンボルリストを表示する"
+
+#: data/geany.glade:5731
+msgid "Toggle the symbol list on and off"
+msgstr "シンボルリストのオンとオフを切り替えます"
+
+#: data/geany.glade:5743
+msgid "Show documents list"
+msgstr "ドキュメントリストを表示する"
+
+#: data/geany.glade:5747
+msgid "Toggle the documents list on and off"
+msgstr "ドキュメントリストのオン/オフを切り替える"
+
+#: data/geany.glade:5763
+msgid "Show sidebar"
+msgstr "サイドバーを表示"
+
+#: data/geany.glade:5787 data/geany.glade:5877
+msgid "Position:"
+msgstr "ポジション："
+
+#: data/geany.glade:5842
+msgid "<b>Sidebar</b>"
+msgstr "<b>サイドバー</ b>"
+
+#: data/geany.glade:5925
+msgid "Auto hide message window"
+msgstr "自動メッセージウィンドウを隠す"
+
+#: data/geany.glade:5945
+msgid "<b>Message window</b>"
+msgstr "<b>メッセージウィンドウ</ b>"
+
+#: data/geany.glade:5981
+msgid "Symbol list:"
+msgstr "シンボルリスト："
+
+#: data/geany.glade:5995 data/geany.glade:6362
+msgid "Message window:"
+msgstr "メッセージウィンドウ："
+
+#: data/geany.glade:6009 data/geany.glade:6432
+msgid "Editor:"
+msgstr "編集者："
+
+#: data/geany.glade:6021
+msgid "Sets the font for the message window"
+msgstr "メッセージウィンドウのフォントを設定します。"
+
+#: data/geany.glade:6038
+msgid "Sets the font for the symbol list"
+msgstr "シンボルリストのフォントを設定します。"
+
+#: data/geany.glade:6054
+msgid "Sets the editor font"
+msgstr "エディタフォントを設定します。"
+
+#: data/geany.glade:6071
+msgid "<b>Fonts</b>"
+msgstr "<b>フォント</ b>"
+
+#: data/geany.glade:6099
+msgid "Show status bar"
+msgstr "ステータスバーを表示"
+
+#: data/geany.glade:6103
+msgid "Whether to show the status bar at the bottom of the main window"
+msgstr "メインウィンドウの下部にステータスバーを表示するかどうか"
+
+#: data/geany.glade:6138 data/geany.glade:6891 src/prefs.c:1645
+msgid "Interface"
+msgstr "インタフェース"
+
+#: data/geany.glade:6167
+msgid "Show editor tabs"
+msgstr "エディタタブを表示"
+
+#: data/geany.glade:6182
+msgid "Show close buttons"
+msgstr "閉じるボタンを表示"
+
+#: data/geany.glade:6186
+msgid "Shows a small cross button in the file tabs to easily close files when clicking on it (requires restart of Geany)"
+msgstr "ファイルタブに小さな十字ボタンが表示され、ファイルをクリックすると簡単に閉じることができます（Geanyを再起動する必要があります）"
+
+#: data/geany.glade:6210
+msgid "Placement of new file tabs:"
+msgstr "新しいファイルタブの配置："
+
+#: data/geany.glade:6228
+msgid "File tabs will be placed on the left of the notebook"
+msgstr "ファイルタブはノートブックの左側に配置されます"
+
+#: data/geany.glade:6245
+msgid "File tabs will be placed on the right of the notebook"
+msgstr "ファイルタブはノートブックの右側に配置されます"
+
+#: data/geany.glade:6265
+msgid "Next to current"
+msgstr "現在の次の"
+
+#: data/geany.glade:6269
+msgid "Whether to place file tabs next to the current tab rather than at the edges of the notebook"
+msgstr "ノートブックの端ではなく現在のタブの横にファイルタブを配置するかどうか"
+
+#: data/geany.glade:6291
+msgid "Double-clicking hides all additional widgets"
+msgstr "ダブルクリックすると、すべてのウィジェットが非表示になります"
+
+#: data/geany.glade:6295
+msgid "Calls the View->Toggle All Additional Widgets command"
+msgstr "表示 - >すべての追加のウィジェットの切り替えコマンドを呼び出します"
+
+#: data/geany.glade:6307
+msgid "Switch to last used document after closing a tab"
+msgstr "タブを閉じた後に最後に使用した文書に切り替える"
+
+#: data/geany.glade:6327
+msgid "<b>Editor tabs</b>"
+msgstr "<b>エディタタブ</ b>"
+
+#: data/geany.glade:6397
+msgid "Sidebar:"
+msgstr "サイドバー："
+
+#: data/geany.glade:6466
+msgid "<b>Tab positions</b>"
+msgstr "<b>タブの位置</ b>"
+
+#: data/geany.glade:6486
+msgid "Notebook tabs"
+msgstr "ノートブックタブ"
+
+#: data/geany.glade:6526
+msgid "Show t_oolbar"
+msgstr "t_oolbarを表示"
+
+#: data/geany.glade:6541
+msgid "_Append toolbar to the menu"
+msgstr "_ツールバーをメニューに追加"
+
+#: data/geany.glade:6545
+msgid "Pack the toolbar to the main menu to save vertical space"
+msgstr "ツールバーをメインメニューにパックして縦のスペースを節約する"
+
+#: data/geany.glade:6599 src/toolbar.c:950
+msgid "Customize Toolbar"
+msgstr "ツールバーのカスタマイズ"
+
+#: data/geany.glade:6657
+msgid "System _default"
+msgstr "システムのデフォルト"
+
+#: data/geany.glade:6671
+msgid "Images _and text"
+msgstr "画像_とテキスト"
+
+#: data/geany.glade:6688
+msgid "_Images only"
+msgstr "_イメージのみ"
+
+#: data/geany.glade:6705
+msgid "_Text only"
+msgstr "_テキストのみ"
+
+#: data/geany.glade:6730
+msgid "<b>Icon style</b>"
+msgstr "<b>アイコンスタイル</ b>"
+
+#: data/geany.glade:6763
+msgid "S_ystem default"
+msgstr "システムのデフォルト"
+
+#: data/geany.glade:6777
+msgid "_Small icons"
+msgstr "_小さなアイコン"
+
+#: data/geany.glade:6794
+msgid "_Very small icons"
+msgstr "_非常に小さなアイコン"
+
+#: data/geany.glade:6811
+msgid "_Large icons"
+msgstr "_大きなアイコン"
+
+#: data/geany.glade:6836
+msgid "<b>Icon size</b>"
+msgstr "<b>アイコンサイズ</ b>"
+
+#: data/geany.glade:6855
+msgid "<b>Toolbar</b>"
+msgstr "<b>ツールバー</ b>"
+
+#: data/geany.glade:6875 src/prefs.c:1647
+msgid "Toolbar"
+msgstr "ツールバー"
+
+#: data/geany.glade:6925
+msgid "Line wrapping"
+msgstr "行の折り返し"
+
+#: data/geany.glade:6929
+msgid "Wrap the line at the window border and continue it on the next line. Note: line wrapping has a high performance cost for large documents so should be disabled on slow machines."
+msgstr "ウィンドウの境界線で折り返して、次の行に移動します。注：行の折り返しは、大きな文書では高いパフォーマンスのコストがかかるため、遅いマシンでは無効にする必要があります。"
+
+#: data/geany.glade:6941
+msgid "\"Smart\" home key"
+msgstr "\"スマート\"ホームキー"
+
+#: data/geany.glade:6945
+msgid "When \"smart\" home is enabled, the HOME key will move the caret to the first non-blank character of the line, unless it is already there, it moves to the very beginning of the line. When this feature is disabled, the HOME key always moves the caret to the start of the current line, regardless of its current position."
+msgstr "\"スマート\"ホームが有効になっている場合、HOMEキーは、キャレットを空白でない最初の文字に移動します。それ以外の場合は、行頭に移動します。この機能を無効にすると、HOMEキーは現在の位置にかかわらず常にカレットを現在の行の先頭に移動します。"
+
+#: data/geany.glade:6957
+msgid "Disable Drag and Drop"
+msgstr "ドラッグ＆ドロップを無効にする"
+
+#: data/geany.glade:6961
+msgid "Disable drag and drop completely in the editor window so you can't drag and drop any selections within or outside of the editor window"
+msgstr "エディタウィンドウ内でドラッグアンドドロップを完全に無効にして、エディタウィンドウ内または外の選択項目をドラッグアンドドロップすることはできません"
+
+#: data/geany.glade:6973
+msgid "Code folding"
+msgstr "コード折りたたみ"
+
+#: data/geany.glade:6988
+msgid "Fold/unfold all children of a fold point"
+msgstr "折りたたみポイントのすべての子を折りたたんで展開する"
+
+#: data/geany.glade:6992
+msgid "Fold or unfold all children of a fold point. By pressing the Shift key while clicking on a fold symbol the contrary behavior is used."
+msgstr "フォールドポイントのすべての子を折り畳んだり展開したりする。折り畳み記号をクリックしながらShiftキーを押すと、逆の動作が使用されます。"
+
+#: data/geany.glade:7004
+msgid "Use indicators to show compile errors"
+msgstr "インジケータを使用してコンパイルエラーを表示する"
+
+#: data/geany.glade:7008
+msgid "Whether to use indicators (a squiggly underline) to highlight the lines where the compiler found a warning or an error"
+msgstr "コンパイラが警告またはエラーを検出した行を強調表示するためにインジケータ（かすかな下線）を使用するかどうか"
+
+#: data/geany.glade:7020
+msgid "Newline strips trailing spaces"
+msgstr "改行は末尾のスペースを取り除く"
+
+#: data/geany.glade:7024
+msgid "Enable newline to strip the trailing spaces on the previous line"
+msgstr "改行を有効にして、前の行の末尾のスペースを削除する"
+
+#: data/geany.glade:7036
+msgid "Highlight instances of selected word"
+msgstr "選択した単語のインスタンスを強調表示する"
+
+#: data/geany.glade:7040
+msgid "When selecting a word other instances of that word will be highlighted in the current document"
+msgstr "単語を選択すると、その単語の他のインスタンスが現在の文書で強調表示されます"
+
+#: data/geany.glade:7058
+msgid "Line breaking column:"
+msgstr "改行列："
+
+#: data/geany.glade:7100
+msgid "Comment toggle marker:"
+msgstr "コメントトグルマーカー："
+
+#: data/geany.glade:7112
+msgid "A string which is added when toggling a line comment in a source file, it is used to mark the comment as toggled."
+msgstr "ソースファイル内の行コメントを切り替えるときに追加される文字列で、コメントをトグルとしてマークするために使用されます。"
+
+#: data/geany.glade:7139
+msgid "<b>Features</b>"
+msgstr "<b>機能</ b>"
+
+#: data/geany.glade:7156
+msgid "Features"
+msgstr "特徴"
+
+#: data/geany.glade:7196 data/geany.glade:14100
+msgid "Width:"
+msgstr "幅："
+
+#: data/geany.glade:7207 data/geany.glade:14111
+msgid "The width in chars of a single indent"
+msgstr "1つのインデントの幅"
+
+#: data/geany.glade:7229 data/geany.glade:14133
+msgid "Auto-indent mode:"
+msgstr "自動インデントモード："
+
+#: data/geany.glade:7261 data/geany.glade:14184
+msgid "T_abs and spaces"
+msgstr "T_absとスペース"
+
+#: data/geany.glade:7265
+msgid "Same as Tabs except backspacing will treat groups of spaces at the beginning of lines like tabs"
+msgstr "バックスペースを除いてタブと同じです。タブのような行の先頭にあるスペースのグループを扱います"
+
+#: data/geany.glade:7280 data/geany.glade:14203
+msgid "_Spaces"
+msgstr "_スペース"
+
+#: data/geany.glade:7284
+msgid "Use spaces when indenting"
+msgstr "インデント時にスペースを使用する"
+
+#: data/geany.glade:7300 data/geany.glade:14223
+msgid "_Tabs"
+msgstr "_タブス"
+
+#: data/geany.glade:7304
+msgid "Uses tabs when indenting"
+msgstr "インデント時にタブを使用する"
+
+#: data/geany.glade:7323 data/geany.glade:8024 data/geany.glade:14246
+#: data/geany.glade:14692
+msgid "Type:"
+msgstr "タイプ："
+
+#: data/geany.glade:7341
+msgid "Tab key indents"
+msgstr "タブキーインデント"
+
+#: data/geany.glade:7345
+msgid "Pressing tab/shift-tab indents/unindents instead of inserting a tab character"
+msgstr "タブ文字を挿入するのではなく、タブ/シフトタブのインデント/アンインデントを押す"
+
+#: data/geany.glade:7363
+msgid "<b>Indentation</b>"
+msgstr "<b>インデント</ b>"
+
+#: data/geany.glade:7376 data/geany.glade:14283
+msgid "Indentation"
+msgstr "インデント"
+
+#: data/geany.glade:7406
+msgid "Snippet completion"
+msgstr "スニペットの完了"
+
+#: data/geany.glade:7410
+msgid "Type a defined short character sequence and complete it to a more complex string using a single keypress"
+msgstr "定義された短い文字シーケンスを入力し、単一のキーを使用してそれをより複雑な文字列に完成させる"
+
+#: data/geany.glade:7422
+msgid "XML/HTML tag auto-closing"
+msgstr "XML / HTMLタグ自動クローズ"
+
+#: data/geany.glade:7426
+msgid "Insert matching closing tag for XML/HTML"
+msgstr "XML / HTMLに一致する終了タグを挿入する"
+
+#: data/geany.glade:7438
+msgid "Automatic continuation of multi-line comments"
+msgstr "複数行コメントの自動継続"
+
+#: data/geany.glade:7442
+msgid "Continue automatically multi-line comments in languages like C, C++ and Java when a new line is entered inside such a comment"
+msgstr "そのようなコメントの中に新しい行が入力されると、C、C ++、Javaなどの言語で自動的に複数行のコメントが続行されます"
+
+#: data/geany.glade:7454
+msgid "Autocomplete symbols"
+msgstr "オートコンプリートシンボル"
+
+#: data/geany.glade:7458
+msgid "Automatic completion of known symbols in open files (function names, global variables, ...)"
+msgstr "開いているファイル（関数名、グローバル変数など）内の既知のシンボルの自動補完"
+
+#: data/geany.glade:7470
+msgid "Autocomplete all words in document"
+msgstr "ドキュメント内のすべての単語をオートコンプリートする"
+
+#: data/geany.glade:7485
+msgid "Drop rest of word on completion"
+msgstr "完了時に残りの単語を削除する"
+
+#: data/geany.glade:7511
+msgid "Max. symbol name suggestions:"
+msgstr "マックスシンボル名の提案："
+
+#: data/geany.glade:7525
+msgid "Completion list height:"
+msgstr "完了リストの高さ："
+
+#: data/geany.glade:7539
+msgid "Characters to type for autocompletion:"
+msgstr "オートコンプリートを入力する文字："
+
+#: data/geany.glade:7550
+msgid "The amount of characters which are necessary to show the symbol autocompletion list"
+msgstr "シンボルの自動補完リストを表示するのに必要な文字の量"
+
+#: data/geany.glade:7569
+msgid "Display height in rows for the autocompletion list"
+msgstr "オートコンプリートリストの行の高さを表示する"
+
+#: data/geany.glade:7590
+msgid "Maximum number of entries to display in the autocompletion list"
+msgstr "オートコンプリートリストに表示するエントリの最大数"
+
+#: data/geany.glade:7612
+msgid "Symbol list update frequency:"
+msgstr "シンボルリストの更新頻度："
+
+#: data/geany.glade:7625
+msgid "Minimal delay (in milliseconds) between two automatic updates of the symbol list. Note that a too short delay may have performance impact, especially with large files. A delay of 0 disables real-time updates."
+msgstr "シンボルリストの2つの自動更新間の最小遅延（ミリ秒単位）。あまりにも短い遅延は、特に大きなファイルでパフォーマンスに影響を与える可能性があることに注意してください。 0の遅延は、リアルタイム更新を無効にします。"
+
+#: data/geany.glade:7657
+msgid "<b>Completions</b>"
+msgstr "<b>完了</ b>"
+
+#: data/geany.glade:7702
+msgid "Parenthesis ( )"
+msgstr "括弧（）"
+
+#: data/geany.glade:7706
+msgid "Auto-close parenthesis when typing an opening one"
+msgstr "開始括弧を入力するときに括弧を自動的に閉じます"
+
+#: data/geany.glade:7717
+msgid "Single quotes ' '"
+msgstr "一重引用符 ''"
+
+#: data/geany.glade:7721
+msgid "Auto-close single quote when typing an opening one"
+msgstr "開始時に一重引用符を自動的に閉じる"
+
+#: data/geany.glade:7734
+msgid "Curly brackets { }"
+msgstr "中括弧 { }"
+
+#: data/geany.glade:7738
+msgid "Auto-close curly bracket when typing an opening one"
+msgstr "開いているときに中かっこを自動的に閉じます"
+
+#: data/geany.glade:7751
+msgid "Square brackets [ ]"
+msgstr "角括弧 [ ]"
+
+#: data/geany.glade:7755
+msgid "Auto-close square-bracket when typing an opening one"
+msgstr "開始時に角かっこを自動的に閉じる"
+
+#: data/geany.glade:7768
+msgid "Double quotes \" \""
+msgstr "二重引用符 \"\""
+
+#: data/geany.glade:7772
+msgid "Auto-close double quote when typing an opening one"
+msgstr "開始時にダブルクォートを自動的に閉じる"
+
+#: data/geany.glade:7791
+msgid "<b>Auto-close quotes and brackets</b>"
+msgstr "<b>引用符と括弧を自動的に閉じる</ b>"
+
+#: data/geany.glade:7811
+msgid "Completions"
+msgstr "完了"
+
+#: data/geany.glade:7843
+msgid "Invert syntax highlighting colors"
+msgstr "構文の強調表示の色を反転する"
+
+#: data/geany.glade:7847
+msgid "Invert all colors, by default using white text on a black background"
+msgstr "すべての色を反転する、デフォルトでは黒い背景に白いテキストを使用する"
+
+#: data/geany.glade:7859
+msgid "Show indentation guides"
+msgstr "インデントガイドを表示する"
+
+#: data/geany.glade:7863
+msgid "Shows small dotted lines to help you to use the right indentation"
+msgstr "右のインデントを使用するのに役立つ小さな点線を示します"
+
+#: data/geany.glade:7875
+msgid "Show white space"
+msgstr "空白を表示する"
+
+#: data/geany.glade:7879
+msgid "Marks spaces with dots and tabs with arrows"
+msgstr "スペースをドットとタブに矢印でマークします"
+
+#: data/geany.glade:7891
+msgid "Show line endings"
+msgstr "行末を表示する"
+
+#: data/geany.glade:7895
+msgid "Shows the line ending character"
+msgstr "行末の文字を表示します。"
+
+#: data/geany.glade:7907
+msgid "Show line numbers"
+msgstr "行番号を表示する"
+
+#: data/geany.glade:7911
+msgid "Shows or hides the Line Number margin"
+msgstr "行番号のマージンを表示または非表示にします。"
+
+#: data/geany.glade:7923
+msgid "Show markers margin"
+msgstr "マーカーマージンを表示する"
+
+#: data/geany.glade:7927
+msgid "Shows or hides the small margin right of the line numbers, which is used to mark lines"
+msgstr "行番号を表示するために使用される行番号の右側に小さな余白を表示または非表示にします。"
+
+#: data/geany.glade:7939
+msgid "Stop scrolling at last line"
+msgstr "最後の行でスクロールを停止する"
+
+#: data/geany.glade:7943
+msgid "Whether to stop scrolling one page past the last line of a document"
+msgstr "ドキュメントの最後の行を超えて1ページスクロールを停止するかどうか"
+
+#: data/geany.glade:7961
+msgid "<b>Display</b>"
+msgstr "<b>表示</ b>"
+
+#: data/geany.glade:7996 data/geany.glade:14338
+msgid "Column:"
+msgstr "カラム："
+
+#: data/geany.glade:8010
+msgid "Color:"
+msgstr "色："
+
+#: data/geany.glade:8038
+msgid "Sets the color of the long line marker"
+msgstr "長いラインマーカーの色を設定します。"
+
+#: data/geany.glade:8039 data/geany.glade:10916 data/geany.glade:10933
+#: src/toolbar.c:73 src/tools.c:996
+msgid "Color Chooser"
+msgstr "色の選択"
+
+#: data/geany.glade:8054
+msgid "The long line marker is a thin vertical line in the editor, it helps to mark long lines, or as a hint to break the line. Set this value to a value greater than 0 to specify the column where it should appear."
+msgstr "長い線のマーカーは、エディター内の細い垂直線です。長い線をマークするのに役立ちます。また、線を壊すヒントとして役立ちます。表示する列を指定するには、この値を0より大きい値に設定します。"
+
+#: data/geany.glade:8080
+msgid "Line"
+msgstr "ライン"
+
+#: data/geany.glade:8084
+msgid "Prints a vertical line in the editor window at the given cursor position (see below)"
+msgstr "指定されたカーソル位置のエディタウィンドウに垂直線を印刷します（下記参照）。"
+
+#: data/geany.glade:8096
+msgid "Background"
+msgstr "バックグラウンド"
+
+#: data/geany.glade:8100
+msgid "The background color of characters after the given cursor position (see below) changed to the color set below, (this is recommended if you use proportional fonts)"
+msgstr "指定されたカーソル位置（下記参照）の後の文字の背景色は、以下の色に変更されました（これは比例フォントを使用する場合に推奨されます）"
+
+#: data/geany.glade:8123
+msgid "Enabled"
+msgstr "有効"
+
+#: data/geany.glade:8144 data/geany.glade:14431
+msgid "<b>Long line marker</b>"
+msgstr "<b>長い行マーカー</ b>"
+
+#: data/geany.glade:8172 data/geany.glade:14349
+msgid "Disabled"
+msgstr "無効"
+
+#: data/geany.glade:8176
+msgid "Do not show virtual spaces"
+msgstr "仮想空間を表示しない"
+
+#: data/geany.glade:8188
+msgid "Only for rectangular selections"
+msgstr "長方形の選択のみ"
+
+#: data/geany.glade:8192
+msgid "Only show virtual spaces beyond the end of lines when drawing a rectangular selection"
+msgstr "長方形の選択を描画するときに、行末を越える仮想空間のみを表示する"
+
+#: data/geany.glade:8205
+msgid "Always"
+msgstr "常に"
+
+#: data/geany.glade:8209
+msgid "Always show virtual spaces beyond the end of lines"
+msgstr "常に線の終わりを超えて仮想空間を表示する"
+
+#: data/geany.glade:8228
+msgid "<b>Virtual spaces</b>"
+msgstr "<b>仮想スペース</ b>"
+
+#: data/geany.glade:8248
+msgid "Display"
+msgstr "表示"
+
+#: data/geany.glade:8264 data/geany.glade:14451 src/keybindings.c:236
+#: src/prefs.c:1649
+msgid "Editor"
+msgstr "編集者"
+
+#: data/geany.glade:8299
+msgid "Open new documents from the command-line"
+msgstr "コマンドラインから新しい文書を開く"
+
+#: data/geany.glade:8303
+msgid "Start a new file for each command-line filename that doesn't exist"
+msgstr "存在しない各コマンドラインファイル名の新しいファイルを開始する"
+
+#: data/geany.glade:8344
+msgid "Default end of line characters:"
+msgstr "デフォルトの行末文字："
+
+#: data/geany.glade:8373
+msgid "<b>New files</b>"
+msgstr "<b>新しいファイル</ b>"
+
+#: data/geany.glade:8409
+msgid "Default encoding (new files):"
+msgstr "デフォルトのエンコード（新しいファイル）："
+
+#: data/geany.glade:8421
+msgid "Sets the default encoding for newly created files"
+msgstr "新しく作成されたファイルのデフォルトのエンコーディングを設定します。"
+
+#: data/geany.glade:8451
+msgid "Use fixed encoding when opening non-Unicode files"
+msgstr "非Unicodeファイルを開くときに固定エンコードを使用する"
+
+#: data/geany.glade:8455
+msgid "This option disables the automatic detection of the file encoding when opening non-Unicode files and opens the file with the specified encoding (usually not needed)"
+msgstr "このオプションは、非Unicodeファイルを開くときにファイルエンコーディングの自動検出を無効にし、指定されたエンコーディングでファイルを開きます（通常は不要です）"
+
+#: data/geany.glade:8474
+msgid "Default encoding (existing non-Unicode files):"
+msgstr "デフォルトのエンコーディング（既存の非Unicodeファイル）："
+
+#: data/geany.glade:8486
+msgid "Sets the default encoding for opening existing non-Unicode files"
+msgstr "既存の非Unicodeファイルを開くためのデフォルトのエンコーディングを設定します。"
+
+#: data/geany.glade:8522
+msgid "<b>Encodings</b>"
+msgstr "<b>エンコード</ b>"
+
+#: data/geany.glade:8550 data/geany.glade:14481
+msgid "Ensure new line at file end"
+msgstr "ファイルの終わりに新しい行があることを確認する"
+
+#: data/geany.glade:8554
+msgid "Ensures that at the end of the file is a new line"
+msgstr "ファイルの末尾に改行があることを確認します。"
+
+#: data/geany.glade:8566 data/geany.glade:14496
+msgid "Ensure consistent line endings"
+msgstr "一貫した行末を確実にする"
+
+#: data/geany.glade:8570
+msgid "Ensures that newline characters always get converted before saving, avoiding mixed line endings in the same file"
+msgstr "保存する前に改行文字が常に変換されるようにし、同じファイル内に改行が混在しないようにします"
+
+#: data/geany.glade:8582 data/geany.glade:14511
+msgid "Strip trailing spaces and tabs"
+msgstr "末尾のスペースとタブを取り除く"
+
+#: data/geany.glade:8586
+msgid "Removes trailing spaces and tabs and the end of lines"
+msgstr "末尾のスペースやタブ、行末を削除します。"
+
+#: data/geany.glade:8598
+msgid "Replace tabs with spaces"
+msgstr "タブをスペースで置き換える"
+
+#: data/geany.glade:8602
+msgid "Replaces all tabs in document with spaces"
+msgstr "ドキュメント内のすべてのタブを空白に置き換えます。"
+
+#: data/geany.glade:8620 data/geany.glade:14547
+msgid "<b>Saving files</b>"
+msgstr "<b>ファイルを保存する</ b>"
+
+#: data/geany.glade:8660
+msgid "Recent files list length:"
+msgstr "最近のファイルリストの長さ："
+
+#: data/geany.glade:8671
+msgid "Specifies the number of files which are stored in the Recent files list"
+msgstr "最近のファイルリストに保存されているファイルの数を指定します。"
+
+#: data/geany.glade:8693
+msgid "Disk check timeout:"
+msgstr "ディスクチェックタイムアウト："
+
+#: data/geany.glade:8706
+msgid "How often to check for changes to document files on disk, in seconds. Zero disables checking."
+msgstr "ディスク上のドキュメントファイルの変更を確認する頻度（秒単位）。ゼロはチェックを無効にします。"
+
+#: data/geany.glade:8760 data/geany.glade:14570 src/prefs.c:1651
+msgid "Files"
+msgstr "ファイル"
+
+#: data/geany.glade:8804 data/geany.glade:14021 src/project.c:156
+msgid "Base directory of all files that make up the project. This can be a new path, or an existing directory tree. Must be an absolute path."
+msgstr "プロジェクトを構成するすべてのファイルのベースディレクトリ。これは、新しいパスまたは既存のディレクトリツリーにすることができます。絶対パスでなければなりません。"
+
+#: data/geany.glade:8850
+msgid "Path To Compiler:"
+msgstr "コンパイラへのパス："
+
+#: data/geany.glade:8865
+msgid "<b>Build Options</b>"
+msgstr "<b>ビルドオプション</ b>"
+
+#: data/geany.glade:8900
+msgid "Broadcast Port:"
+msgstr "ブロードキャストポート："
+
+#: data/geany.glade:8935
+msgid "(Default: 5689) (Currently has no affect)"
+msgstr "（デフォルト：5689）（現在は影響ありません）"
+
+#: data/geany.glade:8959 data/geany.glade:9079
+msgid "Device IP Address:"
+msgstr "デバイスのIPアドレス："
+
+#: data/geany.glade:8974
+msgid "Use Steam Integration:"
+msgstr "スチームインテグレーションを使用する："
+
+#: data/geany.glade:8992
+msgid "If checked then the Steam overlay will be active when testing apps with the IDE. Only applies if using the Steam version of AGK, currently Windows only."
+msgstr "オンにすると、IDEでアプリケーションをテストするときにSteamオーバーレイがアクティブになります。 Steam版のAGKを使用している場合のみ適用されます。現在はWindowsのみです。"
+
+#: data/geany.glade:9019
+msgid "Enter the IP of a device to broadcast apps directly to it, this is useful if AGK has trouble detecting the device. This can be IPv4 or IPv6"
+msgstr "アプリケーションを直接ブロードキャストするデバイスのIPアドレスを入力します。これは、AGKがデバイスを検出できない場合に便利です。 IPv4またはIPv6でもかまいません"
+
+#: data/geany.glade:9044
+msgid "<b>Broadcast</b>"
+msgstr "<b>ブロードキャスト</ b>"
+
+#: data/geany.glade:9090
+msgid "Enter the IP of a device to use for debugging, leaving it blank will debug on the local machine. This can be IPv4 or IPv6"
+msgstr "デバッグに使用するデバイスのIPを入力します。空のままにすると、ローカルマシンでデバッグされます。 IPv4またはIPv6でもかまいません"
+
+#: data/geany.glade:9113
+msgid "<b>Debug</b>"
+msgstr "<b>デバッグ</ b>"
+
+#: data/geany.glade:9130
+msgid "AGK "
+msgstr "AGK"
+
+#: data/geany.glade:9145 data/geany.glade:12830 src/keybindings.c:247
+#: src/ui_utils.c:2481
+msgid "Build"
+msgstr "ビルド"
+
+#: data/geany.glade:9201
+msgid "Terminal:"
+msgstr "ターミナル："
+
+#: data/geany.glade:9215
+msgid "Browser:"
+msgstr "ブラウザ："
+
+#: data/geany.glade:9228
+msgid "A terminal emulator command (%c is substituted with the Geany run script filename)"
+msgstr "端末エミュレータコマンド（％cはGeany実行スクリプトファイル名で置き換えられます）"
+
+#: data/geany.glade:9246
+msgid "Path (and possibly additional arguments) to your favorite browser"
+msgstr "お気に入りのブラウザへのパス（場合によっては追加引数）"
+
+#: data/geany.glade:9309
+msgid "Grep:"
+msgstr "Grep："
+
+#: data/geany.glade:9930
+msgid "<b>Tool paths</b>"
+msgstr "<b>ツールパス</ b>"
+
+#: data/geany.glade:9973
+msgid "Context action:"
+msgstr "コンテキストアクション："
+
+#: data/geany.glade:9984
+msgid "Context action command. The currently selected word can be used with %s. It can appear anywhere in the given command and will be replaced before execution."
+msgstr "コンテキストアクションコマンド。現在選択されている単語は％sで使用できます。それは与えられたコマンドのどこにでも現れ、実行前に置き換えられます。"
+
+#: data/geany.glade:10025
+msgid "<b>Commands</b>"
+msgstr "<b>コマンド</ b>"
+
+#: data/geany.glade:10045 src/keybindings.c:249 src/prefs.c:1653
+msgid "Tools"
+msgstr "ツール"
+
+#: data/geany.glade:10100
+msgid "email address of the developer"
+msgstr "開発者の電子メールアドレス"
+
+#: data/geany.glade:10118
+msgid "Initials of the developer name"
+msgstr "開発者名の頭文字"
+
+#: data/geany.glade:10137
+msgid "Initial version:"
+msgstr "最初のバージョン："
+
+#: data/geany.glade:10150
+msgid "Version number, which a new file initially has"
+msgstr "新しいファイルが最初に持っているバージョン番号"
+
+#: data/geany.glade:10168
+msgid "Company name"
+msgstr "会社名"
+
+#: data/geany.glade:10187
+msgid "Developer:"
+msgstr "開発者："
+
+#: data/geany.glade:10199
+msgid "Company:"
+msgstr "会社："
+
+#: data/geany.glade:10213
+msgid "Mail address:"
+msgstr "メールアドレス："
+
+#: data/geany.glade:10227
+msgid "Initials:"
+msgstr "イニシャル："
+
+#: data/geany.glade:10240
+msgid "The name of the developer"
+msgstr "開発者の名前"
+
+#: data/geany.glade:10257
+msgid "Year:"
+msgstr "年："
+
+#: data/geany.glade:10271
+msgid "Date:"
+msgstr "日付："
+
+#: data/geany.glade:10285
+msgid "Date & time:"
+msgstr "日付時刻："
+
+#: data/geany.glade:10298
+msgid "Specify a format for the the {datetime} wildcard. You can use any conversion specifiers which can be used with the ANSI C strftime function."
+msgstr "{datetime}ワイルドカードの形式を指定します。 ANSI Cのstrftime関数で使用できる任意の変換指定子を使用できます。"
+
+#: data/geany.glade:10316
+msgid "Specify a format for the the {year} wildcard. You can use any conversion specifiers which can be used with the ANSI C strftime function."
+msgstr "{year}ワイルドカードの書式を指定します。 ANSI Cのstrftime関数で使用できる任意の変換指定子を使用できます。"
+
+#: data/geany.glade:10334
+msgid "Specify a format for the the {date} wildcard. You can use any conversion specifiers which can be used with the ANSI C strftime function."
+msgstr "{date}ワイルドカードの形式を指定します。 ANSI Cのstrftime関数で使用できる任意の変換指定子を使用できます。"
+
+#: data/geany.glade:10363
+msgid "<b>Template data</b>"
+msgstr "<b>テンプレートデータ</ b>"
+
+#: data/geany.glade:10383 src/prefs.c:1655
+msgid "Templates"
+msgstr "テンプレート"
+
+#: data/geany.glade:10448
+msgid "C_hange"
+msgstr "変化する"
+
+#: data/geany.glade:10470
+msgid "<b>Keyboard shortcuts</b>"
+msgstr "<b>キーボードショートカット</ b>"
+
+#: data/geany.glade:10483 src/plugins.c:1465 src/prefs.c:1657
+msgid "Keybindings"
+msgstr "キーバインディング"
+
+#: data/geany.glade:10527
+msgid "Command:"
+msgstr "コマンド："
+
+#: data/geany.glade:10539
+msgid "Path to the command for printing files (use %f for the filename)"
+msgstr "ファイルを印刷するコマンドのパス（ファイル名に％fを使用）"
+
+#: data/geany.glade:10576
+msgid "Use an external command for printing"
+msgstr "印刷に外部コマンドを使用する"
+
+#: data/geany.glade:10608 src/printing.c:234
+msgid "Print line numbers"
+msgstr "行番号を印刷する"
+
+#: data/geany.glade:10612 src/printing.c:236
+msgid "Add line numbers to the printed page"
+msgstr "印刷されたページに行番号を追加する"
+
+#: data/geany.glade:10624 src/printing.c:239
+msgid "Print page numbers"
+msgstr "ページ番号を印刷する"
+
+#: data/geany.glade:10628 src/printing.c:241
+msgid "Add page numbers at the bottom of each page. It takes 2 lines of the page."
+msgstr "各ページの下部にページ番号を追加します。それはページの2行を取ります。"
+
+#: data/geany.glade:10640 src/printing.c:244
+msgid "Print page header"
+msgstr "ページヘッダーを印刷する"
+
+#: data/geany.glade:10644 src/printing.c:246
+msgid "Add a little header to every page containing the page number, the filename and the current date (see below). It takes 3 lines of the page."
+msgstr "ページ番号、ファイル名、現在の日付を含むすべてのページに小さなヘッダーを追加します（下記参照）。それはページの3行かかります。"
+
+#: data/geany.glade:10674 src/printing.c:262
+msgid "Use the basename of the printed file"
+msgstr "印刷ファイルのベース名を使用する"
+
+#: data/geany.glade:10678
+msgid "Print only the basename (without the path) of the printed file"
+msgstr "印刷ファイルの基本名（パスなし）のみを出力する"
+
+#: data/geany.glade:10697 src/printing.c:270
+msgid "Date format:"
+msgstr "日付形式："
+
+#: data/geany.glade:10709 src/printing.c:276
+msgid "Specify a format for the date and time stamp which is added to the page header on each page. You can use any conversion specifiers which can be used with the ANSI C strftime function."
+msgstr "各ページのページヘッダーに追加される日付とタイムスタンプの形式を指定します。 ANSI Cのstrftime関数で使用できる任意の変換指定子を使用できます。"
+
+#: data/geany.glade:10746
+msgid "Use native GTK printing"
+msgstr "ネイティブGTK印刷を使用する"
+
+#: data/geany.glade:10770
+msgid "<b>Printing</b>"
+msgstr "<b>印刷</ b>"
+
+#: data/geany.glade:10783 src/prefs.c:1659
+msgid "Printing"
+msgstr "印刷"
+
+#: data/geany.glade:10819
+msgid "Font:"
+msgstr "フォント："
+
+#: data/geany.glade:10831
+msgid "Sets the font for the terminal widget"
+msgstr "端末ウィジェットのフォントを設定します。"
+
+#: data/geany.glade:10832
+msgid "Choose Terminal Font"
+msgstr "ターミナルフォントを選択"
+
+#: data/geany.glade:10845
+msgid "Foreground color:"
+msgstr "フォアグラウンドカラー："
+
+#: data/geany.glade:10859
+msgid "Background color:"
+msgstr "背景色："
+
+#: data/geany.glade:10873
+msgid "Background image:"
+msgstr "背景画像："
+
+#: data/geany.glade:10887
+msgid "Scrollback lines:"
+msgstr "スクロールバック行："
+
+#: data/geany.glade:10901
+msgid "Shell:"
+msgstr "シェル："
+
+#: data/geany.glade:10915
+msgid "Sets the foreground color of the text in the terminal widget"
+msgstr "ターミナルウィジェットのテキストの前景色を設定します。"
+
+#: data/geany.glade:10932
+msgid "Sets the background color of the text in the terminal widget"
+msgstr "端末ウィジェットのテキストの背景色を設定します"
+
+#: data/geany.glade:10948
+msgid "Sets the path to the background image in the terminal widget"
+msgstr "端末ウィジェットの背景画像へのパスを設定する"
+
+#: data/geany.glade:10990
+msgid "Specifies the history in lines, which you can scroll back in the terminal widget"
+msgstr "行の履歴を指定します。これは端末ウィジェットでスクロールバックできます"
+
+#: data/geany.glade:11012
+msgid "Sets the path to the shell which should be started inside the terminal emulation"
+msgstr "ターミナルエミュレーション内で起動するシェルへのパスを設定します。"
+
+#: data/geany.glade:11089
+msgid "Scroll on keystroke"
+msgstr "キーストロークをスクロール"
+
+#: data/geany.glade:11093
+msgid "Whether to scroll to the bottom if a key was pressed"
+msgstr "キーが押された場合、下にスクロールするかどうか"
+
+#: data/geany.glade:11103
+msgid "Scroll on output"
+msgstr "出力をスクロールする"
+
+#: data/geany.glade:11107
+msgid "Whether to scroll to the bottom when output is generated"
+msgstr "出力が生成されたときに下にスクロールするかどうか"
+
+#: data/geany.glade:11119
+msgid "Cursor blinks"
+msgstr "カーソルが点滅する"
+
+#: data/geany.glade:11123
+msgid "Whether to blink the cursor"
+msgstr "カーソルを点滅させるかどうか"
+
+#: data/geany.glade:11135
+msgid "Override Geany keybindings"
+msgstr "Geanyキーバインドをオーバーライドする"
+
+#: data/geany.glade:11139
+msgid "Allows the VTE to receive keyboard shortcuts (apart from focus commands)"
+msgstr "VTEがキーボードショートカットを受信できるようにします（フォーカスコマンドは別として）"
+
+#: data/geany.glade:11151
+msgid "Disable menu shortcut key (F10 by default)"
+msgstr "メニューショートカットキーを無効にする（デフォルトではF10）"
+
+#: data/geany.glade:11155
+msgid "This option disables the keybinding to popup the menu bar (default is F10). Disabling it can be useful if you use, for example, Midnight Commander within the VTE."
+msgstr "このオプションは、メニューバーをポップアップするためのキーバインディングを無効にします（デフォルトはF10）。それを無効にすると、たとえばVTE内でMidnight Commanderを使用すると便利です。"
+
+#: data/geany.glade:11167
+msgid "Follow path of the current file"
+msgstr "現在のファイルのパスに従います。"
+
+#: data/geany.glade:11171
+msgid "Whether to execute \\\"cd $path\\\" when you switch between opened files"
+msgstr "開いているファイルを切り替えるときに\\ \"cd $ path \\\"を実行するかどうか"
+
+#: data/geany.glade:11183
+msgid "Execute programs in the VTE"
+msgstr "VTEでプログラムを実行する"
+
+#: data/geany.glade:11187
+msgid "Run programs in VTE instead of opening a terminal emulation window. Please note, programs executed in VTE cannot be stopped"
+msgstr "端末エミュレーションウィンドウを開く代わりにVTEでプログラムを実行する。 VTEで実行されたプログラムは停止できません"
+
+#: data/geany.glade:11199
+msgid "Don't use run script"
+msgstr "実行スクリプトを使用しない"
+
+#: data/geany.glade:11204
+msgid "Don't use the simple run script which is usually used to display the exit status of the executed program"
+msgstr "実行されたプログラムの終了ステータスを表示するために通常使用される単純実行スクリプトは使用しないでください"
+
+#: data/geany.glade:11229
+msgid "<b>Terminal</b>"
+msgstr "<b>端末</ b>"
+
+#: data/geany.glade:11242 src/prefs.c:1663 src/vte.c:298
+msgid "Terminal"
+msgstr "「ターミナル」"
+
+#: data/geany.glade:11330
+msgid "<i>Warning: read the manual before changing these preferences.</i>"
+msgstr "<i>警告：これらの設定を変更する前にマニュアルをお読みください。</ i>"
+
+#: data/geany.glade:11356
+msgid "<b>Various preferences</b>"
+msgstr "<b>さまざまな設定</ b>"
+
+#: data/geany.glade:11369 src/prefs.c:1661
+msgid "Various"
+msgstr "様々な"
+
+#: data/geany.glade:11396
+msgid "AGK"
+msgstr "AGK"
+
+#: data/geany.glade:11400
+msgid "Geany"
+msgstr "Geany"
+
+#: data/geany.glade:11422
+msgid "_File"
+msgstr "_ファイル"
+
+#: data/geany.glade:11430
+msgid "_New Project..."
+msgstr "_新しいプロジェクト..."
+
+#: data/geany.glade:11441
+msgid "_New File"
+msgstr "_Newファイル"
+
+#: data/geany.glade:11452
+msgid "New File (from _Template)"
+msgstr "新しいファイル（_Templateから）"
+
+#: data/geany.glade:11468
+msgid "_Open Project..."
+msgstr "_プロジェクトを開く..."
+
+#: data/geany.glade:11479
+msgid "_Open File..."
+msgstr "_Openファイル..."
+
+#: data/geany.glade:11492
+msgid "Recent _Projects"
+msgstr "最近のプロジェクト"
+
+#: data/geany.glade:11500
+msgid "Recent _Files"
+msgstr "最近使用したファイル"
+
+#: data/geany.glade:11514
+msgid "Import an old AGK project and convert it to the new format"
+msgstr "古いAGKプロジェクトをインポートして新しいフォーマットに変換する"
+
+#: data/geany.glade:11515
+msgid "_Import AGK Project..."
+msgstr "_ AGKプロジェクトをインポートする..."
+
+#: data/geany.glade:11524 src/callbacks.c:277
+msgid "E_xport Project"
+msgstr "E_xportプロジェクト"
+
+#: data/geany.glade:11534
+msgid "As Android AP_K"
+msgstr "Android AP_Kとして"
+
+#: data/geany.glade:11543
+msgid "As iOS IPA"
+msgstr "iOS IPAとして"
+
+#: data/geany.glade:11552
+msgid "As HTML5"
+msgstr "HTML5として"
+
+#: data/geany.glade:11579
+msgid "Save _As..."
+msgstr "_Asを保存..."
+
+#: data/geany.glade:11590
+msgid "Save A_ll"
+msgstr "すべてを救う"
+
+#: data/geany.glade:11601 src/callbacks.c:584 src/document.c:3149
+msgid "_Reload"
+msgstr "_Road"
+
+#: data/geany.glade:11612
+msgid "R_eload As"
+msgstr "R_eload As"
+
+#: data/geany.glade:11624 data/geany.glade:12089 data/geany.glade:12121
+#: data/geany.glade:12662 data/geany.glade:12682
+msgid "invisible"
+msgstr "目に見えない"
+
+#: data/geany.glade:11658
+msgid "Page Set_up"
+msgstr "ページ設定"
+
+#: data/geany.glade:11665
+msgid "_Print..."
+msgstr "_Print ..."
+
+#: data/geany.glade:11682 src/callbacks.c:276
+msgid "_Close Project"
+msgstr "_Closeプロジェクト"
+
+#: data/geany.glade:11693
+msgid "Close All Projects"
+msgstr "すべてのプロジェクトを閉じる"
+
+#: data/geany.glade:11709
+msgid "_Close Document"
+msgstr "_ドキュメントを閉じる"
+
+#: data/geany.glade:11720 src/notebook.c:490
+msgid "Close Ot_her Documents"
+msgstr "閉じるOt_her書類"
+
+#: data/geany.glade:11731
+msgid "C_lose All Documents"
+msgstr "すべてのドキュメントをC_lose"
+
+#: data/geany.glade:11862
+msgid "_Commands"
+msgstr "_コマンド"
+
+#: data/geany.glade:11869 src/keybindings.c:356
+msgid "_Cut Current Line(s)"
+msgstr "_現在の行を削除する"
+
+#: data/geany.glade:11880 src/keybindings.c:353
+msgid "_Copy Current Line(s)"
+msgstr "_現在の行のコピー"
+
+#: data/geany.glade:11893 src/keybindings.c:307
+msgid "_Delete Current Line(s)"
+msgstr "_現在の行を削除する"
+
+#: data/geany.glade:11902 src/keybindings.c:304
+msgid "_Duplicate Line or Selection"
+msgstr "_重複ラインまたは選択"
+
+#: data/geany.glade:11917 src/keybindings.c:366
+msgid "_Select Current Line(s)"
+msgstr "_現在の行を選択"
+
+#: data/geany.glade:11926 src/keybindings.c:369
+msgid "_Select Current Paragraph"
+msgstr "_現在の段落を選択"
+
+#: data/geany.glade:11941
+msgid "_Move Line(s) Up"
+msgstr "_Move Line（s）Up"
+
+#: data/geany.glade:11950
+msgid "_Move Line(s) Down"
+msgstr "_Move Line（s）Down"
+
+#: data/geany.glade:11965 src/keybindings.c:408
+msgid "_Send Selection to Terminal"
+msgstr "_選択を端末に送る"
+
+#: data/geany.glade:11987 src/keybindings.c:410
+msgid "_Reflow Lines/Block"
+msgstr "_リフローライン/ブロック"
+
+#: data/geany.glade:11996 src/keybindings.c:380
+msgid "T_oggle Case of Selection"
+msgstr "T_oggle選択のケース"
+
+#: data/geany.glade:12011
+msgid "_Comment Line(s)"
+msgstr "_コメントライン"
+
+#: data/geany.glade:12020
+msgid "U_ncomment Line(s)"
+msgstr "U_ncomment行"
+
+#: data/geany.glade:12029
+msgid "_Toggle Line Commentation"
+msgstr "_トグルラインのコメント"
+
+#: data/geany.glade:12042
+msgid "_Increase Indent"
+msgstr "_インデントを増やします"
+
+#: data/geany.glade:12053
+msgid "_Decrease Indent"
+msgstr "_インデントを減らす"
+
+#: data/geany.glade:12066 src/keybindings.c:399
+msgid "_Smart Line Indent"
+msgstr "_スマートラインインデント"
+
+#: data/geany.glade:12081
+msgid "_Send Selection to"
+msgstr "_選択を送信する"
+
+#: data/geany.glade:12109
+msgid "Insert Dat_e"
+msgstr "Insert Dat_e"
+
+#: data/geany.glade:12133 src/keybindings.c:421
+msgid "_Insert Alternative White Space"
+msgstr "_代わりの空白を挿入"
+
+#: data/geany.glade:12146
+msgid "Preference_s"
+msgstr "環境設定"
+
+#: data/geany.glade:12157 src/keybindings.c:434
+msgid "P_lugin Preferences"
+msgstr "P_luginの設定"
+
+#: data/geany.glade:12182
+msgid "_Find..."
+msgstr "_見つけた..."
+
+#: data/geany.glade:12195
+msgid "Find _Next"
+msgstr "次を見つける"
+
+#: data/geany.glade:12204
+msgid "Find _Previous"
+msgstr "Find_Previous"
+
+#: data/geany.glade:12217 src/symbols.c:2077
+msgid "Find in F_iles..."
+msgstr "F_ilesで検索..."
+
+#: data/geany.glade:12228
+msgid "_Replace..."
+msgstr "_Replace ..."
+
+#: data/geany.glade:12245
+msgid "Next _Message"
+msgstr "次のメッセージ"
+
+#: data/geany.glade:12256
+msgid "Pr_evious Message"
+msgstr "Pr_eviousメッセージ"
+
+#: data/geany.glade:12275 src/keybindings.c:483
+msgid "_Go to Next Marker"
+msgstr "_次のマーカーに移動"
+
+#: data/geany.glade:12284 src/keybindings.c:486
+msgid "_Go to Previous Marker"
+msgstr "_前のマーカーに移動"
+
+#: data/geany.glade:12297
+msgid "_Go to Line..."
+msgstr "_行に移動..."
+
+#: data/geany.glade:12310
+msgid "_More"
+msgstr "_もっと"
+
+#: data/geany.glade:12319 src/keybindings.c:446
+msgid "Find Next _Selection"
+msgstr "次を検索_Selection"
+
+#: data/geany.glade:12328 src/keybindings.c:448
+msgid "Find Pre_vious Selection"
+msgstr "Pre_vious Selectionを検索"
+
+#: data/geany.glade:12352 src/symbols.c:2072
+msgid "Find _Document Usage"
+msgstr "_Documentの使用法を見つける"
+
+#: data/geany.glade:12367 src/keybindings.c:465
+msgid "_Mark All"
+msgstr "_Mark All"
+
+#: data/geany.glade:12391
+msgid "Go to T_ag Declaration"
+msgstr "T_ag宣言に進む"
+
+#: data/geany.glade:12408 src/dialogs.c:358
+msgid "_View"
+msgstr "_View"
+
+#: data/geany.glade:12415
+msgid "Change _Font..."
+msgstr "_Fontを変更..."
+
+#: data/geany.glade:12426
+msgid "Change _Color Scheme..."
+msgstr "_Colorスキームを変更..."
+
+#: data/geany.glade:12445
+msgid "Show _Markers Margin"
+msgstr "Show _Markers Margin"
+
+#: data/geany.glade:12455
+msgid "Show _Line Numbers"
+msgstr "Show _Line Numbers"
+
+#: data/geany.glade:12465
+msgid "Show _White Space"
+msgstr "Show_White Space"
+
+#: data/geany.glade:12474
+msgid "Show Line _Endings"
+msgstr "ショーライン_エンディング"
+
+#: data/geany.glade:12483
+msgid "Show _Indentation Guides"
+msgstr "Show_Indentation Guides"
+
+#: data/geany.glade:12498
+msgid "Full_screen"
+msgstr "全画面表示"
+
+#: data/geany.glade:12507
+msgid "To_ggle All Additional Widgets"
+msgstr "すべての追加のウィジェットを取り消す"
+
+#: data/geany.glade:12516
+msgid "Show Message _Window"
+msgstr "メッセージを表示_Window"
+
+#: data/geany.glade:12526
+msgid "Show _Toolbar"
+msgstr "_ツールバーを表示"
+
+#: data/geany.glade:12536
+msgid "Show Side_bar"
+msgstr "Side_barを表示"
+
+#: data/geany.glade:12586
+msgid "_Document"
+msgstr "_資料"
+
+#: data/geany.glade:12595
+msgid "_Line Wrapping"
+msgstr "_折り返し"
+
+#: data/geany.glade:12605
+msgid "Line _Breaking"
+msgstr "ライン_ブレーク"
+
+#: data/geany.glade:12614
+msgid "_Auto-indentation"
+msgstr "_オートインデント"
+
+#: data/geany.glade:12630
+msgid "Read _Only"
+msgstr "_Onlyを読む"
+
+#: data/geany.glade:12639
+msgid "_Write Unicode BOM"
+msgstr "_Unicode BOMを書き込む"
+
+#: data/geany.glade:12654
+msgid "Set File_type"
+msgstr "File_typeを設定する"
+
+#: data/geany.glade:12674
+msgid "Set _Encoding"
+msgstr "_Encodingを設定する"
+
+#: data/geany.glade:12694
+msgid "Set Line E_ndings"
+msgstr "セットラインE_ndings"
+
+#: data/geany.glade:12703
+msgid "Convert and Set to _CR/LF (Win)"
+msgstr "変換して_CR / LF（Win）に設定する"
+
+#: data/geany.glade:12712
+msgid "Convert and Set to _LF (Unix)"
+msgstr "変換して_LFに設定する（Unix）"
+
+#: data/geany.glade:12723
+msgid "Convert and Set to CR (_Mac)"
+msgstr "CRに変換して設定する（_Mac）"
+
+#: data/geany.glade:12743 src/keybindings.c:574
+msgid "_Clone"
+msgstr "_クローン"
+
+#: data/geany.glade:12752
+msgid "_Strip Trailing Spaces"
+msgstr "_ストリップスペース"
+
+#: data/geany.glade:12761
+msgid "_Replace Tabs with Spaces"
+msgstr "_スペースでタブを置き換える"
+
+#: data/geany.glade:12770
+msgid "Re_place Spaces with Tabs..."
+msgstr "タブで空間を再配置する..."
+
+#: data/geany.glade:12785
+msgid "_Fold All"
+msgstr "_Fold All"
+
+#: data/geany.glade:12794
+msgid "_Unfold All"
+msgstr "すべてを"
+
+#: data/geany.glade:12809
+msgid "Remove Brea_kpoints"
+msgstr "Brea_kpointsを削除"
+
+#: data/geany.glade:12818
+msgid "Remove Error _Indicators"
+msgstr "エラー_インジケータを削除"
+
+#: data/geany.glade:12838 src/build.c:3767 src/build.c:4008
+msgid "_Build"
+msgstr "_Build"
+
+#: data/geany.glade:12847 src/build.c:3751 src/callbacks.c:2436
+msgid "_Compile"
+msgstr "_コンパイル"
+
+#: data/geany.glade:12858 src/callbacks.c:2437
+msgid "_Run"
+msgstr "_Run"
+
+#: data/geany.glade:12861
+msgid "Run your project on the local machine"
+msgstr "ローカルマシンでプロジェクトを実行する"
+
+#: data/geany.glade:12870 src/callbacks.c:2438
+msgid "_Broadcast"
+msgstr "_放送"
+
+#: data/geany.glade:12873
+msgid "Broadcast your project to any listening devices"
+msgstr "任意のリスニングデバイスにプロジェクトをブロードキャストする"
+
+#: data/geany.glade:12882 src/callbacks.c:2439
+msgid "_Debug"
+msgstr "_デバッグ"
+
+#: data/geany.glade:12885
+msgid "Debug your project on a particular device, set the IP address of the device in the build options"
+msgstr "特定のデバイスでプロジェクトをデバッグし、ビルドオプションでデバイスのIPアドレスを設定します"
+
+#: data/geany.glade:12900
+msgid "Build _Options..."
+msgstr "_Optionsを作成..."
+
+#: data/geany.glade:12917
+msgid "D_ebug"
+msgstr "デバッグ"
+
+#: data/geany.glade:12929
+msgid "Pause/Continue the current program"
+msgstr "現在のプログラムを一時停止/継続する"
+
+#: data/geany.glade:12937 src/keybindings.c:625
+msgid "Step"
+msgstr "ステップ"
+
+#: data/geany.glade:12940
+msgid "Execute the current line and pause on the next one, if the line contains a function call it will pause on the first line of that function"
+msgstr "現在の行を実行し、次の行で一時停止します。行に関数呼び出しが含まれている場合は、その関数の最初の行で一時停止します"
+
+#: data/geany.glade:12954
+msgid "Step Over Function"
+msgstr "ステップオーバー機能"
+
+#: data/geany.glade:12957
+msgid "Execute the current line and pause on the next one, if the line contains any function calls it will execute them silently"
+msgstr "現在の行を実行し、次の行で一時停止します。行に関数呼び出しが含まれていれば、それを静かに実行します"
+
+#: data/geany.glade:12965
+msgid "Step Out Of Function"
+msgstr "ステップアウト機能"
+
+#: data/geany.glade:12968
+msgid "Executes all the lines left in this function and then pauses on the line that called this function"
+msgstr "この関数に残っているすべての行を実行し、この関数を呼び出した行で一時停止します。"
+
+#: data/geany.glade:12984
+msgid "Toggle Breakpoint"
+msgstr "ブレークポイントの切り替え"
+
+#: data/geany.glade:12993
+msgid "Delete All Breakpoints"
+msgstr "すべてのブレークポイントを削除"
+
+#: data/geany.glade:13006
+msgid "_Tools"
+msgstr "_Tools"
+
+#: data/geany.glade:13013
+msgid "_Reload Configuration"
+msgstr "_Reload設定"
+
+#: data/geany.glade:13024
+msgid "C_onfiguration Files"
+msgstr "C_onfigurationファイル"
+
+#: data/geany.glade:13040
+msgid "_Color Chooser"
+msgstr "_Color Chooser"
+
+#: data/geany.glade:13053
+msgid "_Word Count"
+msgstr "_Word Count"
+
+#: data/geany.glade:13062
+msgid "Load Ta_gs..."
+msgstr "Ta_gsをロード..."
+
+#: data/geany.glade:13077
+msgid "Android"
+msgstr "アンドロイド"
+
+#: data/geany.glade:13087
+msgid "Generate Keystore File"
+msgstr "キーストアファイルを生成する"
+
+#: data/geany.glade:13096
+msgid "Browse to AGK Player"
+msgstr "AGKプレーヤーを参照してください"
+
+#: data/geany.glade:13109
+msgid "iOS"
+msgstr "iOS"
+
+#: data/geany.glade:13119
+msgid "Export AGK Player"
+msgstr "輸出AGKプレーヤー"
+
+#: data/geany.glade:13138
+msgid "Install Additional Files..."
+msgstr "追加ファイルをインストールする..."
+
+#: data/geany.glade:13150
+msgid "D_LC"
+msgstr "D_LC"
+
+#: data/geany.glade:13164
+msgid "_Help"
+msgstr "_助けて"
+
+#: data/geany.glade:13173
+msgid "_Command Help"
+msgstr "_コマンドヘルプ"
+
+#: data/geany.glade:13180
+msgid "_Help Home"
+msgstr "_ヘルプホーム"
+
+#: data/geany.glade:13192
+msgid "_Video Tutorials"
+msgstr "_ビデオチュートリアル"
+
+#: data/geany.glade:13201
+msgid "_Keyboard Shortcuts"
+msgstr "_キーボードショートカット"
+
+#: data/geany.glade:13216
+msgid "AppGameKit _Website"
+msgstr "AppGameKit _Website"
+
+#: data/geany.glade:13225
+msgid "_TGC Website"
+msgstr "_TGCウェブサイト"
+
+#: data/geany.glade:13234
+msgid "Community _Forum"
+msgstr "コミュニティ_フォーラム"
+
+#: data/geany.glade:13243
+msgid "_Upgrade To Full Version"
+msgstr "_フルバージョンにアップグレードする"
+
+#: data/geany.glade:13258
+msgid "Debug _Messages"
+msgstr "デバッグ_メッセージ"
+
+#: data/geany.glade:13319
+msgid "Current Project:"
+msgstr "現行の企画："
+
+#: data/geany.glade:13332
+msgid "The currently active project used for building"
+msgstr "ビルドに使用されている現在アクティブなプロジェクト"
+
+#: data/geany.glade:13382 data/geany.glade:14068 src/keybindings.c:246
+msgid "Project"
+msgstr "プロジェクト"
+
+#: data/geany.glade:13411 src/sidebar.c:123
+msgid "Symbols"
+msgstr "シンボル"
+
+#: data/geany.glade:13446
+msgid "Call Stack"
+msgstr "コールスタック"
+
+#: data/geany.glade:13506 src/symbols.c:676 src/symbols.c:700
+msgid "Variables"
+msgstr "変数"
+
+#: data/geany.glade:13558 src/keybindings.c:248 src/keybindings.c:603
+#: src/toolbar.c:72
+msgid "Debug"
+msgstr "デバッグ"
+
+#: data/geany.glade:13624
+msgid "Status"
+msgstr "状態"
+
+#: data/geany.glade:13652
+msgid "Compiler"
+msgstr "コンパイラ"
+
+#: data/geany.glade:13682
+msgid "Search Results"
+msgstr "の検索結果"
+
+#: data/geany.glade:13711
+msgid "Scribble"
+msgstr "落書き"
+
+#: data/geany.glade:13740
+msgid "Debug Log"
+msgstr "デバッグログ"
+
+#: data/geany.glade:13797
+msgid "Project Properties"
+msgstr "プロジェクトのプロパティ"
+
+#: data/geany.glade:13868 src/plugins.c:1491
+msgid "Filename:"
+msgstr "ファイル名："
+
+#: data/geany.glade:13880 src/project.c:139
+msgid "Name:"
+msgstr "名："
+
+#: data/geany.glade:13895
+msgid "Description:"
+msgstr "説明："
+
+#: data/geany.glade:13909 src/project.c:149
+msgid "Base path:"
+msgstr "ベースパス："
+
+#: data/geany.glade:13923
+msgid "File patterns:"
+msgstr "ファイルパターン："
+
+#: data/geany.glade:13984
+msgid "Space separated list of file patterns used for the find in files dialog (e.g. *.c *.h)"
+msgstr "ファイル内の検索ダイアログボックスで使用されるファイルパターンのスペース区切りリスト（例：* .c * .h）"
+
+#: data/geany.glade:14165
+msgid "Detect type from file"
+msgstr "ファイルから型を検出する"
+
+#: data/geany.glade:14169
+msgid "Whether to detect the indentation type from file contents when a file is opened"
+msgstr "ファイルを開いたときにファイル内容からインデントタイプを検出するかどうか"
+
+#: data/geany.glade:14188
+msgid "Use spaces if the total indent is less than the tab width, otherwise use both"
+msgstr "インデントの合計がタブの幅より小さい場合はスペースを使用し、そうでない場合は両方を使用します"
+
+#: data/geany.glade:14207
+msgid "Use spaces when inserting indentation"
+msgstr "インデントを挿入するときにスペースを使用する"
+
+#: data/geany.glade:14227
+msgid "Use one tab per indent"
+msgstr "インデントごとに1つのタブを使用する"
+
+#: data/geany.glade:14257
+msgid "Detect width from file"
+msgstr "ファイルからの幅を検出する"
+
+#: data/geany.glade:14261
+msgid "Whether to detect the indentation width from file contents when a file is opened"
+msgstr "ファイルを開いたときのファイルの内容からインデント幅を検出するかどうか"
+
+#: data/geany.glade:14326
+msgid "Display:"
+msgstr "表示："
+
+#: data/geany.glade:14365
+msgid "Custom"
+msgstr "カスタム"
+
+#: data/geany.glade:14384
+msgid "Use global settings"
+msgstr "グローバル設定を使用する"
+
+#: data/geany.glade:14526
+msgid "Replace tabs with space"
+msgstr "タブをスペースに置き換える"
+
+#: data/geany.glade:14716
+msgid "Size:"
+msgstr "サイズ："
+
+#: data/geany.glade:14731
+msgid "Location:"
+msgstr "ロケーション："
+
+#: data/geany.glade:14746
+msgid "Read-only:"
+msgstr "読み取り専用："
+
+#: data/geany.glade:14761
+msgid "Encoding:"
+msgstr "エンコーディング："
+
+#: data/geany.glade:14776
+msgid "Modified:"
+msgstr "変更された："
+
+#: data/geany.glade:14791
+msgid "Changed:"
+msgstr "かわった："
+
+#: data/geany.glade:14806
+msgid "Accessed:"
+msgstr "アクセス："
+
+#: data/geany.glade:14848
+msgid "(only inside Geany)"
+msgstr "（Geany内のみ）"
+
+#: data/geany.glade:14948
+msgid "Permissions:"
+msgstr "権限："
+
+#: data/geany.glade:14962
+msgid "Read:"
+msgstr "読む："
+
+#: data/geany.glade:14976
+msgid "Write:"
+msgstr "書きます："
+
+#: data/geany.glade:14990
+msgid "Execute:"
+msgstr "実行："
+
+#: data/geany.glade:15004
+msgid "Owner:"
+msgstr "オーナー："
+
+#: data/geany.glade:15016
+msgid "Group:"
+msgstr "グループ："
+
+#: data/geany.glade:15028
+msgid "Other:"
+msgstr "その他："
+
+#: data/geany.glade:15202
+msgid "AGK Trial Version"
+msgstr "AGK試用版"
+
+#: data/geany.glade:15217
+msgid "_Upgrade Now"
+msgstr "_今すぐアップグレード"
+
+#: data/geany.glade:15231
+msgid "_Continue With Trial"
+msgstr "_トライアルを続ける"
+
+#: src/about.c:41
+msgid "<span>Built on Geany 1.24.1</span>"
+msgstr "<span> Geany 1.24.1上に構築された</ span>"
+
+#: src/about.c:43
+msgid "App Game Kit (c) 2014\n"
+"The Game Creators Ltd. All Rights Reserved.\n"
+"\n"
+"Geany Copyright (c)  2005-2014\n"
+"Colomban Wendling\n"
+"Nick Treleaven\n"
+"Matthew Brush\n"
+"Enrico Tröger\n"
+"Frank Lanitz\n"
+"All rights reserved."
+msgstr "アプリゲームキット（c）2014\n"
+"ゲームクリエイター株式会社All Rights Reserved。\n"
+"\n"
+"Geany Copyright（c）2005-2014\n"
+"コロンバンウェリング\n"
+"Nick Treleaven\n"
+"マシューブラシ\n"
+"エンリコ・トーゲル\n"
+"フランク・ラニッツ\n"
+"全著作権所有。"
+
+#: src/about.c:114
+msgid "About AppGameKit"
+msgstr "AppGameKitについて"
+
+#: src/about.c:160
+msgid "A fast and lightweight IDE"
+msgstr "高速で軽量なIDE"
+
+#: src/about.c:182
+msgid "(built on %s)"
+msgstr "（％s上に構築されています）"
+
+#: src/about.c:201
+msgid "Info"
+msgstr "情報"
+
+#: src/about.c:217
+msgid "AppGameKit Credits"
+msgstr "AppGameKitクレジット"
+
+#: src/about.c:224
+msgid "Producer"
+msgstr "プロデューサー"
+
+#: src/about.c:228 src/about.c:232
+msgid "Developer"
+msgstr "開発者"
+
+#: src/about.c:236
+msgid "Examples, Demos, and Help"
+msgstr "例、デモ、およびヘルプ"
+
+#: src/about.c:240 src/about.c:244
+msgid "Graphics"
+msgstr "グラフィックス"
+
+#: src/about.c:255
+msgid "Geany Credits"
+msgstr "ゲーニークレジット"
+
+#: src/about.c:262
+msgid "maintainer"
+msgstr "メンテナー"
+
+#: src/about.c:266 src/about.c:270 src/about.c:274
+msgid "developer"
+msgstr "開発者"
+
+#: src/about.c:278
+msgid "translation maintainer"
+msgstr "翻訳メンテナー"
+
+#: src/about.c:286
+msgid "Geany Contributors"
+msgstr "Geanyの貢献者"
+
+#: src/about.c:306
+msgid "Credits"
+msgstr "クレジット"
+
+#: src/about.c:330
+msgid "The following license applies to the IDE only\n"
+"The source code can be found at https://github.com/TheGameCreators/AGKIDE"
+msgstr "次のライセンスは、IDEのみに適用されます\n"
+"ソースコードはhttps://github.com/TheGameCreators/AGKIDEにあります。"
+
+#: src/about.c:347
+msgid "License text could not be found, please visit http://www.gnu.org/licenses/gpl-2.0.txt to view it online."
+msgstr "ライセンステキストが見つかりませんでした。http://www.gnu.org/licenses/gpl-2.0.txtにアクセスしてオンラインでご覧ください。"
+
+#: src/about.c:354
+msgid "License"
+msgstr "ライセンス"
+
+#: src/about.c:381
+msgid "EULA text could not be found, please visit http://www.appgamekit.com for more information."
+msgstr "EULAのテキストが見つかりませんでした。詳細については、http：//www.appgamekit.comをご覧ください。"
+
+#: src/about.c:388
+msgid "EULA"
+msgstr "EULA"
+
+#: src/build.c:764
+msgid "failed to substitute %%p, no project active"
+msgstr "%% pと置換できませんでした。プロジェクトはアクティブではありません"
+
+#: src/build.c:803
+msgid "Process failed, no working directory"
+msgstr "プロセスは失敗し、作業ディレクトリはありません"
+
+#: src/build.c:826
+msgid "%s (in directory: %s)"
+msgstr "％s（ディレクトリ：％s）"
+
+#: src/build.c:861 src/build.c:1161
+msgid "build command spawning failed: %s"
+msgstr "ビルドコマンドの生成に失敗しました：％s"
+
+#: src/build.c:862 src/build.c:1162 src/build.c:1288 src/build.c:1388
+#: src/build.c:1497 src/build.c:1572 src/build.c:1852 src/callbacks.c:2344
+#: src/search.c:1725
+msgid "Process failed (%s)"
+msgstr "プロセスが失敗しました（％s）"
+
+#: src/build.c:1053 src/build.c:1054
+msgid "Failed to compile project, it must contain a 'main.agc' file in the project directory"
+msgstr "プロジェクトをコンパイルできませんでした。プロジェクトディレクトリに 'main.agc'ファイルが含まれている必要があります"
+
+#: src/build.c:1084 src/build.c:1085
+msgid "Could not find compiler, please check the compiler path in the build options"
+msgstr "コンパイラが見つかりませんでした。ビルドオプションでコンパイラのパスを確認してください"
+
+#: src/build.c:1113
+msgid "Running %s (in directory: %s)"
+msgstr "％sを実行中（ディレクトリ：％s）"
+
+#: src/build.c:1210 src/build.c:1211
+msgid "Failed to run project locally, project is already running"
+msgstr "プロジェクトをローカルで実行できませんでした。プロジェクトは既に実行されています"
+
+#: src/build.c:1255 src/build.c:1256
+msgid "Failed to run project locally, program not found"
+msgstr "プロジェクトをローカルで実行できず、プログラムが見つかりませんでした"
+
+#: src/build.c:1287 src/build.c:1387 src/build.c:1571 src/build.c:1851
+msgid "g_spawn_async() failed: %s"
+msgstr "g_spawn_async（）が失敗しました：％s"
+
+#: src/build.c:1335 src/build.c:1336
+msgid "Failed to broadcast project, broadcaster is already running"
+msgstr "プロジェクトをブロードキャストできませんでした。ブロードキャスタはすでに実行中です"
+
+#: src/build.c:1342 src/build.c:1343
+msgid "Failed to broadcast project, debugger is currently running"
+msgstr "プロジェクトをブロードキャストできませんでした。デバッガは現在実行中です。"
+
+#: src/build.c:1370 src/build.c:1371
+msgid "Failed to broadcast project, broadcaster program not found"
+msgstr "プロジェクトをブロードキャストできませんでした。ブロードキャスタプログラムが見つかりませんでした。"
+
+#: src/build.c:1436 src/build.c:1437
+msgid "Failed to debug project, broadcaster is already running"
+msgstr "プロジェクトのデバッグに失敗しました。ブロードキャスタはすでに実行されています"
+
+#: src/build.c:1443 src/build.c:1444
+msgid "Failed to debug project, debugger is already running"
+msgstr "プロジェクトのデバッグに失敗しました。デバッガはすでに実行中です。"
+
+#: src/build.c:1473
+msgid "Failed to debug project, debug broadcaster not found"
+msgstr "プロジェクトのデバッグに失敗し、デバッグブロードキャスタが見つかりませんでした"
+
+#: src/build.c:1474
+msgid "Failed to broadcast project, debug broadcaster not found"
+msgstr "プロジェクトをブロードキャストできませんでした。デバッグブロードキャスタが見つかりませんでした"
+
+#: src/build.c:1517
+msgid "Debugging on remote devices is disabled in the trial version. Remove the debug IP address in the build settings to stop this message"
+msgstr "試用版では、リモートデバイスでのデバッグは無効になっています。このメッセージを停止するには、ビルド設定でデバッグIPアドレスを削除してください"
+
+#: src/build.c:1534
+msgid "Debugging on local machine, to debug on a device set its IP address in the build options"
+msgstr "ローカルマシンでのデバッグ、デバイス上でのデバッグ、ビルドオプションでのIPアドレスの設定"
+
+#: src/build.c:1555 src/build.c:1556
+msgid "Failed to debug project locally, interpreter program not found"
+msgstr "プロジェクトをローカルでデバッグできなかった、インタプリタ・プログラムが見つかりませんでした"
+
+#: src/build.c:1570 src/build.c:1601 src/build.c:1602
+msgid "Failed to debug project locally, interpreter failed to run"
+msgstr "プロジェクトをローカルでデバッグできなかったため、インタープリタを実行できませんでした"
+
+#: src/build.c:1704
+msgid "Failed to change the working directory to \"%s\""
+msgstr "作業ディレクトリを \"％s\"に変更できませんでした"
+
+#: src/build.c:1734
+msgid "Failed to execute \"%s\" (start-script could not be created: %s)"
+msgstr "\"％s\"の実行に失敗しました（開始スクリプトを作成できませんでした：％s）"
+
+#: src/build.c:1789 src/build.c:1790
+msgid "Could not execute the file in the VTE because it probably contains a command."
+msgstr "おそらくコマンドが含まれているため、VTEでファイルを実行できませんでした。"
+
+#: src/build.c:1816
+msgid "Could not parse terminal command \"%s\" (check Terminal tool setting in Preferences)"
+msgstr "ターミナルコマンド \"％s\"を解析できませんでした（[環境設定]の[ターミナルツール]設定を確認してください）"
+
+#: src/build.c:1835
+msgid "Could not find terminal \"%s\" (check path for Terminal tool setting in Preferences)"
+msgstr "端末 \"％s\"を見つけられませんでした（環境設定でターミナルツール設定のパスを確認してください）"
+
+#: src/build.c:2173
+msgid "Entering directory"
+msgstr "ディレクトリの入力"
+
+#: src/build.c:2195
+msgid "Leaving directory"
+msgstr "ディレクトリから出る"
+
+#: src/build.c:2211
+msgid "Compilation failed."
+msgstr "コンパイルに失敗しました。"
+
+#: src/build.c:2225
+msgid "Compilation finished successfully."
+msgstr "コンパイルが正常に終了しました。"
+
+#: src/build.c:2505
+msgid "Custom Text"
+msgstr "カスタムテキスト"
+
+#: src/build.c:2506
+msgid "Enter custom text here, all entered text is appended to the command."
+msgstr "ここにカスタムテキストを入力すると、入力されたすべてのテキストがコマンドに追加されます。"
+
+#: src/build.c:2574
+msgid "_Next Error"
+msgstr "_次のエラー"
+
+#: src/build.c:2575
+msgid "_Previous Error"
+msgstr "_前のエラー"
+
+#: src/build.c:2580 src/build.c:4057
+msgid "_Set Build Commands"
+msgstr "_Setビルドコマンド"
+
+#: src/build.c:2852
+msgid "You must open a project before you can compile"
+msgstr "コンパイルする前にプロジェクトを開く必要があります"
+
+#: src/build.c:2853
+msgid "You must open a project before you can run"
+msgstr "実行する前にプロジェクトを開く必要があります"
+
+#: src/build.c:2854
+msgid "You must open a project before you can broadcast"
+msgstr "放送する前にプロジェクトを開く必要があります"
+
+#: src/build.c:2855
+msgid "You must open a project before you can debug"
+msgstr "デバッグする前にプロジェクトを開く必要があります"
+
+#: src/build.c:2860
+msgid "Compile the project '%s'"
+msgstr "プロジェクト '％s'をコンパイルする"
+
+#: src/build.c:2863
+msgid "Run the project '%s' on the local machine"
+msgstr "ローカルマシン上でプロジェクト '％s'を実行する"
+
+#: src/build.c:2866
+msgid "Broadcast the project '%s' to any listening devices"
+msgstr "プロジェクト '％s'を任意のリスニングデバイスにブロードキャストします。"
+
+#: src/build.c:2869
+msgid "Debug the project '%s' on a particular device"
+msgstr "特定のデバイスでプロジェクト '％s'をデバッグする"
+
+#: src/build.c:3000
+msgid "Build the current file with Make and the default target"
+msgstr "Makeとデフォルトのターゲットで現在のファイルをビルドする"
+
+#: src/build.c:3002
+msgid "Build the current file with Make and the specified target"
+msgstr "Makeと指定されたターゲットで現在のファイルをビルドする"
+
+#: src/build.c:3004
+msgid "Compile the current file with Make"
+msgstr "現在のファイルをMakeでコンパイルする"
+
+#: src/build.c:3028
+msgid "Process could not be stopped (%s)."
+msgstr "プロセスを停止できませんでした（％s）。"
+
+#: src/build.c:3045 src/build.c:3057
+msgid "No more build errors."
+msgstr "これ以上のビルドエラーはありません。"
+
+#: src/build.c:3156 src/build.c:3158
+msgid "Set menu item label"
+msgstr "メニュー項目のラベルを設定する"
+
+#: src/build.c:3183 src/tools.c:568
+msgid "Label"
+msgstr "ラベル"
+
+#: src/build.c:3184 src/tools.c:553
+msgid "Command"
+msgstr "コマンド"
+
+#: src/build.c:3185
+msgid "Working directory"
+msgstr "作業ディレクトリ"
+
+#: src/build.c:3186
+msgid "Reset"
+msgstr "リセット"
+
+#: src/build.c:3233
+msgid "Click to set menu item label"
+msgstr "クリックしてメニュー項目のラベルを設定する"
+
+#: src/build.c:3317 src/build.c:3319
+msgid "%s commands"
+msgstr "％sコマンド"
+
+#: src/build.c:3319
+msgid "No filetype"
+msgstr "ファイルタイプがありません"
+
+#: src/build.c:3328 src/build.c:3363
+msgid "Error regular expression:"
+msgstr "エラー正規表現："
+
+#: src/build.c:3356
+msgid "Independent commands"
+msgstr "独立したコマンド"
+
+#: src/build.c:3388
+msgid "Note: Item 2 opens a dialog and appends the response to the command."
+msgstr "注：項目2はダイアログを開き、コマンドに応答を追加します。"
+
+#: src/build.c:3397
+msgid "Execute commands"
+msgstr "コマンドを実行する"
+
+#: src/build.c:3409
+msgid "%d, %e, %f, %p are substituted in command and directory fields, see manual for details."
+msgstr "％d、％e、％f、％pはコマンドとディレクトリのフィールドで置き換えられます。詳しくは、マニュアルを参照してください。"
+
+#: src/build.c:3567
+msgid "Set Build Commands"
+msgstr "ビルドコマンドの設定"
+
+#: src/build.c:3774 src/build.c:3957
+msgid "_Execute"
+msgstr "_Execute"
+
+#: src/build.c:3785
+msgid "Make Custom _Target..."
+msgstr "カスタム_ターゲットを作る..."
+
+#: src/build.c:3787
+msgid "Make _Object"
+msgstr "Make _Object"
+
+#: src/build.c:3789
+msgid "_Make"
+msgstr "_Make"
+
+#: src/build.c:4095 src/callbacks.c:224
+msgid "%d file saved."
+msgid_plural "%d files saved."
+msgstr[0] "％d個のファイルが保存されました。"
+
+#: src/callbacks.c:138
+msgid "Cannot quit whilst an update is in progress, please wait"
+msgstr "更新中は終了できません、しばらくお待ちください"
+
+#: src/callbacks.c:167
+msgid "Do you really want to quit?"
+msgstr "あなたは本当にやめたいですか？"
+
+#: src/callbacks.c:585
+msgid "Any unsaved changes will be lost."
+msgstr "保存されていない変更は失われます。"
+
+#: src/callbacks.c:586
+msgid "Are you sure you want to reload '%s'?"
+msgstr "'％s'をリロードしてもよろしいですか？"
+
+#: src/callbacks.c:1303 src/keybindings.c:474
+msgid "Go to Line"
+msgstr "ラインに行く"
+
+#: src/callbacks.c:1304
+msgid "Enter the line you want to go to:"
+msgstr "あなたが行きたい行を入力してください："
+
+#: src/callbacks.c:1620 src/callbacks.c:1645
+msgid "Please set the filetype for the current file before using this function."
+msgstr "この機能を使用する前に、現在のファイルのファイルタイプを設定してください。"
+
+#: src/callbacks.c:1750 src/ui_utils.c:693
+msgid "dd.mm.yyyy"
+msgstr "dd.mm.yyyy"
+
+#: src/callbacks.c:1752 src/ui_utils.c:694
+msgid "mm.dd.yyyy"
+msgstr "mm.dd.yyyy"
+
+#: src/callbacks.c:1754 src/ui_utils.c:695
+msgid "yyyy/mm/dd"
+msgstr "yyyy / mm / dd"
+
+#: src/callbacks.c:1756 src/ui_utils.c:707
+msgid "dd.mm.yyyy hh:mm:ss"
+msgstr "dd.mm.yyyy hh：mm：ss"
+
+#: src/callbacks.c:1758 src/ui_utils.c:708
+msgid "mm.dd.yyyy hh:mm:ss"
+msgstr "mm.dd.yyyy hh：mm：ss"
+
+#: src/callbacks.c:1760 src/ui_utils.c:709
+msgid "yyyy/mm/dd hh:mm:ss"
+msgstr "yyyy / mm / dd hh：mm：ss"
+
+#: src/callbacks.c:1762 src/ui_utils.c:721
+msgid "_Use Custom Date Format"
+msgstr "_カスタム日付書式を使用する"
+
+#: src/callbacks.c:1766
+msgid "Custom Date Format"
+msgstr "カスタム日付形式"
+
+#: src/callbacks.c:1767
+msgid "Enter here a custom date and time format. You can use any conversion specifiers which can be used with the ANSI C strftime function."
+msgstr "カスタムの日付と時刻の形式をここに入力します。 ANSI Cのstrftime関数で使用できる任意の変換指定子を使用できます。"
+
+#: src/callbacks.c:1790
+msgid "Date format string could not be converted (possibly too long)."
+msgstr "日付書式文字列を変換できませんでした（おそらく長すぎます）。"
+
+#: src/callbacks.c:1992 src/callbacks.c:2000
+msgid "No more message items."
+msgstr "メッセージ項目はこれ以上ありません。"
+
+#: src/callbacks.c:2062 src/callbacks.c:2076
+msgid "Unfortunately exporting is not supported on Raspberry Pi"
+msgstr "残念ながら、エクスポートはRaspberry Piではサポートされていません"
+
+#: src/callbacks.c:2098
+msgid "Generating a keystore is not available in the trial version"
+msgstr "試用版でキーストアを生成することはできません"
+
+#: src/callbacks.c:2101
+msgid "Unfortunately generating a keystore is not supported on Raspberry Pi"
+msgstr "残念ながら、キーストアを生成することはRaspberry Piではサポートされていません"
+
+#: src/callbacks.c:2111 src/callbacks.c:2131
+msgid "Exporting to IPA is only possible on Mac"
+msgstr "IPAへのエクスポートはMacでのみ可能です"
+
+#: src/callbacks.c:2119 src/project.c:823 src/project.c:2741
+msgid "You must have a project open to export it"
+msgstr "エクスポートするプロジェクトを開いておく必要があります"
+
+#: src/callbacks.c:2134
+msgid "iOS player is not available in the trial version"
+msgstr "試用版ではiOSプレーヤーは利用できません"
+
+#: src/callbacks.c:2147
+msgid "Android player is not available in the trial version"
+msgstr "Androidプレーヤーは試用版では使用できません"
+
+#: src/callbacks.c:2437
+msgid "Stop _Running"
+msgstr "停止_Running"
+
+#: src/callbacks.c:2438
+msgid "Stop _Broadcasting"
+msgstr "停止_放送"
+
+#: src/callbacks.c:2439
+msgid "Stop _Debugging"
+msgstr "停止_Debugging"
+
+#: src/callbacks.c:2586
+msgid "Could not open file %s (File not found)"
+msgstr "ファイル％sを開けませんでした（ファイルが見つかりません）"
+
+#: src/dialogs.c:220
+msgid "Detect from file"
+msgstr "ファイルから検出する"
+
+#: src/dialogs.c:223
+msgid "West European"
+msgstr "西ヨーロッパ"
+
+#: src/dialogs.c:225
+msgid "East European"
+msgstr "東ヨーロッパ"
+
+#: src/dialogs.c:227
+msgid "East Asian"
+msgstr "東アジア"
+
+#: src/dialogs.c:229
+msgid "SE & SW Asian"
+msgstr "SE＆SWアジア系"
+
+#: src/dialogs.c:231
+msgid "Middle Eastern"
+msgstr "中東"
+
+#: src/dialogs.c:233 src/encodings.c:112 src/encodings.c:113
+#: src/encodings.c:114 src/encodings.c:115 src/encodings.c:116
+#: src/encodings.c:117 src/encodings.c:118 src/encodings.c:119
+msgid "Unicode"
+msgstr "Unicode"
+
+#: src/dialogs.c:282
+msgid "_More Options"
+msgstr "_より多くのオプション"
+
+#: src/dialogs.c:289
+msgid "Show _hidden files"
+msgstr "_hiddenファイルを表示する"
+
+#: src/dialogs.c:300
+msgid "Set encoding:"
+msgstr "エンコーディングの設定："
+
+#: src/dialogs.c:309
+msgid "Explicitly defines an encoding for the file, if it would not be detected. This is useful when you know that the encoding of a file cannot be detected correctly by Geany.\n"
+"Note if you choose multiple files, they will all be opened with the chosen encoding."
+msgstr "検出されない場合、ファイルのエンコーディングを明示的に定義します。これは、Geanyがファイルのエンコーディングを正しく検出できないことがわかっている場合に便利です。\n"
+"複数のファイルを選択すると、選択したエンコーディングでファイルがすべて開かれます。"
+
+#: src/dialogs.c:316
+msgid "Set filetype:"
+msgstr "ファイルタイプを設定する："
+
+#: src/dialogs.c:325
+msgid "Explicitly defines a filetype for the file, if it would not be detected by filename extension.\n"
+"Note if you choose multiple files, they will all be opened with the chosen filetype."
+msgstr "ファイル名の拡張子によって検出されない場合、ファイルのファイルタイプを明示的に定義します。\n"
+"複数のファイルを選択すると、選択したファイルタイプですべて開くことになります。"
+
+#: src/dialogs.c:354 src/dialogs.c:460
+msgid "Open File"
+msgstr "ファイルを開く"
+
+#: src/dialogs.c:360
+msgid "Opens the file in read-only mode. If you choose more than one file to open, all files will be opened read-only."
+msgstr "読み取り専用モードでファイルを開きます。開くファイルを複数選択すると、すべてのファイルが読み取り専用で開かれます。"
+
+#: src/dialogs.c:380
+msgid "Detect by file extension"
+msgstr "ファイル拡張子で検出"
+
+#: src/dialogs.c:525
+msgid "Overwrite?"
+msgstr "上書き？"
+
+#: src/dialogs.c:526
+msgid "Filename already exists!"
+msgstr "ファイル名は既に存在します！"
+
+#: src/dialogs.c:555 src/dialogs.c:684
+msgid "Save File"
+msgstr "ファイルを保存"
+
+#: src/dialogs.c:564
+msgid "R_ename"
+msgstr "R_名"
+
+#: src/dialogs.c:565
+msgid "Save the file and rename it"
+msgstr "ファイルを保存して名前を変更します"
+
+#: src/dialogs.c:702 src/win32.c:912
+msgid "Error"
+msgstr "エラー"
+
+#: src/dialogs.c:705 src/dialogs.c:783 src/dialogs.c:1352 src/win32.c:918
+msgid "Question"
+msgstr "質問"
+
+#: src/dialogs.c:708 src/win32.c:924
+msgid "Warning"
+msgstr "警告"
+
+#: src/dialogs.c:711 src/win32.c:930
+msgid "Information"
+msgstr "情報"
+
+#: src/dialogs.c:787
+msgid "_Don't save"
+msgstr "_保存しない"
+
+#: src/dialogs.c:816
+msgid "The file '%s' is not saved."
+msgstr "ファイル '％s'は保存されません。"
+
+#: src/dialogs.c:817
+msgid "Do you want to save it before closing?"
+msgstr "閉じる前に保存しますか？"
+
+#: src/dialogs.c:897
+msgid "Choose font"
+msgstr "フォントを選択"
+
+#: src/dialogs.c:1199
+msgid "An error occurred or file information could not be retrieved (e.g. from a new file)."
+msgstr "エラーが発生したか、ファイル情報を取得できませんでした（たとえば、新しいファイルから）。"
+
+#: src/dialogs.c:1218 src/dialogs.c:1219 src/dialogs.c:1220 src/dialogs.c:1226
+#: src/dialogs.c:1227 src/dialogs.c:1228 src/symbols.c:1883 src/symbols.c:1899
+#: src/ui_utils.c:293
+msgid "unknown"
+msgstr "未知の"
+
+#: src/dialogs.c:1233
+msgid "%s Properties"
+msgstr "％sプロパティ"
+
+#: src/dialogs.c:1266 src/ui_utils.c:297
+msgid "(with BOM)"
+msgstr "（BOM付き）"
+
+#: src/dialogs.c:1266
+msgid "(without BOM)"
+msgstr "（BOMなし）"
+
+#: src/document.c:623
+msgid "File %s closed."
+msgstr "ファイル％sは閉じました。"
+
+#: src/document.c:717
+msgid "Do you want to add the new file to the current project '%s'? (This will require you to save the new document somewhere)"
+msgstr "新しいファイルを現在のプロジェクト '％s'に追加しますか？ （これにより、新しい文書をどこかに保存する必要があります）"
+
+#: src/document.c:808
+msgid "New file \"%s\" opened."
+msgstr "新しいファイル \"％s\"が開かれました。"
+
+#: src/document.c:865 src/project.c:251 src/project.c:289 src/project.c:333
+#: src/project.c:413 src/project.c:6093
+msgid "Project file \"%s\" could not be loaded."
+msgstr "プロジェクトファイル \"％s\"を読み込めませんでした。"
+
+#: src/document.c:901 src/document.c:1450
+msgid "Could not open file %s (%s)"
+msgstr "ファイル％sを開けませんでした（％s）"
+
+#: src/document.c:921
+msgid "The file \"%s\" is not valid %s."
+msgstr "ファイル \"％s\"は無効な％sです。"
+
+#: src/document.c:927
+msgid "The file \"%s\" does not look like a text file or the file encoding is not supported."
+msgstr "ファイル \"％s\"はテキストファイルのように見えないか、ファイルエンコーディングがサポートされていません。"
+
+#: src/document.c:937
+msgid "The file \"%s\" could not be opened properly and has been truncated. This can occur if the file contains a NULL byte. Be aware that saving it can cause data loss.\n"
+"The file was set to read-only."
+msgstr "ファイル \"％s\"を正しく開くことができず、切り捨てられました。これは、ファイルにNULLバイトが含まれている場合に発生します。保存するとデータが失われる可能性があることに注意してください。\n"
+"ファイルは読み取り専用に設定されています。"
+
+#: src/document.c:1338
+msgid "File %s reloaded."
+msgstr "ファイル％sがリロードされました。"
+
+#: src/document.c:1346
+msgid "File %s opened(%d%s)."
+msgstr "ファイル％sが開かれました（％d％s）。"
+
+#: src/document.c:1348
+msgid ", read-only"
+msgstr "、読み取り専用"
+
+#: src/document.c:1545
+msgid "Error renaming file."
+msgstr "ファイルの名前を変更中にエラーが発生しました。"
+
+#: src/document.c:1640
+msgid "An error occurred while converting the file from UTF-8 in \"%s\". The file remains unsaved."
+msgstr "ファイルを \"％s\"のUTF-8から変換中にエラーが発生しました。ファイルは保存されません。"
+
+#: src/document.c:1661
+msgid "Error message: %s\n"
+"The error occurred at \"%s\" (line: %d, column: %d)."
+msgstr "エラーメッセージ：％s\n"
+"\"％s\"（行：％d、列：％d）でエラーが発生しました。"
+
+#: src/document.c:1665
+msgid "Error message: %s."
+msgstr "エラーメッセージ：％s。"
+
+#: src/document.c:1725
+msgid "Failed to open file '%s' for writing: fopen() failed: %s"
+msgstr "書き込みのためにファイル '％s'を開けませんでした：fopen（）に失敗しました：％s"
+
+#: src/document.c:1743
+msgid "Failed to write file '%s': fwrite() failed: %s"
+msgstr "ファイル '％s'の書き込みに失敗しました：fwrite（）が失敗しました：％s"
+
+#: src/document.c:1757
+msgid "Failed to close file '%s': fclose() failed: %s"
+msgstr "ファイル '％s'のクローズに失敗しました：fclose（）failed：％s"
+
+#: src/document.c:1906
+msgid "Error saving file (%s)."
+msgstr "ファイル（％s）の保存中にエラーが発生しました。"
+
+#: src/document.c:1911
+msgid "%s\n"
+"\n"
+"The file on disk may now be truncated!"
+msgstr "％s\n"
+"\n"
+"ディスク上のファイルが切り捨てられることがあります。"
+
+#: src/document.c:1913
+msgid "Error saving file."
+msgstr "ファイルの保存中にエラー"
+
+#: src/document.c:1937
+msgid "File %s saved."
+msgstr "ファイル％sが保存されました。"
+
+#: src/document.c:2014 src/document.c:2079 src/document.c:2087
+msgid "\"%s\" was not found."
+msgstr "\"％s\"が見つかりませんでした。"
+
+#: src/document.c:2087
+msgid "Wrap search and find again?"
+msgstr "検索をラップしてもう一度検索しますか？"
+
+#: src/document.c:2176 src/search.c:1357 src/search.c:1408 src/search.c:2219
+#: src/search.c:2220
+msgid "No matches found for \"%s\"."
+msgstr "\"％s\"に一致するものは見つかりませんでした。"
+
+#: src/document.c:2182
+msgid "%s: replaced %d occurrence of \"%s\" with \"%s\"."
+msgid_plural "%s: replaced %d occurrences of \"%s\" with \"%s\"."
+msgstr[0] "％s： \"％s\"を \"％s\"で置き換えました。"
+
+#: src/document.c:3150
+msgid "Do you want to reload it?"
+msgstr "それをリロードしますか？"
+
+#: src/document.c:3151
+msgid "The file '%s' on the disk is more recent than\n"
+"the current buffer."
+msgstr "ディスク上のファイル '％s'は、\n"
+"現在のバッファ"
+
+#: src/document.c:3169
+msgid "Close _without saving"
+msgstr "閉じる_保存なし"
+
+#: src/document.c:3172
+msgid "Try to resave the file?"
+msgstr "ファイルを再保存してみますか？"
+
+#: src/document.c:3173
+msgid "File \"%s\" was not found on disk!"
+msgstr "ファイル \"％s\"がディスク上に見つかりませんでした！"
+
+#: src/document.c:3241
+msgid "%s: Something is wrong with the time stamps."
+msgstr "％s：タイムスタンプに何か問題があります。"
+
+#: src/editor.c:232
+msgid "Can not parse accelerator \"%s\" from user snippets.conf"
+msgstr "ユーザーsnippets.confからアクセラレータ \"％s\"を解析できません"
+
+#: src/editor.c:4384
+msgid "Enter Tab Width"
+msgstr "タブ幅を入力"
+
+#: src/editor.c:4385
+msgid "Enter the amount of spaces which should be replaced by a tab character."
+msgstr "タブ文字で置き換えられるスペースの量を入力します。"
+
+#: src/editor.c:4743
+msgid "failed to load icon '%s': %s"
+msgstr "アイコン '％s'の読み込みに失敗しました：％s"
+
+#: src/editor.c:4758
+msgid "incompatible image data for icon '%s'"
+msgstr "アイコン '％s'の互換性のない画像データ"
+
+#: src/encodings.c:67
+msgid "Celtic"
+msgstr "ケルト語"
+
+#: src/encodings.c:68 src/encodings.c:69
+msgid "Greek"
+msgstr "ギリシャ語"
+
+#: src/encodings.c:70
+msgid "Nordic"
+msgstr "ノルディック"
+
+#: src/encodings.c:71
+msgid "South European"
+msgstr "南ヨーロッパ"
+
+#: src/encodings.c:72 src/encodings.c:73 src/encodings.c:74 src/encodings.c:75
+msgid "Western"
+msgstr "西洋"
+
+#: src/encodings.c:77 src/encodings.c:78 src/encodings.c:79
+msgid "Baltic"
+msgstr "バルト"
+
+#: src/encodings.c:80 src/encodings.c:81 src/encodings.c:82
+msgid "Central European"
+msgstr "中央ヨーロッパ"
+
+#: src/encodings.c:83 src/encodings.c:84 src/encodings.c:86 src/encodings.c:87
+#: src/encodings.c:88
+msgid "Cyrillic"
+msgstr "キリル"
+
+#: src/encodings.c:89
+msgid "Cyrillic/Russian"
+msgstr "キリル文字/ロシア語"
+
+#: src/encodings.c:90
+msgid "Cyrillic/Ukrainian"
+msgstr "キリル文字/ウクライナ語"
+
+#: src/encodings.c:91
+msgid "Romanian"
+msgstr "ルーマニア語"
+
+#: src/encodings.c:93 src/encodings.c:94 src/encodings.c:95
+msgid "Arabic"
+msgstr "アラビア語"
+
+#: src/encodings.c:96 src/encodings.c:98 src/encodings.c:99
+msgid "Hebrew"
+msgstr "ヘブライ語"
+
+#: src/encodings.c:100
+msgid "Hebrew Visual"
+msgstr "ヘブライ語ビジュアル"
+
+#: src/encodings.c:102
+msgid "Armenian"
+msgstr "アルメニア人"
+
+#: src/encodings.c:103
+msgid "Georgian"
+msgstr "ジョージア語"
+
+#: src/encodings.c:104
+msgid "Thai"
+msgstr "タイ語"
+
+#: src/encodings.c:105 src/encodings.c:106 src/encodings.c:107
+msgid "Turkish"
+msgstr "トルコ語"
+
+#: src/encodings.c:108 src/encodings.c:109 src/encodings.c:110
+msgid "Vietnamese"
+msgstr "ベトナム語"
+
+#: src/encodings.c:121 src/encodings.c:122 src/encodings.c:123
+#: src/encodings.c:125
+msgid "Chinese Simplified"
+msgstr "中国語（簡体字"
+
+#: src/encodings.c:126 src/encodings.c:127 src/encodings.c:128
+msgid "Chinese Traditional"
+msgstr "中国の伝統的な"
+
+#: src/encodings.c:129 src/encodings.c:130 src/encodings.c:131
+#: src/encodings.c:132
+msgid "Japanese"
+msgstr "日本語"
+
+#: src/encodings.c:133 src/encodings.c:134 src/encodings.c:135
+#: src/encodings.c:136
+msgid "Korean"
+msgstr "韓国語"
+
+#: src/encodings.c:138
+msgid "Without encoding"
+msgstr "エンコーディングなし"
+
+#: src/encodings.c:420
+msgid "_West European"
+msgstr "_Westヨーロッパ"
+
+#: src/encodings.c:426
+msgid "_East European"
+msgstr "_ヨーロッパ"
+
+#: src/encodings.c:432
+msgid "East _Asian"
+msgstr "東アジア"
+
+#: src/encodings.c:438
+msgid "_SE & SW Asian"
+msgstr "_SE＆SWアジア"
+
+#: src/encodings.c:444
+msgid "_Middle Eastern"
+msgstr "_Middle Eastern"
+
+#: src/encodings.c:450
+msgid "_Unicode"
+msgstr "_ユニコード"
+
+#: src/filetypes.c:91
+msgid "%s source file"
+msgstr "％sソースファイル"
+
+#: src/filetypes.c:92
+msgid "%s file"
+msgstr "％sファイル"
+
+#: src/filetypes.c:93
+msgid "%s script"
+msgstr "％sスクリプト"
+
+#: src/filetypes.c:94
+msgid "%s document"
+msgstr "ドキュメント％s"
+
+#: src/filetypes.c:142
+msgid "Config"
+msgstr "設定"
+
+#: src/filetypes.c:1049 src/win32.c:201
+msgid "All Source"
+msgstr "すべてのソース"
+
+#: src/filetypes.c:1074 src/win32.c:191 src/win32.c:236 src/win32.c:257
+#: src/win32.c:262
+msgid "All files"
+msgstr "すべてのファイル"
+
+#: src/filetypes.c:1122
+msgid "Bad regex for filetype %s: %s"
+msgstr "ファイルタイプ％sの正規表現が正しくありません：％s"
+
+#: src/geany.h:51
+msgid "untitled"
+msgstr "無題"
+
+#: src/highlighting.c:1144 src/main.c:936 src/socket.c:166 src/templates.c:222
+#: src/templates.c:262
+msgid "Could not find file '%s'."
+msgstr "ファイル '％s'を見つけることができませんでした。"
+
+#: src/highlighting.c:1216
+msgid "Default"
+msgstr "デフォルト"
+
+#: src/highlighting.c:1255
+msgid "The current filetype overrides the default style."
+msgstr "現在のファイルタイプはデフォルトのスタイルを上書きします。"
+
+#: src/highlighting.c:1256
+msgid "This may cause color schemes to display incorrectly."
+msgstr "これにより、カラースキームが正しく表示されないことがあります。"
+
+#: src/highlighting.c:1277
+msgid "Color Schemes"
+msgstr "配色"
+
+#: src/keybindings.c:235
+msgid "File"
+msgstr "ファイル"
+
+#: src/keybindings.c:237
+msgid "Clipboard"
+msgstr "クリップボード"
+
+#: src/keybindings.c:238
+msgid "Select"
+msgstr "選択"
+
+#: src/keybindings.c:239
+msgid "Format"
+msgstr "フォーマット"
+
+#: src/keybindings.c:240
+msgid "Insert"
+msgstr "インサート"
+
+#: src/keybindings.c:241
+msgid "Settings"
+msgstr "設定"
+
+#: src/keybindings.c:242
+msgid "Search"
+msgstr "サーチ"
+
+#: src/keybindings.c:243
+msgid "Go to"
+msgstr "に行く"
+
+#: src/keybindings.c:244
+msgid "View"
+msgstr "ビュー"
+
+#: src/keybindings.c:245
+msgid "Document"
+msgstr "資料"
+
+#: src/keybindings.c:250 src/keybindings.c:639
+msgid "Help"
+msgstr "助けて"
+
+#: src/keybindings.c:251
+msgid "Focus"
+msgstr "フォーカス"
+
+#: src/keybindings.c:252
+msgid "Notebook tab"
+msgstr "ノートブックタブ"
+
+#: src/keybindings.c:261
+msgid "New File"
+msgstr "新しいファイル"
+
+#: src/keybindings.c:263 src/keybindings.c:293
+msgid "Open"
+msgstr "開いた"
+
+#: src/keybindings.c:268
+msgid "Save"
+msgstr "セーブ"
+
+#: src/keybindings.c:270 src/toolbar.c:56
+msgid "Save as"
+msgstr "名前を付けて保存"
+
+#: src/keybindings.c:272
+msgid "Save all"
+msgstr "すべてを救う"
+
+#: src/keybindings.c:275
+msgid "Print"
+msgstr "印刷"
+
+#: src/keybindings.c:277 src/keybindings.c:295
+msgid "Close"
+msgstr "閉じる"
+
+#: src/keybindings.c:279
+msgid "Close all"
+msgstr "すべて閉じる"
+
+#: src/keybindings.c:282
+msgid "Reload file"
+msgstr "リロードファイル"
+
+#: src/keybindings.c:284
+msgid "Re-open last closed tab"
+msgstr "最後に閉じたタブを再度開く"
+
+#: src/keybindings.c:286
+msgid "Quit"
+msgstr "終了する"
+
+#: src/keybindings.c:291
+msgid "New"
+msgstr "新しい"
+
+#: src/keybindings.c:300
+msgid "Undo"
+msgstr "元に戻す"
+
+#: src/keybindings.c:302
+msgid "Redo"
+msgstr "やり直し"
+
+#: src/keybindings.c:311
+msgid "Delete to line end"
+msgstr "行末まで削除"
+
+#: src/keybindings.c:314
+msgid "_Transpose Current Line"
+msgstr "_現在の行を転送する"
+
+#: src/keybindings.c:316
+msgid "Scroll to current line"
+msgstr "現在の行にスクロールする"
+
+#: src/keybindings.c:318
+msgid "Scroll up the view by one line"
+msgstr "ビューを1行上にスクロールします。"
+
+#: src/keybindings.c:320
+msgid "Scroll down the view by one line"
+msgstr "ビューを1行下にスクロールする"
+
+#: src/keybindings.c:322
+msgid "Complete snippet"
+msgstr "完全スニペット"
+
+#: src/keybindings.c:324
+msgid "Move cursor in snippet"
+msgstr "スニペットでカーソルを移動する"
+
+#: src/keybindings.c:326
+msgid "Suppress snippet completion"
+msgstr "スニペットの完了を抑制する"
+
+#: src/keybindings.c:328
+msgid "Context Action"
+msgstr "コンテキストアクション"
+
+#: src/keybindings.c:330
+msgid "Complete word"
+msgstr "単語を完成させる"
+
+#: src/keybindings.c:332
+msgid "Show calltip"
+msgstr "コールティップを表示"
+
+#: src/keybindings.c:334
+msgid "Show macro list"
+msgstr "マクロリストを表示する"
+
+#: src/keybindings.c:336
+msgid "Word part completion"
+msgstr "単語部分の補完"
+
+#: src/keybindings.c:339
+msgid "Move line(s) up"
+msgstr "ラインを上に移動する"
+
+#: src/keybindings.c:342
+msgid "Move line(s) down"
+msgstr "ラインを下に移動する"
+
+#: src/keybindings.c:347
+msgid "Cut"
+msgstr "カット"
+
+#: src/keybindings.c:349
+msgid "Copy"
+msgstr "コピー"
+
+#: src/keybindings.c:351
+msgid "Paste"
+msgstr "ペースト"
+
+#: src/keybindings.c:362
+msgid "Select All"
+msgstr "すべて選択"
+
+#: src/keybindings.c:364
+msgid "Select current word"
+msgstr "現在の単語を選択"
+
+#: src/keybindings.c:372
+msgid "Select to previous word part"
+msgstr "前の単語部分に選択"
+
+#: src/keybindings.c:374
+msgid "Select to next word part"
+msgstr "次の単語部分に選択する"
+
+#: src/keybindings.c:382
+msgid "Toggle line commentation"
+msgstr "行コメントの切り替え"
+
+#: src/keybindings.c:385
+msgid "Comment line(s)"
+msgstr "コメント行"
+
+#: src/keybindings.c:387
+msgid "Uncomment line(s)"
+msgstr "行のコメントを解除する"
+
+#: src/keybindings.c:389
+msgid "Increase indent"
+msgstr "インデントを増やします"
+
+#: src/keybindings.c:392
+msgid "Decrease indent"
+msgstr "インデントを減らす"
+
+#: src/keybindings.c:395
+msgid "Increase indent by one space"
+msgstr "インデントを1スペース増やす"
+
+#: src/keybindings.c:397
+msgid "Decrease indent by one space"
+msgstr "インデントを1つ分減らす"
+
+#: src/keybindings.c:401
+msgid "Send to Custom Command 1"
+msgstr "カスタムコマンドに送信する1"
+
+#: src/keybindings.c:403
+msgid "Send to Custom Command 2"
+msgstr "カスタムコマンド2に送信"
+
+#: src/keybindings.c:405
+msgid "Send to Custom Command 3"
+msgstr "カスタムコマンドに送信3"
+
+#: src/keybindings.c:413
+msgid "Join lines"
+msgstr "結合線"
+
+#: src/keybindings.c:418
+msgid "Insert date"
+msgstr "日付を挿入"
+
+#: src/keybindings.c:424
+msgid "Insert New Line Before Current"
+msgstr "現在の前に改行を挿入する"
+
+#: src/keybindings.c:426
+msgid "Insert New Line After Current"
+msgstr "現在の後に新しい行を挿入する"
+
+#: src/keybindings.c:439 src/search.c:455
+msgid "Find"
+msgstr "検索"
+
+#: src/keybindings.c:441
+msgid "Find Next"
+msgstr "次を見つける"
+
+#: src/keybindings.c:443
+msgid "Find Previous"
+msgstr "前の検索"
+
+#: src/keybindings.c:450 src/search.c:608
+msgid "Replace"
+msgstr "置換"
+
+#: src/keybindings.c:452 src/search.c:856
+msgid "Find in Files"
+msgstr "ファイルで検索"
+
+#: src/keybindings.c:455
+msgid "Next Message"
+msgstr "次のメッセージ"
+
+#: src/keybindings.c:457
+msgid "Previous Message"
+msgstr "前のメッセージ"
+
+#: src/keybindings.c:460
+msgid "Find Usage"
+msgstr "使用法を見つける"
+
+#: src/keybindings.c:463
+msgid "Find Document Usage"
+msgstr "ドキュメントの使用状況を確認する"
+
+#: src/keybindings.c:470 src/toolbar.c:67
+msgid "Navigate back a location"
+msgstr "場所をナビゲートする"
+
+#: src/keybindings.c:472 src/toolbar.c:68
+msgid "Navigate forward a location"
+msgstr "場所を前方にナビゲートする"
+
+#: src/keybindings.c:477
+msgid "Go to matching brace"
+msgstr "一致するブレースに移動"
+
+#: src/keybindings.c:480
+msgid "Toggle marker"
+msgstr "マーカーを切り替える"
+
+#: src/keybindings.c:489
+msgid "Go to Tag Definition"
+msgstr "タグ定義へ移動"
+
+#: src/keybindings.c:492
+msgid "Go to Tag Declaration"
+msgstr "タグ宣言に行く"
+
+#: src/keybindings.c:494
+msgid "Go to Start of Line"
+msgstr "行の先頭に移動"
+
+#: src/keybindings.c:496
+msgid "Go to End of Line"
+msgstr "行の終わりに行く"
+
+#: src/keybindings.c:498
+msgid "Go to Start of Display Line"
+msgstr "表示行の開始に移動します。"
+
+#: src/keybindings.c:500
+msgid "Go to End of Display Line"
+msgstr "ディスプレイラインの終わりに行く"
+
+#: src/keybindings.c:502
+msgid "Go to Previous Word Part"
+msgstr "以前のWord部分に移動する"
+
+#: src/keybindings.c:504
+msgid "Go to Next Word Part"
+msgstr "次のワードパーツに移動"
+
+#: src/keybindings.c:509
+msgid "Toggle All Additional Widgets"
+msgstr "すべての追加ウィジェットを切り替えます"
+
+#: src/keybindings.c:512
+msgid "Fullscreen"
+msgstr "全画面表示"
+
+#: src/keybindings.c:514
+msgid "Toggle Messages Window"
+msgstr "メッセージウィンドウの切り替え"
+
+#: src/keybindings.c:517
+msgid "Toggle Sidebar"
+msgstr "サイドバーの切り替え"
+
+#: src/keybindings.c:519
+msgid "Zoom In"
+msgstr "ズームイン"
+
+#: src/keybindings.c:521
+msgid "Zoom Out"
+msgstr "ズームアウトする"
+
+#: src/keybindings.c:523
+msgid "Zoom Reset"
+msgstr "ズームリセット"
+
+#: src/keybindings.c:528
+msgid "Switch to Editor"
+msgstr "エディタに切り替え"
+
+#: src/keybindings.c:530
+msgid "Switch to Search Bar"
+msgstr "検索バーに切り替える"
+
+#: src/keybindings.c:532
+msgid "Switch to Message Window"
+msgstr "メッセージウィンドウに切り替える"
+
+#: src/keybindings.c:534
+msgid "Switch to Compiler"
+msgstr "コンパイラに切り替え"
+
+#: src/keybindings.c:536
+msgid "Switch to Messages"
+msgstr "メッセージに切り替える"
+
+#: src/keybindings.c:538
+msgid "Switch to Scribble"
+msgstr "落書きに切り替える"
+
+#: src/keybindings.c:540
+msgid "Switch to VTE"
+msgstr "VTEに切り替えます"
+
+#: src/keybindings.c:542
+msgid "Switch to Sidebar"
+msgstr "サイドバーに切り替える"
+
+#: src/keybindings.c:544
+msgid "Switch to Sidebar Symbol List"
+msgstr "サイドバーのシンボルリストに切り替える"
+
+#: src/keybindings.c:546
+msgid "Switch to Sidebar Document List"
+msgstr "サイドバーのドキュメントリストに切り替える"
+
+#: src/keybindings.c:551
+msgid "Switch to left document"
+msgstr "左の文書に切り替える"
+
+#: src/keybindings.c:553
+msgid "Switch to right document"
+msgstr "正しい文書に切り替える"
+
+#: src/keybindings.c:555
+msgid "Switch to last used document"
+msgstr "前回使用したドキュメントに切り替える"
+
+#: src/keybindings.c:558
+msgid "Move document left"
+msgstr "ドキュメントを左に移動する"
+
+#: src/keybindings.c:561
+msgid "Move document right"
+msgstr "ドキュメントを右に移動する"
+
+#: src/keybindings.c:563
+msgid "Move document first"
+msgstr "ドキュメントを最初に移動する"
+
+#: src/keybindings.c:565
+msgid "Move document last"
+msgstr "最後に文書を移動する"
+
+#: src/keybindings.c:570
+msgid "Toggle Line wrapping"
+msgstr "折り返しの折り返し"
+
+#: src/keybindings.c:572
+msgid "Toggle Line breaking"
+msgstr "トグルラインを破る"
+
+#: src/keybindings.c:576
+msgid "Replace tabs by space"
+msgstr "スペースでタブを置き換える"
+
+#: src/keybindings.c:578
+msgid "Replace spaces by tabs"
+msgstr "スペースをタブで置き換える"
+
+#: src/keybindings.c:580
+msgid "Toggle current fold"
+msgstr "現在の折り畳みを切り替える"
+
+#: src/keybindings.c:582
+msgid "Fold all"
+msgstr "全てを折りたたむ"
+
+#: src/keybindings.c:584
+msgid "Unfold all"
+msgstr "すべてを展開する"
+
+#: src/keybindings.c:586
+msgid "Reload symbol list"
+msgstr "シンボルリストをリロードする"
+
+#: src/keybindings.c:588
+msgid "Remove Markers"
+msgstr "マーカーを削除する"
+
+#: src/keybindings.c:590
+msgid "Remove Error Indicators"
+msgstr "エラーインジケータを削除"
+
+#: src/keybindings.c:592
+msgid "Remove Markers and Error Indicators"
+msgstr "マーカーとエラーインジケータを削除する"
+
+#: src/keybindings.c:597 src/toolbar.c:69
+msgid "Compile"
+msgstr "コンパイル"
+
+#: src/keybindings.c:599 src/toolbar.c:70
+msgid "Run"
+msgstr "走る"
+
+#: src/keybindings.c:601 src/toolbar.c:71
+msgid "Broadcast"
+msgstr "放送"
+
+#: src/keybindings.c:618
+msgid "Build options"
+msgstr "ビルドオプション"
+
+#: src/keybindings.c:623
+msgid "Pause/Continue"
+msgstr "一時停止/継続"
+
+#: src/keybindings.c:627
+msgid "Step Over"
+msgstr "ステップオーバー"
+
+#: src/keybindings.c:629
+msgid "Step Out"
+msgstr "踏みでる"
+
+#: src/keybindings.c:634
+msgid "Show Color Chooser"
+msgstr "色の選択を表示"
+
+#: src/keybindings.c:887
+msgid "Keyboard Shortcuts"
+msgstr "キーボードショートカット"
+
+#: src/keybindings.c:899
+msgid "The following keyboard shortcuts are configurable:"
+msgstr "次のキーボードショートカットは設定可能です："
+
+#: src/keyfile.c:1373
+msgid "Type here what you want, use it as a notice/scratch board"
+msgstr "あなたが望むものをここに入力し、通知/スクラッチボードとして使用してください"
+
+#: src/keyfile.c:1628
+msgid "Failed to load one or more session files."
+msgstr "1つ以上のセッションファイルの読み込みに失敗しました。"
+
+#: src/log.c:181
+msgid "Debug Messages"
+msgstr "デバッグメッセージ"
+
+#: src/log.c:183
+msgid "Cl_ear"
+msgstr "Cl_ear"
+
+#: src/main.c:127
+msgid "Set initial column number for the first opened file (useful in conjunction with --line)"
+msgstr "最初に開いたファイルの最初の列番号を設定します（--lineと組み合わせて使用​​すると便利です）"
+
+#: src/main.c:128
+msgid "Use an alternate configuration directory"
+msgstr "別の構成ディレクトリを使用する"
+
+#: src/main.c:129
+msgid "Print internal filetype names"
+msgstr "内部ファイルタイプ名を出力する"
+
+#: src/main.c:130
+msgid "Generate global tags file (see documentation)"
+msgstr "グローバルタグファイルを生成する（ドキュメントを参照）"
+
+#: src/main.c:131
+msgid "Don't preprocess C/C++ files when generating tags"
+msgstr "タグを生成するときにC / C ++ファイルを前処理しないでください。"
+
+#: src/main.c:133
+msgid "Don't open files in a running instance, force opening a new instance"
+msgstr "実行中のインスタンス内のファイルを開かず、強制的に新しいインスタンスを開く"
+
+#: src/main.c:134
+msgid "Use this socket filename for communication with a running Geany instance"
+msgstr "実行中のGeanyインスタンスとの通信にこのソケットファイル名を使用する"
+
+#: src/main.c:135
+msgid "Return a list of open documents in a running Geany instance"
+msgstr "実行中のGeanyインスタンス内の開いているドキュメントのリストを返す"
+
+#: src/main.c:137
+msgid "Set initial line number for the first opened file"
+msgstr "最初に開いたファイルの初期行番号を設定する"
+
+#: src/main.c:138
+msgid "Don't show message window at startup"
+msgstr "起動時にメッセージウィンドウを表示しない"
+
+#: src/main.c:139
+msgid "Don't load auto completion data (see documentation)"
+msgstr "自動補完データを読み込まない（ドキュメントを参照）"
+
+#: src/main.c:141
+msgid "Don't load plugins"
+msgstr "プラグインをロードしない"
+
+#: src/main.c:143
+msgid "Print Geany's installation prefix"
+msgstr "Geanyのインストールプレフィックスを表示する"
+
+#: src/main.c:144
+msgid "Open all FILES in read-only mode (see documention)"
+msgstr "すべてのファイルを読み取り専用モードで開く（ドキュメントを参照）"
+
+#: src/main.c:145
+msgid "Don't load the previous session's files"
+msgstr "前のセッションのファイルを読み込まない"
+
+#: src/main.c:147
+msgid "Don't load terminal support"
+msgstr "端末サポートをロードしない"
+
+#: src/main.c:148
+msgid "Filename of libvte.so"
+msgstr "libvte.soのファイル名"
+
+#: src/main.c:150
+msgid "Be verbose"
+msgstr "冗長にする"
+
+#: src/main.c:151
+msgid "Show version and exit"
+msgstr "バージョンを表示して終了する"
+
+#: src/main.c:613
+msgid "[FILES...]"
+msgstr "[ファイル...]"
+
+#: src/main.c:646
+msgid "built on %s with "
+msgstr "％sで構築"
+
+#: src/main.c:738
+msgid "Move it now?"
+msgstr "今すぐ移動しますか？"
+
+#: src/main.c:740
+msgid "Geany needs to move your old configuration directory before starting."
+msgstr "Geanyは起動する前に古い設定ディレクトリを移動する必要があります。"
+
+#: src/main.c:749
+msgid "Your configuration directory has been successfully moved from \"%s\" to \"%s\"."
+msgstr "設定ディレクトリが \"％s\"から \"％s\"に正常に移動されました。"
+
+#: src/main.c:759
+msgid "Your old configuration directory \"%s\" could not be moved to \"%s\" (%s). Please move manually the directory to the new location."
+msgstr "古い設定ディレクトリ \"％s\"を \"％s\"（％s）に移動できませんでした。手動でディレクトリを新しい場所に移動してください。"
+
+#: src/main.c:844
+msgid "Configuration directory could not be created (%s).\n"
+"There could be some problems using Geany without a configuration directory.\n"
+"Start Geany anyway?"
+msgstr "構成ディレクトリを作成できませんでした（％s）。\n"
+"設定ディレクトリなしでGeanyを使用するといくつかの問題が生じる可能性があります。\n"
+"とにかくGeanyを起動しますか？"
+
+#: src/main.c:1325
+msgid "Configuration directory could not be created (%s)."
+msgstr "構成ディレクトリを作成できませんでした（％s）。"
+
+#: src/main.c:1665
+msgid "Configuration files reloaded."
+msgstr "構成ファイルが再ロードされました。"
+
+#: src/msgwindow.c:162
+msgid "Status messages"
+msgstr "ステータスメッセージ"
+
+#: src/msgwindow.c:649
+msgid "C_opy"
+msgstr "C_opy"
+
+#: src/msgwindow.c:658
+msgid "Copy _All"
+msgstr "_Allをコピー"
+
+#: src/msgwindow.c:688
+msgid "_Hide Message Window"
+msgstr "_メッセージウィンドウを隠す"
+
+#: src/msgwindow.c:744
+msgid "Could not find file '%s' - trying the current document path."
+msgstr "ファイル '％s'が見つかりません - 現在のドキュメントパスを試しています。"
+
+#: src/notebook.c:196
+msgid "Switch to Document"
+msgstr "ドキュメントに切り替える"
+
+#: src/notebook.c:496
+msgid "C_lose All"
+msgstr "C_loseすべて"
+
+#: src/plugins.c:497
+msgid "The plugin \"%s\" is not binary compatible with this release of Geany - please recompile it."
+msgstr "プラグイン \"％s\"はこのGeanyのリリースとバイナリ互換ではありません。再コンパイルしてください。"
+
+#: src/plugins.c:1060
+msgid "_Plugin Manager"
+msgstr "_プラグインマネージャ"
+
+#: src/plugins.c:1235
+msgid "%s %s"
+msgstr "％s％s"
+
+#: src/plugins.c:1311
+msgid "Active"
+msgstr "アクティブ"
+
+#: src/plugins.c:1317
+msgid "Plugin"
+msgstr "プラグイン"
+
+#: src/plugins.c:1323
+msgid "Description"
+msgstr "説明"
+
+#: src/plugins.c:1341
+msgid "No plugins available."
+msgstr "プラグインはありません。"
+
+#: src/plugins.c:1443
+msgid "Plugins"
+msgstr "プラグイン"
+
+#: src/plugins.c:1463
+msgid "Choose which plugins should be loaded at startup:"
+msgstr "起動時に読み込むプラグインを選択する："
+
+#: src/plugins.c:1480
+msgid "<b>Plugin details:</b>"
+msgstr "<b>プラグインの詳細：</ b>"
+
+#: src/plugins.c:1489
+msgid "Plugin:"
+msgstr "プラグイン："
+
+#: src/plugins.c:1490
+msgid "Author(s):"
+msgstr "著者："
+
+#: src/pluginutils.c:343
+msgid "Configure Plugins"
+msgstr "プラグインの設定"
+
+#: src/prefs.c:179
+msgid "Grab Key"
+msgstr "グラブキー"
+
+#: src/prefs.c:185
+msgid "Press the combination of the keys you want to use for \"%s\"."
+msgstr "\"％s\"に使用するキーの組み合わせを押します。"
+
+#: src/prefs.c:226 src/sidebar.c:1173 src/symbols.c:2035
+msgid "_Expand All"
+msgstr "_すべて展開"
+
+#: src/prefs.c:231 src/sidebar.c:1180 src/symbols.c:2040
+msgid "_Collapse All"
+msgstr "_すべてを折りたたむ"
+
+#: src/prefs.c:291
+msgid "Action"
+msgstr "アクション"
+
+#: src/prefs.c:296
+msgid "Shortcut"
+msgstr "ショートカット"
+
+#: src/prefs.c:1524
+msgid "_Allow"
+msgstr "_Allow"
+
+#: src/prefs.c:1526
+msgid "_Override"
+msgstr "_オーバーライド"
+
+#: src/prefs.c:1527
+msgid "Override that keybinding?"
+msgstr "そのキーバインディングをオーバーライドしますか？"
+
+#: src/prefs.c:1528
+msgid "The combination '%s' is already used for \"%s\"."
+msgstr "組み合わせ '％s'は既に \"％s\"に使用されています。"
+
+#: src/prefs.c:1732
+msgid "Enter tool paths below. Tools you do not need can be left blank."
+msgstr "以下のツールパスを入力してください。必要のないツールは空白のままにすることができます。"
+
+#: src/prefs.c:1737
+msgid "Set the information to be used in templates. See the documentation for details."
+msgstr "テンプレートで使用する情報を設定します。詳細については、ドキュメントを参照してください。"
+
+#: src/prefs.c:1742
+msgid "Here you can change keyboard shortcuts for various actions. Select one and press the Change button to enter a new shortcut, or double click on an action to edit the string representation of the shortcut directly."
+msgstr "ここで、さまざまな操作のキーボードショートカットを変更できます。 1つを選択し、変更ボタンを押して新しいショートカットを入力するか、アクションをダブルクリックしてショートカットの文字列表現を直接編集します。"
+
+#: src/printing.c:159
+msgid "<b>Page %d of %d</b>"
+msgstr "<b>ページ％d /％d </ b>"
+
+#: src/printing.c:229
+msgid "Document Setup"
+msgstr "ドキュメント設定"
+
+#: src/printing.c:264
+msgid "Print only the basename(without the path) of the printed file"
+msgstr "印刷ファイルの基本名（パスなし）のみを出力する"
+
+#: src/printing.c:414
+msgid "Paginating"
+msgstr "改ページ"
+
+#: src/printing.c:438
+msgid "Page %d of %d"
+msgstr "％d /％dのページ"
+
+#: src/printing.c:494
+msgid "Did not send document %s to the printing subsystem."
+msgstr "％sドキュメントを印刷サブシステムに送信しませんでした。"
+
+#: src/printing.c:496
+msgid "Document %s was sent to the printing subsystem."
+msgstr "ドキュメント％sが印刷サブシステムに送信されました。"
+
+#: src/printing.c:549
+msgid "Printing of %s failed (%s)."
+msgstr "％sの印刷に失敗しました（％s）。"
+
+#: src/printing.c:587
+msgid "Please set a print command in the preferences dialog first."
+msgstr "まず、設定ダイアログで印刷コマンドを設定してください。"
+
+#: src/printing.c:595
+msgid "The file \"%s\" will be printed with the following command:\n"
+"\n"
+"%s"
+msgstr "ファイル \"％s\"は次のコマンドで出力されます：\n"
+"\n"
+"％s"
+
+#: src/printing.c:611
+msgid "Printing of \"%s\" failed (return code: %s)."
+msgstr "\"％s\"の印刷に失敗しました（リターンコード：％s）。"
+
+#: src/printing.c:617
+msgid "File %s printed."
+msgstr "ファイル％sが印刷されました。"
+
+#: src/project.c:94
+msgid "projects"
+msgstr "プロジェクト"
+
+#: src/project.c:114
+msgid "New Project"
+msgstr "新しいプロジェクト"
+
+#: src/project.c:124
+msgid "C_reate"
+msgstr "C_reate"
+
+#: src/project.c:159 src/project.c:5580
+msgid "Choose Project Base Path"
+msgstr "プロジェクトベースパスを選択"
+
+#: src/project.c:180 src/project.c:5815
+msgid "Project file could not be written"
+msgstr "プロジェクトファイルを書き込めませんでした"
+
+#: src/project.c:183
+msgid "Project \"%s\" created."
+msgstr "プロジェクト \"％s\"が作成されました。"
+
+#: src/project.c:240 src/project.c:279
+msgid "Project file \"%s\" is already open"
+msgstr "プロジェクトファイル \"％s\"は既に開いています"
+
+#: src/project.c:315 src/project.c:341
+msgid "Open Project"
+msgstr "オープンプロジェクト"
+
+#: src/project.c:357
+msgid "AGK Project files"
+msgstr "AGKプロジェクトファイル"
+
+#: src/project.c:388 src/project.c:422
+msgid "Import Project"
+msgstr "プロジェクトのインポート"
+
+#: src/project.c:438
+msgid "Old AGK Projects"
+msgstr "古いAGKプロジェクト"
+
+#: src/project.c:514
+msgid "You must choose an output location to save your HTML5 files"
+msgstr "HTML5ファイルを保存するには出力先を選択する必要があります"
+
+#: src/project.c:515
+msgid "Unrecognised choice for 'commands used' drop down box"
+msgstr "'コマンド使用'ドロップダウンボックスの認識できない選択"
+
+#: src/project.c:566 src/project.c:1425 src/project.c:3805
+msgid "Failed to copy source folder"
+msgstr "ソースフォルダのコピーに失敗しました"
+
+#: src/project.c:578
+msgid "Failed to open HTML5 data file for writing"
+msgstr "書き込み用にHTML5データファイルを開くことができませんでした"
+
+#: src/project.c:596
+msgid "Failed to write HTML5 data file"
+msgstr "HTML5データファイルの書き込みに失敗しました"
+
+#: src/project.c:619
+msgid "Failed to read AGKPlayer.js file: %s"
+msgstr "AGKPlayer.jsファイルの読み込みに失敗しました：％s"
+
+#: src/project.c:646
+msgid "AGKPlayer.js is corrupt, it is missing the %%ADDITIONALFOLDERS%% variable"
+msgstr "AGKPlayer.jsが壊れています。%% ADDITIONALFOLDERS %%変数がありません"
+
+#: src/project.c:664
+msgid "AGKPlayer.js is corrupt, it is missing the %%LOADPACKAGE%% variable"
+msgstr "AGKPlayer.jsが壊れています。%% LOADPACKAGE %%変数がありません"
+
+#: src/project.c:674
+msgid "Failed to write AGKPlayer.js file: %s"
+msgstr "AGKPlayer.jsファイルの書き込みに失敗しました：％s"
+
+#: src/project.c:833
+msgid "Export HTML5"
+msgstr "HTML5をエクスポートする"
+
+#: src/project.c:1178
+msgid "You must choose an output location to save your APK"
+msgstr "出力場所を選択してAPKを保存する必要があります"
+
+#: src/project.c:1179 src/project.c:3599
+msgid "The output location must be a file not a directory"
+msgstr "出力先はディレクトリではなくファイルでなければなりません"
+
+#: src/project.c:1182 src/project.c:3602
+msgid "You must enter an app name"
+msgstr "アプリ名を入力する必要があります"
+
+#: src/project.c:1183 src/project.c:3603
+msgid "App name must be less than 30 characters"
+msgstr "アプリ名は30文字未満でなければなりません"
+
+#: src/project.c:1201
+msgid "App name contains invalid characters, it must not contain quotes or < > characters."
+msgstr "アプリ名に無効な文字が含まれています。引用符や<>文字は使用できません。"
+
+#: src/project.c:1207
+msgid "You must enter a package name"
+msgstr "パッケージ名を入力する必要があります"
+
+#: src/project.c:1208
+msgid "Package name must be less than 100 characters"
+msgstr "パッケージ名は100文字未満でなければなりません"
+
+#: src/project.c:1209
+msgid "Package name must contain at least one dot character"
+msgstr "パッケージ名には少なくとも1つのドット文字を含める必要があります"
+
+#: src/project.c:1210
+msgid "Package name must not begin or end with a dot"
+msgstr "パッケージ名はドットで始まらないでください。"
+
+#: src/project.c:1217
+msgid "Package name invalid, a dot must be followed by a letter"
+msgstr "パッケージ名が無効です。ドットには文字が続く必要があります"
+
+#: src/project.c:1227
+msgid "Package name contains invalid characters, must be A-Z 0-9 . and undersore only"
+msgstr "パッケージ名に無効な文字が含まれており、A-Z 0-9である必要があります。下位のみ"
+
+#: src/project.c:1238 src/project.c:3635
+msgid "App icon must be a PNG file"
+msgstr "アプリアイコンはPNGファイルである必要があります"
+
+#: src/project.c:1239 src/project.c:3636
+msgid "Could not find app icon location"
+msgstr "アプリアイコンの場所を見つけることができませんでした"
+
+#: src/project.c:1244
+msgid "Notification icon must be a PNG file"
+msgstr "通知アイコンはPNGファイルである必要があります"
+
+#: src/project.c:1245
+msgid "Could not find notification icon location"
+msgstr "通知アイコンの場所を見つけることができませんでした"
+
+#: src/project.c:1250
+msgid "You must select an Ouya large icon"
+msgstr "Ouya大きなアイコンを選択する必要があります"
+
+#: src/project.c:1251
+msgid "Ouya large icon must be a PNG file"
+msgstr "Ouya大きなアイコンはPNGファイルでなければなりません"
+
+#: src/project.c:1252
+msgid "Could not find ouya large icon location"
+msgstr "ouya大きなアイコンの場所を見つけることができませんでした"
+
+#: src/project.c:1258
+msgid "Google services config file must be a .json file"
+msgstr "Googleサービス設定ファイルは.jsonファイルでなければなりません"
+
+#: src/project.c:1259
+msgid "Could not find Google services config file"
+msgstr "Googleサービスの設定ファイルが見つかりませんでした"
+
+#: src/project.c:1269
+msgid "Version name contains invalid characters, must be 0-9 and . only"
+msgstr "バージョン名に無効な文字が含まれています。のみ"
+
+#: src/project.c:1278
+msgid "Could not find keystore file location"
+msgstr "キーストアファイルの場所を見つけることができませんでした"
+
+#: src/project.c:1282
+msgid "Keystore password cannot contain double quotes"
+msgstr "キーストアのパスワードには二重引用符を使用できません"
+
+#: src/project.c:1283
+msgid "Alias password cannot contain double quotes"
+msgstr "別名のパスワードには二重引用符を使用できません"
+
+#: src/project.c:1287
+msgid "You must enter your keystore password when using your own keystore"
+msgstr "独自のキーストアを使用する場合は、キーストアのパスワードを入力する必要があります"
+
+#: src/project.c:1292
+msgid "You must enter your alias password when using a custom alias"
+msgstr "カスタムエイリアスを使用する場合は、エイリアスパスワードを入力する必要があります"
+
+#: src/project.c:1437
+msgid "Failed to read AndroidManifest.xml file"
+msgstr "AndroidManifest.xmlファイルの読み込みに失敗しました"
+
+#: src/project.c:1683
+msgid "Failed to write AndroidManifest.xml file: %s"
+msgstr "AndroidManifest.xmlファイルの書き込みに失敗しました：％s"
+
+#: src/project.c:1696
+msgid "Failed to read resource values.xml file: %s"
+msgstr "リソースのvalues.xmlファイルを読み取れませんでした：％s"
+
+#: src/project.c:1705
+msgid "Could not find app name entry in values.xml file"
+msgstr "values.xmlファイルにアプリケーション名のエントリが見つかりませんでした"
+
+#: src/project.c:1716
+msgid "Could not find end of app name entry in values.xml file"
+msgstr "values.xmlファイルにアプリケーション名のエントリが見つかりませんでした"
+
+#: src/project.c:1735
+msgid "Could not find games_app_id entry in values.xml file"
+msgstr "values.xmlファイルでgames_app_idエントリを見つけることができませんでした"
+
+#: src/project.c:1746
+msgid "Could not find end of games_app_id entry in values.xml file"
+msgstr "values.xmlファイルにgames_app_idエントリの終わりが見つかりませんでした"
+
+#: src/project.c:1766
+msgid "Failed to read firebase config file: %s"
+msgstr "firebase設定ファイルの読み込みに失敗しました：％s"
+
+#: src/project.c:1779
+msgid "Could not find project_number entry in Firebase config file"
+msgstr "Firebase設定ファイルでproject_numberエントリを見つけることができませんでした"
+
+#: src/project.c:1787
+msgid "Could not find end of project_number entry in Firebase config file"
+msgstr "Firebase設定ファイルのproject_numberエントリの終わりを見つけることができませんでした"
+
+#: src/project.c:1796
+msgid "Could not find gcm_defaultSenderId entry in values.xml file"
+msgstr "values.xmlファイルでgcm_defaultSenderIdエントリを見つけることができませんでした"
+
+#: src/project.c:1807
+msgid "Could not find end of gcm_defaultSenderId entry in values.xml file"
+msgstr "values.xmlファイルにgcm_defaultSenderIdエントリの終わりが見つかりませんでした"
+
+#: src/project.c:1827
+msgid "Could not find firebase_url entry in Firebase config file"
+msgstr "Firebase設定ファイルでfirebase_urlエントリを見つけることができませんでした"
+
+#: src/project.c:1835
+msgid "Could not find end of firebase_url entry in Firebase config file"
+msgstr "Firebase設定ファイルのfirebase_urlエントリの終わりを見つけることができませんでした"
+
+#: src/project.c:1844
+msgid "Could not find firebase_database_url entry in values.xml file"
+msgstr "values.xmlファイルにfirebase_database_urlエントリが見つかりませんでした"
+
+#: src/project.c:1855
+msgid "Could not find end of firebase_database_url entry in values.xml file"
+msgstr "values.xmlファイル内のfirebase_database_urlエントリの終わりを見つけることができませんでした。"
+
+#: src/project.c:1890
+msgid "Could not find android package_name \"%s\" in the Firebase config file"
+msgstr "Firebase設定ファイルでアンドロイドパッケージ名 \"％s\"を見つけることができませんでした"
+
+#: src/project.c:1908
+msgid "Could not find matching mobilesdk_app_id entry in Firebase config file"
+msgstr "Firebase設定ファイルに一致するmobilesdk_app_idエントリが見つかりませんでした"
+
+#: src/project.c:1916
+msgid "Could not find end of mobilesdk_app_id entry in Firebase config file"
+msgstr "Firebase設定ファイルにmobilesdk_app_idエントリの終わりが見つかりませんでした"
+
+#: src/project.c:1925
+msgid "Could not find google_app_id entry in values.xml file"
+msgstr "values.xmlファイルにgoogle_app_idエントリが見つかりませんでした"
+
+#: src/project.c:1936
+msgid "Could not find end of google_app_id entry in values.xml file"
+msgstr "values.xmlファイルにgoogle_app_idエントリの終わりが見つかりませんでした"
+
+#: src/project.c:1956
+msgid "Could not find current_key entry in Firebase config file"
+msgstr "Firebase設定ファイルでcurrent_keyエントリを見つけることができませんでした"
+
+#: src/project.c:1964
+msgid "Could not find end of current_key entry in Firebase config file"
+msgstr "Firebase設定ファイルでcurrent_keyエントリの終わりを見つけることができませんでした"
+
+#: src/project.c:1973
+msgid "Could not find google_api_key entry in values.xml file"
+msgstr "values.xmlファイルにgoogle_api_keyエントリが見つかりませんでした"
+
+#: src/project.c:1984
+msgid "Could not find end of google_api_key entry in values.xml file"
+msgstr "values.xmlファイルにgoogle_api_keyエントリの終わりが見つかりませんでした"
+
+#: src/project.c:2001
+msgid "Could not find google_crash_reporting_api_key entry in values.xml file"
+msgstr "values.xmlファイルにgoogle_crash_reporting_api_keyエントリが見つかりませんでした"
+
+#: src/project.c:2012
+msgid "Could not find end of google_crash_reporting_api_key entry in values.xml file"
+msgstr "values.xmlファイルにgoogle_crash_reporting_api_keyエントリの終わりが見つかりませんでした"
+
+#: src/project.c:2033
+msgid "Failed to write resource values.xml file: %s"
+msgstr "リソースのvalues.xmlファイルを書き込めませんでした：％s"
+
+#: src/project.c:2046
+msgid "Failed to export project, AAPT2 program not found"
+msgstr "プロジェクトのエクスポートに失敗しました.AAPT2プログラムが見つかりませんでした"
+
+#: src/project.c:2068
+msgid "Failed to start packaging tool"
+msgstr "パッケージングツールの開始に失敗しました"
+
+#: src/project.c:2093 src/project.c:4316
+msgid "Failed to load image icon: %s"
+msgstr "イメージアイコンの読み込みに失敗しました：％s"
+
+#: src/project.c:2107 src/project.c:2262
+msgid "Failed to save xxxhdpi icon: %s"
+msgstr "xxxhdpiアイコンを保存できませんでした：％s"
+
+#: src/project.c:2127 src/project.c:2282
+msgid "Failed to save xxhdpi icon: %s"
+msgstr "xxhdpiアイコンを保存できませんでした：％s"
+
+#: src/project.c:2155 src/project.c:2307
+msgid "Failed to save xhdpi icon: %s"
+msgstr "xhdpiアイコンを保存できませんでした：％s"
+
+#: src/project.c:2177 src/project.c:2329
+msgid "Failed to save hdpi icon: %s"
+msgstr "hdpiアイコンの保存に失敗しました：％s"
+
+#: src/project.c:2199 src/project.c:2351
+msgid "Failed to save mdpi icon: %s"
+msgstr "mdpiアイコンの保存に失敗しました：％s"
+
+#: src/project.c:2221 src/project.c:2373
+msgid "Failed to save ldpi icon: %s"
+msgstr "ldpiアイコンの保存に失敗しました：％s"
+
+#: src/project.c:2250
+msgid "Failed to load notification icon: %s"
+msgstr "通知アイコンを読み込めませんでした：％s"
+
+#: src/project.c:2402
+msgid "Failed to load Ouya large icon: %s"
+msgstr "Ouya大きなアイコンを読み込めませんでした：％s"
+
+#: src/project.c:2410
+msgid "Ouya large icon must be 732x412 pixels"
+msgstr "Ouya大きなアイコンは732x412ピクセルでなければなりません"
+
+#: src/project.c:2431
+msgid "Failed to save lean back icon: %s"
+msgstr "無駄なバックアイコンを保存できませんでした：％s"
+
+#: src/project.c:2521
+msgid "Failed to write output files, check that your project directory is not in a write protected location"
+msgstr "出力ファイルの書き込みに失敗し、プロジェクトディレクトリが書き込み禁止の場所にないことを確認してください"
+
+#: src/project.c:2533
+msgid "Failed to initialise zip file for reading"
+msgstr "読み取りのためにzipファイルを初期化できませんでした"
+
+#: src/project.c:2538
+msgid "Failed to open zip file for writing"
+msgstr "書き込みのためにzipファイルを開けませんでした"
+
+#: src/project.c:2582
+msgid "Failed to add media files to APK"
+msgstr "メディアファイルをAPKに追加できませんでした"
+
+#: src/project.c:2588
+msgid "Failed to add finalize zip file"
+msgstr "ファイナライズZIPファイルの追加に失敗しました"
+
+#: src/project.c:2593
+msgid "Failed to end zip file"
+msgstr "ZIPファイルを終了できませんでした"
+
+#: src/project.c:2627
+msgid "Failed to run signing tool: %s"
+msgstr "署名ツールの実行に失敗しました：％s"
+
+#: src/project.c:2635
+msgid "Failed to sign APK, is your keystore password and alias correct? (error: %s)"
+msgstr "APKに署名できませんでしたが、キーストアのパスワードとエイリアスは正しいですか？ （エラー：％s）"
+
+#: src/project.c:2655
+msgid "Failed to run zipalign tool: %s"
+msgstr "zipalignツールの実行に失敗しました：％s"
+
+#: src/project.c:2663
+msgid "Zip align tool returned error: %s"
+msgstr "ZIP整列ツールがエラーを返しました：％s"
+
+#: src/project.c:2934
+msgid "You must choose an output folder to save your APKs"
+msgstr "APKを保存するには出力フォルダを選択する必要があります"
+
+#: src/project.c:3106
+msgid "You must have at least one project open to export all"
+msgstr "少なくとも1つのプロジェクトを開いてすべてをエクスポートする必要があります"
+
+#: src/project.c:3201
+msgid "You must choose an output location to save your keystore file"
+msgstr "キーストアファイルを保存する出力場所を選択する必要があります"
+
+#: src/project.c:3205
+msgid "\"%s\" already exists. Do you want to overwrite it?"
+msgstr "\"％s\"は既に存在します。上書きしますか？"
+
+#: src/project.c:3212
+msgid "Full name must be less than 30 characters"
+msgstr "完全な名前は30文字未満でなければなりません"
+
+#: src/project.c:3219
+msgid "Full name contains invalid characters, must be A-Z and spaces only"
+msgstr "フルネームには無効な文字が含まれており、A-Zとスペースのみでなければなりません"
+
+#: src/project.c:3230
+msgid "Company name must be less than 30 characters"
+msgstr "会社名は30文字未満でなければなりません"
+
+#: src/project.c:3237
+msgid "Company name contains invalid characters, must be A-Z and spaces only"
+msgstr "会社名に無効な文字が含まれており、A〜Zとスペースのみである必要があります"
+
+#: src/project.c:3248
+msgid "City must be less than 30 characters"
+msgstr "市区町村は30文字未満でなければなりません"
+
+#: src/project.c:3255
+msgid "City contains invalid characters, must be A-Z and spaces only"
+msgstr "市は無効な文字を含んでいますが、A-Zとスペースのみでなければなりません"
+
+#: src/project.c:3266
+msgid "Country code must be 2 characters"
+msgstr "国コードは2文字でなければなりません"
+
+#: src/project.c:3272
+msgid "Country code contains invalid characters, must be A-Z only"
+msgstr "国コードに無効な文字が含まれています.A〜Zのみでなければなりません"
+
+#: src/project.c:3283
+msgid "Password cannot be blank"
+msgstr "パスワードは空白にできません"
+
+#: src/project.c:3284
+msgid "Password must be at least 6 characters long"
+msgstr "パスワードは6文字以上でなければなりません"
+
+#: src/project.c:3285
+msgid "Password cannot contain double quotes"
+msgstr "パスワードには二重引用符を使用できません"
+
+#: src/project.c:3286
+msgid "Passwords do not match"
+msgstr "パスワードが一致していません"
+
+#: src/project.c:3340
+msgid "Could not find keytool program, the path \"%s\" is incorrect"
+msgstr "keytoolプログラムが見つかりませんでした。パス \"％s\"が間違っています"
+
+#: src/project.c:3370
+msgid "Failed to run keytool program: %s"
+msgstr "キーツールプログラムの実行に失敗しました：％s"
+
+#: src/project.c:3378
+msgid "keytool program returned error: %s"
+msgstr "keytoolプログラムがエラーを返しました：％s"
+
+#: src/project.c:3415
+msgid "Generate Keystore"
+msgstr "キーストアを生成する"
+
+#: src/project.c:3598
+msgid "You must choose an output location to save your IPA"
+msgstr "IPAを保存するには出力場所を選択する必要があります"
+
+#: src/project.c:3626
+msgid "App name contains invalid characters, it must not contain quotes or any of the following < > * . / \\ : ; | = , &"
+msgstr "アプリ名に無効な文字が含まれています。引用符や次の<> *のいずれも含まないでください。 / \\：; | =、"
+
+#: src/project.c:3641
+msgid "Firebase config file must be a .plist file"
+msgstr "Firebase設定ファイルは.plistファイルでなければなりません"
+
+#: src/project.c:3642
+msgid "Could not find Firebase config file"
+msgstr "Firebase設定ファイルが見つかりませんでした"
+
+#: src/project.c:3648
+msgid "Splash screen (640x960) must be a PNG file"
+msgstr "スプラッシュ画面（640x960）はPNGファイルである必要があります"
+
+#: src/project.c:3649
+msgid "Could not find splash screen (640x960) location"
+msgstr "スプラッシュスクリーン（640x960）の場所が見つかりませんでした"
+
+#: src/project.c:3654
+msgid "Splash screen (640x1136) must be a PNG file"
+msgstr "スプラッシュ画面（640x1136）はPNGファイルである必要があります"
+
+#: src/project.c:3655
+msgid "Could not find splash screen (640x1136) location"
+msgstr "スプラッシュスクリーン（640x1136）の場所が見つかりませんでした"
+
+#: src/project.c:3660
+msgid "Splash screen (1536x2048) must be a PNG file"
+msgstr "スプラッシュ画面（1536x2048）はPNGファイルである必要があります"
+
+#: src/project.c:3661
+msgid "Could not find splash screen (1536x2048) location"
+msgstr "スプラッシュ画面（1536x2048）の場所が見つかりませんでした"
+
+#: src/project.c:3666
+msgid "Splash screen (1125x2436) must be a PNG file"
+msgstr "スプラッシュ画面（1125x2436）はPNGファイルである必要があります"
+
+#: src/project.c:3667
+msgid "Could not find splash screen (1125x2436) location"
+msgstr "スプラッシュスクリーン（1125x2436）の場所を見つけることができませんでした"
+
+#: src/project.c:3671
+msgid "You must select a provisioning profile"
+msgstr "プロビジョニングプロファイルを選択する必要があります"
+
+#: src/project.c:3672
+msgid "Provisioning profile must have .mobileprovision extension"
+msgstr "プロビジョニングプロファイルには、.mobileprovision拡張子が必要です"
+
+#: src/project.c:3673
+msgid "Could not find provisioning profile location"
+msgstr "プロビジョニングプロファイルの場所を見つけることができませんでした"
+
+#: src/project.c:3676
+msgid "You must enter a version number, e.g. 1.0.0"
+msgstr "バージョン番号を入力する必要があります。 1.0.0"
+
+#: src/project.c:3681
+msgid "Version number contains invalid characters, must be 0-9 and . only"
+msgstr "バージョン番号に無効な文字が含まれています。のみ"
+
+#: src/project.c:3693
+msgid "Facebook App ID must be numbers only"
+msgstr "Facebook App IDは数字のみでなければなりません"
+
+#: src/project.c:3701
+msgid "As of iOS 11 you must install XCode to export iOS apps from the AGK IDE. XCode can be downloaded from the Mac AppStore"
+msgstr "iOS 11以降、AGOS IDEからiOSアプリケーションをエクスポートするには、XCodeをインストールする必要があります。 XcodeはMac AppStoreからダウンロードできます"
+
+#: src/project.c:3826
+msgid "Failed to read provisioning profile"
+msgstr "プロビジョニングプロファイルの読み込みに失敗しました"
+
+#: src/project.c:3834
+msgid "Failed to read certificate from provisioning profile"
+msgstr "プロビジョニングプロファイルから証明書を読み取れませんでした"
+
+#: src/project.c:3841
+msgid "Failed to read certificate data from provisioning profile"
+msgstr "プロビジョニングプロファイルから証明書データの読み取りに失敗しました"
+
+#: src/project.c:3849
+msgid "Failed to read certificate end data from provisioning profile"
+msgstr "プロビジョニングプロファイルから証明書のエンドデータを読み取ることができませんでした"
+
+#: src/project.c:3865
+msgid "Failed to read bundle ID from provisioning profile"
+msgstr "プロビジョニングプロファイルからバンドルIDを読み取ることができませんでした"
+
+#: src/project.c:3872
+msgid "Failed to read bundle ID data from provisioning profile"
+msgstr "プロビジョニングプロファイルからバンドルIDデータを読み取ることができませんでした"
+
+#: src/project.c:3880
+msgid "Failed to read bundle ID end data from provisioning profile"
+msgstr "バンドルIDの終了データをプロビジョニングプロファイルから読み取ることができませんでした"
+
+#: src/project.c:3916
+msgid "Failed to read App Group data from provisioning profile"
+msgstr "プロビジョニングプロファイルからApp Groupデータを読み取ることができませんでした"
+
+#: src/project.c:3923 src/project.c:3943
+msgid "Failed to read App Group end data from provisioning profile"
+msgstr "App Groupのエンドデータをプロビジョニングプロファイルから読み取ることができませんでした"
+
+#: src/project.c:3971
+msgid "Failed to read team ID from provisioning profile"
+msgstr "プロビジョニングプロファイルからチームIDを読み込めませんでした"
+
+#: src/project.c:3979
+msgid "Failed to read team ID data from provisioning profile"
+msgstr "プロビジョニングプロファイルからチームIDデータを読み取ることができませんでした"
+
+#: src/project.c:3987
+msgid "Failed to read team ID end data from provisioning profile"
+msgstr "プロビジョニングプロファイルからチームIDの終了データを読み取ることができませんでした"
+
+#: src/project.c:4022 src/project.c:4114
+msgid "Failed to run \"security\" program: %s"
+msgstr "「セキュリティ」プログラムの実行に失敗しました：％s"
+
+#: src/project.c:4030 src/project.c:4122
+msgid "Failed to get code signing identities (error %d: %s)"
+msgstr "コード署名IDを取得できませんでした（エラー％d：％s）"
+
+#: src/project.c:4031 src/project.c:4123
+msgid "Failed to get code signing identities (error: %d)"
+msgstr "コード署名IDを取得できませんでした（エラー：％d）"
+
+#: src/project.c:4043
+msgid "Failed to read code signing identity from certificate list"
+msgstr "証明書リストからコード署名IDを読み取ることができませんでした"
+
+#: src/project.c:4059
+msgid "Failed to read certificate data from certificate list"
+msgstr "証明書リストから証明書データを読み取ることができませんでした"
+
+#: src/project.c:4067
+msgid "Failed to read certificate end data from certificate list"
+msgstr "証明書リストから証明書の終了データを読み取ることができませんでした"
+
+#: src/project.c:4094
+msgid "Could not find the certificate used to create the provisioning profile, have you added the certificate to your keychain?"
+msgstr "プロビジョニングプロファイルの作成に使用した証明書が見つかりませんでした。証明書をキーチェーンに追加しましたか？"
+
+#: src/project.c:4130
+msgid "Signing certificate is not valid, either the private key is missing from your keychain, or the certificate has expired"
+msgstr "署名証明書が無効です。秘密キーがキーチェーンにないか、証明書が期限切れです。"
+
+#: src/project.c:4181
+msgid "Failed to write entitlements file: %s"
+msgstr "エンタイトルメントファイルの書き込みに失敗しました：％s"
+
+#: src/project.c:4207
+msgid "Failed to write expanded entitlements file: %s"
+msgstr "拡張エンタイトルメントファイルの作成に失敗しました：％s"
+
+#: src/project.c:4232
+msgid "Failed to read Info.plist file"
+msgstr "Info.plistファイルの読み込みに失敗しました"
+
+#: src/project.c:4271
+msgid "Failed to write Info.plist file"
+msgstr "Info.plistファイルの書き込みに失敗しました"
+
+#: src/project.c:4289 src/project.c:4750
+msgid "Failed to run userid program: %s"
+msgstr "ユーザーIDプログラムの実行に失敗しました：％s"
+
+#: src/project.c:4309
+msgid "Failed to create icon asset catalog"
+msgstr "アイコン資産カタログの作成に失敗しました"
+
+#: src/project.c:4328
+msgid "Failed to save 152x152 icon: %s"
+msgstr "152x152アイコンを保存できませんでした：％s"
+
+#: src/project.c:4341
+msgid "Failed to save 180x180 icon: %s"
+msgstr "180x180アイコンを保存できませんでした：％s"
+
+#: src/project.c:4354
+msgid "Failed to save 167x167 icon: %s"
+msgstr "167x167アイコンを保存できませんでした：％s"
+
+#: src/project.c:4367
+msgid "Failed to save 120x120 icon: %s"
+msgstr "120x120アイコンを保存できませんでした：％s"
+
+#: src/project.c:4380
+msgid "Failed to save 76x76 icon: %s"
+msgstr "76x76アイコンを保存できませんでした：％s"
+
+#: src/project.c:4393
+msgid "Failed to save 60x60 icon: %s"
+msgstr "60x60アイコンを保存できませんでした：％s"
+
+#: src/project.c:4406
+msgid "Failed to save 1024x1024 icon: %s"
+msgstr "1024x1024アイコンを保存できませんでした：％s"
+
+#: src/project.c:4441
+msgid "Failed to run \"actool\" program: %s"
+msgstr "\"actool\"プログラムの実行に失敗しました：％s"
+
+#: src/project.c:4449
+msgid "Failed to compile asset catalog (error %d: %s)"
+msgstr "資産カタログをコンパイルできませんでした（エラー％d：％s）"
+
+#: src/project.c:4450
+msgid "Failed to get compile asset catalog (error: %d)"
+msgstr "資産カタログのコンパイルに失敗しました（エラー：％d）"
+
+#: src/project.c:4470
+msgid "Failed to load splash screen (640x960): %s"
+msgstr "スプラッシュ画面（640x960）を読み込めませんでした：％s"
+
+#: src/project.c:4481
+msgid "Splash screen (640x960) should have an aspect ratio near 0.66 (e.g. 320x480 or 640x960) otherwise it will look stretched when scaled. Export will continue."
+msgstr "スプラッシュ画面（640x960）のアスペクト比は0.66に近い値（320x480や640x960など）にする必要があります。それ以外の場合は、拡大縮小時に引き伸ばされます。輸出は続行されます。"
+
+#: src/project.c:4490
+msgid "Failed to save Default@2x.png splash screen: %s"
+msgstr "Default@2x.pngスプラッシュ画面を保存できませんでした：％s"
+
+#: src/project.c:4511
+msgid "Failed to load splash screen (640x1136): %s"
+msgstr "スプラッシュ画面（640x1136）を読み込めませんでした：％s"
+
+#: src/project.c:4522
+msgid "Splash screen (640x1136) should have an aspect ratio near 0.56 (e.g. 640x1136 or 1080x1920) otherwise it will look stretched when scaled. Export will continue."
+msgstr "スプラッシュ画面（640x1136）のアスペクト比は0.56（たとえば640x1136または1080x1920）にする必要があります。それ以外の場合は、拡大縮小したときに引き伸ばされます。輸出は続行されます。"
+
+#: src/project.c:4531
+msgid "Failed to save Default-568h@2x.png splash screen: %s"
+msgstr "Default-568h@2x.pngスプラッシュ画面を保存できませんでした：％s"
+
+#: src/project.c:4544
+msgid "Failed to save Default-375w-667h@2x.png splash screen: %s"
+msgstr "Default-375w-667h@2x.pngスプラッシュ画面を保存できませんでした：％s"
+
+#: src/project.c:4557
+msgid "Failed to save Default-414w-736h@3x.png splash screen: %s"
+msgstr "Default-414w-736h@3x.pngスプラッシュ画面を保存できませんでした：％s"
+
+#: src/project.c:4578
+msgid "Failed to load splash screen (1125x2436): %s"
+msgstr "スプラッシュ画面を読み込めませんでした（1125x2436）：％s"
+
+#: src/project.c:4589
+msgid "Splash screen (1125x2436) should have an aspect ratio near 0.46 otherwise it will look stretched when scaled. Export will continue."
+msgstr "スプラッシュスクリーン（1125x2436）のアスペクト比は0.46に近くなければなりません。それ以外の場合は、スケーリング時に引き伸ばされて見えます。輸出は続行されます。"
+
+#: src/project.c:4598
+msgid "Failed to save Default-375w-812h@3x.png splash screen: %s"
+msgstr "Default-375w-812h@3x.pngスプラッシュ画面を保存できませんでした：％s"
+
+#: src/project.c:4619
+msgid "Failed to load splash screen (1536x2048): %s"
+msgstr "スプラッシュ画面を読み込めませんでした（1536x2048）：％s"
+
+#: src/project.c:4630
+msgid "Splash screen (1536x2048) should have an aspect ratio near 0.75 (e.g. 768x1024 or 1536x2048) otherwise it will look stretched when scaled. Export will continue."
+msgstr "スプラッシュ画面（1536x2048）のアスペクト比は0.75（たとえば768x1024または1536x2048）にする必要があります。それ以外の場合は、拡大縮小時に引き伸ばされます。輸出は続行されます。"
+
+#: src/project.c:4639
+msgid "Failed to save Default-Portrait~ipad.png splash screen: %s"
+msgstr "Default-Portrait〜ipad.pngスプラッシュ画面を保存できませんでした：％s"
+
+#: src/project.c:4652
+msgid "Failed to save Default-Portrait@2x~ipad.png splash screen: %s"
+msgstr "Default-Portrait@2x~ipad.pngスプラッシュ画面を保存できませんでした：％s"
+
+#: src/project.c:4665
+msgid "Failed to save Default-Portrait-1366h@2x~ipad.png splash screen: %s"
+msgstr "Default-Portrait-1366h@2x~ipad.pngスプラッシュ画面を保存できませんでした：％s"
+
+#: src/project.c:4680
+msgid "Failed to save Default-Landscape~ipad.png splash screen: %s"
+msgstr "Default-Landscape〜ipad.pngスプラッシュ画面を保存できませんでした：％s"
+
+#: src/project.c:4695
+msgid "Failed to save Default-Landscape@2x~ipad.png splash screen: %s"
+msgstr "Default-Landscape@2x~ipad.pngスプラッシュ画面を保存できませんでした：％s"
+
+#: src/project.c:4710
+msgid "Failed to save Default-Landscape-1366h@2x~ipad.png splash screen: %s"
+msgstr "デフォルトの保存に失敗しました - ランドスケープ-1366h@2x~ipad.pngスプラッシュ画面：％s"
+
+#: src/project.c:4758
+msgid "Failed to get user name (error: %d)"
+msgstr "ユーザー名を取得できませんでした（エラー：％d）"
+
+#: src/project.c:4778
+msgid "Failed to run groupid program: %s"
+msgstr "groupidプログラムの実行に失敗しました：％s"
+
+#: src/project.c:4786
+msgid "Failed to get group name (error: %d)"
+msgstr "グループ名の取得に失敗しました（エラー：％d）"
+
+#: src/project.c:4807
+msgid "Failed to run chown program: %s"
+msgstr "chownプログラムの実行に失敗しました：％s"
+
+#: src/project.c:4836
+msgid "Failed to run chmod program: %s"
+msgstr "chmodプログラムの実行に失敗しました：％s"
+
+#: src/project.c:4870
+msgid "Failed to run codesign program: %s"
+msgstr "codesignプログラムの実行に失敗しました：％s"
+
+#: src/project.c:4888
+msgid "Failed to initialise zip file for writing"
+msgstr "書き込みのためにzipファイルを初期化できませんでした"
+
+#: src/project.c:4896
+msgid "Failed to add files to IPA"
+msgstr "IPAにファイルを追加できませんでした"
+
+#: src/project.c:4902
+msgid "Failed to finalize IPA file"
+msgstr "IPAファイルのファイナライズに失敗しました"
+
+#: src/project.c:4907
+msgid "Failed to end IPA file"
+msgstr "IPAファイルを終了できませんでした"
+
+#: src/project.c:4990
+msgid "Export IPA"
+msgstr "輸出IPA"
+
+#: src/project.c:5397
+msgid "Project file \"%s\" could not be written"
+msgstr "プロジェクトファイル \"％s\"を書き込めませんでした"
+
+#: src/project.c:5405
+msgid "Project \"%s\" closed."
+msgstr "プロジェクト \"％s\"が閉じました。"
+
+#: src/project.c:5503
+msgid "Failed to add file to project, no current project selected. Click Project in the menu bar to create a new project or open an existing one."
+msgstr "現在のプロジェクトが選択されていないため、プロジェクトにファイルを追加できませんでした。メニューバーの[プロジェクト]をクリックして、新しいプロジェクトを作成するか、既存のプロジェクトを開きます。"
+
+#: src/project.c:5523 src/project.c:5557
+msgid "Project file could not be saved"
+msgstr "プロジェクトファイルを保存できませんでした"
+
+#: src/project.c:5525 src/project.c:5559
+msgid "Project \"%s\" saved."
+msgstr "プロジェクト \"％s\"が保存されました。"
+
+#: src/project.c:5537
+msgid "Failed to remove file from project, no current project selected"
+msgstr "プロジェクトからファイルを削除できませんでした。現在選択されているプロジェクトはありません"
+
+#: src/project.c:5663
+msgid "Do you want to close it before proceeding?"
+msgstr "続行する前に閉じたいですか？"
+
+#: src/project.c:5664
+msgid "The '%s' project is open."
+msgstr "'％s'プロジェクトが開いています。"
+
+#: src/project.c:5774
+msgid "Failed to import project source file, project file may be corrupt"
+msgstr "プロジェクトソースファイルのインポートに失敗しました。プロジェクトファイルが破損している可能性があります。"
+
+#: src/project.c:5817
+msgid "Project \"%s\" imported."
+msgstr "プロジェクト \"％s\"をインポートしました。"
+
+#: src/project.c:5845
+msgid "The specified project name is too short."
+msgstr "指定されたプロジェクト名が短すぎます。"
+
+#: src/project.c:5851
+msgid "The specified project name is too long (max. %d characters)."
+msgstr "指定されたプロジェクト名が長すぎます（最大％d文字）。"
+
+#: src/project.c:5859
+msgid "The project must have a base path"
+msgstr "プロジェクトには基本パスが必要です"
+
+#: src/project.c:5870
+msgid "The project path must be an absolute path"
+msgstr "プロジェクトパスは絶対パスでなければなりません"
+
+#: src/project.c:5884
+msgid "Project base directory could not be created (%s)."
+msgstr "プロジェクトのベースディレクトリを作成できませんでした（％s）。"
+
+#: src/project.c:5908
+msgid "You have specified an invalid project filename."
+msgstr "無効なプロジェクトファイル名を指定しました。"
+
+#: src/project.c:5920
+msgid "Project file could not be written (%s)."
+msgstr "プロジェクトファイルを書き込めませんでした（％s）。"
+
+#: src/project.c:6005 src/project.c:6016
+msgid "Choose Project Filename"
+msgstr "プロジェクトファイル名を選択"
+
+#: src/project.c:6080
+msgid "Project \"%s\" opened."
+msgstr "プロジェクト \"％s\"が開かれました。"
+
+#: src/search.c:302 src/search.c:956
+msgid "_Use regular expressions"
+msgstr "_正規表現を使用する"
+
+#: src/search.c:305
+msgid "Use POSIX-like regular expressions. For detailed information about using regular expressions, please read the documentation."
+msgstr "POSIXのような正規表現を使用してください。正規表現の使用の詳細については、ドキュメントをお読みください。"
+
+#: src/search.c:312
+msgid "Search _backwards"
+msgstr "検索_backwards"
+
+#: src/search.c:325
+msgid "Use _escape sequences"
+msgstr "_エスケープシーケンスを使う"
+
+#: src/search.c:329
+msgid "Replace \\\\, \\t, \\n, \\r and \\uXXXX (Unicode chararacters) with the corresponding control characters"
+msgstr "\\\\、\\ t、\\ n、\\ rおよび\\ uXXXX（Unicode文字）を対応する制御文字に置き換えます"
+
+#: src/search.c:338 src/search.c:965
+msgid "C_ase sensitive"
+msgstr "大文字と小文字を区別"
+
+#: src/search.c:342 src/search.c:970
+msgid "Match only a _whole word"
+msgstr "一致する単語のみを検索する"
+
+#: src/search.c:346
+msgid "Match from s_tart of word"
+msgstr "単語のs_tartからの一致"
+
+#: src/search.c:462
+msgid "_Previous"
+msgstr "_前"
+
+#: src/search.c:467
+msgid "_Next"
+msgstr "_次"
+
+#: src/search.c:471 src/search.c:629 src/search.c:866
+msgid "_Search for:"
+msgstr "_検索する："
+
+#: src/search.c:499
+msgid "_Find All"
+msgstr "_すべてを見つける"
+
+#: src/search.c:506
+msgid "_Mark"
+msgstr "_マーク"
+
+#: src/search.c:508
+msgid "Mark all matches in the current document"
+msgstr "現在のドキュメントにすべての一致をマークする"
+
+#: src/search.c:513 src/search.c:688
+msgid "In Sessi_on"
+msgstr "Sessi_onで"
+
+#: src/search.c:518 src/search.c:693
+msgid "_In Document"
+msgstr "_Inドキュメント"
+
+#: src/search.c:524 src/search.c:706
+msgid "Close _dialog"
+msgstr "_dialogを閉じる"
+
+#: src/search.c:528 src/search.c:710
+msgid "Disable this option to keep the dialog open"
+msgstr "ダイアログを開いたままにするには、このオプションを無効にします"
+
+#: src/search.c:618
+msgid "_Replace"
+msgstr "_置き換え"
+
+#: src/search.c:623
+msgid "Replace & Fi_nd"
+msgstr "Replace＆Fi_nd"
+
+#: src/search.c:632
+msgid "Replace wit_h:"
+msgstr "と置換する："
+
+#: src/search.c:681
+msgid "Re_place All"
+msgstr "すべてのRe_place"
+
+#: src/search.c:698
+msgid "In Se_lection"
+msgstr "Se_選択で"
+
+#: src/search.c:700
+msgid "Replace all matches found in the currently selected text"
+msgstr "現在選択されているテキストにあるすべての一致を置換する"
+
+#: src/search.c:813
+msgid "all"
+msgstr "すべて"
+
+#: src/search.c:815
+msgid "project"
+msgstr "プロジェクト"
+
+#: src/search.c:817
+msgid "custom"
+msgstr "カスタム"
+
+#: src/search.c:821
+msgid "All: search all files in the directory\n"
+"Project: use file patterns defined in the project settings\n"
+"Custom: specify file patterns manually"
+msgstr "すべて：ディレクトリ内のすべてのファイルを検索する\n"
+"プロジェクト：プロジェクト設定で定義されたファイルパターンを使用する\n"
+"カスタム：ファイルパターンを手動で指定する"
+
+#: src/search.c:885
+msgid "Fi_les:"
+msgstr "Fi_les："
+
+#: src/search.c:897
+msgid "File patterns, e.g. *.c *.h"
+msgstr "ファイルパターン。 * .c * .h"
+
+#: src/search.c:909
+msgid "_Directory:"
+msgstr "_ディレクトリ："
+
+#: src/search.c:928
+msgid "E_ncoding:"
+msgstr "エンコーディング："
+
+#: src/search.c:959
+msgid "See grep's manual page for more information"
+msgstr "詳細については、grepのマニュアルページを参照してください。"
+
+#: src/search.c:961
+msgid "_Recurse in subfolders"
+msgstr "_Recurse in subfolders"
+
+#: src/search.c:974
+msgid "_Invert search results"
+msgstr "_検索結果を無効にする"
+
+#: src/search.c:978
+msgid "Invert the sense of matching, to select non-matching lines"
+msgstr "マッチングの感覚を反転し、一致しない線を選択する"
+
+#: src/search.c:995
+msgid "E_xtra options:"
+msgstr "E_xtraオプション："
+
+#: src/search.c:1003
+msgid "Other options to pass to Grep"
+msgstr "Grepに渡すその他のオプション"
+
+#: src/search.c:1360 src/search.c:2225 src/search.c:2228
+msgid "Found %d match for \"%s\"."
+msgid_plural "Found %d matches for \"%s\"."
+msgstr[0] "\"％s\"に一致する％dが見つかりました。"
+
+#: src/search.c:1414
+msgid "Replaced %u matches in %u documents."
+msgstr "置き換えられた％uは％uドキュメントで一致します。"
+
+#: src/search.c:1605
+msgid "Invalid directory for find in files."
+msgstr "ファイル内のfindのディレクトリが無効です。"
+
+#: src/search.c:1626
+msgid "No text to find."
+msgstr "検索するテキストがありません。"
+
+#: src/search.c:1659
+msgid "Cannot execute grep tool '%s'; check the path setting in Preferences."
+msgstr "grepツール '％s'を実行できません。環境設定でパス設定を確認してください。"
+
+#: src/search.c:1666
+msgid "Cannot parse extra options: %s"
+msgstr "余分なオプションを解析できません：％s"
+
+#: src/search.c:1733
+msgid "Searching..."
+msgstr "検索中..."
+
+#: src/search.c:1744
+msgid "%s %s -- %s (in directory: %s)"
+msgstr "％s％s  - ％s（ディレクトリ：％s）"
+
+#: src/search.c:1784
+msgid "Could not open directory (%s)"
+msgstr "ディレクトリ（％s）を開けませんでした"
+
+#: src/search.c:1889
+msgid "Search failed."
+msgstr "検索に失敗しました。"
+
+#: src/search.c:1916
+msgid "Search completed with %d match."
+msgid_plural "Search completed with %d matches."
+msgstr[0] "％d件の検索で検索が完了しました。"
+
+#: src/search.c:1925
+msgid "No matches found."
+msgstr "一致するものは見つかりませんでした。"
+
+#: src/search.c:1953
+msgid "Bad regex: %s"
+msgstr "不正な正規表現：％s"
+
+#: src/sidebar.c:174
+msgid "No tags found"
+msgstr "タグが見つかりません"
+
+#: src/sidebar.c:410
+msgid "Variable"
+msgstr "変数"
+
+#: src/sidebar.c:424 src/stash.c:1125
+msgid "Value"
+msgstr "値"
+
+#: src/sidebar.c:1135
+msgid "Open Containing Folder"
+msgstr "開いているフォルダを含む"
+
+#: src/sidebar.c:1150 src/sidebar.c:1666
+msgid "Remove From Project"
+msgstr "プロジェクトから削除"
+
+#: src/sidebar.c:1160
+msgid "Add To Current Project"
+msgstr "現在のプロジェクトに追加"
+
+#: src/sidebar.c:1667
+msgid "Close Project"
+msgstr "プロジェクトを閉じる"
+
+#: src/sidebar.c:1672
+msgid "Close Document"
+msgstr "ドキュメントを閉じる"
+
+#: src/socket.c:232
+msgid "Geany tried to access the Unix Domain socket of another instance running as another user.\n"
+"This is a fatal error and Geany will now quit."
+msgstr "Geanyは別のユーザーとして実行中の別のインスタンスのUnix Domainソケットにアクセスしようとしました。\n"
+"これは致命的なエラーで、Geanyは終了します。"
+
+#: src/stash.c:1118
+msgid "Name"
+msgstr "名"
+
+#: src/symbols.c:668
+msgid "Sections"
+msgstr "セクション"
+
+#: src/symbols.c:669
+msgid "Keys"
+msgstr "キー"
+
+#: src/symbols.c:675 src/symbols.c:693
+msgid "Functions"
+msgstr "機能"
+
+#: src/symbols.c:677
+msgid "Constants"
+msgstr "定数"
+
+#: src/symbols.c:678
+msgid "Types"
+msgstr "タイプ"
+
+#: src/symbols.c:679
+msgid "Labels"
+msgstr "ラベル"
+
+#: src/symbols.c:680 src/symbols.c:694
+msgid "Members"
+msgstr "メンバー"
+
+#: src/symbols.c:681 src/symbols.c:702
+msgid "Other"
+msgstr "その他"
+
+#: src/symbols.c:688
+msgid "Namespaces"
+msgstr "名前空間"
+
+#: src/symbols.c:691
+msgid "Classes"
+msgstr "クラス"
+
+#: src/symbols.c:692
+msgid "Interfaces"
+msgstr "インターフェイス"
+
+#: src/symbols.c:695
+msgid "Structs"
+msgstr "構造"
+
+#: src/symbols.c:696
+msgid "Typedefs / Enums"
+msgstr "typedefs / enums"
+
+#: src/symbols.c:701
+msgid "Extern Variables"
+msgstr "Extern変数"
+
+#: src/symbols.c:1461
+msgid "Unknown filetype extension for \"%s\".\n"
+""
+msgstr "\"％s\"の不明なファイル拡張子。\n"
+""
+
+#: src/symbols.c:1487
+msgid "Failed to create tags file, perhaps because no tags were found.\n"
+""
+msgstr "おそらくタグが見つからなかったため、タグファイルの作成に失敗しました。\n"
+""
+
+#: src/symbols.c:1494
+msgid "Usage: %s -g <Tag File> <File list>\n"
+"\n"
+""
+msgstr "使用法：％s -g <タグファイル> <ファイルリスト>\n"
+"\n"
+""
+
+#: src/symbols.c:1495
+msgid "Example:\n"
+"CFLAGS=`pkg-config gtk+-2.0 --cflags` %s -g gtk2.c.tags /usr/include/gtk-2.0/gtk/gtk.h\n"
+""
+msgstr "例：\n"
+"CFLAGS = `pkg-config gtk + -2.0 --cflags`％s -g gtk2.c.tags /usr/include/gtk-2.0/gtk/gtk.h\n"
+""
+
+#: src/symbols.c:1509
+msgid "Load Tags"
+msgstr "タグを読み込む"
+
+#: src/symbols.c:1516
+msgid "Geany tag files (*.*.tags)"
+msgstr "Geanyタグファイル（*。*。タグ）"
+
+#: src/symbols.c:1536
+msgid "Loaded %s tags file '%s'."
+msgstr "％s個のタグファイル '％s'を読み込みました。"
+
+#: src/symbols.c:1539
+msgid "Could not load tags file '%s'."
+msgstr "タグファイル '％s'を読み込めませんでした。"
+
+#: src/symbols.c:1677
+msgid "Forward declaration \"%s\" not found."
+msgstr "フォワード宣言 \"％s\"が見つかりません。"
+
+#: src/symbols.c:1679
+msgid "Definition of \"%s\" not found."
+msgstr "\"％s\"の定義が見つかりません。"
+
+#: src/symbols.c:2050
+msgid "Sort by _Name"
+msgstr "名前順"
+
+#: src/symbols.c:2057
+msgid "Sort by _Appearance"
+msgstr "_Appearanceで並べ替え"
+
+#: src/templates.c:75
+msgid "Failed to convert template file \"%s\" to UTF-8"
+msgstr "テンプレートファイル \"％s\"をUTF-8に変換できませんでした"
+
+#: src/toolbar.c:54
+msgid "Create a new project"
+msgstr "新しいプロジェクトを作成する"
+
+#: src/toolbar.c:55
+msgid "Save the current file"
+msgstr "現在のファイルを保存する"
+
+#: src/toolbar.c:57
+msgid "Save all open files"
+msgstr "開いているファイルをすべて保存する"
+
+#: src/toolbar.c:58
+msgid "Reload the current file from disk"
+msgstr "現在のファイルをディスクから再ロードする"
+
+#: src/toolbar.c:59
+msgid "Close the current file"
+msgstr "現在のファイルを閉じる"
+
+#: src/toolbar.c:60
+msgid "Close all open files"
+msgstr "開いているファイルをすべて閉じる"
+
+#: src/toolbar.c:61
+msgid "Cut the current selection"
+msgstr "現在の選択範囲をカットする"
+
+#: src/toolbar.c:62
+msgid "Copy the current selection"
+msgstr "現在の選択範囲をコピーする"
+
+#: src/toolbar.c:63
+msgid "Paste the contents of the clipboard"
+msgstr "クリップボードの内容を貼り付けます"
+
+#: src/toolbar.c:64
+msgid "Delete the current selection"
+msgstr "現在の選択を削除する"
+
+#: src/toolbar.c:65
+msgid "Undo the last modification"
+msgstr "最後の変更を元に戻す"
+
+#: src/toolbar.c:66
+msgid "Redo the last modification"
+msgstr "最後の変更をやり直す"
+
+#: src/toolbar.c:69
+msgid "Compile the current project"
+msgstr "現在のプロジェクトをコンパイルする"
+
+#: src/toolbar.c:70
+msgid "Run the current project on the local machine"
+msgstr "ローカルマシン上で現在のプロジェクトを実行する"
+
+#: src/toolbar.c:71
+msgid "Broadcast the current project to devices"
+msgstr "現在のプロジェクトをデバイスにブロードキャストする"
+
+#: src/toolbar.c:72
+msgid "Debug the current project"
+msgstr "現在のプロジェクトをデバッグする"
+
+#: src/toolbar.c:73
+msgid "Open a color chooser dialog, to interactively pick colors from a palette"
+msgstr "カラーチューザーダイアログを開き、パレットから色をインタラクティブに選択する"
+
+#: src/toolbar.c:74
+msgid "Zoom in the text"
+msgstr "テキストを拡大する"
+
+#: src/toolbar.c:75
+msgid "Zoom out the text"
+msgstr "テキストをズームアウトする"
+
+#: src/toolbar.c:76
+msgid "Decrease indentation"
+msgstr "押し込み量を減らす"
+
+#: src/toolbar.c:77
+msgid "Increase indentation"
+msgstr "インデントを増やす"
+
+#: src/toolbar.c:78 src/toolbar.c:385
+msgid "Find the entered text in the current file"
+msgstr "現在のファイルに入力されたテキストを検索する"
+
+#: src/toolbar.c:80
+msgid "Show the preferences dialog"
+msgstr "環境設定ダイアログを表示する"
+
+#: src/toolbar.c:81
+msgid "Quit Geany"
+msgstr "Geanyを終了する"
+
+#: src/toolbar.c:82
+msgid "Print document"
+msgstr "文書を印刷する"
+
+#: src/toolbar.c:83
+msgid "Replace text in the current document"
+msgstr "現在のドキュメントのテキストを置き換える"
+
+#: src/toolbar.c:367
+msgid "Open an existing project"
+msgstr "既存のプロジェクトを開く"
+
+#: src/toolbar.c:368
+msgid "Open a recent project"
+msgstr "最近のプロジェクトを開く"
+
+#: src/toolbar.c:385
+msgid "Search Field"
+msgstr "検索フィールド"
+
+#: src/toolbar.c:589
+msgid "Separator"
+msgstr "セパレータ"
+
+#: src/toolbar.c:590
+msgid "--- Separator ---"
+msgstr "---セパレータ---"
+
+#: src/toolbar.c:966
+msgid "Select items to be displayed on the toolbar. Items can be reordered by drag and drop."
+msgstr "ツールバーに表示する項目を選択します。アイテムは、ドラッグ＆ドロップで並べ替えることができます。"
+
+#: src/toolbar.c:982
+msgid "Available Items"
+msgstr "利用可能なアイテム"
+
+#: src/toolbar.c:1003
+msgid "Displayed Items"
+msgstr "表示される項目"
+
+#: src/tools.c:115 src/tools.c:120
+msgid "Invalid command: %s"
+msgstr "無効なコマンド：％s"
+
+#: src/tools.c:115
+msgid "Command not found"
+msgstr "コマンドが見つかりません"
+
+#: src/tools.c:271
+msgid "The executed custom command returned an error. Your selection was not changed. Error message: %s"
+msgstr "実行されたカスタムコマンドがエラーを返しました。あなたの選択は変更されませんでした。エラーメッセージ：％s"
+
+#: src/tools.c:338
+msgid "The executed custom command exited with an unsuccessful exit code."
+msgstr "実行されたカスタムコマンドは、終了コードが失敗して終了しました。"
+
+#: src/tools.c:366 src/tools.c:416
+msgid "Custom command failed: %s"
+msgstr "カスタムコマンドが失敗しました：％s"
+
+#: src/tools.c:370
+msgid "Passing data and executing custom command: %s"
+msgstr "データの受け渡しとカスタムコマンドの実行：％s"
+
+#: src/tools.c:528 src/tools.c:791
+msgid "Set Custom Commands"
+msgstr "カスタムコマンドの設定"
+
+#: src/tools.c:536
+msgid "You can send the current selection to any of these commands and the output of the command replaces the current selection."
+msgstr "現在の選択をこれらのコマンドのいずれかに送信することができ、コマンドの出力が現在の選択を置き換えます。"
+
+#: src/tools.c:550
+msgid "ID"
+msgstr "ID"
+
+#: src/tools.c:762
+msgid "No custom commands defined."
+msgstr "カスタムコマンドが定義されていません。"
+
+#: src/tools.c:860
+msgid "Word Count"
+msgstr "ワード数"
+
+#: src/tools.c:869
+msgid "selection"
+msgstr "選択"
+
+#: src/tools.c:874
+msgid "whole document"
+msgstr "全てのドキュメント"
+
+#: src/tools.c:883
+msgid "Range:"
+msgstr "範囲："
+
+#: src/tools.c:895
+msgid "Lines:"
+msgstr "ライン："
+
+#: src/tools.c:909
+msgid "Words:"
+msgstr "言葉："
+
+#: src/tools.c:923
+msgid "Characters:"
+msgstr "キャラクター："
+
+#: src/ui_utils.c:62
+msgid "line: %l / %L\t col: %c\t sel: %s\t %w      %t      %mmode: %M      encoding: %e      filetype: %f      scope: %S"
+msgstr "行：％l /％L col：％c sel：％s％w％t％mmode：％Mエンコード：％eファイルタイプ：％fスコープ：％S"
+
+#: src/ui_utils.c:248
+msgid "%dL"
+msgstr "％dL"
+
+#: src/ui_utils.c:254 src/ui_utils.c:261
+msgid "RO "
+msgstr "RO"
+
+#: src/ui_utils.c:256
+msgid "OVR"
+msgstr "OVR"
+
+#: src/ui_utils.c:256
+msgid "INS"
+msgstr "INS"
+
+#: src/ui_utils.c:270
+msgid "TAB"
+msgstr "タブ"
+
+#: src/ui_utils.c:273
+msgid "SP"
+msgstr "SP"
+
+#: src/ui_utils.c:276
+msgid "T/S"
+msgstr "T / S"
+
+#: src/ui_utils.c:284
+msgid "MOD"
+msgstr "MOD"
+
+#: src/ui_utils.c:412
+msgid " (new instance)"
+msgstr " （新しいインスタンス）"
+
+#: src/ui_utils.c:442
+msgid "Font updated (%s)."
+msgstr "フォントが更新されました（％s）。"
+
+#: src/ui_utils.c:737
+msgid "_Set Custom Date Format"
+msgstr "_カスタム日付形式の設定"
+
+#: src/ui_utils.c:1925 src/ui_utils.c:1994 src/ui_utils.c:2063
+#: src/ui_utils.c:2130 src/ui_utils.c:2171 src/ui_utils.c:2240
+#: src/ui_utils.c:2306
+msgid "Select Folder"
+msgstr "フォルダーを選択"
+
+#: src/ui_utils.c:1925 src/ui_utils.c:1994 src/ui_utils.c:2063
+#: src/ui_utils.c:2130 src/ui_utils.c:2171 src/ui_utils.c:2240
+#: src/ui_utils.c:2306
+msgid "Select File"
+msgstr "ファイルを選ぶ"
+
+#: src/ui_utils.c:2479
+msgid "Save All"
+msgstr "すべてを救う"
+
+#: src/ui_utils.c:2480
+msgid "Close All"
+msgstr "すべて閉じる"
+
+#: src/ui_utils.c:2746
+msgid "Geany cannot start!"
+msgstr "ゲイニーは始まらない！"
+
+#: src/ui_utils.c:3475
+msgid "Installing: "
+msgstr "インストール："
+
+#: src/ui_utils.c:3544
+msgid "Failed to get projects source folder"
+msgstr "プロジェクトのソースフォルダを取得できませんでした"
+
+#: src/ui_utils.c:3551
+msgid "Failed to get C++ libraries source folder"
+msgstr "C ++ライブラリのソースフォルダを取得できませんでした"
+
+#: src/ui_utils.c:3563
+msgid "Failed to find projects source folder at location: %s"
+msgstr "場所のプロジェクトソースフォルダを見つけることができませんでした：％s"
+
+#: src/ui_utils.c:3569
+msgid "Unexpected: Projects source folder is not a folder: %s"
+msgstr "予期しない：プロジェクトのソースフォルダがフォルダではありません：％s"
+
+#: src/ui_utils.c:3586
+msgid "Failed to find C++ libraries folder at location: %s"
+msgstr "場所：％sのC ++ライブラリフォルダを見つけることができませんでした"
+
+#: src/ui_utils.c:3592
+msgid "Unexpected: C++ libraries folder is not a folder: %s"
+msgstr "予期しない：C ++ライブラリのフォルダがフォルダではありません：％s"
+
+#: src/utils.c:90
+msgid "Select Browser"
+msgstr "ブラウザを選択"
+
+#: src/utils.c:91
+msgid "Failed to spawn the configured browser command. Please correct it or enter another one."
+msgstr "設定されたブラウザコマンドを生成できませんでした。それを修正するか、別のものを入力してください。"
+
+#: src/utils.c:377
+msgid "Win (CRLF)"
+msgstr "勝利（CRLF）"
+
+#: src/utils.c:378
+msgid "Mac (CR)"
+msgstr "Mac（CR）"
+
+#: src/utils.c:379
+msgid "Unix (LF)"
+msgstr "Unix（LF）"
+
+#: src/vte.c:437
+msgid "invalid VTE library \"%s\": missing symbol \"%s\""
+msgstr "無効なVTEライブラリ \"％s\"：シンボル \"％s\"がありません"
+
+#: src/vte.c:586
+msgid "_Set Path From Document"
+msgstr "_ドキュメントからのパスを設定する"
+
+#: src/vte.c:591
+msgid "_Restart Terminal"
+msgstr "_Restartターミナル"
+
+#: src/vte.c:614
+msgid "_Input Methods"
+msgstr "_Inputメソッド"
+
+#: src/vte.c:708
+msgid "Could not change the directory in the VTE because it probably contains a command."
+msgstr "おそらくコマンドが含まれているため、VTEのディレクトリを変更できませんでした。"
+
+#: src/win32.c:256
+msgid "Geany project files"
+msgstr "Geanyプロジェクトファイル"
+
+#: src/win32.c:261
+msgid "Executables"
+msgstr "実行可能ファイル"
+
+#: src/win32.c:1534
+msgid "Process timed out after %.02f s!"
+msgstr "プロセスは％.02f秒後にタイムアウトしました。"
+

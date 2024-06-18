@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>iOS (iPad/iPhone/iPod) - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; iOS (iPad/iPhone/iPod)</div><div class="page"><h1>iOS (iPad/iPhone/iPod)</h1><p>This guide explains the process involved in creating projects when using Tier 2 when using the iOS platform.</p><h2>What you need</h2><ul><li>Xcode 6</li><li>Mountain Lion 10.8 or higher</li></ul><h2>Setup</h2><p>When you first run the AGK IDE you will be prompted to install the AGK Projects and C++ libraries to a location of your choice. If you only intend to use the C++ libraries you can ignore the AGK Projects and just install the C++ libraries, then close the AGK IDE. If you wish to do this process again at a later date you can access it from the <b>Tools -> Install Addiitonal Files</b> menu option.</p><h2>Creating a project</h2><p>Within the <b>apps</b> folder there is a folder named template_ios. This is the template that contains all the project settings and initial code to get you started on the iOS platform. You can either open the project and start editing it, make a copy in the same folder, or copy the project and place it elsewhere. Please bear in mind that if you take the latter option you will need to update links to the include and library files.</p><p>You link to the Release version of the library for both Debug and Release builds.</p><h2>Project files</h2><p>The main project files are in the "classes" folder, the main source files of interest are template.cpp and template.h. The file template.h contains a class definition for our application and template.cpp contains the implementation, which has three functions laid out. The function Begin gets called at the start of the application and can be used to handle initial set up. The function Loop gets called on a continual basis and is effectively your main loop. Finally the function End will be called when the application is about to terminate.</p><p>Projects using AGK must compile with the iOS 8.0 SDK or above. You can still target down to iOS 5.1.1 using the target field in the build settings.</p><p>To fix the orientation to landscape or portrait you can change the define at the top of template.h that looks like this</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">//#define AGK_LANDSCAPE
+//#define AGK_PORTRAIT
+</pre></div><div align="right"><button class="btn" data-clipboard-text="//#define AGK_LANDSCAPE
+//#define AGK_PORTRAIT
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">//#define AGK_LANDSCAPE
+//#define AGK_PORTRAIT
+</pre></div><p>simply uncomment the one you want to use, leaving both commented will allow all 4 orientations. Then open the agkinterpreter-info.plist file and field the line "Initial interface orientation" and set it to your desired startup orientation.</p><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

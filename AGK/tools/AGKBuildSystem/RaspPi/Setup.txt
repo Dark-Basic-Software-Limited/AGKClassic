@@ -1,0 +1,5 @@
+sudo rpi-update
+sudo apt-get update
+sudo apt-get install subversion
+sudo apt-get install libx11-dev libcurl4-openssl-dev libxxf86vm-dev libopenal-dev libudev-dev libxrandr-dev libgtk2.0-dev intltool
+IDE/Geany-1.24.1/configure --prefix="$HOME/Programs/AGKIDE" --disable-vte

@@ -1,0 +1,142 @@
+﻿_header
+Custom text
+
+_sheader
+Description
+_text
+Internally AGK represents fonts using images, whereby each character is placed onto an image and can then be utilised by the text commands.
+
+_text
+For many situations the usage of the default font will be more than adequate, especially when displaying information on screen to assist with debugging. However, many games may require an extra element of customization that necessitates the use of different looking fonts.
+
+_sheader
+Default font
+
+_text
+The default font for AGK uses a fixed width, where each character on the grid is set to 16 x 6. This image shows the default font:
+
+_image
+ascii.png
+
+_text
+<br>Any calls to the command <i>CreateText</i> will result in this font being used automatically e.g.
+
+_tier1
+CreateText ( 1, "HELLO AGK!" )
+_tier1
+
+_tier2
+agk::CreateText ( 1, "HELLO AGK!" );
+_tier2
+
+_text
+Will produce this result:
+
+_image
+custom_text1.jpg
+
+_text
+<br>If you wanted to replace the default font and continue to use a fixed width font, you would need to create a new image in a paint package and replicate the default font image using your own font.
+
+_text
+Fixed width fonts are useful for certain situations, however, there are limitations such as the size of each character on the grid and this results in them losing some flexiblity.
+
+_sheader
+Alternative fonts
+
+_text
+Many games will require a custom font to be displayed. Here's an example that might be more suited to a game:
+
+_image
+custom.png
+
+_text
+AGK allows you to take an image like this and utilise it within the font system. This is handled by calling the command <i>SetTextFontImage</i>. This command has two parameters with the first being the ID number of the text and the second being the ID number of the image. The code that follows demonstrates creating a text entity, then loading an image and applying this image to the text:
+
+_tier1
+CreateText ( 1, "HELLO AGK!" )
+LoadImage ( 1, "custom.png" )
+SetTextFontImage ( 1, 1 )
+_tier1
+
+_text
+Here's the result:
+
+_image
+custom_text2.jpg
+
+_text
+Another point to consider when using custom fonts is that it's necessary to supply a text file that defines the relationship between characters and their location on the image. The name of this text file must match that of the image name along with the string "subimages" e.g.
+
+_listbegin
+custom image is named custom.png
+text file must sit alongside custom.png and be called "custom subimages.txt"
+_listend
+
+_listbegin
+custom image is named font123.png
+text file must sit alongside font123.png and be called "font123 subimages.txt"
+_listend
+
+_text
+Here's an extract showing how this file should be laid out:
+
+_listbegin
+65:76:126:25:42
+_listend
+
+_text
+This line matches the ASCII code for the letter A, which is 65 to coordinates 76, 126 on the image and tells us that the letter A is 25 pixels wide and 42 pixels high.
+
+_text
+This process needs to continue for all characters your custom image utilises. It may be, for example, that your custom font image comprised of numbers alone, so your file may look like this:
+
+_listbegin
+48:0:0:20:20
+49:20:0:20:20
+50:40:0:20:20
+_listend
+
+_text
+The above text tells us that number 0 (ASCII code 48) is positioned at 0, 0 on our image and has dimensions of 20 x 20. Number 1 (ASCII code 49) is positioned at 20, 0 on our image and has dimensions of 20 x 20. Number 2 (ASCII code 50) is positioned at 40, 0 on our image and has dimensions of 20 x 20.
+
+
+_sheader
+Full code listing
+_text
+Our final program demonstrates the use of a custom font image:
+
+_tier1
+backdrop = CreateSprite ( LoadImage ( "background4.jpg" ) )
+SetSpriteSize ( backdrop, 100, 100 )
+<br>
+CreateText ( 1, "HELLO AGK!" )
+LoadImage ( 1, "custom.png" )
+SetTextFontImage ( 1, 1 )
+<br>
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    int backdrop = agk::CreateSprite ( agk::LoadImage ( "background4.jpg" ) );
+    agk::SetSpriteSize ( backdrop, 100, 100 );
+    <br>
+    agk::CreateText ( 1, "HELLO AGK!" );
+    agk::LoadImage ( 1, "custom.png" );
+    agk::SetTextFontImage ( 1, 1 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+As you can see AGK provides plenty of flexibility when it comes to fonts.

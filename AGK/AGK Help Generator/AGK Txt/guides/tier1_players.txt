@@ -1,0 +1,41 @@
+_header
+Tier 1 Players
+
+_sheader
+Overview
+
+_text
+A collection of player applications are available for use with Tier 1. The purpose of these applications is to allow you to test your game on multiple platforms. For example, you can be developing your game on the Windows platform, install the player app on an iPad, launch it, hit the run, compile and broadcast button in the AGK IDE and your game will be transmitted and launched on the iPad.
+
+_sheader
+Windows Player
+
+_text
+The Windows player comes bundled with AGK. If installing to the default directory you can locate it here: <b>C:\Program Files\The Game Creators\AGK\Players\Windows</b>.
+
+_sheader
+iOS
+
+_text
+Apple do not allow us to upload the AGK Player to their store since it runs user code. Therefore the only way to test AGK apps on your iOS device is to compile the AGK Player yourself with your own Apple Developer account, you will need a Mac to do this. 
+
+_text
+Once you have created an iOS developer account ($99 per year), sign in <a href="https://developer.apple.com/devcenter/ios/index.action" target="_blank">here</a>, enter the <b>Certificates, Identifiers &amp; Profiles</b> section, click on <b>iOS Certificates</b> and if you haven't already, add an <b>App Store and Ad Hoc</b> certificate. Download this certificate and double click it to add it to your key chain. Then in the <b>Identifiers-&gt;App IDs</b> section add a new <b>App ID</b> for the player, this can be anything you like. Also add a device that you want to use to your account, you can add up to 100 devices. Then create an <b>AdHoc</b> provisioning profile for that App ID and download your new provisioning profile to your Mac.
+
+_text
+In the IDE select the <b>Tools-&gt;iOS-&gt;Export AGK Player</b> menu option, give it your provisioning profile and fill in the required fields, then you will get an IPA that you can sync to your device with iTunes.
+
+_sheader
+Mac OS X
+
+_text
+The Mac player comes bundled with AGK. If installing to the default directory you can locate it here: <b>C:\Program Files\The Game Creators\AGK\Players\Mac</b>.
+
+_sheader
+Android
+
+_text
+You can obtain the Android player from the Google Play store <a href="https://play.google.com/store/apps/details?id=com.thegamecreators.agk_player2">here</a>, or side load the version that comes with AGK from <b>C:\Program Files\The Game Creators\AGK\Players\Android</b>. You will need to have <b>Unknown Sources</b> tick in your device security settings to side load an app.
+
+
+

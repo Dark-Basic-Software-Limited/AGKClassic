@@ -1,0 +1,62 @@
+_header
+Macintosh - OS X
+
+_text
+This guide explains the process involved in creating projects when using Tier 2 when using the Macintosh - OS X platform.
+
+_sheader
+What you need
+
+_listbegin
+Xcode 6
+Mountain Lion 10.8 or higher
+_listend
+
+_sheader
+Setup
+
+_text
+When you first run the AGK IDE you will be prompted to install the AGK Projects and C++ libraries to a location of your choice. If you only intend to use the C++ libraries you can ignore the AGK Projects and just install the C++ libraries, then close the AGK IDE. If you wish to do this process again at a later date you can access it from the <b>Tools -> Install Addiitonal Files</b> menu option.
+
+_sheader
+Creating a project
+_text
+Within the <b>apps</b> folder there is a sub folder name template_mac. This is the template that contains all the project settings and initial code to get you started on the MacOS platform. You can either open the project and start editing it, make a copy in the same folder, or copy the project and place it elsewhere. Please bear in mind that if you take the latter option you will need to update links to the include and library files.
+
+_text
+The include files can be found at:
+
+_listbegin
+common/include
+_listend
+
+_text
+While the library files are available from:
+
+_listbegin
+platform/mac/lib/Release
+_listend
+
+_text
+You link to the release version of the library for both Debug and Release builds.
+
+_sheader
+Opening a project
+
+_text
+Now follow these steps to open the project:
+
+_listbegin
+Launch the Xcode IDE.
+Go to the "File" menu and select "Open".
+The next step is to locate the folder for your project. Navigate to the directory of your project e.g. apps/MyGame_mac then press "Open".
+_listend
+
+_sheader
+Project files
+
+_text
+With the project now opened it's time to explore the files, with the main ones of concern being in the "classes" folder, expand this and you will be presented with three files: template.cpp, template.h and CoreForApp.h. The main source files of interest are template.cpp and template.h. The file template.h contains a class definition for our application and template.cpp contains the implementation, which has three functions laid out. The function Begin gets called at the start of the application and can be used to handle initial set up. The function Loop gets called on a continual basis and is effectively your main loop. Finally the function End will be called when the application is about to terminate.
+
+_text
+Another area of interest is within the "Other Sources" folder, within here is a file named "Core.mm". This code deals with platform specific functionality and may be useful for advanced users.

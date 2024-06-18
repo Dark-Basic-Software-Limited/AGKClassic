@@ -1,0 +1,249 @@
+_header
+Placement Editor
+
+_sheader
+Description
+
+_text
+The Placement Editor is a tool that allows you to visually design levels and screens for your games, which can then be exported and loaded directly into AGK.
+
+_image
+editor1.jpg
+
+_sheader
+Where is the Placement Editor?
+
+_text
+This utility is located within the IDE\Utilities folder for AGK e.g. C:\Program Files\The Game Creators\AGK\IDE\Utilities within the folder named Placement Editor.
+
+_image
+editor2.jpg
+
+_text
+Within the Placement Editor folder are two folders named Editor (the actual editor) and Viewer (an AGK project to load data exported from the editor).
+
+_image
+editor3.jpg
+
+_text
+The Placement Editor folder contains an executable named Placement Editor.exe. Launch this to start the editor.
+
+_image
+editor4.jpg
+
+_sheader
+Adding your own media into the editor
+
+_text
+Before you begin creating levels you must copy any media into the media folder of the Placement Editor. By default this is located at C:\Program Files\The Game Creators\AGK\IDE\Utilities\Placement Editor\Editor\media.
+
+_text
+If no media is present within the media folder you will be presented with this message when running the editor:
+
+_image
+editor5.jpg
+
+_sheader
+Understanding the interface
+
+_text
+Once your media has been copied into the media folder and you launch the editor you will be presented with this:
+
+_image
+editor6.jpg
+
+_text
+The following screen shots show the different components of the Placement Editor
+
+_image
+a.jpg
+
+_image
+b.jpg
+
+_image
+c.jpg
+
+_image
+d.jpg
+
+_image
+e.jpg
+
+_sheader
+Adding media into the scene
+
+_text
+You can drag media onto the main editing area, edit its properties and move it around.
+
+_image
+selected.jpg
+
+_sheader
+New
+
+_image
+new.png
+
+_text
+This button allows you to create a new project. When pressing it a dialog will be displayed on screen that allows you to specify the width and height of your screens and the number:
+
+_image
+new_button.jpg
+
+_sheader
+Load
+
+_image
+load.png
+
+_text
+This button will load any saved data. The file must be named export.txt and be placed in the same directory as the Placement Editor executable e.g. C:\Program Files\The Game Creators\AGK\IDE\Utilities\Placement Editor\Editor.
+
+_sheader
+Save
+
+_image
+save.png
+
+_text
+This will save your data into a text file named export.txt. The data will be saved alongside the Placement Editor executable in C:\Program Files\The Game Creators\AGK\IDE\Utilities\Placement Editor\Editor.
+
+_sheader
+Paint
+
+_image
+paint.png
+
+_text
+When the paint option is selected you can paste the last imported item. For example, import an image of a crate and drop this on the screen, now press the paint button, now click on the main editing area to drop another crate.
+
+_sheader
+Delete
+
+_image
+delete.png
+
+_text
+Select a sprite and then press the delete button to remove it from the sceene.
+
+_sheader
+Properties
+
+_image
+properties.png
+
+_text
+Select a sprite then press the properties icon to display a dialog allowing you to supply a name for the sprite along with rotation and scale values.
+
+_image
+properties_button.jpg
+
+_sheader
+Show Borders
+
+_image
+borders.png
+
+_text
+When you have multiple screens it may be useful to display the edge of each screen. When borders are displayed blue lines will surround the edge of each screen.
+
+_sheader
+Show Grid
+
+_image
+grid.png
+
+_text
+Press this button to show or hide the grid.
+
+_sheader
+Grid Width
+
+_image
+width.png
+
+_text
+This button controls the width of the grid.
+
+_sheader
+Grid Height
+
+_image
+height.png
+
+_text
+This button controls the height of the grid.
+
+_sheader
+Snap To Grid
+
+_image
+snap.png
+
+_text
+Press this button to ensure sprites snap to the grid when moving them around.
+
+_sheader
+Sprite Tools
+
+_text
+When a sprite is selected several tool icons will appear next to it.
+
+_image
+sprite_tools.jpg
+
+_text
+The padlock icon at the top allows you to lock a sprite. When a sprite is locked it cannot be moved. This is followed by two icons that allow you to move a sprite up or down a layer. Click and hold the next icon to rotate the sprite. Click and hold the icon below to scale a sprite. The final two icons allow you to mirror and flip the sprite.
+
+_sheader
+Viewing data in AGK
+
+_text
+A Tier 1 AGK project is available within C:\Program Files\The Game Creators\AGK\IDE\Utilities\Placement Editor\Viewer. 
+
+_text
+Ensure you copy your saved data (export.txt) and any media into the media folder. Now open the project and you will be presented with this code:
+
+_tier1
+// placement editor loading code
+#include "placement_editor.agc"
+<br>
+// globals for the placement editor
+global dim g_Entities [ 1000 ] as tEntity
+global dim g_MediaList [ 1000 ] as tEntity
+global     g_iEntityCount = 0
+global     g_iMediaCount  = 1
+global	   g_fJoystickSpeed#
+<br>
+// load a level using a virtual resolution
+LoadFromPlacementEditor ( "export.txt", "virtual" )
+<br>
+// load a level using the percentage system
+// LoadFromPlacementEditor ( "export.txt", "percentage" )
+<br>
+// to delete data call
+// DeletePlacementEditorData ( )
+<br>
+// our main loop
+do
+    // scroll the screen
+    joystickX# = GetVirtualJoystickX ( 1 ) * g_fJoystickSpeed#
+    joystickY# = GetVirtualJoystickY ( 1 ) * g_fJoystickSpeed#
+<br>
+    SetViewOffset ( GetViewOffsetX ( ) + joystickX#, GetViewOffsetY ( ) + joystickY# )
+<br>
+    // update the screen
+    sync ( )
+loop
+_tier1
+
+_text
+Run the program and your level will be displayed on screen ready to be used within your AGK game.
+
+_image
+final.jpg
+
+
+
+

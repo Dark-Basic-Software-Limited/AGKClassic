@@ -1,0 +1,32 @@
+_header
+Device Resolutions
+
+_sheader
+iPhone / iPod
+
+_text
+iPhone, iPhone 3G, iPhone 3GS and earlier iPod Touch models all have a display resolution of 480 x 320.
+
+_text
+The iPhone 4 has a display resolution of 960 x 640. This is also the case for the 4th generation iPod Touch.
+
+_sheader
+iPad
+
+_text
+iPad 1 and iPad 2 have a display resolution of 1024 x 768. The iPad 3 and 4 have a resolution of 2048 x 1536 but it is recommended you still design for 1024 x 768 on these devices for memory reasons.
+
+_sheader
+Netbooks
+
+_text
+Netbooks typically have a resolution of 1024 x 600 or 1024 x 768.
+
+_sheader
+Android
+
+_text
+Android devices vary dramatically from 320 x 240 at the smallest to 1920 x 1080 at the high end. Typically widescreen tablets are 1280 x 800.
+
+
+

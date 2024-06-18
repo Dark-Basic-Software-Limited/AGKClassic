@@ -1,0 +1,143 @@
+_header
+Music
+
+_sheader
+Overview
+
+_text
+This guide provides an overview of loading and playing music in AGK.
+
+_sheader
+What formats are supported?
+
+_text
+AGK uses platform APIs to play music so format support depends on the device. MP3 is currently the only file format known to work on all platforms, but for iOS, Android, Mac, and Blackberry we recommend using M4A due to friendlier licensing terms for anything you distribute. On Windows you can use MP2 or WMA if the MP3 licensing is not suitable, or have the user install a DirectShow codec for M4A.
+
+_sheader
+How do I load music?
+
+_text
+The command <i>LoadMusic</i> allows you to load a music track. Here are the available options:
+
+_tier1
+LoadMusic ( id, file )
+id = LoadMusic ( file )
+_tier1
+
+_tier2
+void LoadMusic ( UINT id, uString file );
+UINT LoadMusic ( uString file );
+_tier2
+
+_text
+A music file can be loaded by either assigning an ID number manually or having it provided to you automatically. The next step is to let AGK know which file you want to load e.g. "myMusic.mp3". Please note that ID numbers are unique for a command set. Therefore it's feasible to have a music track loaded with an ID number of 1 and a sprite with an ID of 1. Music resources are limited, so only ID numbers betwen 0 - 50 are valid.
+
+_text
+Here's one approach to loading a music track. The command <i>LoadMusic</i> is called, an ID number of 1 is specified and the file to load is "myMusic.mp3":
+
+_tier1
+LoadMusic ( 1, "myMusic.mp3" )
+_tier1
+
+_tier2
+agk::LoadMusic ( 1, "myMusic.mp3" );
+_tier2
+
+_text 
+This alternative method demonstrates how a music track can be loaded with an automatically assigned ID number:
+
+_tier1
+sound = LoadMusic ( "myMusic.mp3" )
+_tier1
+
+_tier2
+sound = agk::LoadMusic ( "myMusic.mp3" );
+_tier2
+
+_sheader
+How can I play music?
+
+_text
+Once music has been loaded it can be played with the <i>PlayMusic</i> command. Several variants of this command exist:
+
+_tier1
+PlayMusic ( id )
+PlayMusic ( id, loop )
+_tier1
+
+_tier2
+agk::PlayMusic ( UINT id, int loop = 1 );
+_tier2
+
+_text
+The parameters for this command are as follows:
+
+_listbegin
+ID
+loop
+
+_listend
+
+_text
+The ID number refers to the ID of the music you want to play. The loop parameter controls whether the music will be looped. When this value is set to 0 the music track will play through once and then stop. When this value is set to 1 the playback will continually loop.
+
+_text
+This example shows how to load and play music that will loop:
+
+_tier1
+LoadMusic ( 1, "myMusic.mp3" )
+PlayMusic ( 1, 1 )
+_tier1
+
+_tier2
+agk::LoadMusic ( 1, "myMusic.mp3" );
+agk::PlayMusic ( 1, 1 );
+_tier2
+
+_sheader
+How do I stop music from playing?
+
+_text
+To stop all music from playing call the <i>StopMusic</i> command. This command has no parameters. The following code loads music into ID 1, plays it with looping turned on and then stops the playback:
+
+_tier1
+LoadMusic ( 1, "myMusic.mp3" )
+PlayMusic ( 1, 1 )
+StopMusic ( )
+_tier1
+
+_tier2
+agk::LoadMusic ( 1, "myMusic.mp3" );
+agk::PlayMusic ( 1, 1 );
+agk::StopMusic ( );
+_tier2
+
+_sheader
+How do I delete music?
+
+_text
+It may be necessary to delete previously loaded music and free up available memory. To delete music call the command <i>DeleteMusic</i>:
+
+_tier1
+DeleteMusic ( id )
+_tier1
+
+_tier2
+void DeleteMusic ( UINT id );
+_tier2
+
+_text
+This command only requires the ID number of the music you want to delete.
+
+_text
+Here's an example of loading music and then deleting it:
+
+_tier1
+LoadMusic ( 1, "myMusic.mp3 )
+DeleteMusic ( 1 )
+_tier1
+
+_tier2
+agk::LoadMusic ( 1, "myMusic.mp3" );
+agk::DeleteMusic ( 1 );
+_tier2

@@ -1,0 +1,147 @@
+_header
+Tier 1 (BASIC) Publishing for Blackberry
+
+_sheader
+Part 1: Preparing the AGK Player project
+
+_text
+It is VITAL that ALL paths do not contain ANY spaces
+
+_text
+Copy	
+_listbegin
+IDE/common
+IDE/platform
+IDE/apps/interpreter
+including all sub-folders and files
+_listend
+
+_text
+to	
+_listbegin
+c:/ndk-2.1.0-workspace/common
+c:/ndk-2.1.0-workspace/platform
+c:/ndk-2.1.0-workspace/interpreter
+_listend
+
+_text
+Copy contents of the new AGK/IDE/apps/interpreter_blackberry (Inc sub-folders and files)to C:\ndk-2.1.0-workspace/AGKPlayer
+
+_text
+Navigate to the new NDK workspace (default=C:\ndk-2.1.0-workspace\)
+
+_text
+Enter the AGKPlayer folder and open the .cproject file in Notepad
+
+_text
+Click Edit > Find and type E: in the search box then click Find Next. Once you find the line reading: value="E:/Programs/PlaybookNDK/target/......" change it to: value="C:/bbndk-2.1.0/target/......". You can press F3 (or click Find Next) to find the next instance of E:, again, change the portion 'E:/Programs/PlaybookNDK/' to 'C:/bbndk-2.1.0/'
+
+_text
+Do this for all four instances of the E: drive path,
+
+_text
+In addition edit the two occurrences of {ProjDirPath}/../../common to {ProjDirPath}/../common and the two occurrences of {ProjDirPath}/../../platform to {ProjDirPath}/../platform and then save the file.
+
+_text
+Now close Notepad.
+
+_text
+Launch the Blackberry SDK 2.1.0
+
+_text
+Allow it to select the default workspace (C:\ndk-2.1.0-workspace). It is VITAL that ALL your paths do not contain ANY spaces. Right click the 'AGKPlayer' project. Select Build Configurations, then Set Active > Device-Release. Now select Clean Project, then select Build Project. All the error warnings should now disappear from the project and files. The project has now been built.
+
+_text
+If the error "Package failed, invalid asset path" use the following method to fix....
+
+_text
+Edit bar-descriptor (use Wordpad), find... 
+
+_text
+<asset type="Qnx/Elf" path="${QNX_TARGET}/../target-override/${CPUVARDIR}/usr/lib/libbps.so">lib/libbps.so.1</asset>
+
+_text
+remove /../target-override/ to leave
+
+_text
+<asset type="Qnx/Elf" path="${QNX_TARGET}/${CPUVARDIR}/usr/lib/libbps.so">lib/libbps.so.1</asset>
+
+_text
+Right click the 'AGKPlayer' project and select Export. Choose Blackberry Tablet OS and choose Release Build. Leave everything as default and click next
+
+_text
+enter CSK Password:
+
+_text
+Blackberry AGK Player is then built, the .bar file is then found in device-release folder, I then set my Playbook to development mode, connect to the PC and use DDPB to transfer and install the finished .bar file to my Playbook.
+
+_sheader
+Part 2: Preparing your own tier 1 application
+
+_text
+It is VITAL that ALL paths do not contain ANY spaces
+
+_text
+Important Note from AGK V108beta18 README.txt file
+
+_text
+Limiting an app to portrait or landscape in the Blackberry player project is controlled in the bar-descriptor.xml file in the Application tab. Set the Orientation field to portrait, landscape, or auto-orient for all 4 directions. You must also change Core.cpp where is says
+
+_text
+if (EXIT_SUCCESS != bbutil_init_egl(screen_ctx, GL_ES_2, PORTRAIT)) 
+
+_text
+to read LANDSCAPE if needed instead.
+
+_text
+Now you have successfully created and built the AGK Player, you are ready to make your own app project
+
+_listbegin
+Now quit the IDE as the next changes are to be applied outside of the IDE
+First copy the C:\ndk-2.1.0-workspace\AGKPlayer project and paste it back into the workspace, rename it to your own app title (e.g. myapp)
+Open the new C:\ndk-2.1.0-workspace\myapp folder,
+Delete the following temporary folders and their files which we won't need: Device-* and Simulator-*
+Also delete README.txt (see note above)
+Now open icon.png and replace the icon with the one for your app, keep the dimensions at 86x86 pixels.
+Copy all the assets from your T1 applications media folder into the assets\media folder in the project
+For example, your bytecode file should be at C:\ndk-2.1.0-workspace\myapp\assets\media\myapp.byc (any sub-folders that your app needs should be in the assets\media folder too.)
+Ensure you rename the .BYC file to bytecode.byc, ensuring the spelling and case are identical
+Open the .cproject in NOTEPAD and select Edit > Replace...
+Type AGKPlayer into the find field and myapp into the replace field (where myapp is the name of your project folder) [six instances]
+NOTE: The above is destructive so ensure your spelling is perfectly correct
+Now save and close notepad
+Do the same with the .project file, ensuring all instances of AGKPlayer are replaced [two instances]
+Open the bar-descriptor.xml file in Notepad and perform the same search replace on that one too [six instances]
+NOTE: Ensure you match the case as there are lower case versions of agkplayer which must not be replaced yet
+Find and replace com.thegamecreators.agkplayer with com.yourcompany.myapp
+The text 'yourcompany' is the company/team/name you wish to publish your app under
+The text 'myapp' is the name of your application, in this example myapp (so: com.acme.myapp)
+Replace 'The AGK Player for Blackberry QNX devices' with your own app description (This can contain spaces and upper case characters)
+WE are almost ready to launch the IDE again. Before you do, MOVE the entire folder out of the C:\ndk-2.1.0-workspace\myapp folder, somewhere safe. (Note: this is a CUT and PASTE) operation.
+Right click on the Project Explorer Window (on the left side)
+Select Import... and select Existing Projects Into Workspace
+Navigate to the newly created project folder you just moved out of the workspace
+The project will highlight as one that can be imported
+Ensure 'copy projects into workspace' is ticked, then click Finish.
+The new project will appear in your project explorer, right click it,
+Now select Build Configurations > Set Active > Device-Release,
+Double click the bar-descriptor.xml file from the Project Explorer
+Select the Application tab (second tab at the bottom of the XML dialog window
+Change the name AGK Player to the name of your app,
+Now select Clean Project to ensure we're working with the latest files
+When you select Build Project, the application should be built successfully
+Now right click the project file and select Export
+Open Blackberry Tablet OS and select Release Build then click Next
+Do not click Finish, and instead click the Next button again,
+Now click the Finish button to perform and final build and sign of your package
+Ensure you increment the version and/or build number after each successfully signed package file
+_listend
+
+_text
+If successful, your final .bar file is located in the Device-Release folder here:
+
+_text
+C:\ndk-2.1.0-workspace\myapp\Device-Release\myapp-1_1_0_10.bar (example)
+
+_text
+This is the "file bundle" you will be asked for when you submit to the App World Developer portal (you will need to make a zip file of it first).

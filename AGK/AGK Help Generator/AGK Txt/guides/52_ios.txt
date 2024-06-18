@@ -1,0 +1,31 @@
+_header
+Tier 1 (BASIC) Publishing for iOS
+
+_text
+In AGK version 2 you can export an IPA of your application from the <b>File->Export Project->As iOS IPA</b> menu option. To do this you will need a Mac, and iOS developer account ($99 per year), and a provisioning profile for your app from the Apple developer site. Once you have your IPA you can upload it to iTunes Connect using Apple's <b>Application Loader</b> program.
+
+_listbegin
+AGK uses AdHoc and Store distribution (sometimes called production) certificates for testing on devices submitting apps to the store, it does not use Development certificates
+Firstly you will need to add a distribution certificate to your Apple account, you should only need one which covers all your apps, follow the instructions on the Apple website to do this as the exact procedure may change from time to time
+Once you have created the certificate be sure to download it and add it to your keychain, this is so that AGK can use it to sign apps
+Note that if you want to transfer the certificate to another machine so that it can also sign apps the certificate alone is not enough, you must also transfer the private key that is associated with it. The private key will appear as a white key symbol when you expand the certificate in the keychain, which you can export separately and import on your new machine. The keychain will automatically recognise which key belongs to which certificate
+If you want to test your app on a device, or want to install the AGK Player on a device then your will need to add your device ID to your Apple account, again follow the instructions in your Apple account to do this
+You will also need to add an AppID for your app, or for the AGK Player, this can be anything you like
+Finally you need to generate a provisioning profile which combines all these elements into a single file that can be given to AGK during the export process, AGK only uses distribution profiles
+Create an AdHoc profile if you want to install your app or player onto a device, and create a Store profile if you want to upload the app to the App Store
+Once you have your provisioning profile, download it so you can use it during the export process
+To export the AGK Player use the menu option <b>Tools->iOS->Export AGK Player</b> in the AGK IDE
+To export your app use the menu option <b>File->Export Project->As iOS IPA</b> in the AGK IDE
+In both cases it will ask you for the same information, the most important of which is the provisioning profile you just downloaded
+Fill in as many fields as you need, not all are required, and hit the export button to produce an IPA file, which is saved to your chosen location
+Once you have an IPA you can drag and drop it into iTunes (on Windows or Mac) and then sync it to your device, if the icon remains grey after syncing then something went wrong in the validation process and you may have to check your certificates and/or profiles
+Alternatively if you are submitting to the Store you can use the Applocation Loader program provided by Apple to submit the IPA to iTunes Connect
+_listend
+
+_sheader
+Notes
+
+_listbegin
+The Apple website has comprehensive tutorials on every step of the development and submission process when submitting applications, and is highly recommended reading.
+Youtube is a great source of video tutorials on the various steps involved in registering an Apple account, installing your certificates and going through the validation process.
+_listend

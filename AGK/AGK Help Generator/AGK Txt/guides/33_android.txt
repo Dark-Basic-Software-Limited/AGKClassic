@@ -1,0 +1,5 @@
+_header
+Tier 1 (BASIC) Publishing for Android 2.3.3 or above
+
+_text
+In AGK version 2 you can export an APK of your application from the <b>File->Export Project->As Android APK</b> menu option. You can do this from Windows, Mac, or Linux and generate APKs for Google Play, Amazon, or Ouya stores. If you just want to dsitribute the APK yourself, for example to your friends, or on your website, then you do not need to sign the APK. However anyone that installs it will need to have <b>Unknown Sources</b> ticked in their device security settings to allow apps from untrusted sources to be installed. To build an APK for Google Play, Amazon, or Ouya stores you will need to sign the APK with a Keystore file, you can generate one from the AGK IDE <b>Tools->Android->Generate Keystore File</b> menu option. Once you have created a signed APK you can upload it directly to the appropriate store and submit it for approval.
