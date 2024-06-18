@@ -1,5 +1,5 @@
 # AGK Classic
-The home of the last version of that incredible cross-platform programming language AppGameKit Classic.
+The home of the last version of that incredible cross-platform programming language AppGameKit Classic. The product was retired after 10 years on Steam and is no longer officially supported by TGC.
 
 ## Introduction
 
