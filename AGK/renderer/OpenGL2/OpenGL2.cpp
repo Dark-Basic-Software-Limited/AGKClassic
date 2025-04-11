@@ -2296,7 +2296,8 @@ void AGKShader::SetShaderSource( const char* vertex, const char* fragment )
 		uString info;
 		info.Format( "Vertex shader %s failed to compile: %s", m_sVSFilename.GetStr(), m_sVSLog.GetStr() );
 		agk::Error( info );
-		agk::Message( info );
+		if (agk::m_iErrorMode > 0)
+			agk::Message( info );  //PE: We need a way to remove this message.
 		m_bValid = false;
 		return;
 	}
@@ -2325,7 +2326,8 @@ void AGKShader::SetShaderSource( const char* vertex, const char* fragment )
 		uString info;
 		info.Format( "Pixel shader %s failed to compile: %s", m_sPSFilename.GetStr(), m_sPSLog.GetStr() );
 		agk::Error( info );
-		agk::Message( info );
+		if(agk::m_iErrorMode > 0)
+			agk::Message( info ); //PE: We need a way to remove this message.
 		m_bValid = false;
 		return;
 	}
@@ -2354,7 +2356,8 @@ void AGKShader::SetShaderSource( const char* vertex, const char* fragment )
 		uString info;
 		info.Format( "Vertex shader %s and pixel shader %s failed to link: %s", m_sVSFilename.GetStr(), m_sPSFilename.GetStr(), m_sLinkLog.GetStr() );
 		agk::Error( info );
-		agk::Message( info );
+		if (agk::m_iErrorMode > 0)
+			agk::Message( info );  //PE: We need a way to remove this message.
 		m_bValid = false;
 		return;
 	}

@@ -27,6 +27,7 @@ namespace AGK
 	class cSprite;
 	class cText;
 	class ImageCacher;
+	class cFile;
 
 	class cSubImage
 	{
@@ -199,6 +200,8 @@ namespace AGK
 			bool GetGifFromFile( const char* szFile, unsigned char **pData, unsigned int *width, unsigned int *height );
 			static bool PlatformGetDataFromFile( const char* szFile, unsigned char **pData, unsigned int *width, unsigned int *height );
 			static void PlatformGetDataFromScreen( unsigned int** pData, int x, int y, int width, int height );
+
+			int GetBMPFromFile( cFile* pFile, unsigned char** pData, unsigned int* width, unsigned int* height );
 
 			static void CommonResize( unsigned char * pSrc, int width1, int height1, unsigned char * pDest, int width2, int height2 );
 			static void PlatformSaveDataToFile( const char* szFile, unsigned char *pData, unsigned int width, unsigned int height );

@@ -1,0 +1,67 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.android.vending.expansion.downloader" >
+4
+5    <uses-sdk
+6        android:minSdkVersion="16"
+6-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml
+7        android:targetSdkVersion="30" />
+7-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml
+8
+9    <!-- Required to access Google Play Licensing -->
+10    <uses-permission android:name="com.android.vending.CHECK_LICENSE" />
+10-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:6:5-73
+10-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:6:22-70
+11
+12    <!-- Required to download files from Google Play -->
+13    <uses-permission android:name="android.permission.INTERNET" />
+13-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:9:5-67
+13-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:9:22-64
+14
+15    <!--
+16         Required to keep CPU alive while downloading files
+17        (NOT to keep screen awake)
+18    -->
+19    <uses-permission android:name="android.permission.WAKE_LOCK" />
+19-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:13:5-68
+19-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:13:22-65
+20
+21    <!--
+22         Required to poll the state of the network connection
+23        and respond to changes
+24    -->
+25    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+25-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:17:5-18:66
+25-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:18:9-63
+26
+27    <!-- Required to check whether Wi-Fi is enabled -->
+28    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+28-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:21:5-75
+28-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:21:22-73
+29
+30    <!-- Required to read and write the expansion files on shared storage -->
+31    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+31-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:25:5-26:68
+31-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:26:9-65
+32    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+32-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:27:5-28:66
+32-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:28:9-64
+33
+34    <application>
+34-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:30:5-38:19
+35        <service
+35-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:31:9-33:37
+36            android:name="com.google.android.vending.expansion.downloader.impl.DownloaderService"
+36-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:32:13-98
+37            android:enabled="true" />
+37-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:33:13-35
+38
+39        <receiver
+39-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:35:9-37:37
+40            android:name="com.google.android.vending.expansion.downloader.impl.DownloaderService$AlarmReceiver"
+40-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:36:13-112
+41            android:enabled="true" />
+41-->D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:37:13-35
+42    </application>
+43
+44</manifest>

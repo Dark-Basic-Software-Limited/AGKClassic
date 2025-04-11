@@ -30,6 +30,8 @@ using namespace AGK;
 // Globals for core
 HANDLE hDebugConsoleOut = NULL;
 HWND g_hWnd = NULL;
+bool g_bAGKInitialised = false;
+bool bExitLoop = false;
 
 //
 // Windows Application STUB requires entry function, create window and message pump
@@ -180,6 +182,7 @@ void AdditionalKeyUp( unsigned int key )
 bool g_bShouldBeTopMost = false;
 
 // delay the loading of these functions so Windows XP and Vista don't complain
+HMODULE g_hUser32 = 0;
 int (__stdcall *CloseTouchInputHandleDelayed)( HTOUCHINPUT ) = 0;
 int (__stdcall *GetTouchInputInfoDelayed)( HTOUCHINPUT, unsigned int, PTOUCHINPUT, int ) = 0;
 BOOL (__stdcall *RegisterTouchWindowDelay)(HWND, ULONG) = 0;
@@ -191,11 +194,11 @@ void LoadDelayedFunctions()
 	if ( first == 1 )
 	{
 		first = 0;
-		HMODULE user32 = LoadLibraryA( "USER32.dll" );
-		CloseTouchInputHandleDelayed = (int(__stdcall *)(HTOUCHINPUT)) GetProcAddress( user32, "CloseTouchInputHandle" );
-		GetTouchInputInfoDelayed = (int(__stdcall *)(HTOUCHINPUT, unsigned int, PTOUCHINPUT, int)) GetProcAddress( user32, "GetTouchInputInfo" );
-		RegisterTouchWindowDelay = (BOOL(__stdcall *)(HWND, ULONG)) GetProcAddress( user32, "RegisterTouchWindow" );
-		FreeLibrary( user32 );
+		g_hUser32 = LoadLibraryA( "USER32.dll" );
+		if ( !g_hUser32 ) return;
+		CloseTouchInputHandleDelayed = (int(__stdcall *)(HTOUCHINPUT)) GetProcAddress( g_hUser32, "CloseTouchInputHandle" );
+		GetTouchInputInfoDelayed = (int(__stdcall *)(HTOUCHINPUT, unsigned int, PTOUCHINPUT, int)) GetProcAddress( g_hUser32, "GetTouchInputInfo" );
+		RegisterTouchWindowDelay = (BOOL(__stdcall *)(HWND, ULONG)) GetProcAddress( g_hUser32, "RegisterTouchWindow" );
 	}
 }
 
@@ -343,7 +346,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			if ( bCapturePointer )
 			{
 				RECT rect;
-				::GetWindowRect( g_hWnd, &rect );
+				::GetWindowRect( hWnd, &rect );
 				int centerX = (rect.left + rect.right) / 2;
 				int centerY = (rect.top + rect.bottom) / 2;
 				SetCursorPos( centerX,centerY );
@@ -373,7 +376,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				lastY = y;
 			}
 #else
-			SetCapture(g_hWnd);
+			SetCapture(hWnd);
 			//agk::TouchPressed( 1, x,y );
 #endif
 			break;
@@ -409,7 +412,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				ShowCursor( TRUE );
 			}
 #else
-			SetCapture(g_hWnd);
+			SetCapture(hWnd);
 #endif
 			break;
 		}
@@ -424,7 +427,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		case WM_MBUTTONDOWN:
 		{
 			agk::MouseMiddleButton( 0, 1 );
-			SetCapture(g_hWnd);
+			SetCapture(hWnd);
 			break;
 		}
 
@@ -491,14 +494,40 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			// if maximizing then set window to topmost to prevent it overlapping the start button when "use small icons" is ticked
 			// which seems to cause image stutter
 			g_bShouldBeTopMost = (wParam == SIZE_MAXIMIZED);
-			if ( g_bShouldBeTopMost ) ::SetWindowPos( g_hWnd, HWND_TOPMOST, 0,0,0,0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSENDCHANGING | SWP_NOSIZE );
-			else ::SetWindowPos( g_hWnd, HWND_NOTOPMOST, 0,0,0,0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSENDCHANGING | SWP_NOSIZE );
+			if ( g_bShouldBeTopMost ) ::SetWindowPos( hWnd, HWND_TOPMOST, 0,0,0,0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSENDCHANGING | SWP_NOSIZE );
+			else ::SetWindowPos( hWnd, HWND_NOTOPMOST, 0,0,0,0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSENDCHANGING | SWP_NOSIZE );
 
 			agk::UpdateDeviceSize();
 			agk::WindowMoved();
 			break;
 		}
 
+		case WM_SIZING:
+		{
+			if ( g_bAGKInitialised )
+			{
+				try
+				{
+					if (!agk::IsCapturingImage())
+					{
+						App.Loop();
+					}
+					else
+					{
+						agk::Sleep(10);
+					}
+				}
+				catch (...)
+				{
+					uString err = agk::GetLastError();
+					err.Prepend("(WM_SIZING) Uncaught exception: \n\n");
+					MessageBoxA(NULL, err.GetStr(), "Error", 0);
+					bExitLoop = true;
+				}
+			}
+			break;
+		}
+	
 		case WM_NCHITTEST:
 		{
 			LRESULT result = DefWindowProc(hWnd, message, wParam, lParam);
@@ -528,12 +557,22 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			return DefWindowProc(hWnd, message, wParam, lParam);
 		}
 
+		case WM_GETMINMAXINFO:
+		{
+			MINMAXINFO* minMaxInfo = (MINMAXINFO*) lParam;
+			minMaxInfo->ptMaxSize.x = 8192;
+			minMaxInfo->ptMaxSize.y = 8192;
+			minMaxInfo->ptMaxTrackSize.x = 8192;
+			minMaxInfo->ptMaxTrackSize.y = 8192;
+			break;
+		}
+
 		case WM_ACTIVATE:
 		{
 			// if being made inactive and currently we are topmost temporarily remove topmost until we are active again.
 			if ( LOWORD(wParam) != WA_INACTIVE ) 
 			{
-				if ( g_bShouldBeTopMost ) ::SetWindowPos( g_hWnd, HWND_TOPMOST, 0,0,0,0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSENDCHANGING | SWP_NOSIZE );
+				if ( g_bShouldBeTopMost ) ::SetWindowPos( hWnd, HWND_TOPMOST, 0,0,0,0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSENDCHANGING | SWP_NOSIZE );
 				agk::Resumed();
 			}
 			else
@@ -541,7 +580,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				agk::MouseLeftButton( 0, 0 );
 				agk::MouseRightButton( 0, 0 );
 				agk::MouseMiddleButton( 0, 0 );
-				if ( g_bShouldBeTopMost ) ::SetWindowPos( g_hWnd, HWND_NOTOPMOST, 0,0,0,0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSENDCHANGING | SWP_NOSIZE );
+				if ( g_bShouldBeTopMost ) ::SetWindowPos( hWnd, HWND_NOTOPMOST, 0,0,0,0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSENDCHANGING | SWP_NOSIZE );
 				agk::Paused();
 				agk::KeyUp( 18 ); // Alt key up in case Alt-Tab was used
 			}
@@ -578,6 +617,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			sKey.Format( "Key: %d", wParam );
 			agk::Warning( sKey );
 			*/
+
 			break;
 		}
 
@@ -618,6 +658,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		case WM_SYSCOMMAND:
 		{
 			if ( wParam == SC_SIZE && !agk::CanResize() ) return 0;
+			else if ( wParam == SC_KEYMENU && lParam != 32 ) return 0;
 			else return DefWindowProc(hWnd, message, wParam, lParam);
 			break;
 		}
@@ -650,7 +691,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 		}
 
-		// Use WM_CLOSE not WM_DESTROY to avoid a crash
 		case WM_CLOSE:
 		{
 			PostQuitMessage(0);
@@ -664,7 +704,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		case WM_PAINT:
 		{
-			ValidateRect( g_hWnd, NULL );
+			ValidateRect( hWnd, NULL );
 			break;
 		}
 
@@ -735,10 +775,10 @@ HWND CreateWin32Window( HINSTANCE hInstance, int width, int height, uString &szT
 	
 	if ( x == -1 ) x = ((rc.right-rc.left)-width)/2 + rc.left;
 	if ( y == -1 ) y = ((rc.bottom-rc.top-50)-height)/2 + rc.top;
-	if ( x < 0 ) x = 0;
-	if ( y < 0 ) y = 0;
 	if ( x+width > rc.right ) x = rc.right-width;
 	if ( y+height > rc.bottom ) y = rc.bottom-height;
+	if ( x < 0 ) x = 0;
+	if ( y < 0 ) y = 0;
 
 	if ( fullscreen )												
     {
@@ -777,7 +817,6 @@ HWND CreateWin32Window( HINSTANCE hInstance, int width, int height, uString &szT
     	dwExStyle = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;	
     	dwStyle = WS_OVERLAPPEDWINDOW;// & (~WS_SIZEBOX);	// removing WS_SIZEBOX reduces the size of the title bar, which then increases in size itself on the first window resize
     }
-
 
 	// adjust the window and make it bigger for borders, window title, etc
 	RECT WindowRect;							
@@ -830,17 +869,17 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	agk::SetCompanyName( COMPANY_NAME );
 
 	// call app begin
-	bool bExitLoop = false;
 	try
 	{
 		// initialise graphics API (win32 openGL) for app
 		agk::InitGL( (void*) hWnd );
+		g_bAGKInitialised = true;
 
 		App.Begin();
 	}
 	catch(...)
 	{
-		uString err = agk::GetLastError();
+		uString err; agk::GetLastError(err);
 		err.Prepend( "Uncaught exception: \n\n" );
 		MessageBoxA( NULL, err.GetStr(), "Error", 0 );
 		bExitLoop = true;
@@ -875,7 +914,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 			}
 			catch(...)
 			{
-				uString err = agk::GetLastError();
+				uString err; agk::GetLastError(err);
 				err.Prepend( "Uncaught exception: \n\n" );
 				MessageBoxA( NULL, err.GetStr(), "Error", 0 );
 				bExitLoop = true;
@@ -885,6 +924,9 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	
 	// call app end
 	App.End();
+
+	if ( g_hUser32 ) FreeLibrary( g_hUser32 );
+	g_hUser32 = 0;
 
 	agk::CleanUp();
 

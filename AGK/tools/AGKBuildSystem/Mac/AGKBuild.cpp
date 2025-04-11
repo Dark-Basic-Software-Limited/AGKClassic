@@ -7,15 +7,29 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 
+#include "UserLocal.h" // just defines your username, e.g. USER_PAUL
 #include "Common.h"
 
 int main( int argc, char* argv[] )
 {
 	// set some path variables
+#if defined( USER_PAUL )
 	const char* szSharedFolder = "/Volumes/Receive";
     const char* szMacBuildFiles = "/Volumes/FilesAlphaMac";
     const char* szBuildFolder = "/Users/paultgc/Projects";
-    
+	#define USERNAME "paultgc"
+	#define BUNDLE_SCRIPT_NAME "bundleNewPaul.sh"
+#elif define( USER_MIKE )
+    const char* szSharedFolder = "/Volumes/Shared/MacReceive";
+    const char* szMacBuildFiles = "/Volumes/Shared/FilesAlphaMac";
+    //const char* szBuildFolder = "/Users/michaeljohnson/AGKClassicBuild";
+    const char* szBuildFolder = "/Users/michaeljohnson/Projects";
+	#define USERNAME "michaeljohnson"
+	#define BUNDLE_SCRIPT_NAME "bundleNewMike.sh"
+#else
+	#error "Unknown user, you need to set your variables"
+#endif
+
 	SetCurrentDirectoryWithCheck( "../../.." ); // AGKTrunk
 
 	int index = -1;
@@ -173,7 +187,7 @@ startPoint:
         {
             Message( "Exporting iOS interpreter IPA" );
             SetCurrentDirectoryWithCheck( "apps/interpreter_ios" );
-            int status = RunCmd( indexCheck, "xcodebuild", "-exportArchive -archivePath \"Build/Release/AppGameKit Player.xcarchive\" -exportOptionsPlist \"exportOptions.txt\" -exportPath /Users/paultgc/Desktop/AGKPlayeriOS" );
+            int status = RunCmd( indexCheck, "xcodebuild", "-exportArchive -archivePath \"Build/Release/AppGameKit Player.xcarchive\" -exportOptionsPlist \"exportOptions.txt\" -exportPath /Users/" USERNAME "/Desktop/AGKPlayeriOS" );
             if ( status != 0 ) Error( "  Failed" );
             else Message( "  Success" );
             
@@ -236,19 +250,19 @@ startPoint:
             Message( "Copying Mac Player to Desktop" );
             char srcFolder[ 1024 ];
             char dstFolder[ 1024 ];
-            getcwd( srcFolder, 1024 ); strcat( srcFolder, "/Build/Release/AppGameKit Player.xcarchive/Products/Users/paultgc/Applications/AppGameKit Player.app" );
-            strcpy( dstFolder, "/Users/paultgc/Desktop/MacPlayer/AppGameKit Player.app" );
+            getcwd( srcFolder, 1024 ); strcat( srcFolder, "/Build/Release/AppGameKit Player.xcarchive/Products/Users/" USERNAME "/Applications/AppGameKit Player.app" );
+            strcpy( dstFolder, "/Users/" USERNAME "/Desktop/MacPlayer/AppGameKit Player.app" );
             DeleteFolder( dstFolder );
             CopyFolder( srcFolder, dstFolder );
             
             Message( "Making binary executable" );
-            int status = system("chmod 0755 \"/Users/paultgc/Desktop/MacPlayer/AppGameKit Player.app/Contents/MacOS/AppGameKit Player\"");
+            int status = system("chmod 0755 \"/Users/" USERNAME "/Desktop/MacPlayer/AppGameKit Player.app/Contents/MacOS/AppGameKit Player\"");
             if ( WEXITSTATUS(status) != 0 ) Error( "Failed" );
             else Message( "Success" );
             
             Message( "Zipping up Mac Player" );
             getcwd( srcFolder, 1024 );
-            SetCurrentDirectoryWithCheck( "/Users/paultgc/Desktop/MacPlayer" );
+            SetCurrentDirectoryWithCheck( "/Users/" USERNAME "/Desktop/MacPlayer" );
             status = system("rm -f \"AppGameKit Player.app.zip\"");
             if ( WEXITSTATUS(status) != 0 ) Error( "Failed" );
             else Message( "Success" );
@@ -260,7 +274,7 @@ startPoint:
             
             Message( "Copying Mac Player to shared folder" );
             strcpy( dstFolder, szSharedFolder ); strcat( dstFolder, "/Classic/AppGameKit Player.app.zip" );
-            CopyFile2( "/Users/paultgc/Desktop/MacPlayer/AppGameKit Player.app.zip", dstFolder );
+            CopyFile2( "/Users/" USERNAME "/Desktop/MacPlayer/AppGameKit Player.app.zip", dstFolder );
             
             SetCurrentDirectoryWithCheck( "../.." ); // AGKTrunk
             
@@ -380,7 +394,7 @@ startPoint:
             
             // copy players
             Message( "Copying players" );
-            strcpy( srcFolder, "/Users/paultgc/Desktop/MacPlayer/AppGameKit Player.app.zip" );
+            strcpy( srcFolder, "/Users/" USERNAME "/Desktop/MacPlayer/AppGameKit Player.app.zip" );
             strcpy( dstFolder, szBuildFolder ); strcat( dstFolder, "/AGKMac/Players/Mac/AppGameKit Player.app.zip" );
             CopyFile2( srcFolder, dstFolder );
             
@@ -392,13 +406,13 @@ startPoint:
             strcpy( dstFolder, szBuildFolder ); strcat( dstFolder, "/AGKMac/Players/Android/AppGameKit Player.apk" );
             CopyFile2( srcFolder, dstFolder );
             
-            strcpy( srcFolder, szSharedFolder ); strcat( srcFolder, "/Classic/LinuxPlayer32" );
-            strcpy( dstFolder, szBuildFolder ); strcat( dstFolder, "/AGKMac/Players/Linux/LinuxPlayer32" );
-            CopyFile2( srcFolder, dstFolder );
+            //strcpy( srcFolder, szSharedFolder ); strcat( srcFolder, "/Classic/LinuxPlayer32" );
+            //strcpy( dstFolder, szBuildFolder ); strcat( dstFolder, "/AGKMac/Players/Linux/LinuxPlayer32" );
+            //CopyFile2( srcFolder, dstFolder );
             
-            strcpy( srcFolder, szSharedFolder ); strcat( srcFolder, "/Classic/LinuxPlayer64" );
-            strcpy( dstFolder, szBuildFolder ); strcat( dstFolder, "/AGKMac/Players/Linux/LinuxPlayer64" );
-            CopyFile2( srcFolder, dstFolder );
+            //strcpy( srcFolder, szSharedFolder ); strcat( srcFolder, "/Classic/LinuxPlayer64" );
+           // strcpy( dstFolder, szBuildFolder ); strcat( dstFolder, "/AGKMac/Players/Linux/LinuxPlayer64" );
+            //CopyFile2( srcFolder, dstFolder );
             
             Message( "Copying change log" );
             strcpy( srcFolder, szMacBuildFiles ); strcat( srcFolder, "/AGK/ChangeLog.txt" );
@@ -439,7 +453,7 @@ startPoint:
     
     // Create app bundle
     if ( index <= ++indexCheck )
-    {
+    { 
         if ( bListCommands ) Message1( "%d: Create app bundle", indexCheck );
         else
         {
@@ -488,7 +502,7 @@ startPoint:
             
             // copy Mac interpreter
             Message( "Copying Mac interpreter" );
-            getcwd( srcFolder, 1024 ); strcat( srcFolder, "/apps/interpreter_mac/Build/Release/AppGameKit Player.xcarchive/Products/Users/paultgc/Applications/AppGameKit Player.app" );
+            getcwd( srcFolder, 1024 ); strcat( srcFolder, "/apps/interpreter_mac/Build/Release/AppGameKit Player.xcarchive/Products/Users/" USERNAME "/Applications/AppGameKit Player.app" );
             strcpy( dstFolder, szBuildFolder ); strcat( dstFolder, "/Geany-Compiled/share/applications/interpreters" );
             mkdir( dstFolder, 0755 );
             strcat( dstFolder, "/Mac.app" );
@@ -519,19 +533,26 @@ startPoint:
             
             // bundle files
             Message( "Creating bundle" );
-            status = system( "IDE/Geany-1.24.1/bundleNew.sh" );
+            status = system( "IDE/Geany-1.24.1/" BUNDLE_SCRIPT_NAME );
             if ( WEXITSTATUS(status) != 0 ) Error( "  Failed" );
             else Message( "  Success" );
             
             // cleaning up
             Message( "Cleaning up" );
             strcpy( dstFolder, szBuildFolder ); strcat( dstFolder, "/Geany-Compiled" );
-            DeleteFolder( dstFolder );
+            // mike - not for now
+            //DeleteFolder( dstFolder );
             rmdir( dstFolder );
-
+            
+            // mike - new step
+            //Message( "Copying AppGameKit.app" );
+            //CopyFolder( "/Users/" USERNAME "/Projects/AGKMac/", "/Users/" USERNAME "/AGKClassicBuild/AGKMac/" );
+            
 			Message( "Copying geany launcher" );
             strcpy( srcFolder, szBuildFolder ); strcat( srcFolder, "/GeanyBundle/Launcher/geany/build/geany/Build/Products/Release/geany.app/Contents/MacOS/geany" );
             strcpy( dstFolder, szBuildFolder ); strcat( dstFolder, "/AGKMac/AppGameKit.app/Contents/MacOS/geany" );
+            Message( srcFolder );
+            Message( dstFolder );
             CopyFile2( srcFolder, dstFolder );
 
 			Message( "Renaming geany-bin" );

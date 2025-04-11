@@ -1258,7 +1258,7 @@ void agk::SetWindowSize( int width, int height, int fullscreen, int allowOverSiz
 		int vBottom = GetSystemMetrics( SM_CYVIRTUALSCREEN ) + vTop;
 
 		if ( x+width > vRight ) x = vRight - width;
-		if ( y+height > vBottom ) x = vBottom - height;
+		if ( y+height > vBottom ) y = vBottom - height;
 
 		if ( x < vLeft ) x = vLeft;
 		if ( y < vTop ) y = vTop;
@@ -1291,20 +1291,18 @@ void agk::SetWindowSize( int width, int height, int fullscreen, int allowOverSiz
 		if ( g_iIsAGKFullscreen ) return;
 		g_iIsAGKFullscreen = 1;
 
-		RECT rc;
-		GetWindowRect(GetDesktopWindow(), &rc);
-
 		RECT currRect;
 		GetWindowRect(g_hWnd, &currRect);
 
 		oldX = currRect.left;
 		oldY = currRect.top;
 
-		RECT WindowRect;							
-		WindowRect.left=(long)0;					
-		WindowRect.right=(long)rc.right-rc.left;				
-		WindowRect.top=(long)0;						
-		WindowRect.bottom=(long)rc.bottom-rc.top;
+		HMONITOR monitor = MonitorFromRect( &currRect, MONITOR_DEFAULTTONEAREST );
+
+		MONITORINFO monitorInfo;
+		monitorInfo.cbSize = sizeof( MONITORINFO );
+		GetMonitorInfo( monitor, &monitorInfo );
+		RECT monitorRect = monitorInfo.rcMonitor;
 
 		int changed = 0;
 		if ( !(GetWindowLong( g_hWnd, GWL_STYLE ) & WS_POPUP) )
@@ -1317,17 +1315,15 @@ void agk::SetWindowSize( int width, int height, int fullscreen, int allowOverSiz
 		}
 
 		if ( changed 
-		  && WindowRect.right-WindowRect.left == currRect.right-currRect.left
-		  && WindowRect.bottom-WindowRect.top == currRect.bottom-currRect.top )
+		  && monitorRect.right-monitorRect.left == currRect.right-currRect.left
+		  && monitorRect.bottom-monitorRect.top == currRect.bottom-currRect.top )
 		{
 			// force resize message
-			::SetWindowPos( g_hWnd, 0, WindowRect.left, WindowRect.top, WindowRect.right-WindowRect.left-1, WindowRect.bottom-WindowRect.top-1, SWP_NOZORDER | SWP_FRAMECHANGED );
-			::SetWindowPos( g_hWnd, 0, WindowRect.left, WindowRect.top, WindowRect.right-WindowRect.left, WindowRect.bottom-WindowRect.top, SWP_NOZORDER | SWP_FRAMECHANGED );
+			::SetWindowPos( g_hWnd, 0, monitorRect.left, monitorRect.top, monitorRect.right-monitorRect.left-1, monitorRect.bottom-monitorRect.top-1, SWP_NOZORDER | SWP_FRAMECHANGED );
 		}
-		else
-		{
-			::SetWindowPos( g_hWnd, 0, WindowRect.left, WindowRect.top, WindowRect.right-WindowRect.left, WindowRect.bottom-WindowRect.top, SWP_NOZORDER | SWP_FRAMECHANGED );
-		}
+
+		::SetWindowPos( g_hWnd, 0, monitorRect.left, monitorRect.top, monitorRect.right-monitorRect.left, monitorRect.bottom-monitorRect.top, SWP_NOZORDER | SWP_FRAMECHANGED );
+
 
 		if ( m_bUsingVSync ) agk::SetVSync( 1 );
 	}
@@ -1395,6 +1391,32 @@ void agk::RestoreApp()
 	ShowWindow( g_hWnd, SW_SHOWNORMAL );
 }
 
+//****f* Core/Display/IsPinAppAvailable
+// FUNCTION
+//   On Android this will return 1 if the command <i>PinApp</i> is available on this device.
+//   Otherwise it will return 0, which means that <i>PinApp</i> will have no effect.
+// SOURCE
+int agk::IsPinAppAvailable()
+//****
+{
+	return 0;
+}
+
+//****f* Core/Display/PinApp
+// FUNCTION
+//   On Android this will pin the app to the screen to prevent the user accidentally leaving the app. 
+//   Optionally the device can be locked whilst the app is pinned so it must be unlocked to open any 
+//   other apps, this is defined in the device settings.
+//   The user will be asked if they want to allow this before it actually takes effect.
+// INPUTS
+//   enable -- 1 to pin this app, 0 to unpin it
+// SOURCE
+void agk::PinApp( int enable )
+//****
+{
+	// do nothing
+}
+
 //****f* Core/Display/SetImmersiveMode
 // FUNCTION
 //   Removes any on screen controls that may have been placed on screen by the OS, for example the home and 
@@ -1443,6 +1465,17 @@ void agk::SetScreenResolution( int width, int height )
 //****
 {
 	agk::SetWindowSize( width, height, 0 );
+}
+
+//****f* Core/Misc/IsDarkTheme
+// FUNCTION
+//   On Android and iOS this returns 1 if the operating system is set to use a dark theme, you can use this to switch to a dark
+//   theme in your app. On other platforms this will always return 0.
+// SOURCE
+int agk::IsDarkTheme()
+//****
+{
+	return 0;
 }
 
 //****f* Core/Misc/GetURLSchemeText
@@ -2677,6 +2710,121 @@ int agk::GetDeviceDPI()
 //****
 {
 	return 0;
+}
+
+//****f* Core/Display/GetDisplayNumCutouts
+// FUNCTION
+//   Returns the number of cutouts on the current device screen. Always returns 0 on Android 8 and below, and iOS 10 and below.
+//   You can retrieve details about each cutout by using the <i>GetDisplayCutoutTop</i> commands.
+// SOURCE
+int agk::GetDisplayNumCutouts()
+//****
+{
+	return 0;
+}
+
+//****f* Core/Display/GetDisplayCutoutTop
+// FUNCTION
+//  Returns the top of the specified display cutout. The Top/Bottom/Left/Right display cutout commands
+//  return the bounding box that covers the cutout in virtual resolution coordinates. Anthing placed within
+//  those coordinates can be assumed to be covered by the cutout.<br/>
+//  The index must be between 0 and <i>GetDisplayNumCutouts</i> - 1
+// INPUTS
+//   index -- The index of the display cutout to return, starting at 0
+// SOURCE
+float agk::GetDisplayCutoutTop( int index )
+//****
+{
+	return 0;
+}
+
+//****f* Core/Display/GetDisplayCutoutBottom
+// FUNCTION
+//  Returns the bottom of the specified display cutout. The Top/Bottom/Left/Right display cutout commands
+//  return the bounding box that covers the cutout in virtual resolution coordinates. Anthing placed within
+//  those coordinates can be assumed to be covered by the cutout.<br/>
+//  The index must be between 0 and <i>GetDisplayNumCutouts</i> - 1
+// INPUTS
+//   index -- The index of the display cutout to return, starting at 0
+// SOURCE
+float agk::GetDisplayCutoutBottom( int index )
+//****
+{
+	return 0;
+}
+
+//****f* Core/Display/GetDisplayCutoutLeft
+// FUNCTION
+//  Returns the left of the specified display cutout. The Top/Bottom/Left/Right display cutout commands
+//  return the bounding box that covers the cutout in virtual resolution coordinates. Anthing placed within
+//  those coordinates can be assumed to be covered by the cutout.<br/>
+//  The index must be between 0 and <i>GetDisplayNumCutouts</i> - 1
+// INPUTS
+//   index -- The index of the display cutout to return, starting at 0
+// SOURCE
+float agk::GetDisplayCutoutLeft( int index )
+//****
+{
+	return 0;
+}
+
+//****f* Core/Display/GetDisplayCutoutRight
+// FUNCTION
+//  Returns the right of the specified display cutout. The Top/Bottom/Left/Right display cutout commands
+//  return the bounding box that covers the cutout in virtual resolution coordinates. Anthing placed within
+//  those coordinates can be assumed to be covered by the cutout.<br/>
+//  The index must be between 0 and <i>GetDisplayNumCutouts</i> - 1
+// INPUTS
+//   index -- The index of the display cutout to return, starting at 0
+// SOURCE
+float agk::GetDisplayCutoutRight( int index )
+//****
+{
+	return 0;
+}
+
+//****f* Core/Display/GetScreenBoundsSafeTop
+// FUNCTION
+//  Returns the top of the screen in virtual coordinates, avoiding any display cutouts. This is similar to 
+//  <i>GetScreenBoundsTop</i> except that it avoids display cutouts.
+// SOURCE
+float agk::GetScreenBoundsSafeTop()
+//****
+{
+	return GetScreenBoundsTop();
+}
+
+//****f* Core/Display/GetScreenBoundsSafeBottom
+// FUNCTION
+//  Returns the bottom of the screen in virtual coordinates, avoiding any display cutouts. This is similar to 
+//  <i>GetScreenBoundsTop</i> except that it avoids display cutouts.
+// SOURCE
+float agk::GetScreenBoundsSafeBottom()
+//****
+{
+	return GetScreenBoundsBottom();
+}
+
+//****f* Core/Display/GetScreenBoundsSafeLeft
+// FUNCTION
+//  Returns the left of the screen in virtual coordinates, avoiding any display cutouts. This is similar to 
+//  <i>GetScreenBoundsTop</i> except that it avoids display cutouts.
+// SOURCE
+float agk::GetScreenBoundsSafeLeft()
+//****
+{
+	return GetScreenBoundsLeft();
+}
+
+//****f* Core/Display/GetScreenBoundsSafeRight
+// FUNCTION
+//  Returns the right of the screen in virtual coordinates, avoiding any display cutouts. This is similar to 
+//  <i>GetScreenBoundsTop</i> except that it avoids display cutouts.
+// SOURCE
+float agk::GetScreenBoundsSafeRight()
+//****
+{
+	return GetScreenBoundsRight();
 }
 
 //****f* Core/Misc/GetAppPackageName
@@ -9388,9 +9536,7 @@ void agk::RequestConsentAdMob()
 
 //****f* Advert/AdMob/OverrideConsentAdMob
 // FUNCTION
-//   Forces AdMob to use the given consent value when showing ads, this is not saved to the AdMob server and overrides 
-//   the normal consent process. This is used if you have you own method of aquiring user consent to show personalised ads.
-//   Note that the GDPR requires you by law to have the consent from EU users before showing them personalised ads.
+//   This command does nothing, it is no longer possible to override the consent option
 // INPUTS
 //   consent -- The consent value to use, 1=non-personalised, 2=personalised
 // SOURCE
@@ -9683,15 +9829,7 @@ void agk::ShareFile( const char* szFilename )
 
 //****f* Extras/Facebook/FacebookActivateAppTracking
 // FUNCTION
-//   Activates tracking in the Facebook SDK, this is useful if you are using Facebook Ads as this will 
-//   associate installs to adverts previously seen and clicked on Facebook. Note that on iOS this 
-//   functionality requires the IDFA (Advertising Identifier) and you must declare this if you submit 
-//   the app to Apple. Apple will ask if you use the IDFA and what you use it for. For install tracking 
-//   with Facebook Ads you MUST tick "Attribute this app installation to a previously served Advertisement" 
-//   and "Attribute an action taken within this app to a previously served advertisement". If you are also 
-//   using AdMob, Amazon Ads, or Chartboost in your app then you must also tick "Serve advertisements 
-//   within the app".<br/><br/>
-//   This command does not require the user to be logged in.
+//   The Facebook SDK has been removed from AppGameKit, this command no longer does anything
 // SOURCE
 void agk::FacebookActivateAppTracking()
 //****
@@ -11249,4 +11387,37 @@ void agk::ShareSnapChatImage( const char* imageFile, const char* stickerFile, co
 //****
 {
 
+}
+
+// Extensions
+int agk::ExternalSDKSupported( const char* sdk )
+//****
+{
+	return 0;
+}
+
+void agk::ExternalCommand( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+
+}
+
+int agk::ExternalCommandInt( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+	return 0;
+}
+
+float agk::ExternalCommandFloat( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+	return 0;
+}
+
+char* agk::ExternalCommandString( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+	char* str = new char[1];
+	*str = 0;
+	return str;
 }

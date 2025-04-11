@@ -853,8 +853,8 @@ int main(int argc, char* argv[])
 	
 	// load existing command table
 
-	// mike - why is this not being picked up automatically like the other projects
-	#define MIKE_BUILD
+	// Create a Visual Studio user macro called $(BUILD_USER) that equals one of the below values
+	// $(BUILD_USER) is added to the preprocessor field in the project properties so it will define that value
 
 	#if defined(MIKE_BUILD)
 		FILE *pOldFile = fopen ( "D:/AGK/Studio/CommandParserNew/Final/CommandList.dat", "rb" );
@@ -890,8 +890,12 @@ int main(int argc, char* argv[])
 		fclose( pOldFile );
 	}
 
+	FILE *pFile;
+
+	// Don't parse new commands from AGK2, must be exactly the same as AGK Studio, everything will be in pOldFile
+	/*
 	// Wrapper.cpp input
-	FILE *pFile = fopen( "..\\..\\common\\source\\Wrapper.cpp", "r" );
+	pFile = fopen( "..\\..\\common\\source\\Wrapper.cpp", "r" );
 	if ( !pFile )
 	{
 		Error( "Failed to open Wrapper.cpp" );
@@ -919,6 +923,7 @@ int main(int argc, char* argv[])
 
 	ParseFile( g_pCommands, g_iNumCommands, pFile );
 	fclose( pFile );
+	*/
 
 	// ****************
 	// do not parse new files after this

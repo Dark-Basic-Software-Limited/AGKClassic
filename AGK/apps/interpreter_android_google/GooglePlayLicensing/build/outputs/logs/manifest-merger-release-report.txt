@@ -1,0 +1,41 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml:16:1-22:12
+INJECTED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml:16:1-22:12
+INJECTED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml:16:1-22:12
+INJECTED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml:16:1-22:12
+INJECTED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml:16:1-22:12
+INJECTED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml:16:1-22:12
+INJECTED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml:16:1-22:12
+	package
+		ADDED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml:17:5-51
+		INJECTED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml
+		INJECTED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml:19:5-30
+		INJECTED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml
+		INJECTED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml:16:11-69
+	android:versionCode
+		ADDED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml:18:5-28
+		INJECTED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml
+		INJECTED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml
+uses-permission#com.android.vending.CHECK_LICENSE
+ADDED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml:21:5-73
+	android:name
+		ADDED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml:21:22-70
+uses-sdk
+INJECTED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml
+INJECTED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml
+INJECTED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml
+INJECTED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml
+		ADDED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml
+		INJECTED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml
+		ADDED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml
+		INJECTED from D:\AGK\Classic\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml

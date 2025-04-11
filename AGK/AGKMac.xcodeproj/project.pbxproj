@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D1E50EC286AF8A400178A91 /* SimplexNoise.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D1E50EB286AF8A400178A91 /* SimplexNoise.h */; };
+		2D1E50EE286AF8AF00178A91 /* SimplexNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D1E50ED286AF8AF00178A91 /* SimplexNoise.cpp */; };
 		4A104FD61DA555DF00343096 /* sha2.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A104FD51DA555DF00343096 /* sha2.h */; };
 		4A104FD81DA555F200343096 /* sha2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A104FD71DA555F200343096 /* sha2.cpp */; };
 		4A12DDA91DFA627900BD53CA /* smooth.c in Sources */ = {isa = PBXBuildFile; fileRef = 4A12DDA81DFA627900BD53CA /* smooth.c */; };
@@ -1188,7 +1190,6 @@
 		D899CB10140D21FC005A5A3A /* b2WheelJoint.h in Headers */ = {isa = PBXBuildFile; fileRef = D899CAFA140D21FC005A5A3A /* b2WheelJoint.h */; };
 		D899CB14140D2210005A5A3A /* b2Rope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D899CB12140D2210005A5A3A /* b2Rope.cpp */; };
 		D899CB15140D2210005A5A3A /* b2Rope.h in Headers */ = {isa = PBXBuildFile; fileRef = D899CB13140D2210005A5A3A /* b2Rope.h */; };
-		D89D9D701384A35B005E3808 /* glfw.h in Headers */ = {isa = PBXBuildFile; fileRef = D89D9D6E1384A35B005E3808 /* glfw.h */; };
 		D8A06917134E5A2E005C59DC /* libImages.h in Headers */ = {isa = PBXBuildFile; fileRef = D8A06916134E5A2E005C59DC /* libImages.h */; };
 		D8A5D68E13200C52000446C9 /* cFile.h in Headers */ = {isa = PBXBuildFile; fileRef = D8A5D68D13200C52000446C9 /* cFile.h */; };
 		D8A5D6AD13200D10000446C9 /* cFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8A5D6AC13200D10000446C9 /* cFile.cpp */; };
@@ -1435,6 +1436,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2D1E50EB286AF8A400178A91 /* SimplexNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimplexNoise.h; path = common/include/SimplexNoise.h; sourceTree = "<group>"; };
+		2D1E50ED286AF8AF00178A91 /* SimplexNoise.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = SimplexNoise.cpp; path = common/Source/SimplexNoise.cpp; sourceTree = "<group>"; };
 		4A104FD51DA555DF00343096 /* sha2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sha2.h; path = common/include/sha2.h; sourceTree = "<group>"; };
 		4A104FD71DA555F200343096 /* sha2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sha2.cpp; path = common/Source/sha2.cpp; sourceTree = "<group>"; };
 		4A12DDA81DFA627900BD53CA /* smooth.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = smooth.c; path = freetype/src/smooth/smooth.c; sourceTree = "<group>"; };
@@ -2631,7 +2634,6 @@
 		D899CAFA140D21FC005A5A3A /* b2WheelJoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2WheelJoint.h; sourceTree = "<group>"; };
 		D899CB12140D2210005A5A3A /* b2Rope.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = b2Rope.cpp; path = Rope/b2Rope.cpp; sourceTree = "<group>"; };
 		D899CB13140D2210005A5A3A /* b2Rope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = b2Rope.h; path = Rope/b2Rope.h; sourceTree = "<group>"; };
-		D89D9D6E1384A35B005E3808 /* glfw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glfw.h; sourceTree = "<group>"; };
 		D8A06916134E5A2E005C59DC /* libImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libImages.h; path = common/Include/libImages.h; sourceTree = "<group>"; };
 		D8A5D68D13200C52000446C9 /* cFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cFile.h; path = common/Include/cFile.h; sourceTree = "<group>"; };
 		D8A5D6AC13200D10000446C9 /* cFile.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = cFile.cpp; path = common/Source/cFile.cpp; sourceTree = "<group>"; };
@@ -2940,6 +2942,7 @@
 				4AF7CA751BD725170021ED1E /* Joints.cpp */,
 				4AF7CA761BD725170021ED1E /* Ray.cpp */,
 				4AF7CA771BD725170021ED1E /* RigidBodies.cpp */,
+				2D1E50ED286AF8AF00178A91 /* SimplexNoise.cpp */,
 				4AF7CA781BD725170021ED1E /* RigidBody.cpp */,
 				4AF7CA791BD725170021ED1E /* Skeleton3D.cpp */,
 				4AF7CA7A1BD725170021ED1E /* StaticPlane.cpp */,
@@ -4384,6 +4387,7 @@
 				4AF7CA541BD724F20021ED1E /* StaticPlane.h */,
 				4AF7CA551BD724F20021ED1E /* Vector.h */,
 				4A94903D18D8806F002FD5F3 /* FrameBuffer.h */,
+				2D1E50EB286AF8A400178A91 /* SimplexNoise.h */,
 				4A94903E18D8806F002FD5F3 /* JSONElement.h */,
 				4A94903F18D8806F002FD5F3 /* Skeleton2D.h */,
 				4A94904018D8806F002FD5F3 /* Tween.h */,
@@ -4601,7 +4605,6 @@
 		D89D9D6D1384A35B005E3808 /* GLFW */ = {
 			isa = PBXGroup;
 			children = (
-				D89D9D6E1384A35B005E3808 /* glfw.h */,
 			);
 			name = GLFW;
 			path = platform/mac/GLFW;
@@ -5080,7 +5083,6 @@
 				4AF7CF6A1BD7254A0021ED1E /* btTetrahedronShape.h in Headers */,
 				4AF7CD531BD7253F0021ED1E /* VertexTriangleAdjacency.h in Headers */,
 				4A45ABA91D01A2EC00CF29C4 /* codec_internal.h in Headers */,
-				D89D9D701384A35B005E3808 /* glfw.h in Headers */,
 				4AF7CC241BD7253F0021ED1E /* format.hpp in Headers */,
 				4AF7CF821BD7254A0021ED1E /* btGeometryOperations.h in Headers */,
 				4AF7CFA11BD7254A0021ED1E /* gim_tri_collision.h in Headers */,
@@ -5151,6 +5153,7 @@
 				4AF7CEEC1BD7254A0021ED1E /* btDbvt.h in Headers */,
 				4AF7CF3D1BD7254A0021ED1E /* btConcaveShape.h in Headers */,
 				D899CAA6140D21CF005A5A3A /* b2Timer.h in Headers */,
+				2D1E50EC286AF8A400178A91 /* SimplexNoise.h in Headers */,
 				4AF7CC7D1BD7253F0021ED1E /* cfileio.h in Headers */,
 				4A45ABC81D01A2EC00CF29C4 /* os.h in Headers */,
 				D899CAB5140D21DD005A5A3A /* b2Body.h in Headers */,
@@ -6016,6 +6019,7 @@
 				4AF7CFD71BD7254B0021ED1E /* btSequentialImpulseConstraintSolver.cpp in Sources */,
 				4A8D1D321C480A6700C6EAFD /* FBXConverter.cpp in Sources */,
 				4AF7CD3A1BD7253F0021ED1E /* STEPFileReader.cpp in Sources */,
+				2D1E50EE286AF8AF00178A91 /* SimplexNoise.cpp in Sources */,
 				D8BC8AE7152121470042EDA1 /* gzclose.c in Sources */,
 				4AF7CF191BD7254A0021ED1E /* btEmptyCollisionAlgorithm.cpp in Sources */,
 				4A35AD5D1DEF43D500A51946 /* ftlcdfil.c in Sources */,
@@ -6464,7 +6468,7 @@
 					platform/mac/GLFW,
 					"$(PROJECT_DIR)/platform/mac/GLFW",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CFLAGS = "-fvisibility=hidden";
 				PRODUCT_NAME = AGKMac;
 				SDKROOT = macosx;
@@ -6511,7 +6515,7 @@
 					platform/mac/GLFW,
 					"$(PROJECT_DIR)/platform/mac/GLFW",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = AGKMac;
 				SDKROOT = macosx;
@@ -6616,7 +6620,7 @@
 					platform/mac/GLFW,
 					"$(PROJECT_DIR)/platform/mac/GLFW",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = AGKMac;
 				SDKROOT = macosx;

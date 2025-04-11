@@ -1,34 +1,34 @@
 33
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\android\ARCore\libs\arm64-v8a\libarcore_sdk.so
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\android\ARCore\libs\armeabi-v7a\libarcore_sdk.so
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\android\jni\arm64-v8a\libAGKAndroid.a
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\android\jni\arm64-v8a\libAGKAssimp.a
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\android\jni\arm64-v8a\libAGKBullet.a
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\android\jni\arm64-v8a\libAGKCurl.a
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\android\jni\armeabi-v7a\libAGKAndroid.a
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\android\jni\armeabi-v7a\libAGKAssimp.a
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\android\jni\armeabi-v7a\libAGKBullet.a
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\android\jni\armeabi-v7a\libAGKCurl.a
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\android\SnapChat\arm64-v8a\libpruneau.so
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\android\SnapChat\armeabi-v7a\libpruneau.so
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\android\Source\AndroidNetwork.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\apple\Source\AppleNetwork.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\mac\DDHidLib\DDHidAppleMikey.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\mac\DDHidLib\DDHidAppleRemote.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\mac\DDHidLib\DDHidDevice.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\mac\DDHidLib\DDHidElement.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\mac\DDHidLib\DDHidEvent.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\mac\DDHidLib\DDHidJoystick.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\mac\DDHidLib\DDHidKeyboard.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\mac\DDHidLib\DDHidKeyboardBarcodeScanner.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\mac\DDHidLib\DDHidLib.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\mac\DDHidLib\DDHidMouse.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\mac\DDHidLib\DDHidQueue.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\mac\DDHidLib\DDHidUsage.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\mac\DDHidLib\DDHidUsageTables.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\mac\DDHidLib\libddhid.a
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\mac\DDHidLib\NSDictionary+DDHidExtras.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\mac\GLFW\glfw3.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\mac\GLFW\libglfw3.a
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\mac\Source\glfw.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\platform\mac\Source\MacNetwork.h
+platform\android\ARCore\libs\arm64-v8a\libarcore_sdk.so
+platform\android\ARCore\libs\armeabi-v7a\libarcore_sdk.so
+platform\android\jni\arm64-v8a\libAGKAndroid.a
+platform\android\jni\arm64-v8a\libAGKAssimp.a
+platform\android\jni\arm64-v8a\libAGKBullet.a
+platform\android\jni\arm64-v8a\libAGKCurl.a
+platform\android\jni\armeabi-v7a\libAGKAndroid.a
+platform\android\jni\armeabi-v7a\libAGKAssimp.a
+platform\android\jni\armeabi-v7a\libAGKBullet.a
+platform\android\jni\armeabi-v7a\libAGKCurl.a
+platform\android\SnapChat\arm64-v8a\libpruneau.so
+platform\android\SnapChat\armeabi-v7a\libpruneau.so
+platform\android\Source\AndroidNetwork.h
+platform\apple\Source\AppleNetwork.h
+platform\mac\DDHidLib\DDHidAppleMikey.h
+platform\mac\DDHidLib\DDHidAppleRemote.h
+platform\mac\DDHidLib\DDHidDevice.h
+platform\mac\DDHidLib\DDHidElement.h
+platform\mac\DDHidLib\DDHidEvent.h
+platform\mac\DDHidLib\DDHidJoystick.h
+platform\mac\DDHidLib\DDHidKeyboard.h
+platform\mac\DDHidLib\DDHidKeyboardBarcodeScanner.h
+platform\mac\DDHidLib\DDHidLib.h
+platform\mac\DDHidLib\DDHidMouse.h
+platform\mac\DDHidLib\DDHidQueue.h
+platform\mac\DDHidLib\DDHidUsage.h
+platform\mac\DDHidLib\DDHidUsageTables.h
+platform\mac\DDHidLib\libddhid.a
+platform\mac\DDHidLib\NSDictionary+DDHidExtras.h
+platform\mac\GLFW\glfw3.h
+platform\mac\GLFW\libglfw3.a
+platform\mac\Source\glfw.h
+platform\mac\Source\MacNetwork.h

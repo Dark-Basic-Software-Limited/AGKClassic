@@ -1,0 +1,67 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:2:1-39:12
+INJECTED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:2:1-39:12
+INJECTED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:2:1-39:12
+	package
+		ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:3:5-55
+		INJECTED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml
+		INJECTED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:2:11-69
+uses-permission#com.android.vending.CHECK_LICENSE
+ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:6:5-73
+	android:name
+		ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:6:22-70
+uses-permission#android.permission.INTERNET
+ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:9:5-67
+	android:name
+		ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:9:22-64
+uses-permission#android.permission.WAKE_LOCK
+ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:13:5-68
+	android:name
+		ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:13:22-65
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:17:5-18:66
+	android:name
+		ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:18:9-63
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:21:5-75
+	android:name
+		ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:21:22-73
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:25:5-26:68
+	android:name
+		ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:26:9-65
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:27:5-28:66
+	android:name
+		ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:28:9-64
+application
+ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:30:5-38:19
+service#com.google.android.vending.expansion.downloader.impl.DownloaderService
+ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:31:9-33:37
+	android:enabled
+		ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:33:13-35
+	android:name
+		ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:32:13-98
+receiver#com.google.android.vending.expansion.downloader.impl.DownloaderService$AlarmReceiver
+ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:35:9-37:37
+	android:enabled
+		ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:37:13-35
+	android:name
+		ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml:36:13-112
+uses-sdk
+INJECTED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml
+INJECTED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml
+INJECTED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml
+INJECTED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml
+		ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml
+		INJECTED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml
+		ADDED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml
+		INJECTED from D:\AGK\Classic\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml

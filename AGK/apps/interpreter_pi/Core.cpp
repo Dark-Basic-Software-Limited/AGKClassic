@@ -195,9 +195,9 @@ int main (int argc, char **argv)
 
     bcm_host_init();
 
-    App.g_dwDeviceWidth = 1024;
-    App.g_dwDeviceHeight = 768;
-    App.g_dwFullScreen = 0;
+    int width = 1024;
+    int height = 768;
+    int fullscreen = 0;
     
     int32_t success = 0;
     EGLBoolean result;
@@ -256,9 +256,6 @@ int main (int argc, char **argv)
     // check desired width and height against the screen bounds
     success = graphics_get_display_size(0 /* LCD */, &mainWidth, &mainHeight);
     assert( success >= 0 );
-    
-    int width = App.g_dwDeviceWidth;
-    int height = App.g_dwDeviceHeight;
     
     // Get XWindow display
     Display *d = XOpenDisplay(NULL);
@@ -331,9 +328,6 @@ int main (int argc, char **argv)
     XTranslateCoordinates( d, w, RootWindow(d,s), 0,0, &winX, &winY, &unused );
     winX += overscanX;
     winY += overscanY;
-    
-    App.g_dwDeviceWidth = width;
-    App.g_dwDeviceHeight = height;
 
     dst_rect.x = winX;
     dst_rect.y = winY;

@@ -59,12 +59,8 @@ using namespace AGK;
 	NSDictionary *remoteNotify = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     if ( remoteNotify )
     {
-        NSDictionary *aps = [remoteNotify objectForKey:@"aps"];
-        if ( aps )
-        {
-            NSString *deeplink = [aps objectForKey:@"deeplink"];
-            if ( deeplink ) agk::HandleDeepLink( [deeplink UTF8String] );
-        }
+        NSString *deeplink = [remoteNotify objectForKey:@"deeplink"];
+        if ( deeplink ) agk::HandleDeepLink( [deeplink UTF8String] );
     }
     
     // Add to manage notification-related behaviors on iOS 10
@@ -86,6 +82,14 @@ using namespace AGK;
 {
     //NSLog(@"User Info : %@",response.notification.request.content.userInfo);
     
+	NSString *deeplink = [response.notification.request.content.userInfo objectForKey:@"deeplink"];
+    if ( deeplink )
+    {
+        agk::HandleDeepLink( [deeplink UTF8String] );
+        completionHandler();
+        return;
+    }
+    
     // get the whole string from the notification
     NSDictionary *aps = [response.notification.request.content.userInfo objectForKey:@"aps"];
     if ( aps )
@@ -93,7 +97,6 @@ using namespace AGK;
         NSString *deeplink = [aps objectForKey:@"deeplink"];
         if ( deeplink ) agk::HandleDeepLink( [deeplink UTF8String] );
     }
-    
     completionHandler();
 }
 
@@ -245,7 +248,7 @@ using namespace AGK;
  GADAdSize const *kGADAdSizeSmartBannerPortrait;
  GADAdSize const *kGADAdSizeSmartBannerLandscape;
  GADAdSize const *kGADAdSizeFluid;
- @implementation GADRewardBasedVideoAd : NSObject @end
+ @implementation GADRewardedAd : NSObject @end
  @implementation PACConsentForm : NSObject @end
  @implementation PACConsentInformation : NSObject @end
  */

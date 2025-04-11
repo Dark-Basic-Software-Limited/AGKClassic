@@ -55,12 +55,14 @@ include $(CLEAR_VARS)
 LOCAL_MODULE    := android_player
 
 # agk includes folder
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../../../../common/include \
-                $(LOCAL_PATH)/../../../../../interpreter
+LOCAL_C_INCLUDES := $(LOCAL_PATH) \
+                $(LOCAL_PATH)/../../../../../../common/include \
+                $(LOCAL_PATH)/../../../../../interpreter \
+                $(LOCAL_PATH)/../../../../../../renderer
 
 # app source files, must be relative to the jni folder
-LOCAL_SRC_FILES := main.c \
-               Core.cpp \
+LOCAL_SRC_FILES := ../../../../../android_common_native/main.c \
+               ../../../../../android_common_native/Core.cpp \
                ../../../../../interpreter/interpreter.cpp \
                ../../../../../interpreter/ProgramData.cpp
 

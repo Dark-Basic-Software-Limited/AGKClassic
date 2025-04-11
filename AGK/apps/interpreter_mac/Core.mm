@@ -257,9 +257,9 @@ int main (int argc, char **argv)
     // this must be done before setting up the window due to memory issues in IOCreatePlugInInterfaceForService
     agk::InitJoysticks();
    
-    App.g_dwDeviceWidth = DEVICE_WIDTH;
-	App.g_dwDeviceHeight = DEVICE_HEIGHT;
-	App.g_dwFullScreen = FULLSCREEN ? 1 : 0;
+    int width = DEVICE_WIDTH;
+	int height = DEVICE_HEIGHT;
+	int fullscreen = FULLSCREEN ? 1 : 0;
 
 	char* pSetupFile = (char*)"setup.agc";
 	if ( agk::GetFileExists ( pSetupFile )==1 )
@@ -271,9 +271,9 @@ int main (int argc, char **argv)
 		{
 			char* pLineToRead = agk::ReadLine ( 1 );
 			pField=(char*)"title="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	strcpy ( App.g_pWindowTitle, pLineToRead+strlen(pField) );
-			pField=(char*)"width="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	App.g_dwDeviceWidth = (unsigned int)atoi(pLineToRead+strlen(pField));
-			pField=(char*)"height="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	App.g_dwDeviceHeight = (unsigned int)atoi(pLineToRead+strlen(pField));
-			pField=(char*)"fullscreen="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	App.g_dwFullScreen = (unsigned int)atoi(pLineToRead+strlen(pField));
+			pField=(char*)"width="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	width = (unsigned int)atoi(pLineToRead+strlen(pField));
+			pField=(char*)"height="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	height = (unsigned int)atoi(pLineToRead+strlen(pField));
+			pField=(char*)"fullscreen="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	fullscreen = (unsigned int)atoi(pLineToRead+strlen(pField));
 			pField=(char*)"resolutionmode="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	App.g_dwResolutionMode = (unsigned int)atoi(pLineToRead+strlen(pField));
 		}
 		agk::CloseFile ( 1 );
@@ -288,9 +288,6 @@ int main (int argc, char **argv)
     
     NSScreen *mainScreen = [NSScreen mainScreen];
     NSRect screenRect = [mainScreen visibleFrame];
-    
-    int width = App.g_dwDeviceWidth;
-    int height = App.g_dwDeviceHeight;
     
     float appAspect = width / (float) height;
 	float windowAspect = (screenRect.size.width-15) / (float) (screenRect.size.height-80);
@@ -313,9 +310,6 @@ int main (int argc, char **argv)
 			width = (int) width*ratio;
 		}
 	}
-    
-    App.g_dwDeviceWidth = width;
-    App.g_dwDeviceHeight = height;
 
 	glfwWindowHint( GLFW_SAMPLES, 4 );
     glfwWindowHint( GLFW_RED_BITS, 8 );
@@ -328,7 +322,7 @@ int main (int argc, char **argv)
     glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, 2 );
     glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 0 );
     
-    GLFWwindow *window = glfwCreateWindow(App.g_dwDeviceWidth, App.g_dwDeviceHeight, App.g_pWindowTitle, NULL, NULL);
+    GLFWwindow *window = glfwCreateWindow(width, height, App.g_pWindowTitle, NULL, NULL);
     if ( !window )
     {
         glfwTerminate();
@@ -358,7 +352,7 @@ int main (int argc, char **argv)
         data.window = window;
         agk::InitGL(&data);
         
-        if ( App.g_dwFullScreen==1 )
+        if ( fullscreen==1 )
             agk::SetWindowSize( 0,0, 1 );
 
 		[[[[[NSApp mainMenu] itemAtIndex:1] submenu] itemAtIndex:0] setTitle:@"Minimize"];

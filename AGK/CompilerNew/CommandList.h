@@ -1,5 +1,5 @@
-int g_iAGKNumCommands = 2087;
-stCommandOrig g_pAGKCommands[2087] = {
+int g_iAGKNumCommands = 2120;
+stCommandOrig g_pAGKCommands[2120] = {
 	{"WorldToScreenX",{2},2,1},
 	{"WorldToScreenY",{2},2,1},
 	{"ScreenToWorldX",{2},2,1},
@@ -2086,5 +2086,38 @@ stCommandOrig g_pAGKCommands[2087] = {
 	{"GetNoiseXYZ",{2,2,2},2,3},
 	{"GetFractalX",{1,2},2,2},
 	{"GetFractalXY",{1,2,2},2,3},
-	{"GetFractalXZ",{1,2,2,2},2,4}
+	{"GetFractalXYZ",{1,2,2,2},2,4},
+	{"SetTextShader",{1,1},0,2},
+	{"SetTextShaderConstantByName",{1,3,2,2,2,2},0,6},
+	{"SetTextShaderConstantArrayByName",{1,3,1,2,2,2,2},0,7},
+	{"SetTextShaderConstantDefault",{1,3},0,2},
+	{"InAppPurchaseRedeemOffer",{},0,0},
+	{"ExternalSDKSupported",{3},1,1},
+	{"ExternalCommand",{3,3,3,3},0,4},
+	{"ExternalCommandInt",{3,3,3,3},1,4},
+	{"ExternalCommandFloat",{3,3,3,3},2,4},
+	{"ExternalCommandString",{3,3,3,3},3,4},
+	{"GetAppReceipt",{},3,0},
+	{"InAppPurchaseActivateWithPlan",{1,3},0,2},
+	{"GetInAppPurchaseSubNumPlans",{1},1,1},
+	{"GetInAppPurchaseSubPlanNumPeriods",{1,1},1,2},
+	{"GetInAppPurchaseSubPlanPrice",{1,1,1},3,3},
+	{"GetInAppPurchaseSubPlanDuration",{1,1,1},1,3},
+	{"GetInAppPurchaseSubPlanDurationUnit",{1,1,1},3,3},
+	{"GetInAppPurchaseSubPlanPaymentType",{1,1,1},1,3},
+	{"GetInAppPurchaseSubPlanTags",{1,1},3,2},
+	{"GetInAppPurchaseSubPlanToken",{1,1},3,2},
+	{"GetDisplayNumCutouts",{},1,0},
+	{"GetDisplayCutoutTop",{1},2,1},
+	{"GetDisplayCutoutBottom",{1},2,1},
+	{"GetDisplayCutoutLeft",{1},2,1},
+	{"GetDisplayCutoutRight",{1},2,1},
+	{"GetScreenBoundsSafeTop",{},2,0},
+	{"GetScreenBoundsSafeBottom",{},2,0},
+	{"GetScreenBoundsSafeLeft",{},2,0},
+	{"GetScreenBoundsSafeRight",{},2,0},
+	{"IsPinAppAvailable",{},1,0},
+	{"PinApp",{1},0,1},
+	{"IsDarkTheme",{},1,0},
+	{"GetInAppPurchaseIsRenewing",{1},1,1}
 };

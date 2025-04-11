@@ -1,4 +1,1 @@
-include ':ExpansionDownloader'
-include ':ExpansionZipFile'
-include ':GooglePlayLicensing'
 include ':AGKPlayer2'

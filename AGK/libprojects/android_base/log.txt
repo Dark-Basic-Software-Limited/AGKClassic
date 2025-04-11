@@ -1,0 +1,39 @@
+D:/AGK/External/android-ndk-r20b/build//../build/core/build-binary.mk:507: warning: overriding commands for target `obj/local/armeabi-v7a/objs/objs2/AGKAndroid/__/__/__/libjpeg/jcmaster.o'
+D:/AGK/External/android-ndk-r20b/build//../build/core/build-binary.mk:507: warning: ignoring old commands for target `obj/local/armeabi-v7a/objs/objs2/AGKAndroid/__/__/__/libjpeg/jcmaster.o'
+D:/AGK/External/android-ndk-r20b/build//../build/core/build-binary.mk:507: warning: overriding commands for target `obj/local/armeabi-v7a/objs/objs2/AGKAndroid/__/__/__/libjpeg/jcmaster.o.commands.json'
+D:/AGK/External/android-ndk-r20b/build//../build/core/build-binary.mk:507: warning: ignoring old commands for target `obj/local/armeabi-v7a/objs/objs2/AGKAndroid/__/__/__/libjpeg/jcmaster.o.commands.json'
+D:/AGK/External/android-ndk-r20b/build//../build/core/build-binary.mk:507: warning: overriding commands for target `obj/local/arm64-v8a/objs/objs2/AGKAndroid/__/__/__/libjpeg/jcmaster.o'
+D:/AGK/External/android-ndk-r20b/build//../build/core/build-binary.mk:507: warning: ignoring old commands for target `obj/local/arm64-v8a/objs/objs2/AGKAndroid/__/__/__/libjpeg/jcmaster.o'
+D:/AGK/External/android-ndk-r20b/build//../build/core/build-binary.mk:507: warning: overriding commands for target `obj/local/arm64-v8a/objs/objs2/AGKAndroid/__/__/__/libjpeg/jcmaster.o.commands.json'
+D:/AGK/External/android-ndk-r20b/build//../build/core/build-binary.mk:507: warning: ignoring old commands for target `obj/local/arm64-v8a/objs/objs2/AGKAndroid/__/__/__/libjpeg/jcmaster.o.commands.json'
+jni/../../../common/Source/cSprite.cpp:1374:11: warning: enumeration values 'e_edge' and 'e_typeCount' not handled in switch [-Wswitch]
+                switch( pShape->GetType() )
+                        ^
+jni/../../../common/Source/Wrapper.cpp:55489:11: warning: 4 enumeration values not handled in switch: 'CONTACT_CONSTRAINT_TYPE', 'D6_SPRING_CONSTRAINT_TYPE', 'GEAR_CONSTRAINT_TYPE'... [-Wswitch]
+        switch ( constraint->getConstraintType() )
+                 ^
+1 warning generated.
+jni/../../../renderer/OpenGLES2/OpenGLES2.cpp:1748:12: warning: cast to 'void *' from smaller integer type 'char' [-Wint-to-void-pointer-cast]
+                                        ptr = (void*)(pAttrib->m_iOffset);
+                                              ^
+1 warning generated.
+jni/../../../common/Source/Wrapper.cpp:55489:11: warning: 4 enumeration values not handled in switch: 'CONTACT_CONSTRAINT_TYPE', 'D6_SPRING_CONSTRAINT_TYPE', 'GEAR_CONSTRAINT_TYPE'... [-Wswitch]
+        switch ( constraint->getConstraintType() )
+                 ^
+jni/../../../common/Source/cSprite.cpp:1374:11: warning: enumeration values 'e_edge' and 'e_typeCount' not handled in switch [-Wswitch]
+                switch( pShape->GetType() )
+                        ^
+1 warning generated.
+1 warning generated.
+jni/../../../renderer/OpenGLES2/OpenGLES2.cpp:1748:12: warning: cast to 'void *' from smaller integer type 'char' [-Wint-to-void-pointer-cast]
+                                        ptr = (void*)(pAttrib->m_iOffset);
+                                              ^
+jni/../../../platform/android/Source/AndroidCore.cpp:7905:45: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+                                        agk::m_pJoystick[ j ] = new cJoystick( (void*)id );
+                                                                               ^
+jni/../../../platform/android/Source/AndroidCore.cpp:7912:41: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+                                        agk::m_pJoystick[ j ]->m_pDevice = (void*)id;
+                                                                           ^
+1 warning generated.
+2 warnings generated.
+1 warning generated.

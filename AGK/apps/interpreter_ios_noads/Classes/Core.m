@@ -25,12 +25,7 @@ using namespace AGK;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    float scale = [[UIScreen mainScreen] scale];
-	if ( scale == 0 ) scale = 1;
-	App.g_dwDeviceWidth = [UIScreen mainScreen].bounds.size.width * scale;
-	App.g_dwDeviceHeight = [UIScreen mainScreen].bounds.size.height * scale;
-    
-	// Tell the UIDevice to send notifications when the orientation changes
+    // Tell the UIDevice to send notifications when the orientation changes
 	[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 	[[NSNotificationCenter defaultCenter] addObserver:self 
 											 selector:@selector(orientationChanged:) 
@@ -74,12 +69,8 @@ using namespace AGK;
 	NSDictionary *remoteNotify = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     if ( remoteNotify )
     {
-        NSDictionary *aps = [remoteNotify objectForKey:@"aps"];
-        if ( aps )
-        {
-            NSString *deeplink = [aps objectForKey:@"deeplink"];
-            if ( deeplink ) agk::HandleDeepLink( [deeplink UTF8String] );
-        }
+        NSString *deeplink = [remoteNotify objectForKey:@"deeplink"];
+        if ( deeplink ) agk::HandleDeepLink( [deeplink UTF8String] );
     }
     
     // Add to manage notification-related behaviors on iOS 10
@@ -100,6 +91,14 @@ using namespace AGK;
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)())completionHandler
 {
     //NSLog(@"User Info : %@",response.notification.request.content.userInfo);
+    
+    NSString *deeplink = [response.notification.request.content.userInfo objectForKey:@"deeplink"];
+    if ( deeplink )
+    {
+        agk::HandleDeepLink( [deeplink UTF8String] );
+        completionHandler();
+        return;
+    }
     
     // get the whole string from the notification
     NSDictionary *aps = [response.notification.request.content.userInfo objectForKey:@"aps"];
@@ -240,7 +239,7 @@ using namespace AGK;
 @end
 
 @implementation ASIdentifierManager : NSObject @end
-
+ 
 // use this to get rid of the Ad Tracking consent form
 @implementation UMPConsentForm : NSObject @end
 @implementation UMPConsentInformation : NSObject @end

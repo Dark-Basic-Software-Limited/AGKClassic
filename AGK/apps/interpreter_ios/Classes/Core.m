@@ -24,12 +24,7 @@ using namespace AGK;
 @synthesize viewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    float scale = [[UIScreen mainScreen] scale];
-	if ( scale == 0 ) scale = 1;
-	App.g_dwDeviceWidth = [UIScreen mainScreen].bounds.size.width * scale;
-	App.g_dwDeviceHeight = [UIScreen mainScreen].bounds.size.height * scale;
-    
+{   
 	// Tell the UIDevice to send notifications when the orientation changes
 	[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 	[[NSNotificationCenter defaultCenter] addObserver:self 
@@ -55,7 +50,7 @@ using namespace AGK;
 		return YES;
 	}
 	[viewController setActive];
-	
+    
     UILocalNotification *localNotify = launchOptions[UIApplicationLaunchOptionsLocalNotificationKey];
     if ( localNotify )
     {
@@ -74,13 +69,9 @@ using namespace AGK;
 	NSDictionary *remoteNotify = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     if ( remoteNotify )
     {
-        NSDictionary *aps = [remoteNotify objectForKey:@"aps"];
-        if ( aps )
-        {
-            NSString *deeplink = [aps objectForKey:@"deeplink"];
-            if ( deeplink ) agk::HandleDeepLink( [deeplink UTF8String] );
-        }
-    }
+		NSString *deeplink = [remoteNotify objectForKey:@"deeplink"];
+        if ( deeplink ) agk::HandleDeepLink( [deeplink UTF8String] );
+	}
 	 
     // Add to manage notification-related behaviors on iOS 10
     [UNUserNotificationCenter currentNotificationCenter].delegate = self;
@@ -101,6 +92,14 @@ using namespace AGK;
 {
     //NSLog(@"User Info : %@",response.notification.request.content.userInfo);
 	
+	NSString *deeplink = [response.notification.request.content.userInfo objectForKey:@"deeplink"];
+    if ( deeplink )
+	{
+        agk::HandleDeepLink( [deeplink UTF8String] );
+		completionHandler();
+		return;
+	}
+	
 	// get the whole string from the notification
     NSDictionary *aps = [response.notification.request.content.userInfo objectForKey:@"aps"];
     if ( aps )
@@ -108,8 +107,8 @@ using namespace AGK;
         NSString *deeplink = [aps objectForKey:@"deeplink"];
         if ( deeplink ) agk::HandleDeepLink( [deeplink UTF8String] );
     }
-	
-    completionHandler();
+    
+	completionHandler();
 }
 
 - (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
@@ -146,7 +145,6 @@ using namespace AGK;
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
 	[UIApplication sharedApplication].applicationIconBadgeNumber=0;
-	[[UIApplication sharedApplication] cancelAllLocalNotifications];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -246,11 +244,18 @@ using namespace AGK;
 // use this if you want to remove all uses of the IDFA
 // @implementation ASIdentifierManager : NSObject @end
 
+/*
+// use this to get rid of the Ad Tracking consent form
+@implementation UMPConsentForm : NSObject @end
+@implementation UMPConsentInformation : NSObject @end
+@implementation UMPRequestParameters : NSObject @end
+*/
+
 // use this if you want to remove the AdMob SDK (remove libGoogleAdMobAds.a and AdSupport.framework)
 /*
  @implementation GADBannerView : UIView @end
  @implementation GADRequest : NSObject @end
- @implementation GADInterstitial : NSObject @end
+ @implementation GADInterstitialAd : NSObject @end
  @implementation GADAdSize : NSObject @end
  @implementation GADExtras : NSObject @end
  @implementation GADMobileAds : NSObject @end
@@ -262,7 +267,7 @@ using namespace AGK;
  GADAdSize const *kGADAdSizeSmartBannerPortrait;
  GADAdSize const *kGADAdSizeSmartBannerLandscape;
  GADAdSize const *kGADAdSizeFluid;
- @implementation GADRewardBasedVideoAd : NSObject @end
+ @implementation GADRewardedAd : NSObject @end
  @implementation PACConsentForm : NSObject @end
  @implementation PACConsentInformation : NSObject @end
  */
@@ -270,15 +275,12 @@ using namespace AGK;
 // use this if you want to remove the Chartboost framework (also remove AdSupport.framework)
 /*
  @implementation Chartboost : NSObject @end
+ @implementation CHBGDPRDataUseConsent: NSObject @end
+ @implementation CHBCCPADataUseConsent: NSObject @end
+ extern "C" NSString* const CHBPrivacyStandardGDPR = 0;
+ extern "C" NSString* const CHBPrivacyStandardCCPA = 0;
  NSString * CBLocationGameScreen;
  */
-
-// use this if you want to remove the Amazon Ad framework
-/*
-@implementation AmazonAdRegistration : NSObject @end
-@implementation AmazonAdOptions : NSObject @end
-@implementation AmazonAdInterstitial : NSObject @end
-*/
 
 // use this if you want to remove the Firebase frameworks
 /*
@@ -291,9 +293,4 @@ using namespace AGK;
 @implementation SCSDKPhotoSnapContent : NSObject @end
 @implementation SCSDKSnapPhoto : NSObject @end
 */
-
-#if defined(__i386__) || defined(__x86_64__)
-@implementation PACConsentForm : NSObject @end
-@implementation PACConsentInformation : NSObject @end
-#endif
 

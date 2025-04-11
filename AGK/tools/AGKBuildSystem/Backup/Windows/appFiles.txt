@@ -1,302 +1,302 @@
 301
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter\AGKCommandEnums.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter\AGKCommandSwitch.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter\AGKCommandSwitch2D.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter\AGKCommonSwitch.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter\AGKInstructions.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter\AGKPluginCommandList.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter\Core.cpp
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter\interpreter.cpp
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter\interpreter.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter\interpreter.ico
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter\interpreter.rc
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter\interpreter.sln
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter\interpreter.vcxproj
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter\interpreter.vcxproj.filters
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter\ProgramData.cpp
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter\ProgramData.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter\resource.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter\Win64Plugins.asm
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\libs\chartboost.jar
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\libs\in-app-purchasing-2.0.76.jar
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\AndroidManifest.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\AGKActivity.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\AGKHelper.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\iap\AGKPurchasingListener.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\NotificationAlarmReceiver.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\jniLibs\arm64-v8a\libandroid_player.so
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\jniLibs\armeabi-v7a\libandroid_player.so
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-hdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-hdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-ldpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-ldpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-mdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-mdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-xhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-xhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-xxhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-xxhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-xxxhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-xxxhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\layout\facebookmain.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\layout\main.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\values\googleservices.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\values\strings.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\values\styles.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\xml\provider_paths.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\gradle\wrapper\gradle-wrapper.jar
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\gradle\wrapper\gradle-wrapper.properties
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\gradle.properties
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\gradlew
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\gradlew.bat
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_amazon\settings.gradle
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\libs\YouTubeAndroidPlayerApi.jar
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\proguard-rules.txt
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\AndroidManifest.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\AGKActivity.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\AGKHelper.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\NotificationAlarmReceiver.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\NotificationService.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\jni\Android.mk
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\jni\Application.mk
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\jni\Core.cpp
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\jni\main.c
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\jniCompile.bat
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\jniLibs\arm64-v8a\libandroid_player.so
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\jniLibs\arm64-v8a\libarcore_sdk.so
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\jniLibs\armeabi-v7a\libandroid_player.so
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\jniLibs\armeabi-v7a\libarcore_sdk.so
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-hdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-hdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-ldpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-ldpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-mdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-mdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-xhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-xhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-xxhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-xxhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-xxxhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-xxxhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\layout\facebookmain.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\layout\main.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\values\googleservices.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\values\strings.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\values\styles.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\values-v20\styles.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\xml\provider_paths.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\proguard-rules.pro
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\project.properties
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\Constants.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\DownloadProgressInfo.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\Helpers.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\IDownloaderClient.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\IDownloaderService.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\BroadcastDownloaderClient.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\ClientProxy.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\CustomIntentService.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\DownloaderProxy.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\DownloaderService.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\DownloadInfo.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\DownloadNotification.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\DownloadsDB.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\DownloadThread.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\ServiceHandler.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\res\values\strings.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionZipFile\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionZipFile\src\main\AndroidManifest.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionZipFile\src\main\java\com\android\vending\expansion\zipfile\APEZProvider.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionZipFile\src\main\java\com\android\vending\expansion\zipfile\APKExpansionSupport.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionZipFile\src\main\java\com\android\vending\expansion\zipfile\ZipResourceFile.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\ExpansionZipFile\src\main\res\.nores
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\AESObfuscator.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\APKExpansionPolicy.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\DeviceLimiter.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\ILicenseResultListener.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\ILicensingService.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\LicenseChecker.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\LicenseCheckerCallback.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\LicenseValidator.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\NullDeviceLimiter.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\Obfuscator.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\Policy.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\PreferenceObfuscator.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\ResponseData.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\ServerManagedPolicy.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\StrictPolicy.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\util\Base64.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\util\Base64DecoderException.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\ValidationException.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\gradle\wrapper\gradle-wrapper.jar
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\gradle\wrapper\gradle-wrapper.properties
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\gradle.properties
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\gradlew
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\gradlew.bat
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_google\settings.gradle
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\libs\ouya-sdk.jar
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\AndroidManifest.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\AGKActivity.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\AGKHelper.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\jniLibs\arm64-v8a\libandroid_player.so
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\jniLibs\armeabi-v7a\libandroid_player.so
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable-hdpi\app_icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable-ldpi\app_icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable-mdpi\app_icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable-xhdpi\app_icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable-xhdpi\ouya_icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\res\layout\facebookmain.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\res\layout\main.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\res\values\strings.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\res\values\styles.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\gradle\wrapper\gradle-wrapper.jar
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\gradle\wrapper\gradle-wrapper.properties
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\gradlew
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\gradlew.bat
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\interpreter_android_ouya\settings.gradle
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\libs\chartboost.jar
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\libs\in-app-purchasing-2.0.76.jar
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\AndroidManifest.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\java\com\thegamecreators\agk_player\AGKActivity.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\java\com\thegamecreators\agk_player\AGKHelper.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\java\com\thegamecreators\agk_player\iap\AGKPurchasingListener.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\java\com\thegamecreators\agk_player\NotificationAlarmReceiver.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\jni\Android.mk
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\jni\Application.mk
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\jni\Core.cpp
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\jni\main.c
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\jni\template.cpp
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\jni\template.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\jniCompile.bat
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-hdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-hdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-ldpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-ldpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-mdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-mdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-xhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-xhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-xxhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-xxhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-xxxhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-xxxhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\layout\facebookmain.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\layout\main.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\values\googleservices.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\values\strings.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\values\styles.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\xml\provider_paths.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\gradle\wrapper\gradle-wrapper.jar
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\gradle\wrapper\gradle-wrapper.properties
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\gradle.properties
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\gradlew
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\gradlew.bat
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_amazon\settings.gradle
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\libs\YouTubeAndroidPlayerApi.jar
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\proguard-rules.txt
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\AndroidManifest.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\java\com\thegamecreators\agk_player\AGKActivity.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\java\com\thegamecreators\agk_player\AGKHelper.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\java\com\thegamecreators\agk_player\NotificationAlarmReceiver.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\java\com\thegamecreators\agk_player\NotificationService.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\jni\Android.mk
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\jni\Application.mk
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\jni\Core.cpp
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\jni\main.c
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\jni\template.cpp
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\jni\template.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\jniCompile.bat
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-hdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-hdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-ldpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-ldpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-mdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-mdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-xhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-xhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-xxhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-xxhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-xxxhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-xxxhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\layout\facebookmain.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\layout\main.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\values\googleservices.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\values\strings.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\values\styles.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\values-v20\styles.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\xml\provider_paths.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\gradle\wrapper\gradle-wrapper.jar
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\gradle\wrapper\gradle-wrapper.properties
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\gradle.properties
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\gradlew
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\gradlew.bat
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_google\settings.gradle
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\AGK2Template\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\AGK2Template\libs\ouya-sdk.jar
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\AndroidManifest.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\java\com\thegamecreators\agk_player\AGKActivity.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\java\com\thegamecreators\agk_player\AGKHelper.java
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\jni\Android.mk
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\jni\Application.mk
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\jni\Core.cpp
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\jni\main.c
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\jni\template.cpp
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\jni\template.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\jniCompile.bat
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\res\drawable\icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\res\drawable-hdpi\app_icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\res\drawable-ldpi\app_icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\res\drawable-mdpi\app_icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\res\drawable-xhdpi\app_icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\res\drawable-xhdpi\ouya_icon.png
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\res\layout\facebookmain.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\res\layout\main.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\res\values\strings.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\res\values\styles.xml
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\gradle\wrapper\gradle-wrapper.jar
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\gradle\wrapper\gradle-wrapper.properties
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\gradlew
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\gradlew.bat
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_android_ouya\settings.gradle
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2015\Core.cpp
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2015\resource.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2015\template.cpp
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2015\template.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2015\Template.sln
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2015\Template.vcxproj
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2015_64\Core.cpp
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2015_64\resource.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2015_64\template.cpp
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2015_64\template.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2015_64\template.ico
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2015_64\Template.sln
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2015_64\Template.vcxproj
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2017\Core.cpp
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2017\resource.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2017\template.cpp
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2017\template.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2017\template.ico
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2017\Template.sln
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2017\Template.vcxproj
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2017_64\Core.cpp
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2017_64\resource.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2017_64\template.cpp
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2017_64\template.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2017_64\template.ico
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2017_64\Template.sln
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\apps\template_windows_vs2017_64\Template.vcxproj
+apps\interpreter\AGKCommandEnums.h
+apps\interpreter\AGKCommandSwitch.h
+apps\interpreter\AGKCommandSwitch2D.h
+apps\interpreter\AGKCommonSwitch.h
+apps\interpreter\AGKInstructions.h
+apps\interpreter\AGKPluginCommandList.h
+apps\interpreter\Core.cpp
+apps\interpreter\interpreter.cpp
+apps\interpreter\interpreter.h
+apps\interpreter\interpreter.ico
+apps\interpreter\interpreter.rc
+apps\interpreter\interpreter.sln
+apps\interpreter\interpreter.vcxproj
+apps\interpreter\interpreter.vcxproj.filters
+apps\interpreter\ProgramData.cpp
+apps\interpreter\ProgramData.h
+apps\interpreter\resource.h
+apps\interpreter\Win64Plugins.asm
+apps\interpreter_android_amazon\AGKPlayer2\build.gradle
+apps\interpreter_android_amazon\AGKPlayer2\libs\chartboost.jar
+apps\interpreter_android_amazon\AGKPlayer2\libs\in-app-purchasing-2.0.76.jar
+apps\interpreter_android_amazon\AGKPlayer2\src\main\AndroidManifest.xml
+apps\interpreter_android_amazon\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\AGKActivity.java
+apps\interpreter_android_amazon\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\AGKHelper.java
+apps\interpreter_android_amazon\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\iap\AGKPurchasingListener.java
+apps\interpreter_android_amazon\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\NotificationAlarmReceiver.java
+apps\interpreter_android_amazon\AGKPlayer2\src\main\jniLibs\arm64-v8a\libandroid_player.so
+apps\interpreter_android_amazon\AGKPlayer2\src\main\jniLibs\armeabi-v7a\libandroid_player.so
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-hdpi\icon.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-hdpi\icon_white.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-ldpi\icon.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-ldpi\icon_white.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-mdpi\icon.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-mdpi\icon_white.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-xhdpi\icon.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-xhdpi\icon_white.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-xxhdpi\icon.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-xxhdpi\icon_white.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-xxxhdpi\icon.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-xxxhdpi\icon_white.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\layout\facebookmain.xml
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\layout\main.xml
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\values\googleservices.xml
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\values\strings.xml
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\values\styles.xml
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\xml\provider_paths.xml
+apps\interpreter_android_amazon\build.gradle
+apps\interpreter_android_amazon\gradle\wrapper\gradle-wrapper.jar
+apps\interpreter_android_amazon\gradle\wrapper\gradle-wrapper.properties
+apps\interpreter_android_amazon\gradle.properties
+apps\interpreter_android_amazon\gradlew
+apps\interpreter_android_amazon\gradlew.bat
+apps\interpreter_android_amazon\settings.gradle
+apps\interpreter_android_google\AGKPlayer2\build.gradle
+apps\interpreter_android_google\AGKPlayer2\libs\YouTubeAndroidPlayerApi.jar
+apps\interpreter_android_google\AGKPlayer2\proguard-rules.txt
+apps\interpreter_android_google\AGKPlayer2\src\main\AndroidManifest.xml
+apps\interpreter_android_google\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\AGKActivity.java
+apps\interpreter_android_google\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\AGKHelper.java
+apps\interpreter_android_google\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\NotificationAlarmReceiver.java
+apps\interpreter_android_google\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\NotificationService.java
+apps\interpreter_android_google\AGKPlayer2\src\main\jni\Android.mk
+apps\interpreter_android_google\AGKPlayer2\src\main\jni\Application.mk
+apps\interpreter_android_google\AGKPlayer2\src\main\jni\Core.cpp
+apps\interpreter_android_google\AGKPlayer2\src\main\jni\main.c
+apps\interpreter_android_google\AGKPlayer2\src\main\jniCompile.bat
+apps\interpreter_android_google\AGKPlayer2\src\main\jniLibs\arm64-v8a\libandroid_player.so
+apps\interpreter_android_google\AGKPlayer2\src\main\jniLibs\arm64-v8a\libarcore_sdk.so
+apps\interpreter_android_google\AGKPlayer2\src\main\jniLibs\armeabi-v7a\libandroid_player.so
+apps\interpreter_android_google\AGKPlayer2\src\main\jniLibs\armeabi-v7a\libarcore_sdk.so
+apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-hdpi\icon.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-hdpi\icon_white.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-ldpi\icon.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-ldpi\icon_white.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-mdpi\icon.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-mdpi\icon_white.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-xhdpi\icon.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-xhdpi\icon_white.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-xxhdpi\icon.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-xxhdpi\icon_white.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-xxxhdpi\icon.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-xxxhdpi\icon_white.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\layout\facebookmain.xml
+apps\interpreter_android_google\AGKPlayer2\src\main\res\layout\main.xml
+apps\interpreter_android_google\AGKPlayer2\src\main\res\values\googleservices.xml
+apps\interpreter_android_google\AGKPlayer2\src\main\res\values\strings.xml
+apps\interpreter_android_google\AGKPlayer2\src\main\res\values\styles.xml
+apps\interpreter_android_google\AGKPlayer2\src\main\res\values-v20\styles.xml
+apps\interpreter_android_google\AGKPlayer2\src\main\res\xml\provider_paths.xml
+apps\interpreter_android_google\build.gradle
+apps\interpreter_android_google\ExpansionDownloader\build.gradle
+apps\interpreter_android_google\ExpansionDownloader\proguard-rules.pro
+apps\interpreter_android_google\ExpansionDownloader\project.properties
+apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml
+apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\Constants.java
+apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\DownloadProgressInfo.java
+apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\Helpers.java
+apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\IDownloaderClient.java
+apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\IDownloaderService.java
+apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\BroadcastDownloaderClient.java
+apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\ClientProxy.java
+apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\CustomIntentService.java
+apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\DownloaderProxy.java
+apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\DownloaderService.java
+apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\DownloadInfo.java
+apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\DownloadNotification.java
+apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\DownloadsDB.java
+apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\DownloadThread.java
+apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\ServiceHandler.java
+apps\interpreter_android_google\ExpansionDownloader\src\main\res\values\strings.xml
+apps\interpreter_android_google\ExpansionZipFile\build.gradle
+apps\interpreter_android_google\ExpansionZipFile\src\main\AndroidManifest.xml
+apps\interpreter_android_google\ExpansionZipFile\src\main\java\com\android\vending\expansion\zipfile\APEZProvider.java
+apps\interpreter_android_google\ExpansionZipFile\src\main\java\com\android\vending\expansion\zipfile\APKExpansionSupport.java
+apps\interpreter_android_google\ExpansionZipFile\src\main\java\com\android\vending\expansion\zipfile\ZipResourceFile.java
+apps\interpreter_android_google\ExpansionZipFile\src\main\res\.nores
+apps\interpreter_android_google\GooglePlayLicensing\build.gradle
+apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml
+apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\AESObfuscator.java
+apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\APKExpansionPolicy.java
+apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\DeviceLimiter.java
+apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\ILicenseResultListener.java
+apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\ILicensingService.java
+apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\LicenseChecker.java
+apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\LicenseCheckerCallback.java
+apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\LicenseValidator.java
+apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\NullDeviceLimiter.java
+apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\Obfuscator.java
+apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\Policy.java
+apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\PreferenceObfuscator.java
+apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\ResponseData.java
+apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\ServerManagedPolicy.java
+apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\StrictPolicy.java
+apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\util\Base64.java
+apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\util\Base64DecoderException.java
+apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\ValidationException.java
+apps\interpreter_android_google\gradle\wrapper\gradle-wrapper.jar
+apps\interpreter_android_google\gradle\wrapper\gradle-wrapper.properties
+apps\interpreter_android_google\gradle.properties
+apps\interpreter_android_google\gradlew
+apps\interpreter_android_google\gradlew.bat
+apps\interpreter_android_google\settings.gradle
+apps\interpreter_android_ouya\AGKPlayer2\build.gradle
+apps\interpreter_android_ouya\AGKPlayer2\libs\ouya-sdk.jar
+apps\interpreter_android_ouya\AGKPlayer2\src\main\AndroidManifest.xml
+apps\interpreter_android_ouya\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\AGKActivity.java
+apps\interpreter_android_ouya\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\AGKHelper.java
+apps\interpreter_android_ouya\AGKPlayer2\src\main\jniLibs\arm64-v8a\libandroid_player.so
+apps\interpreter_android_ouya\AGKPlayer2\src\main\jniLibs\armeabi-v7a\libandroid_player.so
+apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable\icon.png
+apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable-hdpi\app_icon.png
+apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable-ldpi\app_icon.png
+apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable-mdpi\app_icon.png
+apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable-xhdpi\app_icon.png
+apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable-xhdpi\ouya_icon.png
+apps\interpreter_android_ouya\AGKPlayer2\src\main\res\layout\facebookmain.xml
+apps\interpreter_android_ouya\AGKPlayer2\src\main\res\layout\main.xml
+apps\interpreter_android_ouya\AGKPlayer2\src\main\res\values\strings.xml
+apps\interpreter_android_ouya\AGKPlayer2\src\main\res\values\styles.xml
+apps\interpreter_android_ouya\build.gradle
+apps\interpreter_android_ouya\gradle\wrapper\gradle-wrapper.jar
+apps\interpreter_android_ouya\gradle\wrapper\gradle-wrapper.properties
+apps\interpreter_android_ouya\gradlew
+apps\interpreter_android_ouya\gradlew.bat
+apps\interpreter_android_ouya\settings.gradle
+apps\template_android_amazon\AGK2Template\build.gradle
+apps\template_android_amazon\AGK2Template\libs\chartboost.jar
+apps\template_android_amazon\AGK2Template\libs\in-app-purchasing-2.0.76.jar
+apps\template_android_amazon\AGK2Template\src\main\AndroidManifest.xml
+apps\template_android_amazon\AGK2Template\src\main\java\com\thegamecreators\agk_player\AGKActivity.java
+apps\template_android_amazon\AGK2Template\src\main\java\com\thegamecreators\agk_player\AGKHelper.java
+apps\template_android_amazon\AGK2Template\src\main\java\com\thegamecreators\agk_player\iap\AGKPurchasingListener.java
+apps\template_android_amazon\AGK2Template\src\main\java\com\thegamecreators\agk_player\NotificationAlarmReceiver.java
+apps\template_android_amazon\AGK2Template\src\main\jni\Android.mk
+apps\template_android_amazon\AGK2Template\src\main\jni\Application.mk
+apps\template_android_amazon\AGK2Template\src\main\jni\Core.cpp
+apps\template_android_amazon\AGK2Template\src\main\jni\main.c
+apps\template_android_amazon\AGK2Template\src\main\jni\template.cpp
+apps\template_android_amazon\AGK2Template\src\main\jni\template.h
+apps\template_android_amazon\AGK2Template\src\main\jniCompile.bat
+apps\template_android_amazon\AGK2Template\src\main\res\drawable-hdpi\icon.png
+apps\template_android_amazon\AGK2Template\src\main\res\drawable-hdpi\icon_white.png
+apps\template_android_amazon\AGK2Template\src\main\res\drawable-ldpi\icon.png
+apps\template_android_amazon\AGK2Template\src\main\res\drawable-ldpi\icon_white.png
+apps\template_android_amazon\AGK2Template\src\main\res\drawable-mdpi\icon.png
+apps\template_android_amazon\AGK2Template\src\main\res\drawable-mdpi\icon_white.png
+apps\template_android_amazon\AGK2Template\src\main\res\drawable-xhdpi\icon.png
+apps\template_android_amazon\AGK2Template\src\main\res\drawable-xhdpi\icon_white.png
+apps\template_android_amazon\AGK2Template\src\main\res\drawable-xxhdpi\icon.png
+apps\template_android_amazon\AGK2Template\src\main\res\drawable-xxhdpi\icon_white.png
+apps\template_android_amazon\AGK2Template\src\main\res\drawable-xxxhdpi\icon.png
+apps\template_android_amazon\AGK2Template\src\main\res\drawable-xxxhdpi\icon_white.png
+apps\template_android_amazon\AGK2Template\src\main\res\layout\facebookmain.xml
+apps\template_android_amazon\AGK2Template\src\main\res\layout\main.xml
+apps\template_android_amazon\AGK2Template\src\main\res\values\googleservices.xml
+apps\template_android_amazon\AGK2Template\src\main\res\values\strings.xml
+apps\template_android_amazon\AGK2Template\src\main\res\values\styles.xml
+apps\template_android_amazon\AGK2Template\src\main\res\xml\provider_paths.xml
+apps\template_android_amazon\build.gradle
+apps\template_android_amazon\gradle\wrapper\gradle-wrapper.jar
+apps\template_android_amazon\gradle\wrapper\gradle-wrapper.properties
+apps\template_android_amazon\gradle.properties
+apps\template_android_amazon\gradlew
+apps\template_android_amazon\gradlew.bat
+apps\template_android_amazon\settings.gradle
+apps\template_android_google\AGK2Template\build.gradle
+apps\template_android_google\AGK2Template\libs\YouTubeAndroidPlayerApi.jar
+apps\template_android_google\AGK2Template\proguard-rules.txt
+apps\template_android_google\AGK2Template\src\main\AndroidManifest.xml
+apps\template_android_google\AGK2Template\src\main\java\com\thegamecreators\agk_player\AGKActivity.java
+apps\template_android_google\AGK2Template\src\main\java\com\thegamecreators\agk_player\AGKHelper.java
+apps\template_android_google\AGK2Template\src\main\java\com\thegamecreators\agk_player\NotificationAlarmReceiver.java
+apps\template_android_google\AGK2Template\src\main\java\com\thegamecreators\agk_player\NotificationService.java
+apps\template_android_google\AGK2Template\src\main\jni\Android.mk
+apps\template_android_google\AGK2Template\src\main\jni\Application.mk
+apps\template_android_google\AGK2Template\src\main\jni\Core.cpp
+apps\template_android_google\AGK2Template\src\main\jni\main.c
+apps\template_android_google\AGK2Template\src\main\jni\template.cpp
+apps\template_android_google\AGK2Template\src\main\jni\template.h
+apps\template_android_google\AGK2Template\src\main\jniCompile.bat
+apps\template_android_google\AGK2Template\src\main\res\drawable-hdpi\icon.png
+apps\template_android_google\AGK2Template\src\main\res\drawable-hdpi\icon_white.png
+apps\template_android_google\AGK2Template\src\main\res\drawable-ldpi\icon.png
+apps\template_android_google\AGK2Template\src\main\res\drawable-ldpi\icon_white.png
+apps\template_android_google\AGK2Template\src\main\res\drawable-mdpi\icon.png
+apps\template_android_google\AGK2Template\src\main\res\drawable-mdpi\icon_white.png
+apps\template_android_google\AGK2Template\src\main\res\drawable-xhdpi\icon.png
+apps\template_android_google\AGK2Template\src\main\res\drawable-xhdpi\icon_white.png
+apps\template_android_google\AGK2Template\src\main\res\drawable-xxhdpi\icon.png
+apps\template_android_google\AGK2Template\src\main\res\drawable-xxhdpi\icon_white.png
+apps\template_android_google\AGK2Template\src\main\res\drawable-xxxhdpi\icon.png
+apps\template_android_google\AGK2Template\src\main\res\drawable-xxxhdpi\icon_white.png
+apps\template_android_google\AGK2Template\src\main\res\layout\facebookmain.xml
+apps\template_android_google\AGK2Template\src\main\res\layout\main.xml
+apps\template_android_google\AGK2Template\src\main\res\values\googleservices.xml
+apps\template_android_google\AGK2Template\src\main\res\values\strings.xml
+apps\template_android_google\AGK2Template\src\main\res\values\styles.xml
+apps\template_android_google\AGK2Template\src\main\res\values-v20\styles.xml
+apps\template_android_google\AGK2Template\src\main\res\xml\provider_paths.xml
+apps\template_android_google\build.gradle
+apps\template_android_google\gradle\wrapper\gradle-wrapper.jar
+apps\template_android_google\gradle\wrapper\gradle-wrapper.properties
+apps\template_android_google\gradle.properties
+apps\template_android_google\gradlew
+apps\template_android_google\gradlew.bat
+apps\template_android_google\settings.gradle
+apps\template_android_ouya\AGK2Template\build.gradle
+apps\template_android_ouya\AGK2Template\libs\ouya-sdk.jar
+apps\template_android_ouya\AGK2Template\src\main\AndroidManifest.xml
+apps\template_android_ouya\AGK2Template\src\main\java\com\thegamecreators\agk_player\AGKActivity.java
+apps\template_android_ouya\AGK2Template\src\main\java\com\thegamecreators\agk_player\AGKHelper.java
+apps\template_android_ouya\AGK2Template\src\main\jni\Android.mk
+apps\template_android_ouya\AGK2Template\src\main\jni\Application.mk
+apps\template_android_ouya\AGK2Template\src\main\jni\Core.cpp
+apps\template_android_ouya\AGK2Template\src\main\jni\main.c
+apps\template_android_ouya\AGK2Template\src\main\jni\template.cpp
+apps\template_android_ouya\AGK2Template\src\main\jni\template.h
+apps\template_android_ouya\AGK2Template\src\main\jniCompile.bat
+apps\template_android_ouya\AGK2Template\src\main\res\drawable\icon.png
+apps\template_android_ouya\AGK2Template\src\main\res\drawable-hdpi\app_icon.png
+apps\template_android_ouya\AGK2Template\src\main\res\drawable-ldpi\app_icon.png
+apps\template_android_ouya\AGK2Template\src\main\res\drawable-mdpi\app_icon.png
+apps\template_android_ouya\AGK2Template\src\main\res\drawable-xhdpi\app_icon.png
+apps\template_android_ouya\AGK2Template\src\main\res\drawable-xhdpi\ouya_icon.png
+apps\template_android_ouya\AGK2Template\src\main\res\layout\facebookmain.xml
+apps\template_android_ouya\AGK2Template\src\main\res\layout\main.xml
+apps\template_android_ouya\AGK2Template\src\main\res\values\strings.xml
+apps\template_android_ouya\AGK2Template\src\main\res\values\styles.xml
+apps\template_android_ouya\build.gradle
+apps\template_android_ouya\gradle\wrapper\gradle-wrapper.jar
+apps\template_android_ouya\gradle\wrapper\gradle-wrapper.properties
+apps\template_android_ouya\gradlew
+apps\template_android_ouya\gradlew.bat
+apps\template_android_ouya\settings.gradle
+apps\template_windows_vs2015\Core.cpp
+apps\template_windows_vs2015\resource.h
+apps\template_windows_vs2015\template.cpp
+apps\template_windows_vs2015\template.h
+apps\template_windows_vs2015\Template.sln
+apps\template_windows_vs2015\Template.vcxproj
+apps\template_windows_vs2015_64\Core.cpp
+apps\template_windows_vs2015_64\resource.h
+apps\template_windows_vs2015_64\template.cpp
+apps\template_windows_vs2015_64\template.h
+apps\template_windows_vs2015_64\template.ico
+apps\template_windows_vs2015_64\Template.sln
+apps\template_windows_vs2015_64\Template.vcxproj
+apps\template_windows_vs2017\Core.cpp
+apps\template_windows_vs2017\resource.h
+apps\template_windows_vs2017\template.cpp
+apps\template_windows_vs2017\template.h
+apps\template_windows_vs2017\template.ico
+apps\template_windows_vs2017\Template.sln
+apps\template_windows_vs2017\Template.vcxproj
+apps\template_windows_vs2017_64\Core.cpp
+apps\template_windows_vs2017_64\resource.h
+apps\template_windows_vs2017_64\template.cpp
+apps\template_windows_vs2017_64\template.h
+apps\template_windows_vs2017_64\template.ico
+apps\template_windows_vs2017_64\Template.sln
+apps\template_windows_vs2017_64\Template.vcxproj

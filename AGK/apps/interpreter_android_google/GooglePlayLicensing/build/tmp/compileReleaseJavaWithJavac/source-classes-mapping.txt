@@ -1,0 +1,45 @@
+com/google/android/vending/licensing/StrictPolicy.java
+ com.google.android.vending.licensing.StrictPolicy
+com/google/android/vending/licensing/ResponseData.java
+ com.google.android.vending.licensing.ResponseData
+com/google/android/vending/licensing/LicenseValidator.java
+ com.google.android.vending.licensing.LicenseValidator
+com/google/android/vending/licensing/util/Base64DecoderException.java
+ com.google.android.vending.licensing.util.Base64DecoderException
+com/google/android/vending/licensing/ILicenseResultListener.java
+ com.google.android.vending.licensing.ILicenseResultListener
+ com.google.android.vending.licensing.ILicenseResultListener$Stub
+ com.google.android.vending.licensing.ILicenseResultListener$Stub$Proxy
+com/google/android/vending/licensing/Obfuscator.java
+ com.google.android.vending.licensing.Obfuscator
+com/google/android/vending/licensing/PreferenceObfuscator.java
+ com.google.android.vending.licensing.PreferenceObfuscator
+com/google/android/vending/licensing/NullDeviceLimiter.java
+ com.google.android.vending.licensing.NullDeviceLimiter
+com/google/android/vending/licensing/AESObfuscator.java
+ com.google.android.vending.licensing.AESObfuscator
+com/google/android/vending/licensing/LicenseChecker.java
+ com.google.android.vending.licensing.LicenseChecker
+ com.google.android.vending.licensing.LicenseChecker$ResultListener
+ com.google.android.vending.licensing.LicenseChecker$ResultListener$1
+ com.google.android.vending.licensing.LicenseChecker$ResultListener$2
+com/google/android/vending/licensing/util/Base64.java
+ com.google.android.vending.licensing.util.Base64
+com/google/android/vending/licensing/APKExpansionPolicy.java
+ com.google.android.vending.licensing.APKExpansionPolicy
+com/google/android/vending/licensing/DeviceLimiter.java
+ com.google.android.vending.licensing.DeviceLimiter
+com/google/android/vending/licensing/ValidationException.java
+ com.google.android.vending.licensing.ValidationException
+com/google/android/vending/licensing/LicenseCheckerCallback.java
+ com.google.android.vending.licensing.LicenseCheckerCallback
+com/google/android/vending/licensing/ServerManagedPolicy.java
+ com.google.android.vending.licensing.ServerManagedPolicy
+com/google/android/vending/licensing/BuildConfig.java
+ com.google.android.vending.licensing.BuildConfig
+com/google/android/vending/licensing/Policy.java
+ com.google.android.vending.licensing.Policy
+com/google/android/vending/licensing/ILicensingService.java
+ com.google.android.vending.licensing.ILicensingService
+ com.google.android.vending.licensing.ILicensingService$Stub
+ com.google.android.vending.licensing.ILicensingService$Stub$Proxy

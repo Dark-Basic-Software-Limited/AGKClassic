@@ -26,10 +26,11 @@ private:
 void SetCurrentDirectoryWithCheck( const char* path );
 int RunCmd( int index, const char* cmd, const char* params );
 int GetFileContents( const char* filepath, char **data );
+int CreatePath( const char *path );
 int CopyFile2( const char *src, const char *dst );
 int CopyFolder( const char *src, const char *dst, int numIgnore=0, const char **szIgnoreExt=0 );
 int UpdateFolder( const char *src, const char *dst, int numIgnore=0, const char **szIgnoreExt=0 );
-int RecordFiles( const char *src, FileRecord* fileStore, int numIgnore=0, const char **szIgnoreExt=0 );
+int RecordFiles( const char *base, const char* sub, FileRecord* fileStore, int numIgnore=0, const char **szIgnoreExt=0 );
 int DeleteFolder( const char *src );
 int UpdateWhatsNewFile();
 

@@ -347,9 +347,9 @@ void loop()
 
 int main (int argc, char **argv)
 {
-    App.g_dwDeviceWidth = EM_ASM_INT_V({return Module["canvas"].width});
-	App.g_dwDeviceHeight = EM_ASM_INT_V({return Module["canvas"].height});
-	App.g_dwFullScreen = 0;
+    int width = EM_ASM_INT_V({return Module["canvas"].width});
+	int height = EM_ASM_INT_V({return Module["canvas"].height});
+	int fullscreen = 0;
     
 	// create a window for the app
 	if (!glfwInit())
@@ -372,8 +372,8 @@ int main (int argc, char **argv)
     
     glfwWindowHint( GLFW_RESIZABLE, GL_TRUE );
     
-    if ( !App.g_dwFullScreen ) monitor = 0;
-	GLFWwindow *window = glfwCreateWindow(App.g_dwDeviceWidth, App.g_dwDeviceHeight, App.g_pWindowTitle, monitor, NULL);
+    if ( !fullscreen ) monitor = 0;
+	GLFWwindow *window = glfwCreateWindow(width, height, App.g_pWindowTitle, monitor, NULL);
 	if ( !window )
     {
         glfwTerminate();

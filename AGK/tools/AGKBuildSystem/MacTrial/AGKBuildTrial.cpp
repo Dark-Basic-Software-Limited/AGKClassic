@@ -7,14 +7,28 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 
+#include "../Mac/UserLocal.h"
 #include "../Mac/Common.h"
 
 int main( int argc, char* argv[] )
 {
 	// set some path variables
+#if defined( USER_PAUL )
 	const char* szSharedFolder = "/Volumes/Receive";
     const char* szMacBuildFiles = "/Volumes/FilesAlphaMac";
-    const char* szBuildFolder = "/Users/paulj/Projects";
+    const char* szBuildFolder = "/Users/paultgc/Projects";
+	#define USERNAME "paultgc"
+	#define BUNDLE_SCRIPT_NAME "bundleTrialPaul.sh"
+#elif define( USER_MIKE )
+    const char* szSharedFolder = "/Volumes/Shared/MacReceive";
+    const char* szMacBuildFiles = "/Volumes/Shared/FilesAlphaMac";
+    //const char* szBuildFolder = "/Users/michaeljohnson/AGKClassicBuild";
+    const char* szBuildFolder = "/Users/michaeljohnson/Projects";
+	#define USERNAME "michaeljohnson"
+	#define BUNDLE_SCRIPT_NAME "bundleTrialMike.sh"
+#else
+	#error "Unknown user, you need to set your variables"
+#endif
     
 	SetCurrentDirectoryWithCheck( "../../.." ); // AGKTrunk
 
@@ -282,7 +296,7 @@ startPoint:
             
             // copy Mac interpreter
             Message( "Copying Mac interpreter" );
-            getcwd( srcFolder, 1024 ); strcat( srcFolder, "/apps/interpreter_mac/Build/ReleaseFree/AppGameKit Player.xcarchive/Products/Users/paulj/Applications/AppGameKit Player.app" );
+            getcwd( srcFolder, 1024 ); strcat( srcFolder, "/apps/interpreter_mac/Build/ReleaseFree/AppGameKit Player.xcarchive/Products/Users/" USERNAME "/Applications/AppGameKit Player.app" );
             strcpy( dstFolder, szBuildFolder ); strcat( dstFolder, "/Geany-Compiled/share/applications/interpreters" );
             mkdir( dstFolder, 0755 );
             strcat( dstFolder, "/Mac.app" );
@@ -306,7 +320,7 @@ startPoint:
             
             // bundle files
             Message( "Creating bundle" );
-            int status = system( "IDE/Geany-1.24.1/bundleTrial.sh" );
+            int status = system( "IDE/Geany-1.24.1/" BUNDLE_SCRIPT_NAME );
             if ( WEXITSTATUS(status) != 0 ) Error( "  Failed" );
             else Message( "  Success" );
             

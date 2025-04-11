@@ -1,0 +1,7 @@
+﻿  Common.cpp
+  AGKBuild.cpp
+AGKBuild.cpp(247): warning C4996: 'strnicmp': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strnicmp. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\string.h(579): note: see declaration of 'strnicmp'
+  Generating Code...
+  AGKBuild.vcxproj -> D:\AGK\Classic\tools\AGKBuildSystem\Windows\Final\AGKBuild.exe
+  AGKBuild.vcxproj -> D:\AGK\Classic\tools\AGKBuildSystem\Windows\Final\AGKBuild.pdb (Full PDB)

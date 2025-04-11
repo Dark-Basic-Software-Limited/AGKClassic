@@ -10539,12 +10539,250 @@ case AGKI_GETFRACTALXY_F_L_F_F:
     m_pStack[ m_iStackPtr++ ].f = agk::GetFractalXY( param0, param1, param2 );
     break;
 }
-case AGKI_GETFRACTALXZ_F_L_F_F_F:
+case AGKI_GETFRACTALXYZ_F_L_F_F_F:
 {
     float param3 = m_pStack[ --m_iStackPtr ].f;
     float param2 = m_pStack[ --m_iStackPtr ].f;
     float param1 = m_pStack[ --m_iStackPtr ].f;
     int param0 = m_pStack[ --m_iStackPtr ].i;
-    m_pStack[ m_iStackPtr++ ].f = agk::GetFractalXZ( param0, param1, param2, param3 );
+    m_pStack[ m_iStackPtr++ ].f = agk::GetFractalXYZ( param0, param1, param2, param3 );
+    break;
+}
+case AGKI_SETTEXTSHADER_0_L_L:
+{
+    int param1 = m_pStack[ --m_iStackPtr ].i;
+    int param0 = m_pStack[ --m_iStackPtr ].i;
+    agk::SetTextShader( param0, param1 );
+    break;
+}
+case AGKI_SETTEXTSHADERCONSTANTBYNAME_0_L_S_F_F_F_F:
+{
+    float param5 = m_pStack[ --m_iStackPtr ].f;
+    float param4 = m_pStack[ --m_iStackPtr ].f;
+    float param3 = m_pStack[ --m_iStackPtr ].f;
+    float param2 = m_pStack[ --m_iStackPtr ].f;
+    const char* param1 = m_pStrStack[ --m_iStrStackPtr ].GetStr();
+    int param0 = m_pStack[ --m_iStackPtr ].i;
+    agk::SetTextShaderConstantByName( param0, param1, param2, param3, param4, param5 );
+    break;
+}
+case AGKI_SETTEXTSHADERCONSTANTARRAYBYNAME_0_L_S_L_F_F_F_F:
+{
+    float param6 = m_pStack[ --m_iStackPtr ].f;
+    float param5 = m_pStack[ --m_iStackPtr ].f;
+    float param4 = m_pStack[ --m_iStackPtr ].f;
+    float param3 = m_pStack[ --m_iStackPtr ].f;
+    int param2 = m_pStack[ --m_iStackPtr ].i;
+    const char* param1 = m_pStrStack[ --m_iStrStackPtr ].GetStr();
+    int param0 = m_pStack[ --m_iStackPtr ].i;
+    agk::SetTextShaderConstantArrayByName( param0, param1, param2, param3, param4, param5, param6 );
+    break;
+}
+case AGKI_SETTEXTSHADERCONSTANTDEFAULT_0_L_S:
+{
+    const char* param1 = m_pStrStack[ --m_iStrStackPtr ].GetStr();
+    int param0 = m_pStack[ --m_iStackPtr ].i;
+    agk::SetTextShaderConstantDefault( param0, param1 );
+    break;
+}
+case AGKI_INAPPPURCHASEREDEEMOFFER_0_0:
+{
+    agk::InAppPurchaseRedeemOffer( );
+    break;
+}
+case AGKI_EXTERNALSDKSUPPORTED_L_S:
+{
+    const char* param0 = m_pStrStack[ --m_iStrStackPtr ].GetStr();
+    m_pStack[ m_iStackPtr++ ].i = agk::ExternalSDKSupported( param0 );
+    break;
+}
+case AGKI_EXTERNALCOMMAND_0_S_S_S_S:
+{
+    const char* param3 = m_pStrStack[ --m_iStrStackPtr ].GetStr();
+    const char* param2 = m_pStrStack[ --m_iStrStackPtr ].GetStr();
+    const char* param1 = m_pStrStack[ --m_iStrStackPtr ].GetStr();
+    const char* param0 = m_pStrStack[ --m_iStrStackPtr ].GetStr();
+    agk::ExternalCommand( param0, param1, param2, param3 );
+    break;
+}
+case AGKI_EXTERNALCOMMANDINT_L_S_S_S_S:
+{
+    const char* param3 = m_pStrStack[ --m_iStrStackPtr ].GetStr();
+    const char* param2 = m_pStrStack[ --m_iStrStackPtr ].GetStr();
+    const char* param1 = m_pStrStack[ --m_iStrStackPtr ].GetStr();
+    const char* param0 = m_pStrStack[ --m_iStrStackPtr ].GetStr();
+    m_pStack[ m_iStackPtr++ ].i = agk::ExternalCommandInt( param0, param1, param2, param3 );
+    break;
+}
+case AGKI_EXTERNALCOMMANDFLOAT_F_S_S_S_S:
+{
+    const char* param3 = m_pStrStack[ --m_iStrStackPtr ].GetStr();
+    const char* param2 = m_pStrStack[ --m_iStrStackPtr ].GetStr();
+    const char* param1 = m_pStrStack[ --m_iStrStackPtr ].GetStr();
+    const char* param0 = m_pStrStack[ --m_iStrStackPtr ].GetStr();
+    m_pStack[ m_iStackPtr++ ].f = agk::ExternalCommandFloat( param0, param1, param2, param3 );
+    break;
+}
+case AGKI_EXTERNALCOMMANDSTRING_S_S_S_S_S:
+{
+    const char* param3 = m_pStrStack[ --m_iStrStackPtr ].GetStr();
+    const char* param2 = m_pStrStack[ --m_iStrStackPtr ].GetStr();
+    const char* param1 = m_pStrStack[ --m_iStrStackPtr ].GetStr();
+    const char* param0 = m_pStrStack[ --m_iStrStackPtr ].GetStr();
+    char *szReturnStr = agk::ExternalCommandString( param0, param1, param2, param3 );
+    m_pStrStack[ m_iStrStackPtr++ ].SetStrUTF8( szReturnStr );
+    delete [] szReturnStr;
+    break;
+}
+case AGKI_GETAPPRECEIPT_S_0:
+{
+    char *szReturnStr = agk::GetAppReceipt( );
+    m_pStrStack[ m_iStrStackPtr++ ].SetStrUTF8( szReturnStr );
+    delete [] szReturnStr;
+    break;
+}
+case AGKI_INAPPPURCHASEACTIVATEWITHPLAN_0_L_S:
+{
+    const char* param1 = m_pStrStack[ --m_iStrStackPtr ].GetStr();
+    int param0 = m_pStack[ --m_iStackPtr ].i;
+    agk::InAppPurchaseActivateWithPlan( param0, param1 );
+    break;
+}
+case AGKI_GETINAPPPURCHASESUBNUMPLANS_L_L:
+{
+    int param0 = m_pStack[ --m_iStackPtr ].i;
+    m_pStack[ m_iStackPtr++ ].i = agk::GetInAppPurchaseSubNumPlans( param0 );
+    break;
+}
+case AGKI_GETINAPPPURCHASESUBPLANNUMPERIODS_L_L_L:
+{
+    int param1 = m_pStack[ --m_iStackPtr ].i;
+    int param0 = m_pStack[ --m_iStackPtr ].i;
+    m_pStack[ m_iStackPtr++ ].i = agk::GetInAppPurchaseSubPlanNumPeriods( param0, param1 );
+    break;
+}
+case AGKI_GETINAPPPURCHASESUBPLANPRICE_S_L_L_L:
+{
+    int param2 = m_pStack[ --m_iStackPtr ].i;
+    int param1 = m_pStack[ --m_iStackPtr ].i;
+    int param0 = m_pStack[ --m_iStackPtr ].i;
+    char *szReturnStr = agk::GetInAppPurchaseSubPlanPrice( param0, param1, param2 );
+    m_pStrStack[ m_iStrStackPtr++ ].SetStrUTF8( szReturnStr );
+    delete [] szReturnStr;
+    break;
+}
+case AGKI_GETINAPPPURCHASESUBPLANDURATION_L_L_L_L:
+{
+    int param2 = m_pStack[ --m_iStackPtr ].i;
+    int param1 = m_pStack[ --m_iStackPtr ].i;
+    int param0 = m_pStack[ --m_iStackPtr ].i;
+    m_pStack[ m_iStackPtr++ ].i = agk::GetInAppPurchaseSubPlanDuration( param0, param1, param2 );
+    break;
+}
+case AGKI_GETINAPPPURCHASESUBPLANDURATIONUNIT_S_L_L_L:
+{
+    int param2 = m_pStack[ --m_iStackPtr ].i;
+    int param1 = m_pStack[ --m_iStackPtr ].i;
+    int param0 = m_pStack[ --m_iStackPtr ].i;
+    char *szReturnStr = agk::GetInAppPurchaseSubPlanDurationUnit( param0, param1, param2 );
+    m_pStrStack[ m_iStrStackPtr++ ].SetStrUTF8( szReturnStr );
+    delete [] szReturnStr;
+    break;
+}
+case AGKI_GETINAPPPURCHASESUBPLANPAYMENTTYPE_L_L_L_L:
+{
+    int param2 = m_pStack[ --m_iStackPtr ].i;
+    int param1 = m_pStack[ --m_iStackPtr ].i;
+    int param0 = m_pStack[ --m_iStackPtr ].i;
+    m_pStack[ m_iStackPtr++ ].i = agk::GetInAppPurchaseSubPlanPaymentType( param0, param1, param2 );
+    break;
+}
+case AGKI_GETINAPPPURCHASESUBPLANTAGS_S_L_L:
+{
+    int param1 = m_pStack[ --m_iStackPtr ].i;
+    int param0 = m_pStack[ --m_iStackPtr ].i;
+    char *szReturnStr = agk::GetInAppPurchaseSubPlanTags( param0, param1 );
+    m_pStrStack[ m_iStrStackPtr++ ].SetStrUTF8( szReturnStr );
+    delete [] szReturnStr;
+    break;
+}
+case AGKI_GETINAPPPURCHASESUBPLANTOKEN_S_L_L:
+{
+    int param1 = m_pStack[ --m_iStackPtr ].i;
+    int param0 = m_pStack[ --m_iStackPtr ].i;
+    char *szReturnStr = agk::GetInAppPurchaseSubPlanToken( param0, param1 );
+    m_pStrStack[ m_iStrStackPtr++ ].SetStrUTF8( szReturnStr );
+    delete [] szReturnStr;
+    break;
+}
+case AGKI_GETDISPLAYNUMCUTOUTS_L_0:
+{
+    m_pStack[ m_iStackPtr++ ].i = agk::GetDisplayNumCutouts( );
+    break;
+}
+case AGKI_GETDISPLAYCUTOUTTOP_F_L:
+{
+    int param0 = m_pStack[ --m_iStackPtr ].i;
+    m_pStack[ m_iStackPtr++ ].f = agk::GetDisplayCutoutTop( param0 );
+    break;
+}
+case AGKI_GETDISPLAYCUTOUTBOTTOM_F_L:
+{
+    int param0 = m_pStack[ --m_iStackPtr ].i;
+    m_pStack[ m_iStackPtr++ ].f = agk::GetDisplayCutoutBottom( param0 );
+    break;
+}
+case AGKI_GETDISPLAYCUTOUTLEFT_F_L:
+{
+    int param0 = m_pStack[ --m_iStackPtr ].i;
+    m_pStack[ m_iStackPtr++ ].f = agk::GetDisplayCutoutLeft( param0 );
+    break;
+}
+case AGKI_GETDISPLAYCUTOUTRIGHT_F_L:
+{
+    int param0 = m_pStack[ --m_iStackPtr ].i;
+    m_pStack[ m_iStackPtr++ ].f = agk::GetDisplayCutoutRight( param0 );
+    break;
+}
+case AGKI_GETSCREENBOUNDSSAFETOP_F_0:
+{
+    m_pStack[ m_iStackPtr++ ].f = agk::GetScreenBoundsSafeTop( );
+    break;
+}
+case AGKI_GETSCREENBOUNDSSAFEBOTTOM_F_0:
+{
+    m_pStack[ m_iStackPtr++ ].f = agk::GetScreenBoundsSafeBottom( );
+    break;
+}
+case AGKI_GETSCREENBOUNDSSAFELEFT_F_0:
+{
+    m_pStack[ m_iStackPtr++ ].f = agk::GetScreenBoundsSafeLeft( );
+    break;
+}
+case AGKI_GETSCREENBOUNDSSAFERIGHT_F_0:
+{
+    m_pStack[ m_iStackPtr++ ].f = agk::GetScreenBoundsSafeRight( );
+    break;
+}
+case AGKI_ISPINAPPAVAILABLE_L_0:
+{
+    m_pStack[ m_iStackPtr++ ].i = agk::IsPinAppAvailable( );
+    break;
+}
+case AGKI_PINAPP_0_L:
+{
+    int param0 = m_pStack[ --m_iStackPtr ].i;
+    agk::PinApp( param0 );
+    break;
+}
+case AGKI_ISDARKTHEME_L_0:
+{
+    m_pStack[ m_iStackPtr++ ].i = agk::IsDarkTheme( );
+    break;
+}
+case AGKI_GETINAPPPURCHASEISRENEWING_L_L:
+{
+    int param0 = m_pStack[ --m_iStackPtr ].i;
+    m_pStack[ m_iStackPtr++ ].i = agk::GetInAppPurchaseIsRenewing( param0 );
     break;
 }

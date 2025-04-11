@@ -1,26 +1,26 @@
 25
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\android\ARCore\libs\arm64-v8a\libarcore_sdk.so
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\android\ARCore\libs\armeabi-v7a\libarcore_sdk.so
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\android\jni\arm64-v8a\libAGKAndroid.a
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\android\jni\arm64-v8a\libAGKAssimp.a
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\android\jni\arm64-v8a\libAGKBullet.a
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\android\jni\arm64-v8a\libAGKCurl.a
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\android\jni\armeabi-v7a\libAGKAndroid.a
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\android\jni\armeabi-v7a\libAGKAssimp.a
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\android\jni\armeabi-v7a\libAGKBullet.a
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\android\jni\armeabi-v7a\libAGKCurl.a
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\android\SnapChat\arm64-v8a\libpruneau.so
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\android\SnapChat\armeabi-v7a\libpruneau.so
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\android\Source\AndroidNetwork.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\windows\Lib\VS2015\Debug\AGKWindows.lib
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\windows\Lib\VS2015\Debug64\AGKWindows64.lib
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\windows\Lib\VS2015\Release\AGKWindows.lib
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\windows\Lib\VS2015\Release64\AGKWindows64.lib
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\windows\Lib\VS2017\Debug\AGKWindows.lib
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\windows\Lib\VS2017\Debug64\AGKWindows64.lib
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\windows\Lib\VS2017\Release\AGKWindows.lib
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\windows\Lib\VS2017\Release64\AGKWindows64.lib
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\windows\Source\glext.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\windows\Source\qedit.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\windows\Source\sensors.h
-D:\AGK\Builds\Classic\FilesAlphaWindows\AGK\Tier 2\platform\windows\Source\WindowsNetwork.h
+platform\android\ARCore\libs\arm64-v8a\libarcore_sdk.so
+platform\android\ARCore\libs\armeabi-v7a\libarcore_sdk.so
+platform\android\jni\arm64-v8a\libAGKAndroid.a
+platform\android\jni\arm64-v8a\libAGKAssimp.a
+platform\android\jni\arm64-v8a\libAGKBullet.a
+platform\android\jni\arm64-v8a\libAGKCurl.a
+platform\android\jni\armeabi-v7a\libAGKAndroid.a
+platform\android\jni\armeabi-v7a\libAGKAssimp.a
+platform\android\jni\armeabi-v7a\libAGKBullet.a
+platform\android\jni\armeabi-v7a\libAGKCurl.a
+platform\android\SnapChat\arm64-v8a\libpruneau.so
+platform\android\SnapChat\armeabi-v7a\libpruneau.so
+platform\android\Source\AndroidNetwork.h
+platform\windows\Lib\VS2015\Debug\AGKWindows.lib
+platform\windows\Lib\VS2015\Debug64\AGKWindows64.lib
+platform\windows\Lib\VS2015\Release\AGKWindows.lib
+platform\windows\Lib\VS2015\Release64\AGKWindows64.lib
+platform\windows\Lib\VS2017\Debug\AGKWindows.lib
+platform\windows\Lib\VS2017\Debug64\AGKWindows64.lib
+platform\windows\Lib\VS2017\Release\AGKWindows.lib
+platform\windows\Lib\VS2017\Release64\AGKWindows64.lib
+platform\windows\Source\glext.h
+platform\windows\Source\qedit.h
+platform\windows\Source\sensors.h
+platform\windows\Source\WindowsNetwork.h

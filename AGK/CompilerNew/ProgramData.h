@@ -318,7 +318,7 @@ namespace AGK_Compiler
 		//int iTokenEndID;
 		int iParamsTypes[ 32 ]; // max 32 parameters
 		int iParamRef[ 32 ]; // is the parameter passed by reference or value
-		unsigned short iReturnType;
+		unsigned int iReturnType;
 		unsigned char iNumParams;
 		unsigned char iNumParamStrings;
 		int iNumLocalVars;

@@ -101,6 +101,41 @@ namespace AGK
 		return MyJavaClass;
 	}
 
+	jclass GetAGKClass( JNIEnv* lJNIEnv, const char* classPath )
+	{
+		// get NativeActivity object (clazz)
+		jobject lNativeActivity = g_pActivity->clazz;
+		
+		// get java class for NativeActivity
+		jclass classActivity = lJNIEnv->FindClass("android/app/NativeActivity");
+		if ( !classActivity ) agk::Warning("Failed to get class NativeActivity");
+	
+		// we need classLoader to find our OWN Java Class Code
+		jmethodID getClassLoader = lJNIEnv->GetMethodID(classActivity,"getClassLoader", "()Ljava/lang/ClassLoader;");
+		if ( !getClassLoader ) agk::Warning("Failed to get getClassLoader");
+		jobject cls = lJNIEnv->CallObjectMethod(lNativeActivity, getClassLoader);
+		if ( !cls ) agk::Warning("Failed to get cls");
+		jclass classLoader = lJNIEnv->FindClass("java/lang/ClassLoader");
+		if ( !classLoader ) agk::Warning("Failed to get classLoader");
+		jmethodID findClass = lJNIEnv->GetMethodID(classLoader, "loadClass", "(Ljava/lang/String;)Ljava/lang/Class;");
+		if ( !findClass ) agk::Warning("Failed to get findClass");
+	
+		// use classLoader to find our java class code
+		jstring strClassName = lJNIEnv->NewStringUTF( classPath );
+		jclass MyJavaClass = (jclass)lJNIEnv->CallObjectMethod(cls, findClass, strClassName);
+		lJNIEnv->DeleteLocalRef( strClassName );
+		if ( lJNIEnv->ExceptionCheck() )
+		{
+			lJNIEnv->ExceptionClear();
+			return 0;
+		}
+		else
+		{
+			return MyJavaClass;
+		}
+	}
+
+
 	int uFixTime = 0;
 	float fFixTime2 = 0;
 
@@ -407,7 +442,8 @@ void agk::RestoreApp()
 	// do nothing
 }
 
-void agk::SetImmersiveMode( int mode )
+void agk::PinApp( int enable )
+//****
 {
 	JNIEnv* lJNIEnv = g_pActivity->env;
 	JavaVM* vm = g_pActivity->vm;
@@ -420,12 +456,85 @@ void agk::SetImmersiveMode( int mode )
 	jclass AGKHelper = GetAGKHelper(lJNIEnv);
 
 	// get the method from our java class
-	jmethodID setImmersive = lJNIEnv->GetStaticMethodID( AGKHelper, "SetImmersiveMode","(Landroid/app/Activity;I)V" );
+	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "PinApp","(Landroid/app/Activity;I)V" );
+	if ( !method ) return;
 
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, setImmersive, lNativeActivity, mode );
+	lJNIEnv->CallStaticVoidMethod( AGKHelper, method, lNativeActivity, enable );
+
+	vm->DetachCurrentThread();
+}
+
+int agk::IsPinAppAvailable()
+//****
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	// get NativeActivity object (clazz)
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+
+	// get the method from our java class
+	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "IsPinAppAvailable","(Landroid/app/Activity;)I" );
+	if ( !method ) return 0;
+
+	int result = lJNIEnv->CallStaticIntMethod( AGKHelper, method, lNativeActivity );
+
+	vm->DetachCurrentThread();
+
+	return result;
+}
+
+void agk::SetImmersiveMode( int mode )
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	// get NativeActivity object (clazz)
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/ImmersiveModeSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
+
+	// get the method from our java class
+	jmethodID setImmersive = lJNIEnv->GetStaticMethodID( sdkClass, "SetImmersiveMode","(Landroid/app/Activity;I)V" );
+
+	lJNIEnv->CallStaticVoidMethod( sdkClass, setImmersive, lNativeActivity, mode );
 
 	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
+}
+
+int agk::IsDarkTheme()
+//****
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+
+	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "IsDarkTheme", "(Landroid/app/Activity;)I" );
+	if ( !method ) return 0;
+
+	// call our java class method
+	int result = lJNIEnv->CallStaticIntMethod( AGKHelper, method, lNativeActivity );
+	
+	vm->DetachCurrentThread();
+
+	return result;
 }
 
 void agk::SetScreenResolution( int width, int height )
@@ -662,10 +771,10 @@ char* agk::GetDeviceLanguage( )
 	jclass AGKHelper = GetAGKHelper(lJNIEnv);
 
 	// get the method from our java class
-	jmethodID facebookgetaccess = lJNIEnv->GetStaticMethodID( AGKHelper, "GetLanguage", "()Ljava/lang/String;" );
+	jmethodID getlanguage = lJNIEnv->GetStaticMethodID( AGKHelper, "GetLanguage", "()Ljava/lang/String;" );
 
 	// call our java class method
-	jstring token = (jstring) lJNIEnv->CallStaticObjectMethod( AGKHelper, facebookgetaccess );
+	jstring token = (jstring) lJNIEnv->CallStaticObjectMethod( AGKHelper, getlanguage );
 
 	jboolean bCopy;
 	const char* sToken = lJNIEnv->GetStringUTFChars( token, &bCopy );
@@ -1261,23 +1370,21 @@ void agk::PlatformInitGL( void* ptr )
 
 	m_iRealDeviceWidth = ANativeWindow_getWidth( g_window );
 	m_iRealDeviceHeight = ANativeWindow_getHeight( g_window );
-	/*
-	JNIEnv* lJNIEnv = g_pActivity->env;
-	JavaVM* vm = g_pActivity->vm;
-	vm->AttachCurrentThread(&lJNIEnv, NULL);
-
-	jobject lNativeActivity = g_pActivity->clazz;
-	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	static int informed = 0;
+	while( m_iRealDeviceWidth <= 1 || m_iRealDeviceHeight <= 1 )
+	{
+		if ( !informed )
+		{
+			agk::Warning( "Width or height invalid, waiting for updated size" );
+			informed = 1;
+		}
 
-	jmethodID GetDisplayWidth = lJNIEnv->GetStaticMethodID( AGKHelper, "GetDisplayWidth","(Landroid/app/Activity;)I" );
-	m_iRealDeviceWidth = lJNIEnv->CallStaticIntMethod( AGKHelper, GetDisplayWidth, lNativeActivity );
+		agk::Sleep( 10 );
+		m_iRealDeviceWidth = ANativeWindow_getWidth( g_window );
+		m_iRealDeviceHeight = ANativeWindow_getHeight( g_window );
+	}
 
-	jmethodID GetDisplayHeight = lJNIEnv->GetStaticMethodID( AGKHelper, "GetDisplayHeight","(Landroid/app/Activity;)I" );
-	m_iRealDeviceHeight = lJNIEnv->CallStaticIntMethod( AGKHelper, GetDisplayHeight, lNativeActivity );
-	vm->DetachCurrentThread();
-	*/
 
 	timespec now;
 	clock_gettime(CLOCK_MONOTONIC, &now);
@@ -1420,6 +1527,21 @@ void agk::UpdatePtr( void *ptr )
 	m_iRealDeviceWidth = ANativeWindow_getWidth( g_window );
 	m_iRealDeviceHeight = ANativeWindow_getHeight( g_window );
 
+	static int informed = 0;
+	while( m_iRealDeviceWidth <= 1 || m_iRealDeviceHeight <= 1 )
+	{
+		if ( !informed )
+		{
+			agk::Warning( "Width or height invalid, waiting for updated size" );
+			informed = 1;
+		}
+
+		agk::Sleep( 10 );
+		m_iRealDeviceWidth = ANativeWindow_getWidth( g_window );
+		m_iRealDeviceHeight = ANativeWindow_getHeight( g_window );
+	}
+
+
 	RecalculateDisplay();
 
 	// video
@@ -1440,49 +1562,31 @@ void agk::UpdatePtr2( void *ptr )
 
 	cCamera::UpdateAllAspectRatio( m_iRenderWidth/(float)m_iRenderHeight );
 
-	//m_iRealDeviceWidth = m_iRenderWidth;
-	//m_iRealDeviceHeight = m_iRenderHeight;
-
 	m_iRealDeviceWidth = ANativeWindow_getWidth( g_window );
 	m_iRealDeviceHeight = ANativeWindow_getHeight( g_window );
-	/*
-	JNIEnv* lJNIEnv = g_pActivity->env;
-	JavaVM* vm = g_pActivity->vm;
-	vm->AttachCurrentThread(&lJNIEnv, NULL);
-
-	jobject lNativeActivity = g_pActivity->clazz;
-	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	static int informed = 0;
+	while( m_iRealDeviceWidth <= 1 || m_iRealDeviceHeight <= 1 )
+	{
+		if ( !informed )
+		{
+			agk::Warning( "Width or height invalid, waiting for updated size" );
+			informed = 1;
+		}
 
-	jmethodID GetDisplayWidth = lJNIEnv->GetStaticMethodID( AGKHelper, "GetDisplayWidth","(Landroid/app/Activity;)I" );
-	m_iRealDeviceWidth = lJNIEnv->CallStaticIntMethod( AGKHelper, GetDisplayWidth, lNativeActivity );
+		agk::Sleep( 10 );
+		m_iRealDeviceWidth = ANativeWindow_getWidth( g_window );
+		m_iRealDeviceHeight = ANativeWindow_getHeight( g_window );
+	}
 
-	jmethodID GetDisplayHeight = lJNIEnv->GetStaticMethodID( AGKHelper, "GetDisplayHeight","(Landroid/app/Activity;)I" );
-	m_iRealDeviceHeight = lJNIEnv->CallStaticIntMethod( AGKHelper, GetDisplayHeight, lNativeActivity );
-	vm->DetachCurrentThread();
-	*/
 	PlatformPrepareDefaultDraw();
 	
 	RecalculateDisplay();
 	
+	// banner ad needs repositioning
 	if ( g_bAdvertActive )
 	{
-		int offsetX = agk::ScreenToDeviceX( g_fAdvertOffsetX );
-		int offsetY = agk::ScreenToDeviceY( g_fAdvertOffsetY );
-		
-		JNIEnv* lJNIEnv = g_pActivity->env;
-		JavaVM* vm = g_pActivity->vm;
-		vm->AttachCurrentThread(&lJNIEnv, NULL);
-
-		jobject lNativeActivity = g_pActivity->clazz;
-		if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
-		
-		jclass AGKHelper = GetAGKHelper(lJNIEnv);
-
-		jmethodID PositionAd = lJNIEnv->GetStaticMethodID( AGKHelper, "PositionAd","(Landroid/app/Activity;IIII)V" );
-		lJNIEnv->CallStaticVoidMethod( AGKHelper, PositionAd, lNativeActivity, g_iAdvertHorz, g_iAdvertVert, offsetX, offsetY );
-		vm->DetachCurrentThread();
+		PlatformAdMobPosition( g_iAdvertHorz, g_iAdvertVert, g_fAdvertOffsetX, g_fAdvertOffsetY );
 	}
 
 	// video
@@ -1632,6 +1736,211 @@ int agk::GetDeviceDPI()
 	return dpi;
 }
 
+int agk::GetDisplayNumCutouts()
+//****
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+
+	int count = 0;
+	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "GetDisplayNumCutouts","(Landroid/app/Activity;)I" );
+	if ( method ) count = lJNIEnv->CallStaticIntMethod( AGKHelper, method, lNativeActivity );
+	
+	vm->DetachCurrentThread();
+
+	return count;
+}
+
+float agk::GetDisplayCutoutTop( int index )
+//****
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+
+	float value = 0;
+	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "GetDisplayCutoutBound","(Landroid/app/Activity;II)F" );
+	if ( method ) value = lJNIEnv->CallStaticFloatMethod( AGKHelper, method, lNativeActivity, index, 1 );
+
+	vm->DetachCurrentThread();
+
+	return agk::DeviceToScreenY( value );
+}
+
+float agk::GetDisplayCutoutBottom( int index )
+//****
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+
+	float value = 0;
+	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "GetDisplayCutoutBound","(Landroid/app/Activity;II)F" );
+	if ( method ) value = lJNIEnv->CallStaticFloatMethod( AGKHelper, method, lNativeActivity, index, 2 );
+
+	vm->DetachCurrentThread();
+
+	return agk::DeviceToScreenY( value );
+}
+
+float agk::GetDisplayCutoutLeft( int index )
+//****
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+
+	float value = 0;
+	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "GetDisplayCutoutBound","(Landroid/app/Activity;II)F" );
+	if ( method ) value = lJNIEnv->CallStaticFloatMethod( AGKHelper, method, lNativeActivity, index, 3 );
+
+	vm->DetachCurrentThread();
+
+	return agk::DeviceToScreenX( value );
+}
+
+float agk::GetDisplayCutoutRight( int index )
+//****
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+
+	float value = 0;
+	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "GetDisplayCutoutBound","(Landroid/app/Activity;II)F" );
+	if ( method ) value = lJNIEnv->CallStaticFloatMethod( AGKHelper, method, lNativeActivity, index, 4 );
+
+	vm->DetachCurrentThread();
+
+	return agk::DeviceToScreenX( value );
+}
+
+float agk::GetScreenBoundsSafeTop()
+//****
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+
+	float result = GetScreenBoundsTop();
+	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "GetDisplaySafeBound","(Landroid/app/Activity;I)F" );
+	if ( method ) 
+	{
+		float value = lJNIEnv->CallStaticFloatMethod( AGKHelper, method, lNativeActivity, 1 );
+		if ( value > -9999 ) result = agk::DeviceToScreenY( value );
+	}
+	
+	vm->DetachCurrentThread();
+
+	return result;
+}
+
+float agk::GetScreenBoundsSafeBottom()
+//****
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+
+	float result = GetScreenBoundsBottom();
+	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "GetDisplaySafeBound","(Landroid/app/Activity;I)F" );
+	if ( method ) 
+	{
+		float value = lJNIEnv->CallStaticFloatMethod( AGKHelper, method, lNativeActivity, 2 );
+		if ( value > -9999 ) result = agk::DeviceToScreenY( m_iRealDeviceHeight - value );
+	}
+	
+	vm->DetachCurrentThread();
+
+	return result;
+}
+
+float agk::GetScreenBoundsSafeLeft()
+//****
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+
+	float result = GetScreenBoundsLeft();
+	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "GetDisplaySafeBound","(Landroid/app/Activity;I)F" );
+	if ( method ) 
+	{
+		float value = lJNIEnv->CallStaticFloatMethod( AGKHelper, method, lNativeActivity, 3 );
+		if ( value > -9999 ) result = agk::DeviceToScreenX( value );
+	}
+	
+	vm->DetachCurrentThread();
+
+	return result;
+}
+
+float agk::GetScreenBoundsSafeRight()
+//****
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+
+	float result = GetScreenBoundsRight();
+	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "GetDisplaySafeBound","(Landroid/app/Activity;I)F" );
+	if ( method ) 
+	{
+		float value = lJNIEnv->CallStaticFloatMethod( AGKHelper, method, lNativeActivity, 4 );
+		if ( value > -9999 ) result = agk::DeviceToScreenX( m_iRealDeviceWidth - value );
+	}
+	
+	vm->DetachCurrentThread();
+
+	return result;
+}
+
 char* agk::GetAppPackageName()
 //****
 {
@@ -1688,28 +1997,23 @@ void agk::PlatformUpdateDeviceSize()
 
 	cCamera::UpdateAllAspectRatio( m_iRenderWidth/(float)m_iRenderHeight );
 
-	//m_iRealDeviceWidth = m_iRenderWidth;
-	//m_iRealDeviceHeight = m_iRenderHeight;
-
 	m_iRealDeviceWidth = ANativeWindow_getWidth( g_window );
 	m_iRealDeviceHeight = ANativeWindow_getHeight( g_window );
-	/*
-	JNIEnv* lJNIEnv = g_pActivity->env;
-	JavaVM* vm = g_pActivity->vm;
-	vm->AttachCurrentThread(&lJNIEnv, NULL);
-
-	jobject lNativeActivity = g_pActivity->clazz;
-	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	static int informed = 0;
+	while( m_iRealDeviceWidth <= 1 || m_iRealDeviceHeight <= 1 )
+	{
+		if ( !informed )
+		{
+			agk::Warning( "Width or height invalid, waiting for updated size" );
+			informed = 1;
+		}
 
-	jmethodID GetDisplayWidth = lJNIEnv->GetStaticMethodID( AGKHelper, "GetDisplayWidth","(Landroid/app/Activity;)I" );
-	m_iRealDeviceWidth = lJNIEnv->CallStaticIntMethod( AGKHelper, GetDisplayWidth, lNativeActivity );
+		agk::Sleep( 10 );
+		m_iRealDeviceWidth = ANativeWindow_getWidth( g_window );
+		m_iRealDeviceHeight = ANativeWindow_getHeight( g_window );
+	}
 
-	jmethodID GetDisplayHeight = lJNIEnv->GetStaticMethodID( AGKHelper, "GetDisplayHeight","(Landroid/app/Activity;)I" );
-	m_iRealDeviceHeight = lJNIEnv->CallStaticIntMethod( AGKHelper, GetDisplayHeight, lNativeActivity );
-	vm->DetachCurrentThread();
-	*/
 	//uString str;
 	//str.Format( "Width: %d, Height: %d", m_iRenderWidth, m_iRenderHeight );
 	//agk::Warning( str );
@@ -1768,21 +2072,24 @@ void showKeyboard( bool show, int multiline, int inputType )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/TextEntrySDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
 	if ( show )
 	{
-		jmethodID ShowKeyboard = lJNIEnv->GetStaticMethodID( AGKHelper, "ShowKeyboard","(Landroid/app/Activity;II)V" );
-		if ( !ShowKeyboard ) agk::Warning( "Failed to show the keyboard, is this app using the latest AGKHelper.java file?" );
+		jmethodID ShowKeyboard = lJNIEnv->GetStaticMethodID( sdkClass, "ShowKeyboard","(Landroid/app/Activity;II)V" );
 
-		lJNIEnv->CallStaticVoidMethod( AGKHelper, ShowKeyboard, lNativeActivity, multiline, inputType );
+		lJNIEnv->CallStaticVoidMethod( sdkClass, ShowKeyboard, lNativeActivity, multiline, inputType );
 	}
 	else
 	{
-		jmethodID HideKeyboard = lJNIEnv->GetStaticMethodID( AGKHelper, "HideKeyboard","(Landroid/app/Activity;)V" );
-		if ( !HideKeyboard ) agk::Warning( "Failed to hide the keyboard, is this app using the latest AGKHelper.java file?" );
+		jmethodID HideKeyboard = lJNIEnv->GetStaticMethodID( sdkClass, "HideKeyboard","(Landroid/app/Activity;)V" );
 		
-		lJNIEnv->CallStaticVoidMethod( AGKHelper, HideKeyboard, lNativeActivity );
+		lJNIEnv->CallStaticVoidMethod( sdkClass, HideKeyboard, lNativeActivity );
 	}
 
 	vm->DetachCurrentThread();
@@ -1911,12 +2218,17 @@ void agk::PlatformStartTextInput( const char *sInitial )
 		jobject lNativeActivity = g_pActivity->clazz;
 		if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 		
-		jclass AGKHelper = GetAGKHelper(lJNIEnv);
+		jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/TextEntrySDK" );
+		if ( !sdkClass ) 
+		{
+			vm->DetachCurrentThread();
+			return;
+		}
 
-		jmethodID SetText = lJNIEnv->GetStaticMethodID( AGKHelper, "SetInputText", "(Landroid/app/Activity;Ljava/lang/String;I)V" );
+		jmethodID SetText = lJNIEnv->GetStaticMethodID( sdkClass, "SetInputText", "(Landroid/app/Activity;Ljava/lang/String;I)V" );
 
 		jstring text = lJNIEnv->NewStringUTF(sInitial);
-		lJNIEnv->CallStaticVoidMethod( AGKHelper, SetText, lNativeActivity, text, m_sCurrInput.GetNumChars() );
+		lJNIEnv->CallStaticVoidMethod( sdkClass, SetText, lNativeActivity, text, m_sCurrInput.GetNumChars() );
 		lJNIEnv->DeleteLocalRef( text );
 
 		vm->DetachCurrentThread();
@@ -1945,12 +2257,17 @@ void agk::PlatformChangeTextInput( const char* str )
 		jobject lNativeActivity = g_pActivity->clazz;
 		if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 		
-		jclass AGKHelper = GetAGKHelper(lJNIEnv);
+		jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/TextEntrySDK" );
+		if ( !sdkClass ) 
+		{
+			vm->DetachCurrentThread();
+			return;
+		}
 
-		jmethodID SetText = lJNIEnv->GetStaticMethodID( AGKHelper, "SetInputText", "(Landroid/app/Activity;Ljava/lang/String;I)V" );
+		jmethodID SetText = lJNIEnv->GetStaticMethodID( sdkClass, "SetInputText", "(Landroid/app/Activity;Ljava/lang/String;I)V" );
 
 		jstring text = lJNIEnv->NewStringUTF(str);
-		lJNIEnv->CallStaticVoidMethod( AGKHelper, SetText, lNativeActivity, text, m_sCurrInput.GetNumChars() );
+		lJNIEnv->CallStaticVoidMethod( sdkClass, SetText, lNativeActivity, text, m_sCurrInput.GetNumChars() );
 		lJNIEnv->DeleteLocalRef( text );
 
 		vm->DetachCurrentThread();
@@ -1979,15 +2296,20 @@ void agk::PlatformUpdateTextInput()
 		jobject lNativeActivity = g_pActivity->clazz;
 		if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 		
-		jclass AGKHelper = GetAGKHelper(lJNIEnv);
+		jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/TextEntrySDK" );
+		if ( !sdkClass ) 
+		{
+			vm->DetachCurrentThread();
+			return;
+		}
 
-		jmethodID GetText = lJNIEnv->GetStaticMethodID( AGKHelper, "GetInputText", "(Landroid/app/Activity;)Ljava/lang/String;" );
-		jmethodID GetFinished = lJNIEnv->GetStaticMethodID( AGKHelper, "GetInputFinished", "(Landroid/app/Activity;)I" );
-		jmethodID GetCursor = lJNIEnv->GetStaticMethodID( AGKHelper, "GetInputCursor", "(Landroid/app/Activity;)I" );
+		jmethodID GetText = lJNIEnv->GetStaticMethodID( sdkClass, "GetInputText", "(Landroid/app/Activity;)Ljava/lang/String;" );
+		jmethodID GetFinished = lJNIEnv->GetStaticMethodID( sdkClass, "GetInputFinished", "(Landroid/app/Activity;)I" );
+		jmethodID GetCursor = lJNIEnv->GetStaticMethodID( sdkClass, "GetInputCursor", "(Landroid/app/Activity;)I" );
 
-		jstring text = (jstring) lJNIEnv->CallStaticObjectMethod( AGKHelper, GetText, lNativeActivity );
-		int finished = lJNIEnv->CallStaticIntMethod( AGKHelper, GetFinished, lNativeActivity );
-		g_iTextCursorPos = lJNIEnv->CallStaticIntMethod( AGKHelper, GetCursor, lNativeActivity );
+		jstring text = (jstring) lJNIEnv->CallStaticObjectMethod( sdkClass, GetText, lNativeActivity );
+		int finished = lJNIEnv->CallStaticIntMethod( sdkClass, GetFinished, lNativeActivity );
+		g_iTextCursorPos = lJNIEnv->CallStaticIntMethod( sdkClass, GetCursor, lNativeActivity );
 
 		jboolean bCopy;
 		const char* sText = lJNIEnv->GetStringUTFChars( text, &bCopy );
@@ -2202,12 +2524,17 @@ void agk::PlatformUpdateTextInput()
 		jobject lNativeActivity = g_pActivity->clazz;
 		if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 		
-		jclass AGKHelper = GetAGKHelper(lJNIEnv);
+		jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/TextEntrySDK" );
+		if ( !sdkClass ) 
+		{
+			vm->DetachCurrentThread();
+			return;
+		}
 
-		jmethodID SetText = lJNIEnv->GetStaticMethodID( AGKHelper, "SetInputText", "(Landroid/app/Activity;Ljava/lang/String;I)V" );
+		jmethodID SetText = lJNIEnv->GetStaticMethodID( sdkClass, "SetInputText", "(Landroid/app/Activity;Ljava/lang/String;I)V" );
 
 		jstring text = lJNIEnv->NewStringUTF(m_sCurrInput.GetStr());
-		lJNIEnv->CallStaticVoidMethod( AGKHelper, SetText, lNativeActivity, text, g_iTextCursorPos );
+		lJNIEnv->CallStaticVoidMethod( sdkClass, SetText, lNativeActivity, text, g_iTextCursorPos );
 		lJNIEnv->DeleteLocalRef( text );
 
 		vm->DetachCurrentThread();
@@ -2357,6 +2684,80 @@ void agk::PlatformDrawTextInput()
 		g_pTextInputCursor->SetPosition( posX, posY );
 		g_pTextInputCursor->Draw();
 	}
+}
+
+void agk::AppStart( void* activity )
+{
+	g_pActivity = (ANativeActivity*) activity;
+
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+
+	// AGKHelper onStart
+	jclass AGKHelper = GetAGKHelper( lJNIEnv );
+	if ( !AGKHelper ) 
+	{
+		agk::Message( "AGKHelper class not found, app was not compiled correctly" );
+		vm->DetachCurrentThread();
+		return;
+	}
+
+	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "onStart", "(Landroid/app/Activity;)V" );
+	
+	lJNIEnv->CallStaticVoidMethod( AGKHelper, method, lNativeActivity );
+
+	 // External commands onStart	
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/ExternalCommands" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
+
+	method = lJNIEnv->GetStaticMethodID( sdkClass, "onStart", "(Landroid/app/Activity;)V" );
+	
+	lJNIEnv->CallStaticVoidMethod( sdkClass, method, lNativeActivity );
+	
+	vm->DetachCurrentThread();
+}
+
+void agk::AppStop()
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+
+	// AGKHelper onStop
+	jclass AGKHelper = GetAGKHelper( lJNIEnv );
+	if ( !AGKHelper ) 
+	{
+		agk::Message( "AGKHelper class not found, app was not compiled correctly" );
+		vm->DetachCurrentThread();
+		return;
+	}
+
+	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "onStop", "(Landroid/app/Activity;)V" );
+	lJNIEnv->CallStaticVoidMethod( AGKHelper, method, lNativeActivity );
+	
+	// External commands onStop
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/ExternalCommands" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
+
+	method = lJNIEnv->GetStaticMethodID( sdkClass, "onStop", "(Landroid/app/Activity;)V" );	
+	lJNIEnv->CallStaticVoidMethod( sdkClass, method, lNativeActivity );
+	
+	vm->DetachCurrentThread();
 }
 
 void agk::PlatformResumed()
@@ -3052,10 +3453,15 @@ int agk::GetNumDeviceCameras()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/CameraSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	jmethodID Camera = lJNIEnv->GetStaticMethodID( AGKHelper, "GetNumCameras","()I" );
-	int num = lJNIEnv->CallStaticIntMethod( AGKHelper, Camera );
+	jmethodID Camera = lJNIEnv->GetStaticMethodID( sdkClass, "GetNumCameras","()I" );
+	int num = lJNIEnv->CallStaticIntMethod( sdkClass, Camera );
 	vm->DetachCurrentThread();
 
 	return num;
@@ -3098,10 +3504,15 @@ int agk::SetDeviceCameraToImage( UINT cameraID, UINT imageID )
 			jobject lNativeActivity = g_pActivity->clazz;
 			if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 			
-			jclass AGKHelper = GetAGKHelper(lJNIEnv);
+			jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/CameraSDK" );
+			if ( !sdkClass ) 
+			{
+				vm->DetachCurrentThread();
+				return 0;
+			}
 
-			jmethodID Camera = lJNIEnv->GetStaticMethodID( AGKHelper, "SetDeviceCameraToImage","(Landroid/app/Activity;II)V" );
-			lJNIEnv->CallStaticVoidMethod( AGKHelper, Camera, lNativeActivity, 0, 0 );
+			jmethodID Camera = lJNIEnv->GetStaticMethodID( sdkClass, "SetDeviceCameraToImage","(Landroid/app/Activity;II)V" );
+			lJNIEnv->CallStaticVoidMethod( sdkClass, Camera, lNativeActivity, 0, 0 );
 			vm->DetachCurrentThread();
 
 			if ( m_pCameraTextureFBO ) delete m_pCameraTextureFBO; m_pCameraTextureFBO = 0;
@@ -3139,19 +3550,24 @@ int agk::SetDeviceCameraToImage( UINT cameraID, UINT imageID )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/CameraSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	jmethodID Camera = lJNIEnv->GetStaticMethodID( AGKHelper, "SetDeviceCameraToImage","(Landroid/app/Activity;II)V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, Camera, lNativeActivity, m_iCameraTextureRaw, cameraID );
+	jmethodID Camera = lJNIEnv->GetStaticMethodID( sdkClass, "SetDeviceCameraToImage","(Landroid/app/Activity;II)V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, Camera, lNativeActivity, m_iCameraTextureRaw, cameraID );
 
-	Camera = lJNIEnv->GetStaticMethodID( AGKHelper, "GetCameraWidth","()I" );
-	iCameraWidth = lJNIEnv->CallStaticIntMethod( AGKHelper, Camera );
+	Camera = lJNIEnv->GetStaticMethodID( sdkClass, "GetCameraWidth","()I" );
+	iCameraWidth = lJNIEnv->CallStaticIntMethod( sdkClass, Camera );
 
-	Camera = lJNIEnv->GetStaticMethodID( AGKHelper, "GetCameraHeight","()I" );
-	iCameraHeight = lJNIEnv->CallStaticIntMethod( AGKHelper, Camera );
+	Camera = lJNIEnv->GetStaticMethodID( sdkClass, "GetCameraHeight","()I" );
+	iCameraHeight = lJNIEnv->CallStaticIntMethod( sdkClass, Camera );
 
-	Camera = lJNIEnv->GetStaticMethodID( AGKHelper, "GetCameraType","(I)I" );
-	m_iDeviceCameraType = lJNIEnv->CallStaticIntMethod( AGKHelper, Camera, m_iDeviceCameraID );
+	Camera = lJNIEnv->GetStaticMethodID( sdkClass, "GetCameraType","(I)I" );
+	m_iDeviceCameraType = lJNIEnv->CallStaticIntMethod( sdkClass, Camera, m_iDeviceCameraID );
 
 	vm->DetachCurrentThread();
 
@@ -3189,9 +3605,17 @@ void agk::DeviceCameraUpdate()
 	vm->AttachCurrentThread(&lJNIEnv, NULL);
 	jobject lNativeActivity = g_pActivity->clazz;
 
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/CameraSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
+
+	jmethodID Camera = lJNIEnv->GetStaticMethodID( sdkClass, "UpdateCamera","()V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, Camera );
+
 	jclass AGKHelper = GetAGKHelper(lJNIEnv);
-	jmethodID Camera = lJNIEnv->GetStaticMethodID( AGKHelper, "UpdateCamera","()V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, Camera );
 
 	jmethodID methodGetOrien = lJNIEnv->GetStaticMethodID( AGKHelper, "GetOrientation","(Landroid/app/Activity;)I");
 	int orien = lJNIEnv->CallStaticIntMethod( AGKHelper, methodGetOrien, lNativeActivity );
@@ -3328,10 +3752,15 @@ void agk::DeviceCameraResumed()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/CameraSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID Camera = lJNIEnv->GetStaticMethodID( AGKHelper, "SetDeviceCameraToImage","(Landroid/app/Activity;II)V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, Camera, lNativeActivity, m_iCameraTextureRaw, m_iDeviceCameraID );
+	jmethodID Camera = lJNIEnv->GetStaticMethodID( sdkClass, "SetDeviceCameraToImage","(Landroid/app/Activity;II)V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, Camera, lNativeActivity, m_iCameraTextureRaw, m_iDeviceCameraID );
 
 	vm->DetachCurrentThread();
 }
@@ -3343,9 +3772,15 @@ int agk::GetDeviceCameraType( UINT cameraID )
 	JavaVM* vm = g_pActivity->vm;
 	vm->AttachCurrentThread(&lJNIEnv, NULL);
 
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
-	jmethodID Camera = lJNIEnv->GetStaticMethodID( AGKHelper, "GetCameraType","(I)I" );
-	int type = lJNIEnv->CallStaticIntMethod( AGKHelper, Camera, cameraID );
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/CameraSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
+
+	jmethodID Camera = lJNIEnv->GetStaticMethodID( sdkClass, "GetCameraType","(I)I" );
+	int type = lJNIEnv->CallStaticIntMethod( sdkClass, Camera, cameraID );
 	vm->DetachCurrentThread();
 
 	return type;
@@ -4298,17 +4733,23 @@ void cSoundMgr::AppResumed()
 
 void cSoundMgr::PlatformAddFile( cSoundFile *pSound )
 {
-	// sounds shorter than 170ms may not play on some devices
-	if ( pSound->m_uDataSize < 15436 )
+	if ( pSound->m_uDataSize < 1000000 )
 	{
-		// pad to 15435 bytes
-		unsigned char *newBuf = new unsigned char[ 15436 ];
-		memcpy( newBuf, pSound->m_pRawData, pSound->m_uDataSize );
-		memset( newBuf+pSound->m_uDataSize, 0, 15436-pSound->m_uDataSize );
+		unsigned int msLength = (pSound->m_uDataSize * 1000) / pSound->m_fmt.nAvgBytesPerSec;
 
-		delete [] pSound->m_pRawData;
-		pSound->m_pRawData = newBuf;
-		pSound->m_uDataSize = 15436;
+		// sounds shorter than 400ms may not play properly on some devices (popping, distortion, etc)
+		if ( msLength < 400 )
+		{
+			// pad to 400ms
+			unsigned int newLength = (pSound->m_fmt.nAvgBytesPerSec * 400) / 1000;
+			unsigned char *newBuf = new unsigned char[ newLength ];
+			memcpy( newBuf, pSound->m_pRawData, pSound->m_uDataSize );
+			memset( newBuf+pSound->m_uDataSize, 0, newLength-pSound->m_uDataSize );
+
+			delete [] pSound->m_pRawData;
+			pSound->m_pRawData = newBuf;
+			pSound->m_uDataSize = newLength;
+		}
 	}
 }
 
@@ -4791,13 +5232,18 @@ void agk::PlayYoutubeVideo( const char* developerKey, const char* videoID, float
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/YoutubeSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "PlayYoutubeVideo","(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;I)V" );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "PlayYoutubeVideo","(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;I)V" );
 
 	jstring sDeveloperKey = lJNIEnv->NewStringUTF(developerKey);
 	jstring sVideoID = lJNIEnv->NewStringUTF(videoID);
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, method, lNativeActivity, sDeveloperKey, sVideoID, (int)(startTime*1000) );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, method, lNativeActivity, sDeveloperKey, sVideoID, (int)(startTime*1000) );
 	lJNIEnv->DeleteLocalRef( sVideoID );
 	lJNIEnv->DeleteLocalRef( sDeveloperKey );
 
@@ -4843,11 +5289,16 @@ int agk::LoadVideo( const char *szFilename )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/PlayVideoSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	jmethodID LoadVideo = lJNIEnv->GetStaticMethodID( AGKHelper, "LoadVideo","(Landroid/app/Activity;Ljava/lang/String;I)V" );
+	jmethodID LoadVideo = lJNIEnv->GetStaticMethodID( sdkClass, "LoadVideo","(Landroid/app/Activity;Ljava/lang/String;I)V" );
 	jstring videoPath = lJNIEnv->NewStringUTF(sPath.GetStr());
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, LoadVideo, lNativeActivity, videoPath, type );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, LoadVideo, lNativeActivity, videoPath, type );
 	lJNIEnv->DeleteLocalRef( videoPath );
 	vm->DetachCurrentThread();
 
@@ -4874,10 +5325,15 @@ void agk::DeleteVideo()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/PlayVideoSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID Video = lJNIEnv->GetStaticMethodID( AGKHelper, "DeleteVideo","(Landroid/app/Activity;)V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, Video, lNativeActivity );
+	jmethodID Video = lJNIEnv->GetStaticMethodID( sdkClass, "DeleteVideo","(Landroid/app/Activity;)V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, Video, lNativeActivity );
 	vm->DetachCurrentThread();
 
 	if ( m_pVideoTextureFBO ) delete m_pVideoTextureFBO; m_pVideoTextureFBO = 0;
@@ -4922,10 +5378,15 @@ void agk::SetVideoDimensions( float x, float y, float width, float height )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/PlayVideoSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID Video = lJNIEnv->GetStaticMethodID( AGKHelper, "SetVideoDimensions","(Landroid/app/Activity;IIII)V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, Video, lNativeActivity, iX, iY, iWidth, iHeight );
+	jmethodID Video = lJNIEnv->GetStaticMethodID( sdkClass, "SetVideoDimensions","(Landroid/app/Activity;IIII)V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, Video, lNativeActivity, iX, iY, iWidth, iHeight );
 	vm->DetachCurrentThread();
 }
 
@@ -4942,15 +5403,21 @@ void agk::VideoUpdate()
 	vm->AttachCurrentThread(&lJNIEnv, NULL);
 	jobject lNativeActivity = g_pActivity->clazz;
 
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
-	jmethodID Video = lJNIEnv->GetStaticMethodID( AGKHelper, "UpdateVideo","()V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, Video );
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/PlayVideoSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	Video = lJNIEnv->GetStaticMethodID( AGKHelper, "GetVideoTextureValue","(Landroid/app/Activity;I)F" );
-	float u1 = lJNIEnv->CallStaticFloatMethod( AGKHelper, Video, lNativeActivity, 1 );
-	float v1 = lJNIEnv->CallStaticFloatMethod( AGKHelper, Video, lNativeActivity, 2 );
-	float u2 = lJNIEnv->CallStaticFloatMethod( AGKHelper, Video, lNativeActivity, 3 );
-	float v2 = lJNIEnv->CallStaticFloatMethod( AGKHelper, Video, lNativeActivity, 4 );
+	jmethodID Video = lJNIEnv->GetStaticMethodID( sdkClass, "UpdateVideo","()V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, Video );
+
+	Video = lJNIEnv->GetStaticMethodID( sdkClass, "GetVideoTextureValue","(Landroid/app/Activity;I)F" );
+	float u1 = lJNIEnv->CallStaticFloatMethod( sdkClass, Video, lNativeActivity, 1 );
+	float v1 = lJNIEnv->CallStaticFloatMethod( sdkClass, Video, lNativeActivity, 2 );
+	float u2 = lJNIEnv->CallStaticFloatMethod( sdkClass, Video, lNativeActivity, 3 );
+	float v2 = lJNIEnv->CallStaticFloatMethod( sdkClass, Video, lNativeActivity, 4 );
 
 	vm->DetachCurrentThread();
 
@@ -5065,10 +5532,15 @@ void agk::PlayVideoToImage( UINT imageID )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+		jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/PlayVideoSDK" );
+		if ( !sdkClass ) 
+		{
+			vm->DetachCurrentThread();
+			return;
+		}
 
-	jmethodID Video = lJNIEnv->GetStaticMethodID( AGKHelper, "PlayVideoToTexture","(Landroid/app/Activity;I)V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, Video, lNativeActivity, m_iVideoTextureRaw );
+		jmethodID Video = lJNIEnv->GetStaticMethodID( sdkClass, "PlayVideoToTexture","(Landroid/app/Activity;I)V" );
+		lJNIEnv->CallStaticVoidMethod( sdkClass, Video, lNativeActivity, m_iVideoTextureRaw );
 	vm->DetachCurrentThread();
 
 	m_iVideoPlayMode = 2;
@@ -5086,10 +5558,15 @@ void agk::PlayVideo()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/PlayVideoSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID Video = lJNIEnv->GetStaticMethodID( AGKHelper, "PlayVideo","(Landroid/app/Activity;)V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, Video, lNativeActivity );
+	jmethodID Video = lJNIEnv->GetStaticMethodID( sdkClass, "PlayVideo","(Landroid/app/Activity;)V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, Video, lNativeActivity );
 	vm->DetachCurrentThread();
 }
 
@@ -5103,10 +5580,15 @@ void agk::PauseVideo()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/PlayVideoSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID Video = lJNIEnv->GetStaticMethodID( AGKHelper, "PauseVideo","(Landroid/app/Activity;)V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, Video, lNativeActivity );
+	jmethodID Video = lJNIEnv->GetStaticMethodID( sdkClass, "PauseVideo","(Landroid/app/Activity;)V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, Video, lNativeActivity );
 	vm->DetachCurrentThread();
 }
 
@@ -5120,10 +5602,15 @@ void agk::StopVideo()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/PlayVideoSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID Video = lJNIEnv->GetStaticMethodID( AGKHelper, "StopVideo","(Landroid/app/Activity;)V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, Video, lNativeActivity );
+	jmethodID Video = lJNIEnv->GetStaticMethodID( sdkClass, "StopVideo","(Landroid/app/Activity;)V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, Video, lNativeActivity );
 	vm->DetachCurrentThread();
 
 	m_iVideoPlayMode = 0;
@@ -5139,10 +5626,15 @@ int agk::GetVideoPlaying()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/PlayVideoSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	jmethodID Video = lJNIEnv->GetStaticMethodID( AGKHelper, "GetVideoPlaying","(Landroid/app/Activity;)I" );
-	int result = lJNIEnv->CallStaticIntMethod( AGKHelper, Video, lNativeActivity );
+	jmethodID Video = lJNIEnv->GetStaticMethodID( sdkClass, "GetVideoPlaying","(Landroid/app/Activity;)I" );
+	int result = lJNIEnv->CallStaticIntMethod( sdkClass, Video, lNativeActivity );
 	vm->DetachCurrentThread();
 
 	return result;
@@ -5158,10 +5650,15 @@ float agk::GetVideoPosition()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/PlayVideoSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	jmethodID Video = lJNIEnv->GetStaticMethodID( AGKHelper, "GetVideoValue","(Landroid/app/Activity;I)F" );
-	float result = lJNIEnv->CallStaticFloatMethod( AGKHelper, Video, lNativeActivity, 1 );
+	jmethodID Video = lJNIEnv->GetStaticMethodID( sdkClass, "GetVideoValue","(Landroid/app/Activity;I)F" );
+	float result = lJNIEnv->CallStaticFloatMethod( sdkClass, Video, lNativeActivity, 1 );
 	vm->DetachCurrentThread();
 
 	return result;
@@ -5177,10 +5674,15 @@ float agk::GetVideoDuration()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/PlayVideoSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	jmethodID Video = lJNIEnv->GetStaticMethodID( AGKHelper, "GetVideoValue","(Landroid/app/Activity;I)F" );
-	float result = lJNIEnv->CallStaticFloatMethod( AGKHelper, Video, lNativeActivity, 2 );
+	jmethodID Video = lJNIEnv->GetStaticMethodID( sdkClass, "GetVideoValue","(Landroid/app/Activity;I)F" );
+	float result = lJNIEnv->CallStaticFloatMethod( sdkClass, Video, lNativeActivity, 2 );
 	vm->DetachCurrentThread();
 
 	return result;
@@ -5196,10 +5698,15 @@ void agk::SetVideoVolume( float volume )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/PlayVideoSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID Video = lJNIEnv->GetStaticMethodID( AGKHelper, "SetVideoVolume","(F)V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, Video, volume );
+	jmethodID Video = lJNIEnv->GetStaticMethodID( sdkClass, "SetVideoVolume","(F)V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, Video, volume );
 	vm->DetachCurrentThread();
 }
 
@@ -5213,10 +5720,15 @@ float agk::GetVideoWidth()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/PlayVideoSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	jmethodID Video = lJNIEnv->GetStaticMethodID( AGKHelper, "GetVideoValue","(Landroid/app/Activity;I)F" );
-	float result = lJNIEnv->CallStaticFloatMethod( AGKHelper, Video, lNativeActivity, 3 );
+	jmethodID Video = lJNIEnv->GetStaticMethodID( sdkClass, "GetVideoValue","(Landroid/app/Activity;I)F" );
+	float result = lJNIEnv->CallStaticFloatMethod( sdkClass, Video, lNativeActivity, 3 );
 	vm->DetachCurrentThread();
 
 	return result;
@@ -5232,10 +5744,15 @@ float agk::GetVideoHeight()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/PlayVideoSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	jmethodID Video = lJNIEnv->GetStaticMethodID( AGKHelper, "GetVideoValue","(Landroid/app/Activity;I)F" );
-	float result = lJNIEnv->CallStaticFloatMethod( AGKHelper, Video, lNativeActivity, 4 );
+	jmethodID Video = lJNIEnv->GetStaticMethodID( sdkClass, "GetVideoValue","(Landroid/app/Activity;I)F" );
+	float result = lJNIEnv->CallStaticFloatMethod( sdkClass, Video, lNativeActivity, 4 );
 	vm->DetachCurrentThread();
 
 	return result;
@@ -5251,10 +5768,15 @@ void agk::SetVideoPosition( float seconds )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/PlayVideoSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID Video = lJNIEnv->GetStaticMethodID( AGKHelper, "SetVideoPosition","(Landroid/app/Activity;F)V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, Video, lNativeActivity, seconds );
+	jmethodID Video = lJNIEnv->GetStaticMethodID( sdkClass, "SetVideoPosition","(Landroid/app/Activity;F)V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, Video, lNativeActivity, seconds );
 	vm->DetachCurrentThread();
 }
 
@@ -5288,20 +5810,25 @@ void agk::StartScreenRecording( const char *szFilename, int microphone )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/RecordScreenSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
 	// setup screen recorder
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "StartScreenRecording","(Landroid/app/Activity;Ljava/lang/String;I)I" );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "StartScreenRecording","(Landroid/app/Activity;Ljava/lang/String;I)I" );
 
 	jstring sfilename = lJNIEnv->NewStringUTF(sPath.GetStr());
-	int result = lJNIEnv->CallStaticIntMethod( AGKHelper, method, lNativeActivity, sfilename, microphone );
+	int result = lJNIEnv->CallStaticIntMethod( sdkClass, method, lNativeActivity, sfilename, microphone );
 	lJNIEnv->DeleteLocalRef( sfilename );
 
 	if ( result != 1 ) return;
 
 	// get recording surface
-	method = lJNIEnv->GetStaticMethodID( AGKHelper, "GetScreenRecordSurface","()Landroid/view/Surface;" );
-	jobject javaSurface = lJNIEnv->CallStaticObjectMethod( AGKHelper, method );
+	method = lJNIEnv->GetStaticMethodID( sdkClass, "GetScreenRecordSurface","()Landroid/view/Surface;" );
+	jobject javaSurface = lJNIEnv->CallStaticObjectMethod( sdkClass, method );
 	g_pRecordWindow = ANativeWindow_fromSurface( lJNIEnv, javaSurface );
 
 	vm->DetachCurrentThread();
@@ -5328,10 +5855,16 @@ void agk::StopScreenRecording()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/RecordScreenSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "StopScreenRecording","()V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, method );
+	// stop recording
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "StopScreenRecording","()V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, method );
 	
 	vm->DetachCurrentThread();
 }
@@ -5346,10 +5879,15 @@ int agk::IsScreenRecording()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/RecordScreenSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "IsScreenRecording","()I" );
-	int result = lJNIEnv->CallStaticIntMethod( AGKHelper, method );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "IsScreenRecording","()I" );
+	int result = lJNIEnv->CallStaticIntMethod( sdkClass, method );
 	
 	vm->DetachCurrentThread();
 
@@ -5395,10 +5933,15 @@ void agk::TextToSpeechSetup()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/TextToSpeechSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "TextToSpeechSetup","(Landroid/app/Activity;)V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, method, lNativeActivity );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "TextToSpeechSetup","(Landroid/app/Activity;)V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, method, lNativeActivity );
 	
 	vm->DetachCurrentThread();
 }
@@ -5413,10 +5956,15 @@ int agk::GetTextToSpeechReady()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/TextToSpeechSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "GetTextToSpeechReady","()I" );
-	int result = lJNIEnv->CallStaticIntMethod( AGKHelper, method );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "GetTextToSpeechReady","()I" );
+	int result = lJNIEnv->CallStaticIntMethod( sdkClass, method );
 	
 	vm->DetachCurrentThread();
 
@@ -5433,12 +5981,17 @@ void agk::Speak( const char *text )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/TextToSpeechSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "Speak","(Landroid/app/Activity;Ljava/lang/String;II)V" );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "Speak","(Landroid/app/Activity;Ljava/lang/String;II)V" );
 
 	jstring sText = lJNIEnv->NewStringUTF(text);
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, method, lNativeActivity, sText, 0, 0 );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, method, lNativeActivity, sText, 0, 0 );
 	lJNIEnv->DeleteLocalRef( sText );
 
 	vm->DetachCurrentThread();
@@ -5454,12 +6007,17 @@ void agk::Speak( const char *text, int delay )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/TextToSpeechSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "Speak","(Landroid/app/Activity;Ljava/lang/String;II)V" );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "Speak","(Landroid/app/Activity;Ljava/lang/String;II)V" );
 
 	jstring sText = lJNIEnv->NewStringUTF(text);
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, method, lNativeActivity, sText, 0, delay );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, method, lNativeActivity, sText, 0, delay );
 	lJNIEnv->DeleteLocalRef( sText );
 
 	vm->DetachCurrentThread();
@@ -5475,10 +6033,15 @@ void agk::SetSpeechRate( float rate )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/TextToSpeechSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "SetSpeechRate","(Landroid/app/Activity;F)V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, method, lNativeActivity, rate );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "SetSpeechRate","(Landroid/app/Activity;F)V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, method, lNativeActivity, rate );
 
 	vm->DetachCurrentThread();
 }
@@ -5493,10 +6056,15 @@ int agk::GetSpeechNumVoices()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/TextToSpeechSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "GetSpeechNumVoices","(Landroid/app/Activity;)I" );
-	int result = lJNIEnv->CallStaticIntMethod( AGKHelper, method, lNativeActivity );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "GetSpeechNumVoices","(Landroid/app/Activity;)I" );
+	int result = lJNIEnv->CallStaticIntMethod( sdkClass, method, lNativeActivity );
 
 	vm->DetachCurrentThread();
 	return result;
@@ -5512,11 +6080,18 @@ char* agk::GetSpeechVoiceLanguage( int index )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/TextToSpeechSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		char* str = new char[1];
+		*str = 0;
+		return str;
+	}
 
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "GetSpeechVoiceLanguage","(Landroid/app/Activity;I)Ljava/lang/String;" );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "GetSpeechVoiceLanguage","(Landroid/app/Activity;I)Ljava/lang/String;" );
 	
-	jstring str = (jstring) lJNIEnv->CallStaticObjectMethod( AGKHelper, method, lNativeActivity, index );
+	jstring str = (jstring) lJNIEnv->CallStaticObjectMethod( sdkClass, method, lNativeActivity, index );
 	jboolean bCopy;
 	const char* str2 = lJNIEnv->GetStringUTFChars( str, &bCopy );
 
@@ -5540,11 +6115,18 @@ char* agk::GetSpeechVoiceName( int index )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/TextToSpeechSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		char* str = new char[1];
+		*str = 0;
+		return str;
+	}
 
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "GetSpeechVoiceName","(Landroid/app/Activity;I)Ljava/lang/String;" );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "GetSpeechVoiceName","(Landroid/app/Activity;I)Ljava/lang/String;" );
 	
-	jstring str = (jstring) lJNIEnv->CallStaticObjectMethod( AGKHelper, method, lNativeActivity, index );
+	jstring str = (jstring) lJNIEnv->CallStaticObjectMethod( sdkClass, method, lNativeActivity, index );
 	jboolean bCopy;
 	const char* str2 = lJNIEnv->GetStringUTFChars( str, &bCopy );
 
@@ -5576,12 +6158,17 @@ void agk::SetSpeechLanguage( const char* lang )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/TextToSpeechSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "SetSpeechLanguage","(Landroid/app/Activity;Ljava/lang/String;)V" );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "SetSpeechLanguage","(Landroid/app/Activity;Ljava/lang/String;)V" );
 
 	jstring sLang = lJNIEnv->NewStringUTF(lang);
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, method, lNativeActivity, sLang );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, method, lNativeActivity, sLang );
 	lJNIEnv->DeleteLocalRef( sLang );
 
 	vm->DetachCurrentThread();
@@ -5597,12 +6184,17 @@ void agk::SetSpeechLanguageByID( const char* szID )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/TextToSpeechSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "SetSpeechLanguageByID","(Landroid/app/Activity;Ljava/lang/String;)V" );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "SetSpeechLanguageByID","(Landroid/app/Activity;Ljava/lang/String;)V" );
 
 	jstring sID = lJNIEnv->NewStringUTF(szID);
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, method, lNativeActivity, sID );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, method, lNativeActivity, sID );
 	lJNIEnv->DeleteLocalRef( sID );
 
 	vm->DetachCurrentThread();
@@ -5618,10 +6210,15 @@ int agk::IsSpeaking()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/TextToSpeechSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "IsSpeaking","()I" );
-	int result = lJNIEnv->CallStaticIntMethod( AGKHelper, method );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "IsSpeaking","()I" );
+	int result = lJNIEnv->CallStaticIntMethod( sdkClass, method );
 	
 	vm->DetachCurrentThread();
 
@@ -5638,10 +6235,15 @@ void agk::StopSpeaking()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/TextToSpeechSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "StopSpeaking","()V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, method );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "StopSpeaking","()V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, method );
 	
 	vm->DetachCurrentThread();
 }
@@ -7147,10 +7749,15 @@ int agk::GetGPSSensorExists()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/LocationSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	jmethodID GetGPS = lJNIEnv->GetStaticMethodID( AGKHelper, "GetGPSExists","(Landroid/app/Activity;)I" );
-	m_iGPSSensorExists = lJNIEnv->CallStaticIntMethod( AGKHelper, GetGPS, lNativeActivity );
+	jmethodID GetGPS = lJNIEnv->GetStaticMethodID( sdkClass, "GetGPSExists","(Landroid/app/Activity;)I" );
+	m_iGPSSensorExists = lJNIEnv->CallStaticIntMethod( sdkClass, GetGPS, lNativeActivity );
 
 	vm->DetachCurrentThread();
 
@@ -7435,12 +8042,17 @@ void cEditBox::PlatformStartText()
 			jobject lNativeActivity = g_pActivity->clazz;
 			if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 			
-			jclass AGKHelper = GetAGKHelper(lJNIEnv);
+			jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/TextEntrySDK" );
+			if ( !sdkClass ) 
+			{
+				vm->DetachCurrentThread();
+				return;
+			}
 
-			jmethodID SetText = lJNIEnv->GetStaticMethodID( AGKHelper, "SetInputText", "(Landroid/app/Activity;Ljava/lang/String;I)V" );
+			jmethodID SetText = lJNIEnv->GetStaticMethodID( sdkClass, "SetInputText", "(Landroid/app/Activity;Ljava/lang/String;I)V" );
 
 			jstring text = lJNIEnv->NewStringUTF(m_sCurrInput.GetStr());
-			lJNIEnv->CallStaticVoidMethod( AGKHelper, SetText, lNativeActivity, text, m_sCurrInput.GetNumChars() );
+			lJNIEnv->CallStaticVoidMethod( sdkClass, SetText, lNativeActivity, text, m_sCurrInput.GetNumChars() );
 			lJNIEnv->DeleteLocalRef( text );
 
 			vm->DetachCurrentThread();
@@ -7493,10 +8105,15 @@ bool cEditBox::PlatformUpdateText()
 		jobject lNativeActivity = g_pActivity->clazz;
 		if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 		
-		jclass AGKHelper = GetAGKHelper(lJNIEnv);
+		jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/TextEntrySDK" );
+		if ( !sdkClass ) 
+		{
+			vm->DetachCurrentThread();
+			return false;
+		}
 
-		jmethodID GetText = lJNIEnv->GetStaticMethodID( AGKHelper, "GetInputText", "(Landroid/app/Activity;)Ljava/lang/String;" );
-		jstring text = (jstring) lJNIEnv->CallStaticObjectMethod( AGKHelper, GetText, lNativeActivity );
+		jmethodID GetText = lJNIEnv->GetStaticMethodID( sdkClass, "GetInputText", "(Landroid/app/Activity;)Ljava/lang/String;" );
+		jstring text = (jstring) lJNIEnv->CallStaticObjectMethod( sdkClass, GetText, lNativeActivity );
 		
 		jboolean bCopy;
 		const char* sText = lJNIEnv->GetStringUTFChars( text, &bCopy );
@@ -7506,13 +8123,13 @@ bool cEditBox::PlatformUpdateText()
 		lJNIEnv->ReleaseStringUTFChars( text, sText );
 		lJNIEnv->DeleteLocalRef( text );
 
-		jmethodID GetFinished = lJNIEnv->GetStaticMethodID( AGKHelper, "GetInputFinished", "(Landroid/app/Activity;)I" );
-		int finished = lJNIEnv->CallStaticIntMethod( AGKHelper, GetFinished, lNativeActivity );
+		jmethodID GetFinished = lJNIEnv->GetStaticMethodID( sdkClass, "GetInputFinished", "(Landroid/app/Activity;)I" );
+		int finished = lJNIEnv->CallStaticIntMethod( sdkClass, GetFinished, lNativeActivity );
 		
 		if ( m_iOldCursorPos < 0 || m_iOldCursorPos == m_iCursorPos )
 		{
-			jmethodID GetCursor = lJNIEnv->GetStaticMethodID( AGKHelper, "GetInputCursor", "(Landroid/app/Activity;)I" );
-			m_iCursorPos = lJNIEnv->CallStaticIntMethod( AGKHelper, GetCursor, lNativeActivity );
+			jmethodID GetCursor = lJNIEnv->GetStaticMethodID( sdkClass, "GetInputCursor", "(Landroid/app/Activity;)I" );
+			m_iCursorPos = lJNIEnv->CallStaticIntMethod( sdkClass, GetCursor, lNativeActivity );
 			if ( m_iOldCursorPos != m_iCursorPos )
 			{
 				m_iShowCursor = 1;
@@ -7521,8 +8138,8 @@ bool cEditBox::PlatformUpdateText()
 		}
 		else
 		{
-			jmethodID SetCursor = lJNIEnv->GetStaticMethodID( AGKHelper, "SetInputTextCursor", "(Landroid/app/Activity;I)V" );
-			lJNIEnv->CallStaticVoidMethod( AGKHelper, SetCursor, lNativeActivity, m_iCursorPos );
+			jmethodID SetCursor = lJNIEnv->GetStaticMethodID( sdkClass, "SetInputTextCursor", "(Landroid/app/Activity;I)V" );
+			lJNIEnv->CallStaticVoidMethod( sdkClass, SetCursor, lNativeActivity, m_iCursorPos );
 		}
 
 		vm->DetachCurrentThread();
@@ -7570,12 +8187,17 @@ bool cEditBox::PlatformUpdateText()
 			jobject lNativeActivity = g_pActivity->clazz;
 			if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 			
-			jclass AGKHelper = GetAGKHelper(lJNIEnv);
+			jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/TextEntrySDK" );
+			if ( !sdkClass ) 
+			{
+				vm->DetachCurrentThread();
+				return false;
+			}
 
-			jmethodID SetText = lJNIEnv->GetStaticMethodID( AGKHelper, "SetInputText", "(Landroid/app/Activity;Ljava/lang/String;I)V" );
+			jmethodID SetText = lJNIEnv->GetStaticMethodID( sdkClass, "SetInputText", "(Landroid/app/Activity;Ljava/lang/String;I)V" );
 
 			jstring text = lJNIEnv->NewStringUTF(m_sCurrInput.GetStr());
-			lJNIEnv->CallStaticVoidMethod( AGKHelper, SetText, lNativeActivity, text, m_iCursorPos );
+			lJNIEnv->CallStaticVoidMethod( sdkClass, SetText, lNativeActivity, text, m_iCursorPos );
 			lJNIEnv->DeleteLocalRef( text );
 
 			vm->DetachCurrentThread();
@@ -7645,12 +8267,17 @@ void cEditBox::PlatformUpdateTextEnd()
 		jobject lNativeActivity = g_pActivity->clazz;
 		if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 		
-		jclass AGKHelper = GetAGKHelper(lJNIEnv);
+		jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/TextEntrySDK" );
+		if ( !sdkClass ) 
+		{
+			vm->DetachCurrentThread();
+			return;
+		}
 
-		jmethodID SetText = lJNIEnv->GetStaticMethodID( AGKHelper, "SetInputText", "(Landroid/app/Activity;Ljava/lang/String;I)V" );
+		jmethodID SetText = lJNIEnv->GetStaticMethodID( sdkClass, "SetInputText", "(Landroid/app/Activity;Ljava/lang/String;I)V" );
 
 		jstring text = lJNIEnv->NewStringUTF(m_sCurrInput.GetStr());
-		lJNIEnv->CallStaticVoidMethod( AGKHelper, SetText, lNativeActivity, text, m_iCursorPos );
+		lJNIEnv->CallStaticVoidMethod( sdkClass, SetText, lNativeActivity, text, m_iCursorPos );
 		lJNIEnv->DeleteLocalRef( text );
 
 		vm->DetachCurrentThread();
@@ -7719,7 +8346,6 @@ void agk::OpenBrowser( const char *url )
 	if ( sURL.FindStr( ":" ) < 0 ) sURL.Prepend( "http://" );
 
 	jstring urlstring = lJNIEnv->NewStringUTF( sURL.GetStr() );
-	//objURI = lJNIEnv->CallStaticObjectMethod( classURI, methodURIParse, "https://market.android.com/details?id=com.thegamecreators.mrdork" );
 	objURI = lJNIEnv->CallStaticObjectMethod( classURI, methodURIParse, urlstring );
 	if ( !objURI ) agk::Warning("Failed to parse URI");
 	lJNIEnv->DeleteLocalRef( urlstring );
@@ -7985,6 +8611,7 @@ void agk::ShareFile( const char* szFilename )
 void agk::FacebookActivateAppTracking()
 //****
 {
+	/*
 	if ( m_sFBAppID.GetLength() == 0 )
 	{
 		agk::Error("FacebookSetup must be called before FacebookActivateAppTracking");
@@ -8009,6 +8636,7 @@ void agk::FacebookActivateAppTracking()
 
 	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
+	*/
 }
 
 int agk::GetInternetState()
@@ -8047,14 +8675,19 @@ void agk::SetPushNotificationKeys( const char* data1, const char* reserved )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/PushNotificationsSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
 	// get the method from our java class
-	jmethodID setPNKey = lJNIEnv->GetStaticMethodID( AGKHelper, "setPushNotificationKeys","(Ljava/lang/String;Ljava/lang/String;)V" );
+	jmethodID setPNKey = lJNIEnv->GetStaticMethodID( sdkClass, "setPushNotificationKeys","(Ljava/lang/String;Ljava/lang/String;)V" );
 
 	jstring strKey1 = lJNIEnv->NewStringUTF( data1 ? data1 : "" );
 	jstring strKey2 = lJNIEnv->NewStringUTF( reserved ? reserved : "" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, setPNKey, strKey1, strKey2 );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, setPNKey, strKey1, strKey2 );
 	lJNIEnv->DeleteLocalRef( strKey1 );
 	lJNIEnv->DeleteLocalRef( strKey2 );
 
@@ -8075,13 +8708,18 @@ int agk::PushNotificationSetup()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/PushNotificationsSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
 	// get the method from our java class
-	jmethodID registerPN = lJNIEnv->GetStaticMethodID( AGKHelper, "registerPushNotification","(Landroid/app/Activity;)I" );
+	jmethodID registerPN = lJNIEnv->GetStaticMethodID( sdkClass, "registerPushNotification","(Landroid/app/Activity;)I" );
 
 	// call our java class method
-	int result = lJNIEnv->CallStaticIntMethod( AGKHelper, registerPN, lNativeActivity );
+	int result = lJNIEnv->CallStaticIntMethod( sdkClass, registerPN, lNativeActivity );
 
 	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
@@ -8103,13 +8741,20 @@ char* agk::GetPushNotificationToken()
 		jobject lNativeActivity = g_pActivity->clazz;
 		if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 		
-		jclass AGKHelper = GetAGKHelper(lJNIEnv);
+		jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/PushNotificationsSDK" );
+		if ( !sdkClass ) 
+		{
+			vm->DetachCurrentThread();
+			char *str = new char[ 1 ];
+			*str = 0;
+			return str;
+		}
 
 		// get the method from our java class
-		jmethodID getPN = lJNIEnv->GetStaticMethodID( AGKHelper, "getPNRegID","()Ljava/lang/String;" );
+		jmethodID getPN = lJNIEnv->GetStaticMethodID( sdkClass, "getPNRegID","()Ljava/lang/String;" );
 
 		// call our java class method
-		jstring result = (jstring) lJNIEnv->CallStaticObjectMethod( AGKHelper, getPN, lNativeActivity );
+		jstring result = (jstring) lJNIEnv->CallStaticObjectMethod( sdkClass, getPN, lNativeActivity );
 
 		jboolean bCopy;
 		const char* sPNRegId = lJNIEnv->GetStringUTFChars( result, &bCopy );
@@ -8154,13 +8799,8 @@ void agk::PlatformSocialPluginsDestroy( void )
 	// do nothing
 }
 
-// RATING COMMANDS
+// actually links from RequestAppReview()
 void agk::PlatformRateApp( const char* szID, const char* title, const char* message )
-{
-}
-
-// IN APP PURCHASE COMMANDS
-void agk::PlatformInAppPurchaseReset()
 {
 	JNIEnv* lJNIEnv = g_pActivity->env;
 	JavaVM* vm = g_pActivity->vm;
@@ -8170,14 +8810,87 @@ void agk::PlatformInAppPurchaseReset()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/RequestReviewSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
 	// get the method from our java class
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "iapReset","()V" );
-	if ( method ) lJNIEnv->CallStaticVoidMethod( AGKHelper, method );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "RequestReview","()V" );
+
+	// call our java class method
+	lJNIEnv->CallStaticVoidMethod( sdkClass, method );
 	
 	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
+}
+
+// IN APP PURCHASE COMMANDS
+
+void agk::PlatformInAppPurchaseReset()
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}	
+
+	// get the method from our java class
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "iapReset","()V" );
+	if ( method ) lJNIEnv->CallStaticVoidMethod( sdkClass, method );
+	
+	// detatch thread from Java VM before we leave
+	vm->DetachCurrentThread();
+}
+
+void agk::PlatformInAppPurchaseRestore()
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}	
+
+	// get the method from our java class
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "iapRestore","()V" );
+	if ( method ) lJNIEnv->CallStaticVoidMethod( sdkClass, method );
+	
+	// detatch thread from Java VM before we leave
+	vm->DetachCurrentThread();
+}
+
+bool agk::PlatformHasInAppPurchase()
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+
+	vm->DetachCurrentThread();
+
+	return sdkClass != 0;
 }
 
 void agk::PlatformInAppPurchaseSetKeys( const char* szData1, const char* szData2 )
@@ -8186,21 +8899,28 @@ void agk::PlatformInAppPurchaseSetKeys( const char* szData1, const char* szData2
 	JavaVM* vm = g_pActivity->vm;
 	vm->AttachCurrentThread(&lJNIEnv, NULL);
 
-	// get NativeActivity object (clazz)
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}	
 
 	// get the method from our java class
-	jmethodID purchase = lJNIEnv->GetStaticMethodID( AGKHelper, "iapSetKeyData","(Ljava/lang/String;Ljava/lang/String;)V" );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "iapSetKeyData","(Ljava/lang/String;Ljava/lang/String;)V" );
 
-	// call our java class method
-	jstring strPublicKey = lJNIEnv->NewStringUTF( szData1 ? szData1 : "" );
-	jstring strDeveloperID = lJNIEnv->NewStringUTF( szData2 ? szData2 : "" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, purchase, strPublicKey, strDeveloperID );
-	lJNIEnv->DeleteLocalRef( strPublicKey );
-	lJNIEnv->DeleteLocalRef( strDeveloperID );
+	if ( method )
+	{
+		// call our java class method
+		jstring strPublicKey = lJNIEnv->NewStringUTF( szData1 ? szData1 : "" );
+		jstring strDeveloperID = lJNIEnv->NewStringUTF( szData2 ? szData2 : "" );
+		lJNIEnv->CallStaticVoidMethod( sdkClass, method, strPublicKey, strDeveloperID );
+		lJNIEnv->DeleteLocalRef( strPublicKey );
+		lJNIEnv->DeleteLocalRef( strDeveloperID );
+	}
 
 	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
@@ -8217,43 +8937,50 @@ void  agk::PlatformInAppPurchaseAddProductID    ( const char* szID, int type )
 	JavaVM* vm = g_pActivity->vm;
 	vm->AttachCurrentThread(&lJNIEnv, NULL);
 
-	// get NativeActivity object (clazz)
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}	
 
 	// get the method from our java class
-	jmethodID purchase = lJNIEnv->GetStaticMethodID( AGKHelper, "iapAddProduct","(Ljava/lang/String;II)V" );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "iapAddProduct","(Ljava/lang/String;II)V" );
 
-	// call our java class method
-	jstring strProduct = lJNIEnv->NewStringUTF( szID );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, purchase, strProduct, 0, type );
-	lJNIEnv->DeleteLocalRef( strProduct );
+	if ( method )
+	{
+		// call our java class method
+		jstring strProduct = lJNIEnv->NewStringUTF( szID );
+		lJNIEnv->CallStaticVoidMethod( sdkClass, method, strProduct, 0, type );
+		lJNIEnv->DeleteLocalRef( strProduct );
+	}
 
 	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
 }
 
-void  agk::PlatformInAppPurchaseSetup           ( void )
+void agk::PlatformInAppPurchaseSetup()
 {
 	JNIEnv* lJNIEnv = g_pActivity->env;
 	JavaVM* vm = g_pActivity->vm;
 	vm->AttachCurrentThread(&lJNIEnv, NULL);
 
-	// get NativeActivity object (clazz)
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}	
 
-	// get the method from our java class
-	jmethodID purchase = lJNIEnv->GetStaticMethodID( AGKHelper, "iapSetup","(Landroid/app/Activity;)V" );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "iapSetup","(Landroid/app/Activity;)V" );
+	if ( method ) lJNIEnv->CallStaticVoidMethod( sdkClass, method, lNativeActivity );
 
-	// call our java class method
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, purchase, lNativeActivity );
-
-	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
 }
 
@@ -8263,19 +8990,47 @@ void  agk::PlatformInAppPurchaseActivate        ( int iID )
 	JavaVM* vm = g_pActivity->vm;
 	vm->AttachCurrentThread(&lJNIEnv, NULL);
 
-	// get NativeActivity object (clazz)
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	// get the method from our java class
-	jmethodID purchase = lJNIEnv->GetStaticMethodID( AGKHelper, "iapMakePurchase","(Landroid/app/Activity;I)V" );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "iapMakePurchase","(Landroid/app/Activity;I)V" );
+	if ( method ) lJNIEnv->CallStaticVoidMethod( sdkClass, method, lNativeActivity, iID );
 
-	// call our java class method
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, purchase, lNativeActivity, iID );
+	vm->DetachCurrentThread();
+}
+
+void agk::PlatformInAppPurchaseActivateWithPlan( int iID, const char* planToken )
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	// detatch thread from Java VM before we leave
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
+
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "iapMakePurchaseWithPlan","(Landroid/app/Activity;ILjava/lang/String;)V" );
+
+	if ( method )
+	{
+		jstring strToken = lJNIEnv->NewStringUTF( planToken );
+		lJNIEnv->CallStaticVoidMethod( sdkClass, method, lNativeActivity, iID, strToken );
+		lJNIEnv->DeleteLocalRef( strToken );
+	}
+
 	vm->DetachCurrentThread();
 }
 
@@ -8285,72 +9040,80 @@ void  agk::PlatformInAppPurchaseResetPurchase( const char* szToken )
 	JavaVM* vm = g_pActivity->vm;
 	vm->AttachCurrentThread(&lJNIEnv, NULL);
 
-	// get NativeActivity object (clazz)
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	// get the method from our java class
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "iapResetPurchase","(Ljava/lang/String;)V" );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "iapResetPurchase","(Ljava/lang/String;)V" );
 
-	// call our java class method
-	jstring strToken = lJNIEnv->NewStringUTF( szToken );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, method, strToken );
-	lJNIEnv->DeleteLocalRef( strToken );
+	if ( method )
+	{
+		jstring strToken = lJNIEnv->NewStringUTF( szToken );
+		lJNIEnv->CallStaticVoidMethod( sdkClass, method, strToken );
+		lJNIEnv->DeleteLocalRef( strToken );
+	}
 
-	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
 }
 
-int   agk::PlatformGetInAppPurchaseState        ( void )
+int agk::PlatformGetInAppPurchaseState( void )
 {
 	return 1; // deprecated
 }
 
-int   agk::PlatformGetInAppPurchaseAvailable    ( int iID )
+int agk::PlatformGetInAppPurchaseAvailable( int iID )
 {
 	JNIEnv* lJNIEnv = g_pActivity->env;
 	JavaVM* vm = g_pActivity->vm;
 	vm->AttachCurrentThread(&lJNIEnv, NULL);
 
-	// get NativeActivity object (clazz)
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	// get the method from our java class
-	jmethodID purchase = lJNIEnv->GetStaticMethodID( AGKHelper, "iapCheckPurchase","(I)I" );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "iapCheckPurchase","(I)I" );
 
-	// call our java class method
-	int result = lJNIEnv->CallStaticIntMethod( AGKHelper, purchase, iID );
+	int result = 0;
+	if ( method ) result = lJNIEnv->CallStaticIntMethod( sdkClass, method, iID );
 
-	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
 
 	return result;
 }
 
-int   agk::PlatformGetInAppPurchaseAvailable2    ( int iID )
+int agk::PlatformGetInAppPurchaseAvailable2( int iID )
 {
 	JNIEnv* lJNIEnv = g_pActivity->env;
 	JavaVM* vm = g_pActivity->vm;
 	vm->AttachCurrentThread(&lJNIEnv, NULL);
 
-	// get NativeActivity object (clazz)
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	// get the method from our java class
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "iapCheckPurchase2","(I)I" );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "iapCheckPurchase2","(I)I" );
 
-	// call our java class method
-	int result = lJNIEnv->CallStaticIntMethod( AGKHelper, method, iID );
+	int result = 0;
+	if ( method ) result = lJNIEnv->CallStaticIntMethod( sdkClass, method, iID );
 
-	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
 
 	return result;
@@ -8362,32 +9125,40 @@ char* agk::PlatformGetInAppPurchaseLocalPrice( int iID )
 	JavaVM* vm = g_pActivity->vm;
 	vm->AttachCurrentThread(&lJNIEnv, NULL);
 
-	// get NativeActivity object (clazz)
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		char* str = new char[1];
+		*str = 0;
+		return str;
+	}
 
-	// get the method from our java class
-	jmethodID iapgetprice = lJNIEnv->GetStaticMethodID( AGKHelper, "iapGetPrice","(I)Ljava/lang/String;" );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "iapGetPrice","(I)Ljava/lang/String;" );
 
-	jstring str = (jstring) lJNIEnv->CallStaticObjectMethod( AGKHelper, iapgetprice, iID );
-	jboolean bCopy;
-	const char* str2 = lJNIEnv->GetStringUTFChars( str, &bCopy );
+	char* retstr;
+	if ( !method )
+	{
+		retstr = new char[1];
+		*retstr = 0;
+	}
+	else
+	{
+		jstring str = (jstring) lJNIEnv->CallStaticObjectMethod( sdkClass, method, iID );
+		jboolean bCopy;
+		const char* str2 = lJNIEnv->GetStringUTFChars( str, &bCopy );
 
-	uString sPrice; 
-	// replace place holders with ascii version of the currency symbols
-	if ( *str2 == 'p' ) { sPrice.SetStr( "£" ); sPrice.Append( str2+1 ); }
-	else if ( *str2 == 'e' ) { sPrice.SetStr( "€" ); sPrice.Append( str2+1 ); }
-	else sPrice.SetStr( str2 );
+		retstr = new char[ strlen(str2) + 1 ];
+		strcpy( retstr, str2 );
 			
-	lJNIEnv->ReleaseStringUTFChars( str, str2 );
-	lJNIEnv->DeleteLocalRef( str );
+		lJNIEnv->ReleaseStringUTFChars( str, str2 );
+		lJNIEnv->DeleteLocalRef( str );
+	}
 
 	vm->DetachCurrentThread();
-
-	char *retstr = new char[ sPrice.GetLength() + 1 ];
-	strcpy( retstr, sPrice.GetStr() );
 
 	return retstr;
 }
@@ -8398,28 +9169,69 @@ char* agk::PlatformGetInAppPurchaseDescription( int iID )
 	JavaVM* vm = g_pActivity->vm;
 	vm->AttachCurrentThread(&lJNIEnv, NULL);
 
-	// get NativeActivity object (clazz)
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		char* str = new char[1];
+		*str = 0;
+		return str;
+	}
 
 	// get the method from our java class
-	jmethodID iapgetdesc = lJNIEnv->GetStaticMethodID( AGKHelper, "iapGetDescription","(I)Ljava/lang/String;" );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "iapGetDescription","(I)Ljava/lang/String;" );
 
-	jstring str = (jstring) lJNIEnv->CallStaticObjectMethod( AGKHelper, iapgetdesc, iID );
-	jboolean bCopy;
-	const char* str2 = lJNIEnv->GetStringUTFChars( str, &bCopy );
+	char* retstr;
+	if ( !method )
+	{
+		retstr = new char[1];
+		*retstr = 0;
+	}
+	else
+	{
+		jstring str = (jstring) lJNIEnv->CallStaticObjectMethod( sdkClass, method, iID );
+		jboolean bCopy;
+		const char* str2 = lJNIEnv->GetStringUTFChars( str, &bCopy );
 
-	char *retstr = new char[ strlen(str2) + 1 ];
-	strcpy( retstr, str2 );
+		retstr = new char[ strlen(str2) + 1 ];
+		strcpy( retstr, str2 );
 		
-	lJNIEnv->ReleaseStringUTFChars( str, str2 );
-	lJNIEnv->DeleteLocalRef( str );
+		lJNIEnv->ReleaseStringUTFChars( str, str2 );
+		lJNIEnv->DeleteLocalRef( str );
+	}
 
 	vm->DetachCurrentThread();
 
 	return retstr;
+}
+
+int agk::PlatformGetInAppPurchaseIsRenewing( int iID )
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
+
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "iapGetIsRenewing","(I)I" );
+
+	int result = -1;
+	if ( method ) result = lJNIEnv->CallStaticIntMethod( sdkClass, method, iID );
+
+	vm->DetachCurrentThread();
+
+	return result;
 }
 
 char* agk::PlatformGetInAppPurchaseSignature(int iID)
@@ -8428,24 +9240,39 @@ char* agk::PlatformGetInAppPurchaseSignature(int iID)
 	JavaVM* vm = g_pActivity->vm;
 	vm->AttachCurrentThread(&lJNIEnv, NULL);
 
-	// get NativeActivity object (clazz)
 	jobject lNativeActivity = g_pActivity->clazz;
-	if (!lNativeActivity) agk::Warning("Failed to get native activity pointer");
-
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		char* str = new char[1];
+		*str = 0;
+		return str;
+	}
 
 	// get the method from our java class
-	jmethodID iapgetsig = lJNIEnv->GetStaticMethodID(AGKHelper, "iapGetSignature", "(I)Ljava/lang/String;");
+	jmethodID method = lJNIEnv->GetStaticMethodID(sdkClass, "iapGetSignature", "(I)Ljava/lang/String;");
 
-	jstring str = (jstring)lJNIEnv->CallStaticObjectMethod(AGKHelper, iapgetsig, iID);
-	jboolean bCopy;
-	const char* str2 = lJNIEnv->GetStringUTFChars(str, &bCopy);
+	char* retstr;
+	if ( !method )
+	{
+		retstr = new char[1];
+		*retstr = 0;
+	}
+	else
+	{
+		jstring str = (jstring)lJNIEnv->CallStaticObjectMethod(sdkClass, method, iID);
+		jboolean bCopy;
+		const char* str2 = lJNIEnv->GetStringUTFChars(str, &bCopy);
 
-	char *retstr = new char[strlen(str2) + 1];
-	strcpy(retstr, str2);
+		retstr = new char[strlen(str2) + 1];
+		strcpy(retstr, str2);
 
-	lJNIEnv->ReleaseStringUTFChars(str, str2);
-	lJNIEnv->DeleteLocalRef(str);
+		lJNIEnv->ReleaseStringUTFChars(str, str2);
+		lJNIEnv->DeleteLocalRef(str);
+	}
 
 	vm->DetachCurrentThread();
 
@@ -8458,19 +9285,25 @@ char* agk::PlatformGetInAppPurchaseToken(int iID)
 	JavaVM* vm = g_pActivity->vm;
 	vm->AttachCurrentThread(&lJNIEnv, NULL);
 
-	// get NativeActivity object (clazz)
 	jobject lNativeActivity = g_pActivity->clazz;
-	if (!lNativeActivity) agk::Warning("Failed to get native activity pointer");
-
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		char* str = new char[1];
+		*str = 0;
+		return str;
+	}
 
 	// get the method from our java class
-	jmethodID method = lJNIEnv->GetStaticMethodID(AGKHelper, "iapGetToken", "(I)Ljava/lang/String;");
+	jmethodID method = lJNIEnv->GetStaticMethodID(sdkClass, "iapGetToken", "(I)Ljava/lang/String;");
 
 	char *retstr;
 	if ( method )
 	{
-		jstring str = (jstring)lJNIEnv->CallStaticObjectMethod(AGKHelper, method, iID);
+		jstring str = (jstring)lJNIEnv->CallStaticObjectMethod(sdkClass, method, iID);
 		jboolean bCopy;
 		const char* str2 = lJNIEnv->GetStringUTFChars(str, &bCopy);
 
@@ -8491,31 +9324,286 @@ char* agk::PlatformGetInAppPurchaseToken(int iID)
 	return retstr;
 }
 
-bool  agk::PlatformHasInAppPurchase ( void )
-{
-	return true;
-}
-
-void agk::PlatformInAppPurchaseRestore()
+int agk::PlatformGetInAppPurchaseSubNumPlans( int iID )
 {
 	JNIEnv* lJNIEnv = g_pActivity->env;
 	JavaVM* vm = g_pActivity->vm;
 	vm->AttachCurrentThread(&lJNIEnv, NULL);
 
-	// get NativeActivity object (clazz)
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	// get the method from our java class
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "iapRestore","()V" );
-	if ( method ) lJNIEnv->CallStaticVoidMethod( AGKHelper, method );
-	
-	// detatch thread from Java VM before we leave
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "iapGetNumPlans","(I)I" );
+
+	int result = 0;
+	if ( method ) result = lJNIEnv->CallStaticIntMethod( sdkClass, method, iID );
+
 	vm->DetachCurrentThread();
+
+	return result;
 }
 
+int agk::PlatformGetInAppPurchaseSubPlanNumPeriods( int iID, int planIndex )
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
+
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "iapGetPlanNumPeriods","(II)I" );
+
+	int result = 0;
+	if ( method ) result = lJNIEnv->CallStaticIntMethod( sdkClass, method, iID, planIndex );
+
+	vm->DetachCurrentThread();
+
+	return result;
+}
+
+char* agk::PlatformGetInAppPurchaseSubPlanPrice( int iID, int planIndex, int periodIndex )
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		char* str = new char[1];
+		*str = 0;
+		return str;
+	}
+
+	// get the method from our java class
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "iapGetPlanPrice","(III)Ljava/lang/String;" );
+
+	char* retstr;
+	if ( !method )
+	{
+		retstr = new char[1];
+		*retstr = 0;
+	}
+	else
+	{
+		jstring str = (jstring) lJNIEnv->CallStaticObjectMethod( sdkClass, method, iID, planIndex, periodIndex );
+		jboolean bCopy;
+		const char* str2 = lJNIEnv->GetStringUTFChars( str, &bCopy );
+
+		retstr = new char[ strlen(str2) + 1 ];
+		strcpy( retstr, str2 );
+			
+		lJNIEnv->ReleaseStringUTFChars( str, str2 );
+		lJNIEnv->DeleteLocalRef( str );
+	}
+
+	vm->DetachCurrentThread();
+
+	return retstr;
+}
+
+int agk::PlatformGetInAppPurchaseSubPlanDuration( int iID, int planIndex, int periodIndex )
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
+
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "iapGetPlanDuration","(III)I" );
+
+	int result = 0;
+	if ( method ) result = lJNIEnv->CallStaticIntMethod( sdkClass, method, iID, planIndex, periodIndex );
+
+	vm->DetachCurrentThread();
+
+	return result;
+}
+
+char* agk::PlatformGetInAppPurchaseSubPlanDurationUnit( int iID, int planIndex, int periodIndex )
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
+
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "iapGetPlanDurationUnit","(III)Ljava/lang/String;" );
+
+	char* retstr;
+	if ( !method )
+	{
+		retstr = new char[1];
+		*retstr = 0;
+	}
+	else
+	{
+		jstring str = (jstring) lJNIEnv->CallStaticObjectMethod( sdkClass, method, iID, planIndex, periodIndex );
+		jboolean bCopy;
+		const char* str2 = lJNIEnv->GetStringUTFChars( str, &bCopy );
+
+		retstr = new char[ strlen(str2) + 1 ];
+		strcpy( retstr, str2 );
+			
+		lJNIEnv->ReleaseStringUTFChars( str, str2 );
+		lJNIEnv->DeleteLocalRef( str );
+	}
+
+	vm->DetachCurrentThread();
+
+	return retstr;
+}
+
+int agk::PlatformGetInAppPurchaseSubPlanPaymentType( int iID, int planIndex, int periodIndex )
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
+
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "iapGetPlanPaymentType","(III)I" );
+
+	int result = 0;
+	if ( method ) result = lJNIEnv->CallStaticIntMethod( sdkClass, method, iID, planIndex, periodIndex );
+
+	vm->DetachCurrentThread();
+
+	return result;
+}
+
+char* agk::PlatformGetInAppPurchaseSubPlanTags( int iID, int planIndex )
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		char* str = new char[1];
+		*str = 0;
+		return str;
+	}
+
+	// get the method from our java class
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "iapGetPlanTags","(II)Ljava/lang/String;" );
+
+	char* retstr;
+	if ( !method )
+	{
+		retstr = new char[1];
+		*retstr = 0;
+	}
+	else
+	{
+		jstring str = (jstring) lJNIEnv->CallStaticObjectMethod( sdkClass, method, iID, planIndex );
+		jboolean bCopy;
+		const char* str2 = lJNIEnv->GetStringUTFChars( str, &bCopy );
+
+		retstr = new char[ strlen(str2) + 1 ];
+		strcpy( retstr, str2 );
+			
+		lJNIEnv->ReleaseStringUTFChars( str, str2 );
+		lJNIEnv->DeleteLocalRef( str );
+	}
+
+	vm->DetachCurrentThread();
+
+	return retstr;
+}
+
+char* agk::PlatformGetInAppPurchaseSubPlanToken( int iID, int planIndex )
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/InAppPurchase" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		char* str = new char[1];
+		*str = 0;
+		return str;
+	}
+
+	// get the method from our java class
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "iapGetPlanToken","(II)Ljava/lang/String;" );
+
+	char* retstr;
+	if ( !method )
+	{
+		retstr = new char[1];
+		*retstr = 0;
+	}
+	else
+	{
+		jstring str = (jstring) lJNIEnv->CallStaticObjectMethod( sdkClass, method, iID, planIndex );
+		jboolean bCopy;
+		const char* str2 = lJNIEnv->GetStringUTFChars( str, &bCopy );
+
+		retstr = new char[ strlen(str2) + 1 ];
+		strcpy( retstr, str2 );
+			
+		lJNIEnv->ReleaseStringUTFChars( str, str2 );
+		lJNIEnv->DeleteLocalRef( str );
+	}
+
+	vm->DetachCurrentThread();
+
+	return retstr;
+}
 
 // ADMOB COMMANDS
 void agk::LoadConsentStatusAdMob( const char* szPubID, const char* privacyPolicy )
@@ -8529,13 +9617,18 @@ void agk::LoadConsentStatusAdMob( const char* szPubID, const char* privacyPolicy
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/AdConsentSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "LoadAdMobConsentStatus","(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)V" );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "LoadAdMobConsentStatus","(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)V" );
 
 	jstring strID = lJNIEnv->NewStringUTF( szPubID );
 	jstring strPrivacy = lJNIEnv->NewStringUTF( privacyPolicy );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, method, lNativeActivity, strID, strPrivacy );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, method, lNativeActivity, strID, strPrivacy );
 	lJNIEnv->DeleteLocalRef( strPrivacy );
 	lJNIEnv->DeleteLocalRef( strID );
 	
@@ -8553,10 +9646,15 @@ int agk::GetConsentStatusAdMob()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/AdConsentSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "GetAdMobConsentStatus","(Landroid/app/Activity;)I" );
-	int result = lJNIEnv->CallStaticIntMethod( AGKHelper, method, lNativeActivity );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "GetAdMobConsentStatus","(Landroid/app/Activity;)I" );
+	int result = lJNIEnv->CallStaticIntMethod( sdkClass, method, lNativeActivity );
 	
 	vm->DetachCurrentThread();
 	return result;
@@ -8573,10 +9671,15 @@ void agk::RequestConsentAdMob()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/AdConsentSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "RequestAdMobConsent","(Landroid/app/Activity;)V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, method, lNativeActivity );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "RequestAdMobConsent","(Landroid/app/Activity;)V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, method, lNativeActivity );
 	
 	vm->DetachCurrentThread();
 }
@@ -8592,10 +9695,15 @@ void agk::OverrideConsentAdMob( int consent )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/AdConsentSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "OverrideAdMobConsent","(Landroid/app/Activity;I)V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, method, lNativeActivity, consent );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "OverrideAdMobConsent","(Landroid/app/Activity;I)V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, method, lNativeActivity, consent );
 	
 	vm->DetachCurrentThread();
 }
@@ -8611,10 +9719,15 @@ void agk::OverrideConsentChartboost( int consent )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/ChartboostSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}	
 
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "OverrideChartboostConsent","(Landroid/app/Activity;I)V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, method, lNativeActivity, consent );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "OverrideChartboostConsent","(Landroid/app/Activity;I)V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, method, lNativeActivity, consent );
 	
 	vm->DetachCurrentThread();
 }
@@ -8642,14 +9755,19 @@ void agk::PlatformAdMobSetupRelative( const char* szID, int horz, int vert, floa
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/AdMobSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
 	// get the method from our java class
-	jmethodID createAd = lJNIEnv->GetStaticMethodID( AGKHelper, "CreateAd","(Landroid/app/Activity;Ljava/lang/String;IIIII)V" );
+	jmethodID createAd = lJNIEnv->GetStaticMethodID( sdkClass, "CreateAd","(Landroid/app/Activity;Ljava/lang/String;IIIII)V" );
 
 	// call our java class method
 	jstring strID = lJNIEnv->NewStringUTF(szID);
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, createAd, lNativeActivity, strID, horz, vert, iOffsetX, iOffsetY, type );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, createAd, lNativeActivity, strID, horz, vert, iOffsetX, iOffsetY, type );
 	lJNIEnv->DeleteLocalRef( strID );
 
 	// detatch thread from Java VM before we leave
@@ -8668,14 +9786,19 @@ void agk::PlatformAdMobFullscreen()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/AdMobSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
 	// get the method from our java class
-	jmethodID createAd = lJNIEnv->GetStaticMethodID( AGKHelper, "CreateFullscreenAd","(Landroid/app/Activity;Ljava/lang/String;)V" );
+	jmethodID createAd = lJNIEnv->GetStaticMethodID( sdkClass, "CreateFullscreenAd","(Landroid/app/Activity;Ljava/lang/String;)V" );
 
 	// call our java class method
 	jstring strID = lJNIEnv->NewStringUTF(m_sAdMobCode.GetStr());
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, createAd, lNativeActivity, strID );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, createAd, lNativeActivity, strID );
 	lJNIEnv->DeleteLocalRef( strID );
 
 	// detatch thread from Java VM before we leave
@@ -8692,14 +9815,19 @@ void agk::PlatformAdMobCacheFullscreen()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/AdMobSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
 	// get the method from our java class
-	jmethodID createAd = lJNIEnv->GetStaticMethodID( AGKHelper, "CacheFullscreenAd","(Landroid/app/Activity;Ljava/lang/String;)V" );
+	jmethodID createAd = lJNIEnv->GetStaticMethodID( sdkClass, "CacheFullscreenAd","(Landroid/app/Activity;Ljava/lang/String;)V" );
 
 	// call our java class method
 	jstring strID = lJNIEnv->NewStringUTF(m_sAdMobCode.GetStr());
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, createAd, lNativeActivity, strID );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, createAd, lNativeActivity, strID );
 	lJNIEnv->DeleteLocalRef( strID );
 
 	// detatch thread from Java VM before we leave
@@ -8718,13 +9846,18 @@ void  agk::PlatformSetAdMobVisible ( int iVisible )
 		jobject lNativeActivity = g_pActivity->clazz;
 		if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 		
-		jclass AGKHelper = GetAGKHelper(lJNIEnv);
+		jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/AdMobSDK" );
+		if ( !sdkClass ) 
+		{
+			vm->DetachCurrentThread();
+			return;
+		}
 
 		// get the method from our java class
-		jmethodID refreshAd = lJNIEnv->GetStaticMethodID( AGKHelper, "SetAdVisible","(Landroid/app/Activity;I)V" );
+		jmethodID refreshAd = lJNIEnv->GetStaticMethodID( sdkClass, "SetAdVisible","(Landroid/app/Activity;I)V" );
 
 		// call our java class method
-		lJNIEnv->CallStaticVoidMethod( AGKHelper, refreshAd, lNativeActivity, iVisible );
+		lJNIEnv->CallStaticVoidMethod( sdkClass, refreshAd, lNativeActivity, iVisible );
 
 		// detatch thread from Java VM before we leave
 		vm->DetachCurrentThread();
@@ -8750,10 +9883,15 @@ void  agk::PlatformAdMobPosition ( int horz, int vert, float offsetX, float offs
 		jobject lNativeActivity = g_pActivity->clazz;
 		if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 		
-		jclass AGKHelper = GetAGKHelper(lJNIEnv);
+		jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/AdMobSDK" );
+		if ( !sdkClass ) 
+		{
+			vm->DetachCurrentThread();
+			return;
+		}
 
-		jmethodID PositionAd = lJNIEnv->GetStaticMethodID( AGKHelper, "PositionAd","(Landroid/app/Activity;IIII)V" );
-		lJNIEnv->CallStaticVoidMethod( AGKHelper, PositionAd, lNativeActivity, g_iAdvertHorz, g_iAdvertVert, iOffsetX, iOffsetY );
+		jmethodID PositionAd = lJNIEnv->GetStaticMethodID( sdkClass, "PositionAd","(Landroid/app/Activity;IIII)V" );
+		lJNIEnv->CallStaticVoidMethod( sdkClass, PositionAd, lNativeActivity, g_iAdvertHorz, g_iAdvertVert, iOffsetX, iOffsetY );
 		vm->DetachCurrentThread();
 	}
 }
@@ -8770,13 +9908,18 @@ void agk::PlatformAdMobRequestNewAd( void )
 		jobject lNativeActivity = g_pActivity->clazz;
 		if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 		
-		jclass AGKHelper = GetAGKHelper(lJNIEnv);
+		jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/AdMobSDK" );
+		if ( !sdkClass ) 
+		{
+			vm->DetachCurrentThread();
+			return;
+		}
 
 		// get the method from our java class
-		jmethodID refreshAd = lJNIEnv->GetStaticMethodID( AGKHelper, "RefreshAd","(Landroid/app/Activity;)V" );
+		jmethodID refreshAd = lJNIEnv->GetStaticMethodID( sdkClass, "RefreshAd","(Landroid/app/Activity;)V" );
 
 		// call our java class method
-		lJNIEnv->CallStaticVoidMethod( AGKHelper, refreshAd, lNativeActivity );
+		lJNIEnv->CallStaticVoidMethod( sdkClass, refreshAd, lNativeActivity );
 
 		// detatch thread from Java VM before we leave
 		vm->DetachCurrentThread();
@@ -8797,21 +9940,38 @@ void agk::PlatformAdMobDestroy( void )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/AdMobSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
 	// get the method from our java class
-	jmethodID deleteAd = lJNIEnv->GetStaticMethodID( AGKHelper, "DeleteAd","(Landroid/app/Activity;)V" );
+	jmethodID deleteAd = lJNIEnv->GetStaticMethodID( sdkClass, "DeleteAd","(Landroid/app/Activity;)V" );
 
 	// call our java class method
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, deleteAd, lNativeActivity );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, deleteAd, lNativeActivity );
 
 	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
 }
 
 bool agk::PlatformHasAdMob( void )
-{
-	return true;
+{	
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	// get NativeActivity object (clazz)
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/AdMobSDK" );
+	
+	vm->DetachCurrentThread();
+	
+	return sdkClass != 0;
 }
 
 int agk::PlatformAdMobGetFullscreenLoaded()
@@ -8824,13 +9984,18 @@ int agk::PlatformAdMobGetFullscreenLoaded()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/AdMobSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
 	// get the method from our java class
-	jmethodID createAd = lJNIEnv->GetStaticMethodID( AGKHelper, "GetFullscreenLoadedAdMob","()I" );
+	jmethodID createAd = lJNIEnv->GetStaticMethodID( sdkClass, "GetFullscreenLoadedAdMob","()I" );
 
 	// call our java class method
-	int loaded = lJNIEnv->CallStaticIntMethod( AGKHelper, createAd );
+	int loaded = lJNIEnv->CallStaticIntMethod( sdkClass, createAd );
 	
 	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
@@ -8848,14 +10013,19 @@ void agk::PlatformAdMobRewardAd()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/AdMobSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
 	// get the method from our java class
-	jmethodID adFunc = lJNIEnv->GetStaticMethodID( AGKHelper, "ShowRewardAd","(Landroid/app/Activity;Ljava/lang/String;)V" );
+	jmethodID adFunc = lJNIEnv->GetStaticMethodID( sdkClass, "ShowRewardAd","(Landroid/app/Activity;Ljava/lang/String;)V" );
 
 	// call our java class method
 	jstring strID = lJNIEnv->NewStringUTF(m_sAdMobRewardAdCode.GetStr());
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, adFunc, lNativeActivity, strID );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, adFunc, lNativeActivity, strID );
 	lJNIEnv->DeleteLocalRef( strID );
 
 	// detatch thread from Java VM before we leave
@@ -8872,14 +10042,19 @@ void agk::PlatformAdMobCacheRewardAd()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/AdMobSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
 	// get the method from our java class
-	jmethodID adFunc = lJNIEnv->GetStaticMethodID( AGKHelper, "CacheRewardAd","(Landroid/app/Activity;Ljava/lang/String;)V" );
+	jmethodID adFunc = lJNIEnv->GetStaticMethodID( sdkClass, "CacheRewardAd","(Landroid/app/Activity;Ljava/lang/String;)V" );
 
 	// call our java class method
 	jstring strID = lJNIEnv->NewStringUTF(m_sAdMobRewardAdCode.GetStr());
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, adFunc, lNativeActivity, strID );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, adFunc, lNativeActivity, strID );
 	lJNIEnv->DeleteLocalRef( strID );
 
 	// detatch thread from Java VM before we leave
@@ -8896,13 +10071,18 @@ int agk::PlatformAdMobGetRewardAdLoaded()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/AdMobSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
 	// get the method from our java class
-	jmethodID adFunc = lJNIEnv->GetStaticMethodID( AGKHelper, "GetRewardAdLoadedAdMob","()I" );
+	jmethodID adFunc = lJNIEnv->GetStaticMethodID( sdkClass, "GetRewardAdLoadedAdMob","()I" );
 
 	// call our java class method
-	int loaded = lJNIEnv->CallStaticIntMethod( AGKHelper, adFunc );
+	int loaded = lJNIEnv->CallStaticIntMethod( sdkClass, adFunc );
 	
 	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
@@ -8920,13 +10100,18 @@ int agk::PlatformAdMobGetRewardAdRewarded()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/AdMobSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
 	// get the method from our java class
-	jmethodID adFunc = lJNIEnv->GetStaticMethodID( AGKHelper, "GetRewardAdRewarded","()I" );
+	jmethodID adFunc = lJNIEnv->GetStaticMethodID( sdkClass, "GetRewardAdRewarded","()I" );
 
 	// call our java class method
-	int rewarded = lJNIEnv->CallStaticIntMethod( AGKHelper, adFunc );
+	int rewarded = lJNIEnv->CallStaticIntMethod( sdkClass, adFunc );
 	
 	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
@@ -8944,14 +10129,19 @@ int agk::PlatformAdMobGetRewardAdValue()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/AdMobSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
 	// get the method from our java class
-	jmethodID adFunc = lJNIEnv->GetStaticMethodID( AGKHelper, "GetRewardAdValue","()I" );
+	jmethodID adFunc = lJNIEnv->GetStaticMethodID( sdkClass, "GetRewardAdValue","()I" );
 	if ( !adFunc ) return 0;
 
 	// call our java class method
-	int value = lJNIEnv->CallStaticIntMethod( AGKHelper, adFunc );
+	int value = lJNIEnv->CallStaticIntMethod( sdkClass, adFunc );
 	
 	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
@@ -8969,13 +10159,18 @@ void agk::PlatformAdMobResetRewardAd()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/AdMobSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
 	// get the method from our java class
-	jmethodID adFunc = lJNIEnv->GetStaticMethodID( AGKHelper, "ResetRewardAd","()V" );
+	jmethodID adFunc = lJNIEnv->GetStaticMethodID( sdkClass, "ResetRewardAd","()V" );
 
 	// call our java class method
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, adFunc );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, adFunc );
 	
 	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
@@ -8991,13 +10186,18 @@ void agk::PlatformAdMobSetTesting (int testing)
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/AdMobSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
 	// get the method from our java class
-	jmethodID adFunc = lJNIEnv->GetStaticMethodID( AGKHelper, "SetAdMobTestMode","(I)V" );
+	jmethodID adFunc = lJNIEnv->GetStaticMethodID( sdkClass, "SetAdMobTestMode","(I)V" );
 
 	// call our java class method
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, adFunc, testing );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, adFunc, testing );
 	
 	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
@@ -9013,13 +10213,18 @@ void agk::PlatformAdMobSetChildRating( int rating )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/AdConsentSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
 	// get the method from our java class
-	jmethodID adFunc = lJNIEnv->GetStaticMethodID( AGKHelper, "SetAdMobChildRating","(I)V" );
+	jmethodID adFunc = lJNIEnv->GetStaticMethodID( sdkClass, "SetAdMobChildRating","(I)V" );
 
 	// call our java class method
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, adFunc, rating );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, adFunc, rating );
 	
 	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
@@ -9037,15 +10242,20 @@ void agk::PlatformChartboostSetup()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/ChartboostSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}	
 
 	// get the method from our java class
-	jmethodID createAd = lJNIEnv->GetStaticMethodID( AGKHelper, "SetChartboostDetails","(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)V" );
+	jmethodID createAd = lJNIEnv->GetStaticMethodID( sdkClass, "SetChartboostDetails","(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)V" );
 
 	// call our java class method
 	jstring strID = lJNIEnv->NewStringUTF(m_sChartboostCode1.GetStr());
 	jstring strID2 = lJNIEnv->NewStringUTF(m_sChartboostCode2.GetStr());
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, createAd, lNativeActivity, strID, strID2 );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, createAd, lNativeActivity, strID, strID2 );
 	lJNIEnv->DeleteLocalRef( strID );
 	lJNIEnv->DeleteLocalRef( strID2 );
 
@@ -9063,13 +10273,18 @@ void agk::PlatformChartboostFullscreen()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/ChartboostSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}	
 
 	// get the method from our java class
-	jmethodID createAd = lJNIEnv->GetStaticMethodID( AGKHelper, "CreateFullscreenAdChartboost","(Landroid/app/Activity;I)V" );
+	jmethodID createAd = lJNIEnv->GetStaticMethodID( sdkClass, "CreateFullscreenAdChartboost","(Landroid/app/Activity;I)V" );
 
 	// call our java class method
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, createAd, lNativeActivity, 0 );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, createAd, lNativeActivity, 0 );
 	
 	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
@@ -9085,13 +10300,18 @@ int agk::PlatformChartboostGetFullscreenLoaded()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/ChartboostSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}	
 
 	// get the method from our java class
-	jmethodID createAd = lJNIEnv->GetStaticMethodID( AGKHelper, "GetFullscreenLoadedChartboost","()I" );
+	jmethodID createAd = lJNIEnv->GetStaticMethodID( sdkClass, "GetFullscreenLoadedChartboost","()I" );
 
 	// call our java class method
-	int loaded = lJNIEnv->CallStaticIntMethod( AGKHelper, createAd );
+	int loaded = lJNIEnv->CallStaticIntMethod( sdkClass, createAd );
 	
 	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
@@ -9109,13 +10329,18 @@ void agk::PlatformChartboostRewardAd()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/ChartboostSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
 	// get the method from our java class
-	jmethodID adFunc = lJNIEnv->GetStaticMethodID( AGKHelper, "ShowRewardAdChartboost","(Landroid/app/Activity;)V" );
+	jmethodID adFunc = lJNIEnv->GetStaticMethodID( sdkClass, "ShowRewardAdChartboost","(Landroid/app/Activity;)V" );
 
 	// call our java class method
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, adFunc, lNativeActivity );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, adFunc, lNativeActivity );
 	
 	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
@@ -9131,13 +10356,18 @@ void agk::PlatformChartboostCacheRewardAd()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/ChartboostSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
 	// get the method from our java class
-	jmethodID adFunc = lJNIEnv->GetStaticMethodID( AGKHelper, "CacheRewardAdChartboost","(Landroid/app/Activity;)V" );
+	jmethodID adFunc = lJNIEnv->GetStaticMethodID( sdkClass, "CacheRewardAdChartboost","(Landroid/app/Activity;)V" );
 
 	// call our java class method
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, adFunc, lNativeActivity );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, adFunc, lNativeActivity );
 	
 	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
@@ -9153,13 +10383,18 @@ int agk::PlatformChartboostGetRewardAdLoaded()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/ChartboostSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
 	// get the method from our java class
-	jmethodID adFunc = lJNIEnv->GetStaticMethodID( AGKHelper, "GetRewardAdLoadedChartboost","()I" );
+	jmethodID adFunc = lJNIEnv->GetStaticMethodID( sdkClass, "GetRewardAdLoadedChartboost","()I" );
 
 	// call our java class method
-	int result = lJNIEnv->CallStaticIntMethod( AGKHelper, adFunc );
+	int result = lJNIEnv->CallStaticIntMethod( sdkClass, adFunc );
 	
 	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
@@ -9177,13 +10412,18 @@ int agk::PlatformChartboostGetRewardAdRewarded()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/ChartboostSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
 	// get the method from our java class
-	jmethodID adFunc = lJNIEnv->GetStaticMethodID( AGKHelper, "GetRewardAdRewardedChartboost","()I" );
+	jmethodID adFunc = lJNIEnv->GetStaticMethodID( sdkClass, "GetRewardAdRewardedChartboost","()I" );
 
 	// call our java class method
-	int result = lJNIEnv->CallStaticIntMethod( AGKHelper, adFunc );
+	int result = lJNIEnv->CallStaticIntMethod( sdkClass, adFunc );
 	
 	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
@@ -9201,13 +10441,18 @@ void agk::PlatformChartboostResetRewardAd()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/ChartboostSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
 	// get the method from our java class
-	jmethodID adFunc = lJNIEnv->GetStaticMethodID( AGKHelper, "ResetRewardAdChartboost","()V" );
+	jmethodID adFunc = lJNIEnv->GetStaticMethodID( sdkClass, "ResetRewardAdChartboost","()V" );
 
 	// call our java class method
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, adFunc );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, adFunc );
 	
 	// detatch thread from Java VM before we leave
 	vm->DetachCurrentThread();
@@ -9216,114 +10461,17 @@ void agk::PlatformChartboostResetRewardAd()
 // FACEBOOK COMMANDS
 void  agk::PlatformFacebookSetup                ( const char* szID )
 {
-	m_sFBAppID.SetStr( szID );
-	m_sAccessToken.SetStr("");
-	m_pFacebookConnection = new cHTTPConnection();
-	m_pFacebookConnection->SetHost( "graph.facebook.com", 1 );
 
-	JNIEnv* lJNIEnv = g_pActivity->env;
-	JavaVM* vm = g_pActivity->vm;
-	vm->AttachCurrentThread(&lJNIEnv, NULL);
-
-	// get NativeActivity object (clazz)
-	jobject lNativeActivity = g_pActivity->clazz;
-	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
-	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
-
-	// get the method from our java class
-	jmethodID facebooksetup = lJNIEnv->GetStaticMethodID( AGKHelper, "FacebookSetup","(Landroid/app/Activity;Ljava/lang/String;)V" );
-
-	// call our java class method
-	jstring sAppID = lJNIEnv->NewStringUTF( m_sFBAppID.GetStr() );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, facebooksetup, lNativeActivity, sAppID );
-	lJNIEnv->DeleteLocalRef( sAppID );
-
-	// detatch thread from Java VM before we leave
-	vm->DetachCurrentThread();
-}
-
-void RefreshAccessToken()
-{
-	if ( m_sAccessToken.GetLength() <= 0 )
-	{
-		JNIEnv* lJNIEnv = g_pActivity->env;
-		JavaVM* vm = g_pActivity->vm;
-		vm->AttachCurrentThread(&lJNIEnv, NULL);
-
-		// get NativeActivity object (clazz)
-		jobject lNativeActivity = g_pActivity->clazz;
-		if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
-		
-		jclass AGKHelper = GetAGKHelper(lJNIEnv);
-
-		// get the method from our java class
-		jmethodID facebookgetaccess = lJNIEnv->GetStaticMethodID( AGKHelper, "FacebookGetAccessToken", "()Ljava/lang/String;" );
-
-		// call our java class method
-		jstring token = (jstring) lJNIEnv->CallStaticObjectMethod( AGKHelper, facebookgetaccess );
-
-		jboolean bCopy;
-		const char* sToken = lJNIEnv->GetStringUTFChars( token, &bCopy );
-
-		m_sAccessToken.SetStr( sToken );
-
-		lJNIEnv->ReleaseStringUTFChars( token, sToken );
-		lJNIEnv->DeleteLocalRef( token );
-
-		vm->DetachCurrentThread();
-	}
 }
 
 void  agk::PlatformFacebookLogin                ( void )
 {
-	JNIEnv* lJNIEnv = g_pActivity->env;
-	JavaVM* vm = g_pActivity->vm;
-	vm->AttachCurrentThread(&lJNIEnv, NULL);
 
-	// get NativeActivity object (clazz)
-	jobject lNativeActivity = g_pActivity->clazz;
-	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
-	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
-
-	// get the method from our java class
-	jmethodID facebooklogin = lJNIEnv->GetStaticMethodID( AGKHelper, "FacebookLogin","(Landroid/app/Activity;Ljava/lang/String;)V" );
-
-	// call our java class method
-	jstring sAppID = lJNIEnv->NewStringUTF( m_sFBAppID.GetStr() );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, facebooklogin, lNativeActivity, sAppID );
-	lJNIEnv->DeleteLocalRef( sAppID );
-
-	// detatch thread from Java VM before we leave
-	vm->DetachCurrentThread();
 }
 
 void  agk::PlatformFacebookLogout               ( void )
 {
-	JNIEnv* lJNIEnv = g_pActivity->env;
-	JavaVM* vm = g_pActivity->vm;
-	vm->AttachCurrentThread(&lJNIEnv, NULL);
 
-	// get NativeActivity object (clazz)
-	jobject lNativeActivity = g_pActivity->clazz;
-	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
-	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
-
-	// get the method from our java class
-	jmethodID facebooklogout = lJNIEnv->GetStaticMethodID( AGKHelper, "FacebookLogout","()V" );
-
-	// call our java class method
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, facebooklogout );
-
-	// detatch thread from Java VM before we leave
-	vm->DetachCurrentThread();
-
-	m_sAccessToken.SetStr("");
-	m_iFBUserIDStarted = 0;
-	m_sFBUserID.SetStr("");
-	m_sFBName.SetStr("");
 }
 
 void  agk::PlatformFacebookShowLikeButton       ( const char* szURL, int iX, int iY, int iWidth, int iHeight )
@@ -9336,75 +10484,12 @@ void  agk::PlatformFacebookDestroyLikeButton    ( void )
 
 void  agk::PlatformFacebookPostOnMyWall         ( const char* szLink, const char* szPicture, const char* szName, const char* szCaption, const char* szDescription )
 {
-	JNIEnv* lJNIEnv = g_pActivity->env;
-	JavaVM* vm = g_pActivity->vm;
-	vm->AttachCurrentThread(&lJNIEnv, NULL);
 
-	// get NativeActivity object (clazz)
-	jobject lNativeActivity = g_pActivity->clazz;
-	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
-	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
-
-	// get the method from our java class
-	jmethodID facebookpost = lJNIEnv->GetStaticMethodID( AGKHelper, "FacebookPost","(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V" );
-
-	jstring strID = lJNIEnv->NewStringUTF( "" );
-	jstring strLink = lJNIEnv->NewStringUTF( szLink ? szLink : "" );
-	jstring strPicture = lJNIEnv->NewStringUTF( szPicture ? szPicture : "" );
-	jstring strName = lJNIEnv->NewStringUTF( szName ? szName : "" );
-	jstring strCaption = lJNIEnv->NewStringUTF( szCaption ? szCaption : "" );
-	jstring strDescription = lJNIEnv->NewStringUTF( szDescription ? szDescription : "" );
-
-	// call our java class method
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, facebookpost, lNativeActivity, strID, strLink, strPicture, strName, strCaption, strDescription );
-
-	lJNIEnv->DeleteLocalRef( strID );
-	lJNIEnv->DeleteLocalRef( strLink );
-	lJNIEnv->DeleteLocalRef( strPicture );
-	lJNIEnv->DeleteLocalRef( strName );
-	lJNIEnv->DeleteLocalRef( strCaption );
-	lJNIEnv->DeleteLocalRef( strDescription );
-
-	// detatch thread from Java VM before we leave
-	vm->DetachCurrentThread();
 }
 
 void  agk::PlatformFacebookPostOnFriendsWall    ( const char* szID, const char* szLink, const char* szPicture, const char* szName, const char* szCaption, const char* szDescription )
 {
-	JNIEnv* lJNIEnv = g_pActivity->env;
-	JavaVM* vm = g_pActivity->vm;
-	vm->AttachCurrentThread(&lJNIEnv, NULL);
 
-	// get NativeActivity object (clazz)
-	jobject lNativeActivity = g_pActivity->clazz;
-	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
-	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
-
-	// get the method from our java class
-	jmethodID facebookpost = lJNIEnv->GetStaticMethodID( AGKHelper, "FacebookPost","(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V" );
-
-	jstring strID = lJNIEnv->NewStringUTF( szID ? szID : "" );
-	jstring strLink = lJNIEnv->NewStringUTF( szLink ? szLink : "" );
-	jstring strPicture = lJNIEnv->NewStringUTF( szPicture ? szPicture : "" );
-	jstring strName = lJNIEnv->NewStringUTF( szName ? szName : "" );
-	jstring strCaption = lJNIEnv->NewStringUTF( szCaption ? szCaption : "" );
-	jstring strDescription = lJNIEnv->NewStringUTF( szDescription ? szDescription : "" );
-
-	// call our java class method
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, facebookpost, lNativeActivity, strID, strLink, strPicture, strName, strCaption, strDescription );
-
-	lJNIEnv->DeleteLocalRef( strID );
-	lJNIEnv->DeleteLocalRef( strLink );
-	lJNIEnv->DeleteLocalRef( strPicture );
-	lJNIEnv->DeleteLocalRef( strName );
-	lJNIEnv->DeleteLocalRef( strCaption );
-	lJNIEnv->DeleteLocalRef( strDescription );
-
-
-	// detatch thread from Java VM before we leave
-	vm->DetachCurrentThread();
 }
 
 void  agk::PlatformFacebookInviteFriend         ( const char* szID, const char* szMessage )
@@ -9413,122 +10498,12 @@ void  agk::PlatformFacebookInviteFriend         ( const char* szID, const char* 
 
 void  agk::PlatformFacebookGetFriends           ( void )
 {
-	RefreshAccessToken();
-	if ( m_sAccessToken.GetLength() <= 6 ) return;
-	if ( m_pFacebookConnection->GetResponseReady() == 0 ) return;
 	
-	m_iFacebookGettingFriends = 1;
-	
-	uString url( "v2.9/me/friends?access_token=" );
-	url.Append( m_sAccessToken );
-	m_pFacebookConnection->SendRequestASync( url.GetStr() );	
-}
-
-int FacebookStringCompare( const void* a, const void* b )
-{
-	FacebookUser* user1 = (FacebookUser*)a;
-	FacebookUser* user2 = (FacebookUser*)b;
-
-	return user1->name.CompareTo( user2->name );
 }
 
 int   agk::PlatformFacebookGetFriendsState      ( void )
 {
-	if ( m_iFacebookGettingFriends < 0 ) return m_iFacebookGettingFriends;
-	if ( m_sAccessToken.GetLength() <= 6 ) return -1;
-	if ( m_pFacebookConnection->GetResponseReady() <= 0 ) return m_pFacebookConnection->GetResponseReady();
-	if ( m_iFacebookGettingFriends == 0 ) return 1;
-
-	// get json and parse
-	const char* jsonFriends =  m_pFacebookConnection->GetResponse();
-	//agk::Warning( jsonFriends );
-	m_iFacebookGettingFriends = -1;
-
-	json_t *root;
-    json_error_t error;
-
-	root = json_loads(jsonFriends, 0, &error);
-	if ( !root )
-	{
-		agk::Warning(error.text);
-		return -1;
-	}
-
-	if ( !json_is_object(root) ) return -1;
-	json_t *error2 = json_object_get(root, "error");
-	if ( error2 )
-	{
-		error2 = json_object_get(error2, "message");
-		agk::Warning( json_string_value(error2) );
-		return -1;
-	}
-
-	json_t *data = json_object_get(root, "data");
-	if ( !data )
-	{
-		agk::Warning( "No data field found in returned JSON" );
-		return -1;
-	}
-
-	if ( !json_is_array(data) )
-	{
-		agk::Warning("Invalid data in returned JSON");
-		return -1;
-	}
-
-	if ( json_array_size(data) <= 0 )
-	{
-		m_iFBFriendCount = 0;
-		if ( m_pFBFriends ) delete [] m_pFBFriends;
-		m_pFBFriends = 0;
-		m_iFacebookGettingFriends = 0;
 		return 1;
-	}
-
-	m_iFBFriendCount = json_array_size(data);
-	if ( m_pFBFriends ) delete [] m_pFBFriends;
-	m_pFBFriends = new FacebookUser[ m_iFBFriendCount ];
-
-
-	JNIEnv* lJNIEnv = g_pActivity->env;
-	JavaVM* vm = g_pActivity->vm;
-	vm->AttachCurrentThread(&lJNIEnv, NULL);
-
-	// get NativeActivity object (clazz)
-	jobject lNativeActivity = g_pActivity->clazz;
-	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
-	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
-
-	// get the method from our java class
-	jmethodID convertstring = lJNIEnv->GetStaticMethodID( AGKHelper, "ConvertString","(Ljava/lang/String;)Ljava/lang/String;" );
-
-	for( int i = 0; i < m_iFBFriendCount; i++ )
-	{
-		json_t *item = json_array_get( data, i );
-		json_t *name = json_object_get( item, "name" );
-		json_t *userID = json_object_get( item, "id" );
-		if ( !name || !userID ) continue;
-
-		jstring str = lJNIEnv->NewStringUTF( json_string_value(name) );
-		jstring str2 = (jstring) lJNIEnv->CallStaticObjectMethod( AGKHelper, convertstring, str );
-		jboolean bCopy;
-		const char* str3 = lJNIEnv->GetStringUTFChars( str2, &bCopy );
-		
-		m_pFBFriends[ i ].name.SetStr( str3 );
-		m_pFBFriends[ i ].userID.SetStr( json_string_value(userID) );
-
-		lJNIEnv->ReleaseStringUTFChars( str2, str3 );
-		lJNIEnv->DeleteLocalRef( str );
-		lJNIEnv->DeleteLocalRef( str2 );
-	}
-
-	vm->DetachCurrentThread();
-
-	qsort( m_pFBFriends, m_iFBFriendCount, sizeof(FacebookUser), FacebookStringCompare );
-
-	m_iFacebookGettingFriends = 0;
-	return 1;
 }
 
 int   agk::PlatformFacebookGetFriendsCount      ( void )
@@ -9538,191 +10513,58 @@ int   agk::PlatformFacebookGetFriendsCount      ( void )
 
 char* agk::PlatformFacebookGetFriendsName       ( int iIndex )
 {
-	if ( iIndex < 0 || iIndex >= m_iFBFriendCount ) 
-	{
-		char *str = new char[ 1 ];
-		*str = 0;
-		return str;
-	}
-
-	char *str = new char[ m_pFBFriends[ iIndex ].name.GetLength() + 1 ];
-	strcpy( str, m_pFBFriends[ iIndex ].name.GetStr() );
+	char *str = new char[ 1 ];
+	*str = 0;
 	return str;
 }
 
 char* agk::PlatformFacebookGetFriendsID         ( int iIndex )
 {
-	if ( iIndex < 0 || iIndex >= m_iFBFriendCount ) 
-	{
-		char *str = new char[ 1 ];
-		*str = 0;
-		return str;
-	}
-
-	char *str = new char[ m_pFBFriends[ iIndex ].userID.GetLength() + 1 ];
-	strcpy( str, m_pFBFriends[ iIndex ].userID.GetStr() );
+	char *str = new char[ 1 ];
+	*str = 0;
 	return str;
 }
 
 void  agk::PlatformFacebookDownloadFriendsPhoto ( int iIndex )
 {
-	if ( iIndex < 0 || iIndex >= m_iFBFriendCount ) return;
-	if ( m_pFacebookConnection->GetResponseReady() == 0 ) return;
-	
-	m_iFBGettingPicture = 1;
-
-	m_sFBLocalFile.SetStr( "FB" );
-	m_sFBLocalFile.Append( m_pFBFriends[ iIndex ].userID );
-	m_sFBLocalFile.Append( "Profile.jpg" );
-
-	uString url( "v2.9/" );
-	url.Append( m_pFBFriends[ iIndex ].userID );
-	url.Append( "/picture" );
-	m_pFacebookConnection->DownloadFile( url.GetStr(), m_sFBLocalFile );
 }
 
 int   agk::PlatformGetFacebookDownloadState     ( void )
 {
-	if ( m_iFBGettingPicture != 1 ) return m_iFBGettingPicture;
-	if ( m_pFacebookConnection->GetResponseReady() < 0 ) m_iFBGettingPicture = m_pFacebookConnection->GetResponseReady();
-	else if ( m_pFacebookConnection->GetResponseReady() == 0 ) m_iFBGettingPicture = 1;
-	else if ( m_pFacebookConnection->GetResponseReady() == 1 ) 
-	{
-		if ( strcmp( m_pFacebookConnection->GetContentType(), "image/gif" ) == 0 )
-		{
-			cImage* pImage = new cImage();
-			pImage->Load( m_sFBLocalFile );
-			pImage->Save( m_sFBLocalFile );
-			delete pImage;
-		}
-		m_iFBGettingPicture = 2;
-	}
-
 	return m_iFBGettingPicture;
 }
 
 char* agk::PlatformGetFacebookDownloadFile      ( void )
 {
-	char* str = new char[ m_sFBLocalFile.GetLength() + 1 ];
-	strcpy( str, m_sFBLocalFile.GetStr() );
+	char* str = new char[1]; *str = 0;
 	return str;
 }
 
 int   agk::PlatformGetFacebookLoggedIn          ( void )
 {
-	JNIEnv* lJNIEnv = g_pActivity->env;
-	JavaVM* vm = g_pActivity->vm;
-	vm->AttachCurrentThread(&lJNIEnv, NULL);
-
-	// get NativeActivity object (clazz)
-	jobject lNativeActivity = g_pActivity->clazz;
-	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
-	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
-
-	// get the method from our java class
-	jmethodID facebookloginstate = lJNIEnv->GetStaticMethodID( AGKHelper, "FacebookGetLoginState","()I" );
-
-	// call our java class method
-	int result = lJNIEnv->CallStaticIntMethod( AGKHelper, facebookloginstate );
-
-	// detatch thread from Java VM before we leave
-	vm->DetachCurrentThread();
-
-	if ( result == 1 )
-	{
-		if ( m_iFBUserIDStarted == 0 )
-		{
-			RefreshAccessToken();
-			m_iFBUserIDStarted = 1;
-			if ( m_sAccessToken.GetLength() <= 6 ) 
-			{
-				m_iFBUserIDStarted = 2;
-				return 1;
-			}
-
-			uString url( "v2.9/me?access_token=" );
-			url.Append( m_sAccessToken );
-			m_pFacebookConnection->SendRequestASync( url.GetStr() );
-
-			return 0;
-		}
-		else if ( m_iFBUserIDStarted == 1 )
-		{
-			if ( m_pFacebookConnection->GetResponseReady() == 0 ) return 0;
-			else 
-			{
-				m_iFBUserIDStarted = 2;
-
-				const char* jsonMe =  m_pFacebookConnection->GetResponse();
-				
-				json_t *root;
-				json_error_t error;
-
-				root = json_loads(jsonMe, 0, &error);
-				if ( !root )
-				{
-					agk::Warning(error.text);
-					return 1;
-				}
-
-				if ( json_is_object(root) ) 
-				{
-					json_t *message = json_object_get(root, "error");
-					if ( message )
-					{
-						message = json_object_get(message, "message");
-						agk::Warning( json_string_value(message) );
-						return 1;
-					}
-
-					json_t *ID = json_object_get(root, "id");
-					if ( ID )
-					{
-						m_sFBUserID.SetStr( json_string_value( ID ) );
-					}
-
-					json_t *name = json_object_get(root, "name");
-					if ( name )
-					{
-						m_sFBName.SetStr( json_string_value( name ) );
-					}
-				}
-
-				int iFile = agk::OpenToWrite ( "/facebook_id.txt", 0 );
-				agk::WriteString ( iFile, m_sFBUserID.GetStr() );
-				agk::WriteString ( iFile, m_sFBName.GetStr() );
-				agk::CloseFile ( iFile );
-			}
-		}
-	}
-
-	return result;
+	return 0;
 }
 
 bool  agk::PlatformHasFacebook             ( void )
 {
-	return true;
+	return false;
 }
 
 char* agk::PlatformFacebookGetUserID			  ( void )
 {
-	char *str = new char[ m_sFBUserID.GetLength() + 1 ];
-	strcpy( str, m_sFBUserID.GetStr() );
+	char* str = new char[1]; *str = 0;
 	return str;
 }
 
 char* agk::PlatformFacebookGetUserName		  ( void )
 {
-	char *str = new char[ m_sFBName.GetLength() + 1 ];
-	strcpy( str, m_sFBName.GetStr() );
+	char* str = new char[1]; *str = 0;
 	return str;
 }
 
 char* agk::PlatformFacebookGetAccessToken		  ( void )
 {
-	char *str = new char[ m_sAccessToken.GetLength() + 1 ]; 
-	strcpy( str, m_sAccessToken.GetStr() );
+	char* str = new char[1]; *str = 0;
 	return str;
 }
 
@@ -9860,16 +10702,21 @@ void agk::StartGPSTracking()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/LocationSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID StartGPS = lJNIEnv->GetStaticMethodID( AGKHelper, "StartGPSTracking","(Landroid/app/Activity;)V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, StartGPS, lNativeActivity );
+	jmethodID StartGPS = lJNIEnv->GetStaticMethodID( sdkClass, "StartGPSTracking","(Landroid/app/Activity;)V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, StartGPS, lNativeActivity );
 
-	jmethodID GetGPS = lJNIEnv->GetStaticMethodID( AGKHelper, "GetGPSLatitude","()F" );
-	m_fGPSLat = lJNIEnv->CallStaticFloatMethod( AGKHelper, GetGPS );
+	jmethodID GetGPS = lJNIEnv->GetStaticMethodID( sdkClass, "GetGPSLatitude","()F" );
+	m_fGPSLat = lJNIEnv->CallStaticFloatMethod( sdkClass, GetGPS );
 
-	jmethodID GetGPS2 = lJNIEnv->GetStaticMethodID( AGKHelper, "GetGPSLongitude","()F" );
-	m_fGPSLong = lJNIEnv->CallStaticFloatMethod( AGKHelper, GetGPS2 );
+	jmethodID GetGPS2 = lJNIEnv->GetStaticMethodID( sdkClass, "GetGPSLongitude","()F" );
+	m_fGPSLong = lJNIEnv->CallStaticFloatMethod( sdkClass, GetGPS2 );
 
 	vm->DetachCurrentThread();
 }
@@ -9888,10 +10735,15 @@ void agk::StopGPSTracking()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/LocationSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID StopGPS = lJNIEnv->GetStaticMethodID( AGKHelper, "StopGPSTracking","()V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, StopGPS );
+	jmethodID StopGPS = lJNIEnv->GetStaticMethodID( sdkClass, "StopGPSTracking","()V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, StopGPS );
 
 	vm->DetachCurrentThread();
 }
@@ -9905,10 +10757,15 @@ float agk::GetRawGPSLatitude()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/LocationSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	jmethodID GetGPS = lJNIEnv->GetStaticMethodID( AGKHelper, "GetGPSLatitude","()F" );
-	m_fGPSLat = lJNIEnv->CallStaticFloatMethod( AGKHelper, GetGPS );
+	jmethodID GetGPS = lJNIEnv->GetStaticMethodID( sdkClass, "GetGPSLatitude","()F" );
+	m_fGPSLat = lJNIEnv->CallStaticFloatMethod( sdkClass, GetGPS );
 
 	vm->DetachCurrentThread();
 
@@ -9924,10 +10781,15 @@ float agk::GetRawGPSLongitude()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/LocationSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	jmethodID GetGPS2 = lJNIEnv->GetStaticMethodID( AGKHelper, "GetGPSLongitude","()F" );
-	m_fGPSLong = lJNIEnv->CallStaticFloatMethod( AGKHelper, GetGPS2 );
+	jmethodID GetGPS2 = lJNIEnv->GetStaticMethodID( sdkClass, "GetGPSLongitude","()F" );
+	m_fGPSLong = lJNIEnv->CallStaticFloatMethod( sdkClass, GetGPS2 );
 
 	vm->DetachCurrentThread();
 
@@ -9943,10 +10805,15 @@ float agk::GetRawGPSAltitude()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/LocationSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	jmethodID GetGPS3 = lJNIEnv->GetStaticMethodID( AGKHelper, "GetGPSAltitude","()F" );
-	m_fGPSAltitude = lJNIEnv->CallStaticFloatMethod( AGKHelper, GetGPS3 );
+	jmethodID GetGPS3 = lJNIEnv->GetStaticMethodID( sdkClass, "GetGPSAltitude","()F" );
+	m_fGPSAltitude = lJNIEnv->CallStaticFloatMethod( sdkClass, GetGPS3 );
 
 	vm->DetachCurrentThread();
 
@@ -9964,10 +10831,15 @@ int agk::GetGameCenterExists()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/GameCenterSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	jmethodID GameCenterExists = lJNIEnv->GetStaticMethodID( AGKHelper, "GetGameCenterExists","(Landroid/app/Activity;)I" );
-	int result = lJNIEnv->CallStaticIntMethod( AGKHelper, GameCenterExists, lNativeActivity );
+	jmethodID GameCenterExists = lJNIEnv->GetStaticMethodID( sdkClass, "GetGameCenterExists","(Landroid/app/Activity;)I" );
+	int result = lJNIEnv->CallStaticIntMethod( sdkClass, GameCenterExists, lNativeActivity );
 
 	vm->DetachCurrentThread();
 
@@ -9983,10 +10855,15 @@ void agk::GameCenterSetup()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/GameCenterSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID GameCenterSetup = lJNIEnv->GetStaticMethodID( AGKHelper, "GameCenterSetup","(Landroid/app/Activity;)V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, GameCenterSetup, lNativeActivity );
+	jmethodID GameCenterSetup = lJNIEnv->GetStaticMethodID( sdkClass, "GameCenterSetup","(Landroid/app/Activity;)V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, GameCenterSetup, lNativeActivity );
 
 	vm->DetachCurrentThread();
 }
@@ -10000,10 +10877,15 @@ void agk::GameCenterLogin()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/GameCenterSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID GameCenterLogin = lJNIEnv->GetStaticMethodID( AGKHelper, "GameCenterLogin","(Landroid/app/Activity;)V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, GameCenterLogin, lNativeActivity );
+	jmethodID GameCenterLogin = lJNIEnv->GetStaticMethodID( sdkClass, "GameCenterLogin","(Landroid/app/Activity;)V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, GameCenterLogin, lNativeActivity );
 
 	vm->DetachCurrentThread();
 }
@@ -10017,10 +10899,15 @@ void agk::GameCenterLogout()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/GameCenterSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "GameCenterLogout","()V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, method, lNativeActivity );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "GameCenterLogout","()V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, method, lNativeActivity );
 
 	vm->DetachCurrentThread();
 }
@@ -10034,10 +10921,15 @@ int agk::GetGameCenterLoggedIn()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/GameCenterSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	jmethodID GameCenterLoggedIn = lJNIEnv->GetStaticMethodID( AGKHelper, "GetGameCenterLoggedIn","()I" );
-	int result = lJNIEnv->CallStaticIntMethod( AGKHelper, GameCenterLoggedIn );
+	jmethodID GameCenterLoggedIn = lJNIEnv->GetStaticMethodID( sdkClass, "GetGameCenterLoggedIn","()I" );
+	int result = lJNIEnv->CallStaticIntMethod( sdkClass, GameCenterLoggedIn );
 
 	vm->DetachCurrentThread();
 
@@ -10053,10 +10945,16 @@ char* agk::GetGameCenterPlayerID()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/GameCenterSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		char* str = new char[1]; *str = 0;
+		return str;
+	}
 
-	jmethodID GameCenterPlayerID = lJNIEnv->GetStaticMethodID( AGKHelper, "GetGameCenterPlayerID","()Ljava/lang/String;" );
-	jstring playerid = (jstring) lJNIEnv->CallStaticObjectMethod( AGKHelper, GameCenterPlayerID );
+	jmethodID GameCenterPlayerID = lJNIEnv->GetStaticMethodID( sdkClass, "GetGameCenterPlayerID","()Ljava/lang/String;" );
+	jstring playerid = (jstring) lJNIEnv->CallStaticObjectMethod( sdkClass, GameCenterPlayerID );
 
 	jboolean bCopy;
 	const char* str = lJNIEnv->GetStringUTFChars( playerid, &bCopy );
@@ -10081,10 +10979,16 @@ char* agk::GetGameCenterPlayerDisplayName()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/GameCenterSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		char* str = new char[1]; *str = 0;
+		return str;
+	}
 
-	jmethodID GameCenterPlayerName = lJNIEnv->GetStaticMethodID( AGKHelper, "GetGameCenterPlayerDisplayName","()Ljava/lang/String;" );
-	jstring playername = (jstring) lJNIEnv->CallStaticObjectMethod( AGKHelper, GameCenterPlayerName );
+	jmethodID GameCenterPlayerName = lJNIEnv->GetStaticMethodID( sdkClass, "GetGameCenterPlayerDisplayName","()Ljava/lang/String;" );
+	jstring playername = (jstring) lJNIEnv->CallStaticObjectMethod( sdkClass, GameCenterPlayerName );
 
 	jboolean bCopy;
 	const char* str = lJNIEnv->GetStringUTFChars( playername, &bCopy );
@@ -10125,12 +11029,17 @@ void agk::GameCenterSubmitScore( int iScore, const char* szBoardID )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/GameCenterSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID GameCenterSubmitScore = lJNIEnv->GetStaticMethodID( AGKHelper, "GameCenterSubmitScore","(Ljava/lang/String;I)V" );
+	jmethodID GameCenterSubmitScore = lJNIEnv->GetStaticMethodID( sdkClass, "GameCenterSubmitScore","(Ljava/lang/String;I)V" );
 
 	jstring strBoard = lJNIEnv->NewStringUTF( szBoardID ? szBoardID : "" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, GameCenterSubmitScore, strBoard, iScore );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, GameCenterSubmitScore, strBoard, iScore );
 	lJNIEnv->DeleteLocalRef( strBoard );
 
 	vm->DetachCurrentThread();
@@ -10161,12 +11070,17 @@ void agk::GameCenterShowLeaderBoard ( const char* szBoardID )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/GameCenterSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID GameCenterShowLeaderBoard = lJNIEnv->GetStaticMethodID( AGKHelper, "GameCenterShowLeaderBoard","(Landroid/app/Activity;Ljava/lang/String;)V" );
+	jmethodID GameCenterShowLeaderBoard = lJNIEnv->GetStaticMethodID( sdkClass, "GameCenterShowLeaderBoard","(Landroid/app/Activity;Ljava/lang/String;)V" );
 
 	jstring strBoard = lJNIEnv->NewStringUTF( szBoardID ? szBoardID : "" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, GameCenterShowLeaderBoard, lNativeActivity, strBoard );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, GameCenterShowLeaderBoard, lNativeActivity, strBoard );
 	lJNIEnv->DeleteLocalRef( strBoard );
 
 	vm->DetachCurrentThread();
@@ -10187,12 +11101,17 @@ void agk::GameCenterSubmitAchievement ( const char* szAchievementID, int iPercen
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/GameCenterSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID GameCenterSubmitAchievement = lJNIEnv->GetStaticMethodID( AGKHelper, "GameCenterSubmitAchievement","(Ljava/lang/String;I)V" );
+	jmethodID GameCenterSubmitAchievement = lJNIEnv->GetStaticMethodID( sdkClass, "GameCenterSubmitAchievement","(Ljava/lang/String;I)V" );
 
 	jstring strAchievement = lJNIEnv->NewStringUTF( szAchievementID ? szAchievementID : "" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, GameCenterSubmitAchievement, strAchievement, iPercentageComplete );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, GameCenterSubmitAchievement, strAchievement, iPercentageComplete );
 	lJNIEnv->DeleteLocalRef( strAchievement );
 
 	vm->DetachCurrentThread();
@@ -10207,10 +11126,15 @@ void agk::GameCenterAchievementsShow ( void )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/GameCenterSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
-	jmethodID GameCenterAchievementsShow = lJNIEnv->GetStaticMethodID( AGKHelper, "GameCenterAchievementsShow","(Landroid/app/Activity;)V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, GameCenterAchievementsShow, lNativeActivity );
+	jmethodID GameCenterAchievementsShow = lJNIEnv->GetStaticMethodID( sdkClass, "GameCenterAchievementsShow","(Landroid/app/Activity;)V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, GameCenterAchievementsShow, lNativeActivity );
 
 	vm->DetachCurrentThread();
 }
@@ -10304,14 +11228,19 @@ int agk::CheckPermission( const char* szPermission )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/PermissionSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
 	// get the method from our java class
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "CheckPermission", "(Landroid/app/Activity;Ljava/lang/String;)I" );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "CheckPermission", "(Landroid/app/Activity;Ljava/lang/String;)I" );
 
 	// call our java class method
 	jstring str = lJNIEnv->NewStringUTF( szPermission );
-	int result = lJNIEnv->CallStaticIntMethod( AGKHelper, method, lNativeActivity, str );
+	int result = lJNIEnv->CallStaticIntMethod( sdkClass, method, lNativeActivity, str );
 	lJNIEnv->DeleteLocalRef( str );
 
 	vm->DetachCurrentThread();
@@ -10329,14 +11258,19 @@ void agk::RequestPermission( const char* szPermission )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/PermissionSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
 	// get the method from our java class
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "RequestPermission", "(Landroid/app/Activity;Ljava/lang/String;)V" );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "RequestPermission", "(Landroid/app/Activity;Ljava/lang/String;)V" );
 
 	// call our java class method
 	jstring str = lJNIEnv->NewStringUTF( szPermission );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, method, lNativeActivity, str );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, method, lNativeActivity, str );
 	lJNIEnv->DeleteLocalRef( str );
 
 	vm->DetachCurrentThread();
@@ -10353,9 +11287,15 @@ void agk::SetupCloudData( const char* reserved )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
-	jmethodID networkAvailable = lJNIEnv->GetStaticMethodID( AGKHelper, "SetupCloudData","(Landroid/app/Activity;)V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, networkAvailable, lNativeActivity );
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/CloudDataSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
+
+	jmethodID networkAvailable = lJNIEnv->GetStaticMethodID( sdkClass, "SetupCloudData","(Landroid/app/Activity;)V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, networkAvailable, lNativeActivity );
 
 	vm->DetachCurrentThread();
 }
@@ -10369,9 +11309,15 @@ int agk::GetCloudDataAllowed()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
-	jmethodID networkAvailable = lJNIEnv->GetStaticMethodID( AGKHelper, "GetCloudDataAllowed","(Landroid/app/Activity;)I" );
-	int result = lJNIEnv->CallStaticIntMethod( AGKHelper, networkAvailable, lNativeActivity );
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/CloudDataSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
+
+	jmethodID networkAvailable = lJNIEnv->GetStaticMethodID( sdkClass, "GetCloudDataAllowed","(Landroid/app/Activity;)I" );
+	int result = lJNIEnv->CallStaticIntMethod( sdkClass, networkAvailable, lNativeActivity );
 
 	vm->DetachCurrentThread();
 	return result;
@@ -10386,9 +11332,15 @@ int agk::GetCloudDataChanged()
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
-	jmethodID networkAvailable = lJNIEnv->GetStaticMethodID( AGKHelper, "GetCloudDataChanged","()I" );
-	int result = lJNIEnv->CallStaticIntMethod( AGKHelper, networkAvailable, lNativeActivity );
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/CloudDataSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
+
+	jmethodID networkAvailable = lJNIEnv->GetStaticMethodID( sdkClass, "GetCloudDataChanged","()I" );
+	int result = lJNIEnv->CallStaticIntMethod( sdkClass, networkAvailable, lNativeActivity );
 
 	vm->DetachCurrentThread();
 	return result;
@@ -10411,15 +11363,22 @@ char* agk::GetCloudDataVariable( const char* varName, const char* defaultValue )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/CloudDataSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		char *str = new char[strlen(defaultValue)+1];
+		strcpy( str, defaultValue );
+		return str;
+	}
 
 	// get the method from our java class
-	jmethodID loadVar = lJNIEnv->GetStaticMethodID( AGKHelper, "GetCloudDataVariable", "(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;" );
+	jmethodID loadVar = lJNIEnv->GetStaticMethodID( sdkClass, "GetCloudDataVariable", "(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;" );
 
 	// call our java class method
 	jstring strName = lJNIEnv->NewStringUTF( varName );
 	jstring strDefaultValue = lJNIEnv->NewStringUTF( defaultValue );
-	jstring value = (jstring) lJNIEnv->CallStaticObjectMethod( AGKHelper, loadVar, lNativeActivity, strName, strDefaultValue );
+	jstring value = (jstring) lJNIEnv->CallStaticObjectMethod( sdkClass, loadVar, lNativeActivity, strName, strDefaultValue );
 	lJNIEnv->DeleteLocalRef( strDefaultValue );
 	lJNIEnv->DeleteLocalRef( strName );
 
@@ -10449,15 +11408,20 @@ void agk::SetCloudDataVariable( const char* varName, const char* varValue )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/CloudDataSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
 	// get the method from our java class
-	jmethodID saveVar = lJNIEnv->GetStaticMethodID( AGKHelper, "SetCloudDataVariable", "(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)V" );
+	jmethodID saveVar = lJNIEnv->GetStaticMethodID( sdkClass, "SetCloudDataVariable", "(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)V" );
 
 	// call our java class method
 	jstring strName = lJNIEnv->NewStringUTF( varName );
 	jstring strValue = lJNIEnv->NewStringUTF( varValue );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, saveVar, lNativeActivity, strName, strValue );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, saveVar, lNativeActivity, strName, strValue );
 	lJNIEnv->DeleteLocalRef( strValue );
 	lJNIEnv->DeleteLocalRef( strName );
 
@@ -10476,14 +11440,19 @@ void agk::DeleteCloudDataVariable( const char* varName )
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/CloudDataSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
 
 	// get the method from our java class
-	jmethodID deleteVar = lJNIEnv->GetStaticMethodID( AGKHelper, "DeleteCloudDataVariable", "(Landroid/app/Activity;Ljava/lang/String;)V" );
+	jmethodID deleteVar = lJNIEnv->GetStaticMethodID( sdkClass, "DeleteCloudDataVariable", "(Landroid/app/Activity;Ljava/lang/String;)V" );
 
 	// call our java class method
 	jstring strName = lJNIEnv->NewStringUTF( varName );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, deleteVar, lNativeActivity, strName );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, deleteVar, lNativeActivity, strName );
 	lJNIEnv->DeleteLocalRef( strName );
 
 	vm->DetachCurrentThread();
@@ -10603,10 +11572,17 @@ void agk::FirebaseSetup()
 
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "FirebaseInit", "(Landroid/app/Activity;)V" );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, method, lNativeActivity );
 
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/FirebaseSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
+
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "FirebaseInit", "(Landroid/app/Activity;)V" );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, method, lNativeActivity );
+	
 	vm->DetachCurrentThread();
 }
 
@@ -10618,12 +11594,19 @@ void agk::FirebaseLogEvent( const char *event_name )
 
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "FirebaseLogEvent", "(Ljava/lang/String;)V" );
+
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/FirebaseSDK" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+	}
+
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "FirebaseLogEvent", "(Ljava/lang/String;)V" );
 
 	// call our java class method
 	jstring strName = lJNIEnv->NewStringUTF( event_name );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, method, strName );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, method, strName );
 	lJNIEnv->DeleteLocalRef( strName );
 
 	vm->DetachCurrentThread();
@@ -10684,7 +11667,7 @@ int AGKFont::PlatformGetSystemFontPath( const uString &sFontName, uString &sOut 
 	{
 		ArStatus (*fpArCoreApk_requestInstallCustom)( void* env, void* activity, int user_requested_install, ArInstallBehavior install_behavior, ArInstallUserMessageType message_type, ArInstallStatus *out_install_status ) = 0;
 
-		ArStatus (*fpArSession_checkSupported)( const ArSession* session, const ArConfig* config ) = 0;
+		//ArStatus (*fpArSession_checkSupported)( const ArSession* session, const ArConfig* config ) = 0;
 		ArStatus (*fpArSession_configure)( ArSession* session, const ArConfig* config ) = 0;
 		ArStatus (*fpArSession_create)( void *env, void *application_context, ArSession **out_session_pointer) = 0;
 		void (*fpArSession_setDisplayGeometry)( ArSession *session, int rotation, int width, int height) = 0;
@@ -10762,7 +11745,7 @@ int AGKFont::PlatformGetSystemFontPath( const uString &sFontName, uString &sOut 
 			return (ArStatus)fpArCoreApk_requestInstallCustom( env, activity, user_requested_install, install_behavior, message_type, out_install_status ); 
 		}
 
-		ArStatus ArSession_checkSupported( const ArSession* session, const ArConfig* config ) { return (ArStatus)fpArSession_checkSupported( session, config ); }
+		//ArStatus ArSession_checkSupported( const ArSession* session, const ArConfig* config ) { return (ArStatus)fpArSession_checkSupported( session, config ); }
 		ArStatus ArSession_configure( ArSession* session, const ArConfig* config ) { return (ArStatus)fpArSession_configure( session, config ); }
 		ArStatus ArSession_create( void *env, void *application_context, ArSession **out_session_pointer) { return (ArStatus)fpArSession_create( env, application_context, out_session_pointer); }
 		void ArSession_setDisplayGeometry( ArSession *session, int rotation, int width, int height) { fpArSession_setDisplayGeometry( session, rotation, width, height); }
@@ -10870,7 +11853,7 @@ void agk::ARSetup()
 
 		fpArCoreApk_requestInstallCustom = (ArStatus(*)(void*, void*, int, ArInstallBehavior, ArInstallUserMessageType, ArInstallStatus*)) dlsym( g_pARCoreLibHandle, "ArCoreApk_requestInstallCustom" );
 
-		fpArSession_checkSupported = (ArStatus(*)(const ArSession*, const ArConfig*)) dlsym( g_pARCoreLibHandle, "ArSession_checkSupported" );
+		//fpArSession_checkSupported = (ArStatus(*)(const ArSession*, const ArConfig*)) dlsym( g_pARCoreLibHandle, "ArSession_checkSupported" );
 		fpArSession_configure = (ArStatus(*)(ArSession*, const ArConfig* )) dlsym( g_pARCoreLibHandle, "ArSession_configure" );
 		fpArSession_create = (ArStatus(*)(void*, void*, ArSession**)) dlsym( g_pARCoreLibHandle, "ArSession_create" );
 		fpArSession_setDisplayGeometry = (void(*)(ArSession*, int, int, int)) dlsym( g_pARCoreLibHandle, "ArSession_setDisplayGeometry" );
@@ -11007,6 +11990,8 @@ void agk::ARSetup()
 
 		ArConfig_setUpdateMode( g_pARSession, ar_config, AR_UPDATE_MODE_BLOCKING );
 
+		/*
+		// deprecated, now always returns true
 		agk::Warning( "Checking ARCore config supported" );
 		result = ArSession_checkSupported( g_pARSession, ar_config );
 		if ( result != AR_SUCCESS )
@@ -11017,6 +12002,7 @@ void agk::ARSetup()
 			g_pARSession = 0;
 			return;
 		}
+		*/
 
 		agk::Warning( "Configuring ARCore session" );
 		result = ArSession_configure( g_pARSession, ar_config );
@@ -11392,6 +12378,8 @@ void agk::ARSetPlaneDetectionMode( int mode )
 	ArConfig_setLightEstimationMode( g_pARSession, ar_config, lightMode );
 	ArConfig_setUpdateMode( g_pARSession, ar_config, AR_UPDATE_MODE_BLOCKING );
 	
+	/*
+	// deprecated, now always returns true
 	ArStatus result = ArSession_checkSupported( g_pARSession, ar_config );
 	if ( result != AR_SUCCESS )
 	{
@@ -11399,9 +12387,10 @@ void agk::ARSetPlaneDetectionMode( int mode )
 		agk::Warning( "ARCore configuration not supported" );
 		return;
 	}
+	*/
 
 	agk::Warning( "Configuring ARCore session" );
-	result = ArSession_configure( g_pARSession, ar_config );
+	ArStatus result = ArSession_configure( g_pARSession, ar_config );
 	if ( result != AR_SUCCESS )
 	{
 		ArConfig_destroy( ar_config );
@@ -11431,6 +12420,8 @@ void agk::ARSetLightEstimationMode( int mode )
 	ArConfig_setLightEstimationMode( g_pARSession, ar_config, lightMode );
 	ArConfig_setUpdateMode( g_pARSession, ar_config, AR_UPDATE_MODE_BLOCKING );
 	
+	/*
+	// deprecated
 	ArStatus result = ArSession_checkSupported( g_pARSession, ar_config );
 	if ( result != AR_SUCCESS )
 	{
@@ -11438,9 +12429,10 @@ void agk::ARSetLightEstimationMode( int mode )
 		agk::Warning( "ARCore configuration not supported" );
 		return;
 	}
+	*/
 
 	agk::Warning( "Configuring ARCore session" );
-	result = ArSession_configure( g_pARSession, ar_config );
+	ArStatus result = ArSession_configure( g_pARSession, ar_config );
 	if ( result != AR_SUCCESS )
 	{
 		ArConfig_destroy( ar_config );
@@ -12030,23 +13022,18 @@ int agk::GetAppInstalled( const char *packageName )
 void agk::SetSnapChatStickerSettings( float x, float y, int width, int height, float angle )
 //****
 {
-	JNIEnv* lJNIEnv = g_pActivity->env;
-	JavaVM* vm = g_pActivity->vm;
-	vm->AttachCurrentThread(&lJNIEnv, NULL);
+	char str1[32];
+	char str2[32];
+	sprintf( str1, "%.6f", x );
+	sprintf( str2, "%.6f", y );
+	ExternalCommand( "snapchat", "setposition", str1, str2 );
 
-	// get NativeActivity object (clazz)
-	jobject lNativeActivity = g_pActivity->clazz;
-	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	sprintf( str1, "%d", width );
+	sprintf( str2, "%d", height );
+	ExternalCommand( "snapchat", "setsize", str1, str2 );
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
-
-	// get the method from our java class
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "SetSnapChatStickerSettings", "(FFIIF)V" );
-
-	// call our java class method
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, method, x, y, width, height, angle );
-
-	vm->DetachCurrentThread();
+	sprintf( str1, "%.6f", angle );
+	ExternalCommand( "snapchat", "setangle", str1, "" );
 }
 
 void agk::ShareSnapChatImage( const char* imageFile, const char* stickerFile, const char* caption, const char* url )
@@ -12122,6 +13109,14 @@ void agk::ShareSnapChatImage( const char* imageFile, const char* stickerFile, co
 		}
 	}
 
+	ExternalCommand( "snapchat", "captionandurl", caption, url );
+	ExternalCommand( "snapchat", "share", sPath.GetStr(), sPathSticker.GetStr() );
+}
+
+// Extensions
+int agk::ExternalSDKSupported( const char* sdk )
+//****
+{
 	JNIEnv* lJNIEnv = g_pActivity->env;
 	JavaVM* vm = g_pActivity->vm;
 	vm->AttachCurrentThread(&lJNIEnv, NULL);
@@ -12130,21 +13125,197 @@ void agk::ShareSnapChatImage( const char* imageFile, const char* stickerFile, co
 	jobject lNativeActivity = g_pActivity->clazz;
 	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
 	
-	jclass AGKHelper = GetAGKHelper(lJNIEnv);
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/ExternalCommands" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
-	// get the method from our java class
-	jmethodID method = lJNIEnv->GetStaticMethodID( AGKHelper, "ShareSnapChat", "(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V" );
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "IsExternalSDKSupported", "(Ljava/lang/String;)I" );
+	if ( !method ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
 
 	// call our java class method
-	jstring strImage = lJNIEnv->NewStringUTF( sPath.GetStr() );
-	jstring strSticker = lJNIEnv->NewStringUTF( sPathSticker.GetStr() );
-	jstring strCaption = lJNIEnv->NewStringUTF( caption );
-	jstring strURL = lJNIEnv->NewStringUTF( url );
-	lJNIEnv->CallStaticVoidMethod( AGKHelper, method, lNativeActivity, strImage, strSticker, strCaption, strURL );
-	lJNIEnv->DeleteLocalRef( strImage );
-	lJNIEnv->DeleteLocalRef( strSticker );
-	lJNIEnv->DeleteLocalRef( strCaption );
-	lJNIEnv->DeleteLocalRef( strURL );
+	jstring jstrSDK = lJNIEnv->NewStringUTF( sdk );
+	int result = lJNIEnv->CallStaticIntMethod( sdkClass, method, jstrSDK );
+	lJNIEnv->DeleteLocalRef( jstrSDK );
 
 	vm->DetachCurrentThread();
+
+	return result;
+}
+
+void agk::ExternalCommand( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/ExternalCommands" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+		return;
+}
+
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "ExternalCommand", "(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V" );
+	if ( !method ) 
+{
+		vm->DetachCurrentThread();
+		return;
+	}
+
+	// call our java class method
+	jstring jstrSDK = lJNIEnv->NewStringUTF( sdk );
+	jstring jstrCmd = lJNIEnv->NewStringUTF( command );
+	jstring jstr1 = lJNIEnv->NewStringUTF( str1 );
+	jstring jstr2 = lJNIEnv->NewStringUTF( str2 );
+	lJNIEnv->CallStaticVoidMethod( sdkClass, method, lNativeActivity, jstrSDK, jstrCmd, jstr1, jstr2 );
+	lJNIEnv->DeleteLocalRef( jstr2 );
+	lJNIEnv->DeleteLocalRef( jstr1 );
+	lJNIEnv->DeleteLocalRef( jstrCmd );
+	lJNIEnv->DeleteLocalRef( jstrSDK );
+	
+	vm->DetachCurrentThread();
+}
+
+int agk::ExternalCommandInt( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/ExternalCommands" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+	return 0;
+}
+
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "ExternalCommandInt", "(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)I" );
+	if ( !method ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
+
+	// call our java class method
+	jstring jstrSDK = lJNIEnv->NewStringUTF( sdk );
+	jstring jstrCmd = lJNIEnv->NewStringUTF( command );
+	jstring jstr1 = lJNIEnv->NewStringUTF( str1 );
+	jstring jstr2 = lJNIEnv->NewStringUTF( str2 );
+	int result = lJNIEnv->CallStaticIntMethod( sdkClass, method, lNativeActivity, jstrSDK, jstrCmd, jstr1, jstr2 );
+	lJNIEnv->DeleteLocalRef( jstr2 );
+	lJNIEnv->DeleteLocalRef( jstr1 );
+	lJNIEnv->DeleteLocalRef( jstrCmd );
+	lJNIEnv->DeleteLocalRef( jstrSDK );
+	
+	vm->DetachCurrentThread();
+
+	return result;
+}
+
+float agk::ExternalCommandFloat( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/ExternalCommands" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+	return 0;
+}
+
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "ExternalCommandFloat", "(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)F" );
+	if ( !method ) 
+	{
+		vm->DetachCurrentThread();
+		return 0;
+	}
+
+	// call our java class method
+	jstring jstrSDK = lJNIEnv->NewStringUTF( sdk );
+	jstring jstrCmd = lJNIEnv->NewStringUTF( command );
+	jstring jstr1 = lJNIEnv->NewStringUTF( str1 );
+	jstring jstr2 = lJNIEnv->NewStringUTF( str2 );
+	float result = lJNIEnv->CallStaticFloatMethod( sdkClass, method, lNativeActivity, jstrSDK, jstrCmd, jstr1, jstr2 );
+	lJNIEnv->DeleteLocalRef( jstr2 );
+	lJNIEnv->DeleteLocalRef( jstr1 );
+	lJNIEnv->DeleteLocalRef( jstrCmd );
+	lJNIEnv->DeleteLocalRef( jstrSDK );
+	
+	vm->DetachCurrentThread();
+
+	return result;
+}
+
+char* agk::ExternalCommandString( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+	JNIEnv* lJNIEnv = g_pActivity->env;
+	JavaVM* vm = g_pActivity->vm;
+	vm->AttachCurrentThread(&lJNIEnv, NULL);
+
+	jobject lNativeActivity = g_pActivity->clazz;
+	if ( !lNativeActivity ) agk::Warning("Failed to get native activity pointer");
+	
+	jclass sdkClass = GetAGKClass( lJNIEnv, "com/thegamecreators/agk_player/ExternalCommands" );
+	if ( !sdkClass ) 
+	{
+		vm->DetachCurrentThread();
+	char* str = new char[1];
+	*str = 0;
+	return str;
+	}
+
+	jmethodID method = lJNIEnv->GetStaticMethodID( sdkClass, "ExternalCommandString", "(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;" );
+	if ( !method ) 
+	{
+		vm->DetachCurrentThread();
+		char* str = new char[1];
+		*str = 0;
+		return str;
+	}
+
+	// call our java class method
+	jstring jstrSDK = lJNIEnv->NewStringUTF( sdk );
+	jstring jstrCmd = lJNIEnv->NewStringUTF( command );
+	jstring jstr1 = lJNIEnv->NewStringUTF( str1 );
+	jstring jstr2 = lJNIEnv->NewStringUTF( str2 );
+	jstring result = (jstring) lJNIEnv->CallStaticObjectMethod( sdkClass, method, lNativeActivity, jstrSDK, jstrCmd, jstr1, jstr2 );
+	lJNIEnv->DeleteLocalRef( jstr2 );
+	lJNIEnv->DeleteLocalRef( jstr1 );
+	lJNIEnv->DeleteLocalRef( jstrCmd );
+	lJNIEnv->DeleteLocalRef( jstrSDK );
+
+	jboolean bCopy;
+	const char* szResult = lJNIEnv->GetStringUTFChars( result, &bCopy );
+
+	char *str = new char[ strlen(szResult)+1 ];
+	strcpy( str, szResult );
+
+	lJNIEnv->ReleaseStringUTFChars( result, szResult );
+	lJNIEnv->DeleteLocalRef( result );
+	
+	vm->DetachCurrentThread();
+
+	return str;
 }

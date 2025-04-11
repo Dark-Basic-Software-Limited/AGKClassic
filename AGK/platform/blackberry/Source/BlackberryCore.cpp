@@ -6710,3 +6710,36 @@ void agk::FirebaseLogEvent( const char *event_name )
 {
 	
 }
+
+// Extensions
+int agk::ExternalSDKSupported( const char* sdk )
+//****
+{
+	return 0;
+}
+
+void agk::ExternalCommand( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+
+}
+
+int agk::ExternalCommandInt( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+	return 0;
+}
+
+float agk::ExternalCommandFloat( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+	return 0;
+}
+
+char* agk::ExternalCommandString( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+	char* str = new char[1];
+	*str = 0;
+	return str;
+}

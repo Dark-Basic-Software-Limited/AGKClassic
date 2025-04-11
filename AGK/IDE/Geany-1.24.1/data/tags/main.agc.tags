@@ -2085,4 +2085,37 @@ GetNoiseXY|Float|(Float x, Float y)|
 GetNoiseXYZ|Float|(Float x, Float y, Float z)|
 GetFractalX|Float|(Integer octaves, Float x)|
 GetFractalXY|Float|(Integer octaves, Float x, Float y)|
-GetFractalXZ|Float|(Integer octaves, Float x, Float y, Float z)|
+GetFractalXYZ|Float|(Integer octaves, Float x, Float y, Float z)|
+SetTextShader||(Integer iTextIndex, Integer shaderID)|
+SetTextShaderConstantByName||(Integer iTextIndex, String szName, Float value1, Float value2, Float value3, Float value4)|
+SetTextShaderConstantArrayByName||(Integer iTextIndex, String szName, Integer arrayIndex, Float value1, Float value2, Float value3, Float value4)|
+SetTextShaderConstantDefault||(Integer iTextIndex, String szName)|
+InAppPurchaseRedeemOffer||()|
+ExternalSDKSupported|Integer|(String sdk)|
+ExternalCommand||(String sdk, String command, String str1, String str2)|
+ExternalCommandInt|Integer|(String sdk, String command, String str1, String str2)|
+ExternalCommandFloat|Float|(String sdk, String command, String str1, String str2)|
+ExternalCommandString|String|(String sdk, String command, String str1, String str2)|
+GetAppReceipt|String|()|
+InAppPurchaseActivateWithPlan||(Integer iID, String planToken)|
+GetInAppPurchaseSubNumPlans|Integer|(Integer iID)|
+GetInAppPurchaseSubPlanNumPeriods|Integer|(Integer iID, Integer planIndex)|
+GetInAppPurchaseSubPlanPrice|String|(Integer iID, Integer planIndex, Integer periodIndex)|
+GetInAppPurchaseSubPlanDuration|Integer|(Integer iID, Integer planIndex, Integer periodIndex)|
+GetInAppPurchaseSubPlanDurationUnit|String|(Integer iID, Integer planIndex, Integer periodIndex)|
+GetInAppPurchaseSubPlanPaymentType|Integer|(Integer iID, Integer planIndex, Integer periodIndex)|
+GetInAppPurchaseSubPlanTags|String|(Integer iID, Integer planIndex)|
+GetInAppPurchaseSubPlanToken|String|(Integer iID, Integer planIndex)|
+GetDisplayNumCutouts|Integer|()|
+GetDisplayCutoutTop|Float|(Integer index)|
+GetDisplayCutoutBottom|Float|(Integer index)|
+GetDisplayCutoutLeft|Float|(Integer index)|
+GetDisplayCutoutRight|Float|(Integer index)|
+GetScreenBoundsSafeTop|Float|()|
+GetScreenBoundsSafeBottom|Float|()|
+GetScreenBoundsSafeLeft|Float|()|
+GetScreenBoundsSafeRight|Float|()|
+IsPinAppAvailable|Integer|()|
+PinApp||(Integer enable)|
+IsDarkTheme|Integer|()|
+GetInAppPurchaseIsRenewing|Integer|(Integer iID)|

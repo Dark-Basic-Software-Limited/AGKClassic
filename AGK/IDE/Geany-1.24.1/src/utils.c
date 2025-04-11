@@ -2514,10 +2514,6 @@ gboolean utils_add_folder_to_zip ( mz_zip_archive *pZip, const gchar* src, const
 	{
 		gchar* fullsrcpath = g_build_path( "/", src, filename, NULL );
 		gchar* fulldstpath = g_build_path( "/", dst, filename, NULL );
-		
-		//dialogs_show_msgbox ( GTK_MESSAGE_ERROR, fullsrcpath );
-		//dialogs_show_msgbox ( GTK_MESSAGE_ERROR, fulldstpath );
-		//dialogs_show_msgbox ( GTK_MESSAGE_ERROR, filename );
 
 		if ( g_file_test( fullsrcpath, G_FILE_TEST_IS_DIR ) )
 		{
@@ -2528,7 +2524,6 @@ gboolean utils_add_folder_to_zip ( mz_zip_archive *pZip, const gchar* src, const
 					g_dir_close(dir);
 					g_free(fullsrcpath);
 					g_free(fulldstpath);
-					//dialogs_show_msgbox ( GTK_MESSAGE_ERROR, "fail a" );
 					return FALSE;
 				}
 			}
@@ -2559,7 +2554,6 @@ gboolean utils_add_folder_to_zip ( mz_zip_archive *pZip, const gchar* src, const
 				g_dir_close(dir);
 				g_free(fullsrcpath);
 				g_free(fulldstpath);
-				//dialogs_show_msgbox ( GTK_MESSAGE_ERROR, "fail b" );
 				return FALSE;
 			}
 		}

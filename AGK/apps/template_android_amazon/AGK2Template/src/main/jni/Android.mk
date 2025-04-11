@@ -55,11 +55,13 @@ include $(CLEAR_VARS)
 LOCAL_MODULE    := android_player
 
 # agk includes folder
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../../../../common/include
+LOCAL_C_INCLUDES := $(LOCAL_PATH) \
+                $(LOCAL_PATH)/../../../../../../common/include \
+                    $(LOCAL_PATH)/../../../../../../renderer
 
 # app source files, must be relative to the jni folder
-LOCAL_SRC_FILES := main.c \
-			   Core.cpp \
+LOCAL_SRC_FILES := ../../../../../android_common_native/main.c \
+               ../../../../../android_common_native/Core.cpp \
 			   template.cpp
 
 # included system libraries
@@ -68,8 +70,8 @@ LOCAL_LDLIBS    := -lm -llog -landroid -lEGL -lGLESv2 -lz -lOpenSLES
 # included user libraris
 LOCAL_STATIC_LIBRARIES := AGKAndroid AGKBullet AGKAssimp AGKCurl android_native_app_glue
 
-# define IDE_ANDROID (for AGK) and use O2 optimizations
-LOCAL_CFLAGS += -DIDE_ANDROID -O2 -fsigned-char
+# define IDE_ANDROID (for AGK) and use O3 optimizations
+LOCAL_CFLAGS += -DIDE_ANDROID -O3 -fsigned-char
 LOCAL_CPPFLAGS += -fexceptions -std=c++11
 
 # use arm instead of thumb instructions

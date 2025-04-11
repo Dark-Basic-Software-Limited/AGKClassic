@@ -61,6 +61,7 @@ install-data-local: install-data-only
 
 install-data-only:
 	@$(NORMAL_INSTALL)
+	rm -rf $(DESTDIR)$(pkgdatadir);
 	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir); \
 	$(INSTALL_DATA) $(srcdir)/COPYING $(DESTDIR)$(pkgdatadir)/GPL-2; \
 	for file in $(srcdir)/data/*; do \

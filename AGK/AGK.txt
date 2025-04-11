@@ -1,6 +1,57 @@
 AGK Change Log
 ==============
 
+Build 2023.01.26
+------------------------
+
+- Fixed Android export using the AGK adaptive icon if only a legacy icon was supplied
+- Added support for BMP image files
+- Added GetInAppPurchaseIsRenewing to return subscription renewal state on Android
+- Fixed a crash when creating a banner ad with CreateAdvert and then sending the app to the background
+- Fixed DeleteAdvert not removing the banner ad
+
+Build 2022.12.13
+------------------------
+
+- Fixed Alt key combinations causing a system sound on Windows
+- Fixed InAppPurchaseSetup failing unless both a normal and subscription product are added
+- Fixed text shaders not receiving shader constant updates
+- Fixed IndexOf when used on arrays of types
+- Fixed text not rendering with the correct default shader
+- Fixed JSON parser not decoding \u characters
+- Fixed apps including the User Tracking description when it isn't used, causing rejections by Apple
+- Fixed Chartboost not setting the COPPA restrictions if SetAdMobChildRating is set
+- Fixed AdMob not setting MaxAdContentRating if SetAdMobChildRating is set
+
+Build 2022.09.28
+------------------------
+
+- Fixed compile error when returning a type from a function with more than 256 types defined in the project
+- Fixed potential runtime issues when more than 256 types are defined in a project
+- Added text shader commands
+- Fixed SetPhysicsInitiallyAwake ignoring the provided value and always using true
+- Fixed APK export with deep links for Android 12
+- Added new In-App Purchase commands to deal with subscriptions with multiple plans and offers
+- Added new common code folder for Android Tier 2 apps to simplify updates
+- Fixed command name for GetFractalXYZ
+- Added GetAppReceipt() command on iOS to return the list of AppStore transactions
+- Added commands to return the size and position of any display cutouts on Android
+- Added commands to return the safe area that avoids all cutouts on iOS and Android
+- Updated Snapchat SDK on Android
+- Updated Android target API to 31 (Android 12)
+- Removed deprecated expansion file commands on Android
+- Updated Chartboost SDK on Android
+- Updated Firebase SDK on iOS and Android
+- Added support for both Adaptive and Legacy icons in APK export
+- Added command to check if the device has a dark theme enabled
+- Added command to request the app be pinned on Android
+- Fixed Android sometimes returning device width and height as 1 at start before returning the correct values
+- Padded short sounds on Android to 400ms to avoid popping and distortion
+- Fixed very long Print() string (100,000+ characters) causing a crash
+- Fixed SetWindowSize on Windows not allowing windows bigger than the screen when allowOversize parameter is set to 1
+- Fixed APK export sometimes not finding java or jarsigner program
+- Fixed Android Keytool process sometimes not finding keytool program
+
 Build 2022.06.27
 ------------------------
 

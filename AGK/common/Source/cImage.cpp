@@ -1894,6 +1894,78 @@ unsigned int cImage::GetImageSizeFromFile( const char* filename )
 	return (width << 16) | (height & 0xFFFF);
 }
 
+int cImage::GetBMPFromFile( cFile* pFile, unsigned char** imageData, unsigned int* width, unsigned int* height )
+{
+	unsigned char bmp_file_header[14];
+	unsigned char bmp_info_start[4];
+	unsigned char bmp_info_header[64];
+	unsigned char bmp_pad[3];
+
+	unsigned int w, h, bitsperpixel;
+
+	memset(bmp_file_header, 0, sizeof(bmp_file_header));
+	memset(bmp_info_header, 0, sizeof(bmp_info_header));
+	memset(bmp_info_start, 0, sizeof(bmp_info_start));
+
+	if ( pFile->ReadData( (char*) bmp_file_header, sizeof(bmp_file_header) ) <= 0 ) return 1;
+	if ( pFile->ReadData( (char*) bmp_info_start, sizeof(bmp_info_start) ) <= 0 ) return 1;
+	
+	unsigned int header_size = (bmp_info_start[0] + (bmp_info_start[1] << 8) + (bmp_info_start[2] << 16) + (bmp_info_start[3] << 24));
+	if (header_size != 12 && header_size != 40 && header_size != 64) return 1;
+
+	if ( pFile->ReadData( (char*) bmp_info_header+4, header_size-4 ) <= 0 ) return 1;
+
+	if ((bmp_file_header[0] != 'B') || (bmp_file_header[1] != 'M')) return 2;
+
+	//PE: Added-Decode OS/2 1.x header 12 bytes headers.
+	//PE: Missing-colormapped image.bmp_info_header[10] == 8
+	if (header_size == 12) 
+	{
+		if ((bmp_info_header[10] != 24) && (bmp_info_header[10] != 32)) return 3;
+		bitsperpixel = bmp_info_header[10];
+		w = (bmp_info_header[4] + (bmp_info_header[5] << 8)); // +(bmp_info_header[6] << 16) + (bmp_info_header[7] << 24));
+		h = (bmp_info_header[6] + (bmp_info_header[7] << 8)); // +(bmp_info_header[10] << 16) + (bmp_info_header[11] << 24));
+	} 
+	else 
+	{
+		if ((bmp_info_header[14] != 24) && (bmp_info_header[14] != 32)) return 3;
+		bitsperpixel = bmp_info_header[14];
+		w = (bmp_info_header[4] + (bmp_info_header[5] << 8) + (bmp_info_header[6] << 16) + (bmp_info_header[7] << 24));
+		h = (bmp_info_header[8] + (bmp_info_header[9] << 8) + (bmp_info_header[10] << 16) + (bmp_info_header[11] << 24));
+	}
+
+	if ( w > 0 && h > 0 )
+	{
+		*imageData = new unsigned char[ w * h * 4 ];
+		if ( !*imageData ) return 4;
+
+		//PE: Added support for 24-bit to 32-bit conversion.
+		int iDataSize = (bitsperpixel == 24) ? 3 : 4;
+		
+		for( unsigned int y = (h - 1); y != -1; y-- )
+		{
+			for( unsigned int x = 0; x < w; x++ )
+			{
+				unsigned int i = (x + y * w) * 4;
+
+				if ( pFile->ReadData( (char*) (*imageData)+i, iDataSize ) <= 0 ) return 5;
+
+				(*imageData)[i] ^= (*imageData)[i + 2] ^= (*imageData)[i] ^= (*imageData)[i + 2]; // BGR -> RGB
+				(*imageData)[i + 3] = 255; // Alpha
+			}
+
+			unsigned int padding = ((4 - (w * 3) % 4) % 4);
+
+			if ( pFile->ReadData( (char*) bmp_pad, padding ) <= 0 ) return 5;
+		}
+	}
+
+	*width = w;
+	*height = h;
+
+	return 0;
+}
+
 bool cImage::Load( const uString &szFile, bool bBlackToAlpha )
 {
 	return Load( szFile.GetStr(), bBlackToAlpha );
@@ -1962,6 +2034,37 @@ bool cImage::Load( const char* szFile, bool bBlackToAlpha )
 
 			m_iSpecialLoadMode = 0;
 			return LoadPNGFromMemory( libImageMissingPNG, 0, 0 );
+		}
+	}
+	else if ( ext.CompareTo("bmp") == 0 )
+	{
+		cFile sFile; 
+		int err = 0;
+		if ( sFile.OpenToRead( szFile ) )
+		{
+			err = GetBMPFromFile( &sFile, &pData, &out_width, &out_height );
+			sFile.Close();
+		}
+
+		if ( err )
+		{
+			if ( pData ) delete[] pData;
+			pData = 0;
+
+#ifdef _AGK_ERROR_CHECK
+			uString errStr;
+			errStr.Format("Failed to load bmp %u", err);
+			agk::Error(errStr);
+#endif
+
+			if (m_iNoMissingImage)
+			{
+				m_iNoMissingImage = 0;
+				return false;
+			}
+
+			m_iSpecialLoadMode = 0;
+			return LoadPNGFromMemory(libImageMissingPNG, 0, 0);
 		}
 	}
 	else

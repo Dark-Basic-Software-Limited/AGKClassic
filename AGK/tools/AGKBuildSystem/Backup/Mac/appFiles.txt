@@ -1,416 +1,410 @@
-415
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter\AGKCommandEnums.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter\AGKCommandSwitch.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter\AGKCommandSwitch2D.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter\AGKCommonSwitch.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter\AGKInstructions.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter\AGKPluginCommandList.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter\Core.cpp
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter\interpreter.cpp
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter\interpreter.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter\interpreter.ico
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter\interpreter.rc
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter\interpreter.sln
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter\interpreter.vcxproj
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter\interpreter.vcxproj.filters
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter\ProgramData.cpp
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter\ProgramData.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter\resource.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter\Win64Plugins.asm
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\libs\chartboost.jar
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\libs\in-app-purchasing-2.0.76.jar
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\AndroidManifest.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\AGKActivity.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\AGKHelper.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\iap\AGKPurchasingListener.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\NotificationAlarmReceiver.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\jniLibs\arm64-v8a\libandroid_player.so
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\jniLibs\armeabi-v7a\libandroid_player.so
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-hdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-hdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-ldpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-ldpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-mdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-mdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-xhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-xhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-xxhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-xxhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-xxxhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-xxxhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\layout\facebookmain.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\layout\main.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\values\googleservices.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\values\strings.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\values\styles.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\AGKPlayer2\src\main\res\xml\provider_paths.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\gradle\wrapper\gradle-wrapper.jar
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\gradle\wrapper\gradle-wrapper.properties
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\gradle.properties
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\gradlew
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\gradlew.bat
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_amazon\settings.gradle
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\libs\YouTubeAndroidPlayerApi.jar
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\proguard-rules.txt
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\AndroidManifest.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\AGKActivity.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\AGKHelper.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\NotificationAlarmReceiver.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\NotificationService.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\jni\Android.mk
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\jni\Application.mk
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\jni\Core.cpp
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\jni\main.c
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\jniCompile.bat
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\jniLibs\arm64-v8a\libandroid_player.so
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\jniLibs\arm64-v8a\libarcore_sdk.so
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\jniLibs\armeabi-v7a\libandroid_player.so
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\jniLibs\armeabi-v7a\libarcore_sdk.so
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-hdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-hdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-ldpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-ldpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-mdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-mdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-xhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-xhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-xxhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-xxhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-xxxhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-xxxhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\layout\facebookmain.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\layout\main.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\values\googleservices.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\values\strings.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\values\styles.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\values-v20\styles.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\AGKPlayer2\src\main\res\xml\provider_paths.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\proguard-rules.pro
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\project.properties
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\AndroidManifest.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\Constants.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\DownloadProgressInfo.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\Helpers.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\IDownloaderClient.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\IDownloaderService.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\BroadcastDownloaderClient.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\ClientProxy.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\CustomIntentService.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\DownloaderProxy.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\DownloaderService.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\DownloadInfo.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\DownloadNotification.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\DownloadsDB.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\DownloadThread.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\java\com\google\android\vending\expansion\downloader\impl\ServiceHandler.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionDownloader\src\main\res\values\strings.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionZipFile\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionZipFile\src\main\AndroidManifest.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionZipFile\src\main\java\com\android\vending\expansion\zipfile\APEZProvider.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionZipFile\src\main\java\com\android\vending\expansion\zipfile\APKExpansionSupport.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionZipFile\src\main\java\com\android\vending\expansion\zipfile\ZipResourceFile.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\ExpansionZipFile\src\main\res\.nores
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\AndroidManifest.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\AESObfuscator.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\APKExpansionPolicy.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\DeviceLimiter.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\ILicenseResultListener.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\ILicensingService.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\LicenseChecker.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\LicenseCheckerCallback.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\LicenseValidator.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\NullDeviceLimiter.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\Obfuscator.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\Policy.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\PreferenceObfuscator.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\ResponseData.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\ServerManagedPolicy.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\StrictPolicy.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\util\Base64.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\util\Base64DecoderException.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\GooglePlayLicensing\src\main\java\com\google\android\vending\licensing\ValidationException.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\gradle\wrapper\gradle-wrapper.jar
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\gradle\wrapper\gradle-wrapper.properties
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\gradle.properties
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\gradlew
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\gradlew.bat
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_google\settings.gradle
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\libs\ouya-sdk.jar
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\AndroidManifest.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\AGKActivity.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\AGKHelper.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\jniLibs\arm64-v8a\libandroid_player.so
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\jniLibs\armeabi-v7a\libandroid_player.so
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable-hdpi\app_icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable-ldpi\app_icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable-mdpi\app_icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable-xhdpi\app_icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable-xhdpi\ouya_icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\res\layout\facebookmain.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\res\layout\main.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\res\values\strings.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\AGKPlayer2\src\main\res\values\styles.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\gradle\wrapper\gradle-wrapper.jar
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\gradle\wrapper\gradle-wrapper.properties
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\gradlew
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\gradlew.bat
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_android_ouya\settings.gradle
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\agkinterpreter-Info.plist
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\agkinterpreter.xcodeproj\project.pbxproj
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\agkinterpreter.xcodeproj\project.xcworkspace\contents.xcworkspacedata
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\agkinterpreter_Prefix.pch
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\AppGameKit Player.entitlements
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\Classes\Core.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\Classes\Core.m
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\Classes\EAGLView.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\Classes\EAGLView.m
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\Classes\UntitledViewController.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\Classes\UntitledViewController.m
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\Classes\UntitledViewController.xib
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\GoogleService-Info.plist
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\Icons.xcassets\AppIcon.appiconset\Contents.json
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\Icons.xcassets\AppIcon.appiconset\icon-1024.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\Icons.xcassets\AppIcon.appiconset\icon-120.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\Icons.xcassets\AppIcon.appiconset\icon-152.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\Icons.xcassets\AppIcon.appiconset\icon-167.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\Icons.xcassets\AppIcon.appiconset\icon-180.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\Icons.xcassets\AppIcon.appiconset\icon-76.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\Icons.xcassets\Contents.json
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\LaunchScreen.storyboard
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\main.m
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\MainWindow.xib
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios\SplashLogo.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\agkinterpreter-Info.plist
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\agkinterpreter.xcodeproj\project.pbxproj
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\agkinterpreter.xcodeproj\project.xcworkspace\contents.xcworkspacedata
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\agkinterpreter_Prefix.pch
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\Classes\Core.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\Classes\Core.m
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\Classes\EAGLView.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\Classes\EAGLView.m
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\Classes\UntitledViewController.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\Classes\UntitledViewController.m
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\Classes\UntitledViewController.xib
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\Icons.xcassets\AppIcon.appiconset\Contents.json
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-1024.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-120.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-152.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-167.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-180.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-76.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\Icons.xcassets\Contents.json
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\LaunchScreen.storyboard
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\main.m
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\MainWindow.xib
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\README.txt
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_ios_lite\SplashLogo.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_mac\AGK Player.entitlements
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_mac\agkinterpreter-Info.plist
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_mac\agkinterpreter.xcodeproj\project.pbxproj
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_mac\agkinterpreter_Prefix.pch
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_mac\Core.mm
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_mac\English.lproj\InfoPlist.strings
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_mac\icons.iconset\icon_128x128.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_mac\icons.iconset\icon_128x128@2x.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_mac\icons.iconset\icon_16x16.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_mac\icons.iconset\icon_16x16@2x.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_mac\icons.iconset\icon_256x256.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_mac\icons.iconset\icon_256x256@2x.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_mac\icons.iconset\icon_32x32.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_mac\icons.iconset\icon_32x32@2x.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_mac\icons.iconset\icon_512x512.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_mac\icons.iconset\icon_512x512@2x.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_mac\MacDelegate.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_mac\MacDelegate.m
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\interpreter_mac\main.mm
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\libs\chartboost.jar
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\libs\in-app-purchasing-2.0.76.jar
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\AndroidManifest.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\java\com\thegamecreators\agk_player\AGKActivity.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\java\com\thegamecreators\agk_player\AGKHelper.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\java\com\thegamecreators\agk_player\iap\AGKPurchasingListener.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\java\com\thegamecreators\agk_player\NotificationAlarmReceiver.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\jni\Android.mk
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\jni\Application.mk
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\jni\Core.cpp
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\jni\main.c
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\jni\template.cpp
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\jni\template.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\jniCompile.bat
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-hdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-hdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-ldpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-ldpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-mdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-mdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-xhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-xhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-xxhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-xxhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-xxxhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\drawable-xxxhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\layout\facebookmain.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\layout\main.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\values\googleservices.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\values\strings.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\values\styles.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\AGK2Template\src\main\res\xml\provider_paths.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\gradle\wrapper\gradle-wrapper.jar
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\gradle\wrapper\gradle-wrapper.properties
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\gradle.properties
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\gradlew
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\gradlew.bat
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_amazon\settings.gradle
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\libs\YouTubeAndroidPlayerApi.jar
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\proguard-rules.txt
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\AndroidManifest.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\java\com\thegamecreators\agk_player\AGKActivity.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\java\com\thegamecreators\agk_player\AGKHelper.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\java\com\thegamecreators\agk_player\NotificationAlarmReceiver.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\java\com\thegamecreators\agk_player\NotificationService.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\jni\Android.mk
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\jni\Application.mk
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\jni\Core.cpp
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\jni\main.c
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\jni\template.cpp
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\jni\template.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\jniCompile.bat
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-hdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-hdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-ldpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-ldpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-mdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-mdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-xhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-xhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-xxhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-xxhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-xxxhdpi\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\drawable-xxxhdpi\icon_white.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\layout\facebookmain.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\layout\main.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\values\googleservices.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\values\strings.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\values\styles.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\values-v20\styles.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\AGK2Template\src\main\res\xml\provider_paths.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\gradle\wrapper\gradle-wrapper.jar
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\gradle\wrapper\gradle-wrapper.properties
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\gradle.properties
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\gradlew
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\gradlew.bat
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_google\settings.gradle
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\AGK2Template\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\AGK2Template\libs\ouya-sdk.jar
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\AndroidManifest.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\java\com\thegamecreators\agk_player\AGKActivity.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\java\com\thegamecreators\agk_player\AGKHelper.java
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\jni\Android.mk
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\jni\Application.mk
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\jni\Core.cpp
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\jni\main.c
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\jni\template.cpp
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\jni\template.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\jniCompile.bat
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\res\drawable\icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\res\drawable-hdpi\app_icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\res\drawable-ldpi\app_icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\res\drawable-mdpi\app_icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\res\drawable-xhdpi\app_icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\res\drawable-xhdpi\ouya_icon.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\res\layout\facebookmain.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\res\layout\main.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\res\values\strings.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\AGK2Template\src\main\res\values\styles.xml
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\build.gradle
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\gradle\wrapper\gradle-wrapper.jar
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\gradle\wrapper\gradle-wrapper.properties
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\gradlew
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\gradlew.bat
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_android_ouya\settings.gradle
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\AGK 2 Template.entitlements
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\agkinterpreter-Info.plist
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\agkinterpreter.xcodeproj\project.pbxproj
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\agkinterpreter.xcodeproj\project.xcworkspace\contents.xcworkspacedata
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\agkinterpreter_Prefix.pch
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\Classes\Core.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\Classes\Core.m
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\Classes\EAGLView.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\Classes\EAGLView.m
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\Classes\template.cpp
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\Classes\template.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\Classes\UntitledViewController.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\Classes\UntitledViewController.m
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\Classes\UntitledViewController.xib
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\GoogleService-Info.plist
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\Icons.xcassets\AppIcon.appiconset\Contents.json
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\Icons.xcassets\AppIcon.appiconset\icon-1024.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\Icons.xcassets\AppIcon.appiconset\icon-120.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\Icons.xcassets\AppIcon.appiconset\icon-152.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\Icons.xcassets\AppIcon.appiconset\icon-167.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\Icons.xcassets\AppIcon.appiconset\icon-180.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\Icons.xcassets\AppIcon.appiconset\icon-76.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\Icons.xcassets\Contents.json
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\LaunchScreen.storyboard
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\main.m
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\MainWindow.xib
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios\SplashLogo.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\agkinterpreter-Info.plist
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\agkinterpreter.xcodeproj\project.pbxproj
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\agkinterpreter.xcodeproj\project.xcworkspace\contents.xcworkspacedata
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\agkinterpreter_Prefix.pch
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\Classes\Core.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\Classes\Core.m
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\Classes\EAGLView.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\Classes\EAGLView.m
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\Classes\template.cpp
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\Classes\template.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\Classes\UntitledViewController.h
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\Classes\UntitledViewController.m
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\Classes\UntitledViewController.xib
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\Icons.xcassets\AppIcon.appiconset\Contents.json
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-1024.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-120.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-152.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-167.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-180.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-76.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\Icons.xcassets\Contents.json
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\LaunchScreen.storyboard
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\main.m
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\MainWindow.xib
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\README.txt
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_ios_lite\SplashLogo.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_mac\AGK Player.entitlements
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_mac\agkinterpreter-Info.plist
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_mac\agkinterpreter.xcodeproj\project.pbxproj
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_mac\agkinterpreter.xcodeproj\project.xcworkspace\contents.xcworkspacedata
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_mac\agkinterpreter_Prefix.pch
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_mac\Core.mm
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_mac\English.lproj\InfoPlist.strings
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_mac\icons.iconset\icon_128x128.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_mac\icons.iconset\icon_128x128@2x.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_mac\icons.iconset\icon_16x16.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_mac\icons.iconset\icon_16x16@2x.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_mac\icons.iconset\icon_256x256.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_mac\icons.iconset\icon_256x256@2x.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_mac\icons.iconset\icon_32x32.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_mac\icons.iconset\icon_32x32@2x.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_mac\icons.iconset\icon_512x512.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_mac\icons.iconset\icon_512x512@2x.png
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_mac\main.mm
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_mac\template.cpp
-D:\AGK\Builds\Classic\FilesAlphaMac\AGK\Tier 2\apps\template_mac\template.h
+409
+apps\android_common\AdConsent\com\thegamecreators\agk_player\AdConsentSDK.java
+apps\android_common\AdMob\com\thegamecreators\agk_player\AdMobSDK.java
+apps\android_common\AGKHelper\com\thegamecreators\agk_player\AGKActivity.java
+apps\android_common\AGKHelper\com\thegamecreators\agk_player\AGKHelper.java
+apps\android_common\AGKHelper\com\thegamecreators\agk_player\NotificationAlarmReceiver.java
+apps\android_common\AlwaysPermissions\com\thegamecreators\agk_player\PermissionSDK.java
+apps\android_common\AmazonInAppPurchase\com\thegamecreators\agk_player\InAppPurchase.java
+apps\android_common\AppsFlyer\com\thegamecreators\agk_player\AppsFlyerSDK.java
+apps\android_common\Camera\com\thegamecreators\agk_player\CameraSDK.java
+apps\android_common\Chartboost\com\thegamecreators\agk_player\ChartboostSDK.java
+apps\android_common\ExternalCommands\com\thegamecreators\agk_player\ExternalCommands.java
+apps\android_common\Firebase\com\thegamecreators\agk_player\FirebaseSDK.java
+apps\android_common\GoogleCloudData\com\thegamecreators\agk_player\CloudDataSDK.java
+apps\android_common\GoogleGameCenter\com\thegamecreators\agk_player\GameCenterSDK.java
+apps\android_common\GoogleGameCenterV2\com\thegamecreators\agk_player\GameCenterSDK.java
+apps\android_common\GoogleGameCenterV2\com\thegamecreators\agk_player\Google Games V1-V2 difference.txt
+apps\android_common\GoogleInAppPurchase\com\thegamecreators\agk_player\InAppPurchase.java
+apps\android_common\GoogleInstallReferrer\com\thegamecreators\agk_player\InstallReferrerSDK.java
+apps\android_common\GoogleLocation\com\thegamecreators\agk_player\LocationSDK.java
+apps\android_common\GooglePermissions\com\thegamecreators\agk_player\PermissionSDK.java
+apps\android_common\GooglePushNotifications\com\thegamecreators\agk_player\NotificationService.java
+apps\android_common\GooglePushNotifications\com\thegamecreators\agk_player\PushNotificationsSDK.java
+apps\android_common\GoogleRequestReview\com\thegamecreators\agk_player\RequestReviewSDK.java
+apps\android_common\GoogleTextToSpeech\com\thegamecreators\agk_player\TextToSpeechSDK.java
+apps\android_common\ImmersiveMode\com\thegamecreators\agk_player\ImmersiveModeSDK.java
+apps\android_common\PlayVideo\com\thegamecreators\agk_player\PlayVideoSDK.java
+apps\android_common\RecordScreen\com\thegamecreators\agk_player\RecordScreenSDK.java
+apps\android_common\SnapChat\com\thegamecreators\agk_player\SnapChatSDK.java
+apps\android_common\TextEntry\com\thegamecreators\agk_player\TextEntrySDK.java
+apps\android_common\Youtube\com\thegamecreators\agk_player\YoutubeSDK.java
+apps\android_common_native\Core.cpp
+apps\android_common_native\main.c
+apps\interpreter\AGKCommandEnums.h
+apps\interpreter\AGKCommandSwitch.h
+apps\interpreter\AGKCommandSwitch2D.h
+apps\interpreter\AGKCommonSwitch.h
+apps\interpreter\AGKInstructions.h
+apps\interpreter\AGKPluginCommandList.h
+apps\interpreter\Core.cpp
+apps\interpreter\interpreter.cpp
+apps\interpreter\interpreter.h
+apps\interpreter\interpreter.ico
+apps\interpreter\interpreter.rc
+apps\interpreter\interpreter.sln
+apps\interpreter\interpreter.vcxproj
+apps\interpreter\interpreter.vcxproj.filters
+apps\interpreter\ProgramData.cpp
+apps\interpreter\ProgramData.h
+apps\interpreter\resource.h
+apps\interpreter\Win64Plugins.asm
+apps\interpreter_android_amazon\AGKPlayer2\build.gradle
+apps\interpreter_android_amazon\AGKPlayer2\libs\chartboost.jar
+apps\interpreter_android_amazon\AGKPlayer2\libs\in-app-purchasing-2.0.76.jar
+apps\interpreter_android_amazon\AGKPlayer2\src\main\AndroidManifest.xml
+apps\interpreter_android_amazon\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\LocalApp.java
+apps\interpreter_android_amazon\AGKPlayer2\src\main\jniLibs\arm64-v8a\libandroid_player.so
+apps\interpreter_android_amazon\AGKPlayer2\src\main\jniLibs\armeabi-v7a\libandroid_player.so
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-hdpi\icon_white.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-ldpi\icon_white.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-mdpi\icon_white.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-xhdpi\icon_white.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-xxhdpi\icon_white.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\drawable-xxxhdpi\icon_white.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\layout\facebookmain.xml
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\layout\main.xml
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\mipmap-anydpi-v26\ic_launcher.xml
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\mipmap-hdpi\ic_launcher.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\mipmap-hdpi\ic_launcher_foreground.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\mipmap-mdpi\ic_launcher.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\mipmap-mdpi\ic_launcher_foreground.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\mipmap-xhdpi\ic_launcher.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\mipmap-xhdpi\ic_launcher_foreground.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\mipmap-xxhdpi\ic_launcher.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\mipmap-xxhdpi\ic_launcher_foreground.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\mipmap-xxxhdpi\ic_launcher.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\mipmap-xxxhdpi\ic_launcher_foreground.png
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\values\googleservices.xml
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\values\strings.xml
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\values\styles.xml
+apps\interpreter_android_amazon\AGKPlayer2\src\main\res\xml\provider_paths.xml
+apps\interpreter_android_amazon\build.gradle
+apps\interpreter_android_amazon\gradle\wrapper\gradle-wrapper.jar
+apps\interpreter_android_amazon\gradle\wrapper\gradle-wrapper.properties
+apps\interpreter_android_amazon\gradle.properties
+apps\interpreter_android_amazon\gradlew
+apps\interpreter_android_amazon\gradlew.bat
+apps\interpreter_android_amazon\settings.gradle
+apps\interpreter_android_google\AGKPlayer2\build.gradle
+apps\interpreter_android_google\AGKPlayer2\libs\YouTubeAndroidPlayerApi.jar
+apps\interpreter_android_google\AGKPlayer2\proguard-rules.txt
+apps\interpreter_android_google\AGKPlayer2\src\main\AndroidManifest.xml
+apps\interpreter_android_google\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\LocalApp.java
+apps\interpreter_android_google\AGKPlayer2\src\main\jni\Android.mk
+apps\interpreter_android_google\AGKPlayer2\src\main\jni\Application.mk
+apps\interpreter_android_google\AGKPlayer2\src\main\jni\localapp.h
+apps\interpreter_android_google\AGKPlayer2\src\main\jniCompile.bat
+apps\interpreter_android_google\AGKPlayer2\src\main\jniLibs\arm64-v8a\libandroid_player.so
+apps\interpreter_android_google\AGKPlayer2\src\main\jniLibs\arm64-v8a\libarcore_sdk.so
+apps\interpreter_android_google\AGKPlayer2\src\main\jniLibs\armeabi-v7a\libandroid_player.so
+apps\interpreter_android_google\AGKPlayer2\src\main\jniLibs\armeabi-v7a\libarcore_sdk.so
+apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-hdpi\icon_white.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-ldpi\icon_white.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-mdpi\icon_white.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-xhdpi\icon_white.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-xxhdpi\icon_white.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\drawable-xxxhdpi\icon_white.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\mipmap-anydpi-v26\ic_launcher.xml
+apps\interpreter_android_google\AGKPlayer2\src\main\res\mipmap-hdpi\ic_launcher.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\mipmap-hdpi\ic_launcher_foreground.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\mipmap-mdpi\ic_launcher.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\mipmap-mdpi\ic_launcher_foreground.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\mipmap-xhdpi\ic_launcher.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\mipmap-xhdpi\ic_launcher_foreground.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\mipmap-xxhdpi\ic_launcher.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\mipmap-xxhdpi\ic_launcher_foreground.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\mipmap-xxxhdpi\ic_launcher.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\mipmap-xxxhdpi\ic_launcher_foreground.png
+apps\interpreter_android_google\AGKPlayer2\src\main\res\values\googleservices.xml
+apps\interpreter_android_google\AGKPlayer2\src\main\res\values\strings.xml
+apps\interpreter_android_google\AGKPlayer2\src\main\res\values\styles.xml
+apps\interpreter_android_google\AGKPlayer2\src\main\res\values-v20\styles.xml
+apps\interpreter_android_google\AGKPlayer2\src\main\res\values-v27\styles.xml
+apps\interpreter_android_google\AGKPlayer2\src\main\res\xml\provider_paths.xml
+apps\interpreter_android_google\build.gradle
+apps\interpreter_android_google\gradle\wrapper\gradle-wrapper.jar
+apps\interpreter_android_google\gradle\wrapper\gradle-wrapper.properties
+apps\interpreter_android_google\gradle.properties
+apps\interpreter_android_google\gradlew
+apps\interpreter_android_google\gradlew.bat
+apps\interpreter_android_google\settings.gradle
+apps\interpreter_android_ouya\AGKPlayer2\build.gradle
+apps\interpreter_android_ouya\AGKPlayer2\libs\ouya-sdk.jar
+apps\interpreter_android_ouya\AGKPlayer2\src\main\AndroidManifest.xml
+apps\interpreter_android_ouya\AGKPlayer2\src\main\java\com\thegamecreators\agk_player\LocalApp.java
+apps\interpreter_android_ouya\AGKPlayer2\src\main\jniLibs\arm64-v8a\libandroid_player.so
+apps\interpreter_android_ouya\AGKPlayer2\src\main\jniLibs\armeabi-v7a\libandroid_player.so
+apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable\icon.png
+apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable-hdpi\app_icon.png
+apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable-ldpi\app_icon.png
+apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable-mdpi\app_icon.png
+apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable-xhdpi\app_icon.png
+apps\interpreter_android_ouya\AGKPlayer2\src\main\res\drawable-xhdpi\ouya_icon.png
+apps\interpreter_android_ouya\AGKPlayer2\src\main\res\layout\facebookmain.xml
+apps\interpreter_android_ouya\AGKPlayer2\src\main\res\layout\main.xml
+apps\interpreter_android_ouya\AGKPlayer2\src\main\res\values\strings.xml
+apps\interpreter_android_ouya\AGKPlayer2\src\main\res\values\styles.xml
+apps\interpreter_android_ouya\build.gradle
+apps\interpreter_android_ouya\gradle\wrapper\gradle-wrapper.jar
+apps\interpreter_android_ouya\gradle\wrapper\gradle-wrapper.properties
+apps\interpreter_android_ouya\gradle.properties
+apps\interpreter_android_ouya\gradlew
+apps\interpreter_android_ouya\gradlew.bat
+apps\interpreter_android_ouya\settings.gradle
+apps\interpreter_ios\agkinterpreter-Info.plist
+apps\interpreter_ios\agkinterpreter.xcodeproj\project.pbxproj
+apps\interpreter_ios\agkinterpreter.xcodeproj\project.xcworkspace\contents.xcworkspacedata
+apps\interpreter_ios\agkinterpreter_Prefix.pch
+apps\interpreter_ios\AppGameKit Player.entitlements
+apps\interpreter_ios\Classes\Core.h
+apps\interpreter_ios\Classes\Core.m
+apps\interpreter_ios\Classes\EAGLView.h
+apps\interpreter_ios\Classes\EAGLView.m
+apps\interpreter_ios\Classes\UntitledViewController.h
+apps\interpreter_ios\Classes\UntitledViewController.m
+apps\interpreter_ios\Classes\UntitledViewController.xib
+apps\interpreter_ios\GoogleService-Info.plist
+apps\interpreter_ios\Icons.xcassets\AppIcon.appiconset\Contents.json
+apps\interpreter_ios\Icons.xcassets\AppIcon.appiconset\icon-1024.png
+apps\interpreter_ios\Icons.xcassets\AppIcon.appiconset\icon-120.png
+apps\interpreter_ios\Icons.xcassets\AppIcon.appiconset\icon-152.png
+apps\interpreter_ios\Icons.xcassets\AppIcon.appiconset\icon-167.png
+apps\interpreter_ios\Icons.xcassets\AppIcon.appiconset\icon-180.png
+apps\interpreter_ios\Icons.xcassets\AppIcon.appiconset\icon-76.png
+apps\interpreter_ios\Icons.xcassets\Contents.json
+apps\interpreter_ios\LaunchScreen.storyboard
+apps\interpreter_ios\main.m
+apps\interpreter_ios\MainWindow.xib
+apps\interpreter_ios\SplashLogo.png
+apps\interpreter_ios_lite\agkinterpreter-Info.plist
+apps\interpreter_ios_lite\agkinterpreter.xcodeproj\project.pbxproj
+apps\interpreter_ios_lite\agkinterpreter.xcodeproj\project.xcworkspace\contents.xcworkspacedata
+apps\interpreter_ios_lite\agkinterpreter_Prefix.pch
+apps\interpreter_ios_lite\Classes\Core.h
+apps\interpreter_ios_lite\Classes\Core.m
+apps\interpreter_ios_lite\Classes\EAGLView.h
+apps\interpreter_ios_lite\Classes\EAGLView.m
+apps\interpreter_ios_lite\Classes\UntitledViewController.h
+apps\interpreter_ios_lite\Classes\UntitledViewController.m
+apps\interpreter_ios_lite\Classes\UntitledViewController.xib
+apps\interpreter_ios_lite\Icons.xcassets\AppIcon.appiconset\Contents.json
+apps\interpreter_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-1024.png
+apps\interpreter_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-120.png
+apps\interpreter_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-152.png
+apps\interpreter_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-167.png
+apps\interpreter_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-180.png
+apps\interpreter_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-76.png
+apps\interpreter_ios_lite\Icons.xcassets\Contents.json
+apps\interpreter_ios_lite\LaunchScreen.storyboard
+apps\interpreter_ios_lite\main.m
+apps\interpreter_ios_lite\MainWindow.xib
+apps\interpreter_ios_lite\README.txt
+apps\interpreter_ios_lite\SplashLogo.png
+apps\interpreter_mac\AGK Player.entitlements
+apps\interpreter_mac\agkinterpreter-Info.plist
+apps\interpreter_mac\agkinterpreter.xcodeproj\project.pbxproj
+apps\interpreter_mac\agkinterpreter_Prefix.pch
+apps\interpreter_mac\Core.mm
+apps\interpreter_mac\English.lproj\InfoPlist.strings
+apps\interpreter_mac\icons.iconset\icon_128x128.png
+apps\interpreter_mac\icons.iconset\icon_128x128@2x.png
+apps\interpreter_mac\icons.iconset\icon_16x16.png
+apps\interpreter_mac\icons.iconset\icon_16x16@2x.png
+apps\interpreter_mac\icons.iconset\icon_256x256.png
+apps\interpreter_mac\icons.iconset\icon_256x256@2x.png
+apps\interpreter_mac\icons.iconset\icon_32x32.png
+apps\interpreter_mac\icons.iconset\icon_32x32@2x.png
+apps\interpreter_mac\icons.iconset\icon_512x512.png
+apps\interpreter_mac\icons.iconset\icon_512x512@2x.png
+apps\interpreter_mac\MacDelegate.h
+apps\interpreter_mac\MacDelegate.m
+apps\interpreter_mac\main.mm
+apps\ios_common\AppsFlyer\AppsFlyerSDK.mm
+apps\ios_common\ExternalCommands.h
+apps\ios_common\ExternalCommands.mm
+apps\ios_common\IDFAConsent\IDFATracking.mm
+apps\ios_common\Template.mm
+apps\template_android_amazon\AGK2Template\build.gradle
+apps\template_android_amazon\AGK2Template\libs\chartboost.jar
+apps\template_android_amazon\AGK2Template\libs\in-app-purchasing-2.0.76.jar
+apps\template_android_amazon\AGK2Template\src\main\AndroidManifest.xml
+apps\template_android_amazon\AGK2Template\src\main\java\com\thegamecreators\agk_player\LocalApp.java
+apps\template_android_amazon\AGK2Template\src\main\jni\Android.mk
+apps\template_android_amazon\AGK2Template\src\main\jni\Application.mk
+apps\template_android_amazon\AGK2Template\src\main\jni\localapp.h
+apps\template_android_amazon\AGK2Template\src\main\jni\template.cpp
+apps\template_android_amazon\AGK2Template\src\main\jni\template.h
+apps\template_android_amazon\AGK2Template\src\main\jniCompile.bat
+apps\template_android_amazon\AGK2Template\src\main\res\drawable-hdpi\icon_white.png
+apps\template_android_amazon\AGK2Template\src\main\res\drawable-ldpi\icon_white.png
+apps\template_android_amazon\AGK2Template\src\main\res\drawable-mdpi\icon_white.png
+apps\template_android_amazon\AGK2Template\src\main\res\drawable-xhdpi\icon_white.png
+apps\template_android_amazon\AGK2Template\src\main\res\drawable-xxhdpi\icon_white.png
+apps\template_android_amazon\AGK2Template\src\main\res\drawable-xxxhdpi\icon_white.png
+apps\template_android_amazon\AGK2Template\src\main\res\layout\facebookmain.xml
+apps\template_android_amazon\AGK2Template\src\main\res\layout\main.xml
+apps\template_android_amazon\AGK2Template\src\main\res\mipmap-anydpi-v26\ic_launcher.xml
+apps\template_android_amazon\AGK2Template\src\main\res\mipmap-hdpi\ic_launcher.png
+apps\template_android_amazon\AGK2Template\src\main\res\mipmap-hdpi\ic_launcher_foreground.png
+apps\template_android_amazon\AGK2Template\src\main\res\mipmap-mdpi\ic_launcher.png
+apps\template_android_amazon\AGK2Template\src\main\res\mipmap-mdpi\ic_launcher_foreground.png
+apps\template_android_amazon\AGK2Template\src\main\res\mipmap-xhdpi\ic_launcher.png
+apps\template_android_amazon\AGK2Template\src\main\res\mipmap-xhdpi\ic_launcher_foreground.png
+apps\template_android_amazon\AGK2Template\src\main\res\mipmap-xxhdpi\ic_launcher.png
+apps\template_android_amazon\AGK2Template\src\main\res\mipmap-xxhdpi\ic_launcher_foreground.png
+apps\template_android_amazon\AGK2Template\src\main\res\mipmap-xxxhdpi\ic_launcher.png
+apps\template_android_amazon\AGK2Template\src\main\res\mipmap-xxxhdpi\ic_launcher_foreground.png
+apps\template_android_amazon\AGK2Template\src\main\res\values\googleservices.xml
+apps\template_android_amazon\AGK2Template\src\main\res\values\strings.xml
+apps\template_android_amazon\AGK2Template\src\main\res\values\styles.xml
+apps\template_android_amazon\AGK2Template\src\main\res\xml\provider_paths.xml
+apps\template_android_amazon\build.gradle
+apps\template_android_amazon\gradle\wrapper\gradle-wrapper.jar
+apps\template_android_amazon\gradle\wrapper\gradle-wrapper.properties
+apps\template_android_amazon\gradle.properties
+apps\template_android_amazon\gradlew
+apps\template_android_amazon\gradlew.bat
+apps\template_android_amazon\settings.gradle
+apps\template_android_google\AGK2Template\build.gradle
+apps\template_android_google\AGK2Template\libs\YouTubeAndroidPlayerApi.jar
+apps\template_android_google\AGK2Template\proguard-rules.txt
+apps\template_android_google\AGK2Template\src\main\AndroidManifest.xml
+apps\template_android_google\AGK2Template\src\main\java\com\thegamecreators\agk_player\LocalApp.java
+apps\template_android_google\AGK2Template\src\main\jni\Android.mk
+apps\template_android_google\AGK2Template\src\main\jni\Application.mk
+apps\template_android_google\AGK2Template\src\main\jni\localapp.h
+apps\template_android_google\AGK2Template\src\main\jni\template.cpp
+apps\template_android_google\AGK2Template\src\main\jni\template.h
+apps\template_android_google\AGK2Template\src\main\jniCompile.bat
+apps\template_android_google\AGK2Template\src\main\res\drawable-hdpi\icon_white.png
+apps\template_android_google\AGK2Template\src\main\res\drawable-ldpi\icon_white.png
+apps\template_android_google\AGK2Template\src\main\res\drawable-mdpi\icon_white.png
+apps\template_android_google\AGK2Template\src\main\res\drawable-xhdpi\icon_white.png
+apps\template_android_google\AGK2Template\src\main\res\drawable-xxhdpi\icon_white.png
+apps\template_android_google\AGK2Template\src\main\res\drawable-xxxhdpi\icon_white.png
+apps\template_android_google\AGK2Template\src\main\res\layout\facebookmain.xml
+apps\template_android_google\AGK2Template\src\main\res\layout\main.xml
+apps\template_android_google\AGK2Template\src\main\res\mipmap-anydpi-v26\ic_launcher.xml
+apps\template_android_google\AGK2Template\src\main\res\mipmap-hdpi\ic_launcher.png
+apps\template_android_google\AGK2Template\src\main\res\mipmap-hdpi\ic_launcher_foreground.png
+apps\template_android_google\AGK2Template\src\main\res\mipmap-mdpi\ic_launcher.png
+apps\template_android_google\AGK2Template\src\main\res\mipmap-mdpi\ic_launcher_foreground.png
+apps\template_android_google\AGK2Template\src\main\res\mipmap-xhdpi\ic_launcher.png
+apps\template_android_google\AGK2Template\src\main\res\mipmap-xhdpi\ic_launcher_foreground.png
+apps\template_android_google\AGK2Template\src\main\res\mipmap-xxhdpi\ic_launcher.png
+apps\template_android_google\AGK2Template\src\main\res\mipmap-xxhdpi\ic_launcher_foreground.png
+apps\template_android_google\AGK2Template\src\main\res\mipmap-xxxhdpi\ic_launcher.png
+apps\template_android_google\AGK2Template\src\main\res\mipmap-xxxhdpi\ic_launcher_foreground.png
+apps\template_android_google\AGK2Template\src\main\res\values\googleservices.xml
+apps\template_android_google\AGK2Template\src\main\res\values\strings.xml
+apps\template_android_google\AGK2Template\src\main\res\values\styles.xml
+apps\template_android_google\AGK2Template\src\main\res\values-v20\styles.xml
+apps\template_android_google\AGK2Template\src\main\res\xml\provider_paths.xml
+apps\template_android_google\build.gradle
+apps\template_android_google\gradle\wrapper\gradle-wrapper.jar
+apps\template_android_google\gradle\wrapper\gradle-wrapper.properties
+apps\template_android_google\gradle.properties
+apps\template_android_google\gradlew
+apps\template_android_google\gradlew.bat
+apps\template_android_google\settings.gradle
+apps\template_android_ouya\AGK2Template\build.gradle
+apps\template_android_ouya\AGK2Template\libs\ouya-sdk.jar
+apps\template_android_ouya\AGK2Template\src\main\AndroidManifest.xml
+apps\template_android_ouya\AGK2Template\src\main\java\com\thegamecreators\agk_player\LocalApp.java
+apps\template_android_ouya\AGK2Template\src\main\jni\Android.mk
+apps\template_android_ouya\AGK2Template\src\main\jni\Application.mk
+apps\template_android_ouya\AGK2Template\src\main\jni\localapp.h
+apps\template_android_ouya\AGK2Template\src\main\jni\template.cpp
+apps\template_android_ouya\AGK2Template\src\main\jni\template.h
+apps\template_android_ouya\AGK2Template\src\main\jniCompile.bat
+apps\template_android_ouya\AGK2Template\src\main\res\drawable\icon.png
+apps\template_android_ouya\AGK2Template\src\main\res\drawable-hdpi\app_icon.png
+apps\template_android_ouya\AGK2Template\src\main\res\drawable-ldpi\app_icon.png
+apps\template_android_ouya\AGK2Template\src\main\res\drawable-mdpi\app_icon.png
+apps\template_android_ouya\AGK2Template\src\main\res\drawable-xhdpi\app_icon.png
+apps\template_android_ouya\AGK2Template\src\main\res\drawable-xhdpi\ouya_icon.png
+apps\template_android_ouya\AGK2Template\src\main\res\layout\facebookmain.xml
+apps\template_android_ouya\AGK2Template\src\main\res\layout\main.xml
+apps\template_android_ouya\AGK2Template\src\main\res\values\strings.xml
+apps\template_android_ouya\AGK2Template\src\main\res\values\styles.xml
+apps\template_android_ouya\build.gradle
+apps\template_android_ouya\gradle\wrapper\gradle-wrapper.jar
+apps\template_android_ouya\gradle\wrapper\gradle-wrapper.properties
+apps\template_android_ouya\gradle.properties
+apps\template_android_ouya\gradlew
+apps\template_android_ouya\gradlew.bat
+apps\template_android_ouya\settings.gradle
+apps\template_ios\AGK 2 Template.entitlements
+apps\template_ios\agkinterpreter-Info.plist
+apps\template_ios\agkinterpreter.xcodeproj\project.pbxproj
+apps\template_ios\agkinterpreter.xcodeproj\project.xcworkspace\contents.xcworkspacedata
+apps\template_ios\agkinterpreter_Prefix.pch
+apps\template_ios\Classes\Core.h
+apps\template_ios\Classes\Core.m
+apps\template_ios\Classes\EAGLView.h
+apps\template_ios\Classes\EAGLView.m
+apps\template_ios\Classes\template.cpp
+apps\template_ios\Classes\template.h
+apps\template_ios\Classes\UntitledViewController.h
+apps\template_ios\Classes\UntitledViewController.m
+apps\template_ios\Classes\UntitledViewController.xib
+apps\template_ios\GoogleService-Info.plist
+apps\template_ios\Icons.xcassets\AppIcon.appiconset\Contents.json
+apps\template_ios\Icons.xcassets\AppIcon.appiconset\icon-1024.png
+apps\template_ios\Icons.xcassets\AppIcon.appiconset\icon-120.png
+apps\template_ios\Icons.xcassets\AppIcon.appiconset\icon-152.png
+apps\template_ios\Icons.xcassets\AppIcon.appiconset\icon-167.png
+apps\template_ios\Icons.xcassets\AppIcon.appiconset\icon-180.png
+apps\template_ios\Icons.xcassets\AppIcon.appiconset\icon-76.png
+apps\template_ios\Icons.xcassets\Contents.json
+apps\template_ios\LaunchScreen.storyboard
+apps\template_ios\main.m
+apps\template_ios\MainWindow.xib
+apps\template_ios\SplashLogo.png
+apps\template_ios_lite\agkinterpreter-Info.plist
+apps\template_ios_lite\agkinterpreter.xcodeproj\project.pbxproj
+apps\template_ios_lite\agkinterpreter.xcodeproj\project.xcworkspace\contents.xcworkspacedata
+apps\template_ios_lite\agkinterpreter_Prefix.pch
+apps\template_ios_lite\Classes\Core.h
+apps\template_ios_lite\Classes\Core.m
+apps\template_ios_lite\Classes\EAGLView.h
+apps\template_ios_lite\Classes\EAGLView.m
+apps\template_ios_lite\Classes\template.cpp
+apps\template_ios_lite\Classes\template.h
+apps\template_ios_lite\Classes\UntitledViewController.h
+apps\template_ios_lite\Classes\UntitledViewController.m
+apps\template_ios_lite\Classes\UntitledViewController.xib
+apps\template_ios_lite\Icons.xcassets\AppIcon.appiconset\Contents.json
+apps\template_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-1024.png
+apps\template_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-120.png
+apps\template_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-152.png
+apps\template_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-167.png
+apps\template_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-180.png
+apps\template_ios_lite\Icons.xcassets\AppIcon.appiconset\icon-76.png
+apps\template_ios_lite\Icons.xcassets\Contents.json
+apps\template_ios_lite\LaunchScreen.storyboard
+apps\template_ios_lite\main.m
+apps\template_ios_lite\MainWindow.xib
+apps\template_ios_lite\README.txt
+apps\template_ios_lite\SplashLogo.png
+apps\template_mac\AGK Player.entitlements
+apps\template_mac\agkinterpreter-Info.plist
+apps\template_mac\agkinterpreter.xcodeproj\project.pbxproj
+apps\template_mac\agkinterpreter.xcodeproj\project.xcworkspace\contents.xcworkspacedata
+apps\template_mac\agkinterpreter_Prefix.pch
+apps\template_mac\Core.mm
+apps\template_mac\English.lproj\InfoPlist.strings
+apps\template_mac\icons.iconset\icon_128x128.png
+apps\template_mac\icons.iconset\icon_128x128@2x.png
+apps\template_mac\icons.iconset\icon_16x16.png
+apps\template_mac\icons.iconset\icon_16x16@2x.png
+apps\template_mac\icons.iconset\icon_256x256.png
+apps\template_mac\icons.iconset\icon_256x256@2x.png
+apps\template_mac\icons.iconset\icon_32x32.png
+apps\template_mac\icons.iconset\icon_32x32@2x.png
+apps\template_mac\icons.iconset\icon_512x512.png
+apps\template_mac\icons.iconset\icon_512x512@2x.png
+apps\template_mac\main.mm
+apps\template_mac\template.cpp
+apps\template_mac\template.h

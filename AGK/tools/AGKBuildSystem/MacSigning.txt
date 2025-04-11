@@ -1,0 +1,21 @@
+# sign build
+./sign.sh
+
+# zips up the .app folder into a .zip
+ditto -c -k --keepParent AGKMac/AppGameKit.app AGKMac/AppGameKit.zip
+
+   # if never done before, run this to store app specific password, it will ask for a profile name to be used later
+   xcrun notarytool store-credentials --apple-id "YourAppleAccount@email.com" --team-id "4245WA8N82"
+
+# For Paul "Profile Name" is "Paul Notary"
+# send the .zip to Apple to notarize
+xcrun notarytool submit AGKMac/AppGameKit.zip --keychain-profile "Profile Name" --wait
+
+[Can now delete AGKMac/AppGameKit.zip]
+
+# attaches the notarization to the .app
+xcrun stapler staple AGKMac/AppGameKit.app
+
+
+# use the following to check the logs in case of rejection
+xcrun notarytool log xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx --keychain-profile "Profile Name"

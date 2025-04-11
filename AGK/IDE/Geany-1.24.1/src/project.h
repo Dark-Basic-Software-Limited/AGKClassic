@@ -54,7 +54,7 @@ typedef struct GeanyProjectFile GeanyProjectFile;
 #define AGK_ANDROID_PERMISSION_WAKE			0x004
 #define AGK_ANDROID_PERMISSION_GPS			0x008
 #define AGK_ANDROID_PERMISSION_IAP			0x010
-#define AGK_ANDROID_PERMISSION_EXPANSION	0x020
+#define AGK_ANDROID_PERMISSION_NOTIFY       0x020
 #define AGK_ANDROID_PERMISSION_LOCATION		0x040
 #define AGK_ANDROID_PERMISSION_PUSH			0x080
 #define AGK_ANDROID_PERMISSION_CAMERA		0x100
@@ -68,6 +68,7 @@ typedef struct GeanyProjectAPKSettings
 	gchar* app_name;
 	gchar* package_name;
 	gchar* app_icon_path;
+	gchar* app_icon_new_path;
 	gchar* notif_icon_path;
 	gchar* ouya_icon_path;
 	int orientation;

@@ -15,6 +15,8 @@
 			{
 				// being processed by Apple
 				NSLog ( @"SKPaymentTransactionStatePurchasing processed" );
+                
+                [[StoreManager sharedManager] processingTransaction: transaction];
 			}
 			break;
 		
@@ -65,9 +67,10 @@
 				// restored when something went wrong for example, user got a phone call when attempting to purchase
 			
 				NSString *rawReceiptData = [[NSString alloc] initWithData:transaction.originalTransaction.transactionReceipt encoding:NSUTF8StringEncoding];
-				[[StoreManager sharedManager] provideContent: transaction.originalTransaction.payment.productIdentifier signature:rawReceiptData];
+				[[StoreManager sharedManager] provideContent: transaction.originalTransaction.payment.productIdentifier signature:rawReceiptData token:transaction.transactionIdentifier ];
 				
 				[[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+                [rawReceiptData release];
 			}
 			break;
 			

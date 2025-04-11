@@ -497,6 +497,18 @@ void agk::RestoreApp()
 	XMapWindow( g_pXDisplay, g_pXWindow );
 }
 
+int agk::IsPinAppAvailable()
+//****
+{
+	return 0;
+}
+
+void agk::PinApp( int enable )
+//****
+{
+	// do nothing
+}
+
 void agk::SetImmersiveMode( int mode )
 {
 	
@@ -506,6 +518,12 @@ void agk::SetScreenResolution( int width, int height )
 //****
 {
 	// do nothing on pi
+}
+
+int agk::IsDarkTheme()
+//****
+{
+	return 0;
 }
 
 char* agk::GetURLSchemeText()
@@ -1261,6 +1279,60 @@ int agk::GetDeviceDPI()
 //****
 {
 	return 0;
+}
+
+int agk::GetDisplayNumCutouts()
+//****
+{
+	return 0;
+}
+
+float agk::GetDisplayCutoutTop( int index )
+//****
+{
+	return 0;
+}
+
+float agk::GetDisplayCutoutBottom( int index )
+//****
+{
+	return 0;
+}
+
+float agk::GetDisplayCutoutLeft( int index )
+//****
+{
+	return 0;
+}
+
+float agk::GetDisplayCutoutRight( int index )
+//****
+{
+	return 0;
+}
+
+float agk::GetScreenBoundsSafeTop()
+//****
+{
+	return GetScreenBoundsTop();
+}
+
+float agk::GetScreenBoundsSafeBottom()
+//****
+{
+	return GetScreenBoundsBottom();
+}
+
+float agk::GetScreenBoundsSafeLeft()
+//****
+{
+	return GetScreenBoundsLeft();
+}
+
+float agk::GetScreenBoundsSafeRight()
+//****
+{
+	return GetScreenBoundsRight();
 }
 
 char* agk::GetAppPackageName()
@@ -5788,4 +5860,37 @@ void agk::ShareSnapChatImage( const char* imageFile, const char* stickerFile, co
 //****
 {
 
+}
+
+// Extensions
+int agk::ExternalSDKSupported( const char* sdk )
+//****
+{
+	return 0;
+}
+
+void agk::ExternalCommand( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+
+}
+
+int agk::ExternalCommandInt( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+	return 0;
+}
+
+float agk::ExternalCommandFloat( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+	return 0;
+}
+
+char* agk::ExternalCommandString( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+	char* str = new char[1];
+	*str = 0;
+	return str;
 }

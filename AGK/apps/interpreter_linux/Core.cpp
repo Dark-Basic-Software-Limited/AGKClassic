@@ -256,9 +256,9 @@ struct egldata
 
 int main (int argc, char **argv)
 {
-    App.g_dwDeviceWidth = DEVICE_WIDTH;
-	App.g_dwDeviceHeight = DEVICE_HEIGHT;
-	App.g_dwFullScreen = FULLSCREEN ? 1 : 0;
+    int width = DEVICE_WIDTH;
+	int height = DEVICE_HEIGHT;
+	int fullscreen = FULLSCREEN ? 1 : 0;
 
 	char* pSetupFile = (char*)"setup.agc";
 	if ( agk::GetFileExists ( pSetupFile )==1 )
@@ -270,9 +270,9 @@ int main (int argc, char **argv)
 		{
 			char* pLineToRead = agk::ReadLine ( 1 );
 			pField=(char*)"title="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	strcpy ( App.g_pWindowTitle, pLineToRead+strlen(pField) );
-			pField=(char*)"width="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	App.g_dwDeviceWidth = (unsigned int)atoi(pLineToRead+strlen(pField));
-			pField=(char*)"height="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	App.g_dwDeviceHeight = (unsigned int)atoi(pLineToRead+strlen(pField));
-			pField=(char*)"fullscreen="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	App.g_dwFullScreen = (unsigned int)atoi(pLineToRead+strlen(pField));
+			pField=(char*)"width="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	width = (unsigned int)atoi(pLineToRead+strlen(pField));
+			pField=(char*)"height="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	height = (unsigned int)atoi(pLineToRead+strlen(pField));
+			pField=(char*)"fullscreen="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	fullscreen = (unsigned int)atoi(pLineToRead+strlen(pField));
 			pField=(char*)"resolutionmode="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	App.g_dwResolutionMode = (unsigned int)atoi(pLineToRead+strlen(pField));
 		}
 		agk::CloseFile ( 1 );
@@ -288,18 +288,15 @@ int main (int argc, char **argv)
     GLFWmonitor *monitor = glfwGetPrimaryMonitor();
     const GLFWvidmode *mode = glfwGetVideoMode( monitor );
     
-    if ( App.g_dwFullScreen == 1 ) 
+    if ( fullscreen == 1 ) 
 	{
-		App.g_dwDeviceWidth = mode->width;
-		App.g_dwDeviceHeight = mode->height;
+		width = mode->width;
+		height = mode->height;
 	}
 	else 
 	{
 		monitor = 0;
     
-		int width = App.g_dwDeviceWidth;
-		int height = App.g_dwDeviceHeight;
-		
 		float appAspect = width / (float) height;
 		float windowAspect = (mode->width-15) / (float) (mode->height-80);
 		
@@ -321,9 +318,6 @@ int main (int argc, char **argv)
 				width = (int) width*ratio;
 			}
 		}
-		
-		App.g_dwDeviceWidth = width;
-		App.g_dwDeviceHeight = height;
 	}
     
     glfwWindowHint( GLFW_RED_BITS, 8 );
@@ -338,7 +332,7 @@ int main (int argc, char **argv)
 
 	glfwWindowHint( GLFW_SAMPLES, 4 );
     
-	GLFWwindow *window = glfwCreateWindow(App.g_dwDeviceWidth, App.g_dwDeviceHeight, App.g_pWindowTitle, monitor, NULL);
+	GLFWwindow *window = glfwCreateWindow(width, height, App.g_pWindowTitle, monitor, NULL);
 	if ( !window )
     {
         glfwTerminate();

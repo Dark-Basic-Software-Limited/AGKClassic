@@ -190,6 +190,88 @@ int CopyFile2( const char *src, const char *dst )
 	return 1;
 }
 
+int GetPathExistsUTF8( const char *szPath )
+{
+	int size = MultiByteToWideChar( CP_UTF8, 0, szPath, -1, 0, 0 );
+	wchar_t *wzPath = new wchar_t[ size ];
+	MultiByteToWideChar( CP_UTF8, 0, szPath, -1, wzPath, size );
+
+	unsigned int result = GetFileAttributesW( wzPath );
+	delete [] wzPath;
+
+	if ( result == INVALID_FILE_ATTRIBUTES ) return 0;
+	else if ( result & FILE_ATTRIBUTE_DIRECTORY ) return 1;
+	else return 2;
+}
+
+BOOL CreateDirectoryUTF8( const char* szPath, LPSECURITY_ATTRIBUTES sec )
+{
+	int size = MultiByteToWideChar( CP_UTF8, 0, szPath, -1, 0, 0 );
+	wchar_t *wzPath = new wchar_t[ size ];
+	MultiByteToWideChar( CP_UTF8, 0, szPath, -1, wzPath, size );
+
+	BOOL result = CreateDirectoryW( wzPath, sec );
+	delete [] wzPath;
+	return result;
+}
+
+int CreatePath( const char *path )
+{
+	if ( !path || !*path ) return 0;
+	if ( path[1] != ':' ) 
+	{
+		char err[1000]; sprintf( err, "Invalid path \"%s\", must be absolute", path );
+		Error( err );
+		return 0;
+	}
+
+	char *newPath = new char[ strlen(path) + 1 ];
+	strcpy( newPath, path );
+	char *origPath = newPath;
+
+	// skip drive letter
+	newPath += 3;
+
+	// convert backslashes to forward slashes
+	char *ptr = newPath;
+	while( *ptr ) 
+	{
+		if ( *ptr == '\\' ) *ptr = '/';
+		ptr++;
+	}
+
+	char *szPrev = newPath;
+	char *szSlash = 0;
+	while( (szSlash = strchr( szPrev, '/' )) )
+	{
+		unsigned int length = (unsigned int)(szSlash-szPrev);
+		if ( length == 0 )
+		{
+			char err[1000]; sprintf( err, "Invalid path \"%s\", folder names must have at least one character", origPath );
+			delete [] origPath;
+			Error( err );
+			return 0;
+		}
+
+		*szSlash = 0;
+
+		if ( !GetPathExistsUTF8( origPath ) && !CreateDirectoryUTF8( origPath, NULL ) )
+		{
+			char err[1000]; sprintf( err, "Failed to create path \"%s\", the app may not have permission to create it", origPath );
+			delete [] origPath;
+			Error( err );
+			return 0;
+		}
+
+		*szSlash = '/';
+		
+		szPrev = szSlash+1;
+	}
+
+	delete [] origPath;
+	return 1;
+}
+
 // must be absolute paths
 int CopyFolder( const char *src, const char *dst, int numIgnore, const char **szIgnoreExt )
 {
@@ -331,14 +413,15 @@ int UpdateFolder( const char *src, const char *dst, int numIgnore, const char **
 	return 1;
 }
 
-int RecordFiles( const char *src, FileRecord* fileStore, int numIgnore, const char **szIgnoreExt )
+int RecordFiles( const char *base, const char* sub, FileRecord* fileStore, int numIgnore, const char **szIgnoreExt )
 {
-	if ( strchr( src, ':' ) == 0 ) Error( "Failed to record files, source path must be absolute" );
+	if ( strchr( base, ':' ) == 0 ) Error( "Failed to record files, source path must be absolute" );
 	if ( !fileStore ) Error( "File store is null" );
 
 	char currDir[ 1024 ];
 	GetCurrentDirectory( 1024, currDir );
-	SetCurrentDirectoryWithCheck( src );
+	SetCurrentDirectoryWithCheck( base );
+	SetCurrentDirectoryWithCheck( sub );
 	
 	WIN32_FIND_DATA	FindFileData;
 	HANDLE hFind = FindFirstFile ( "*.*", &FindFileData );
@@ -352,11 +435,11 @@ int RecordFiles( const char *src, FileRecord* fileStore, int numIgnore, const ch
 			{
 				// directory
 				char newSrc[ 1024 ];
-				strcpy( newSrc, src );
+				strcpy( newSrc, sub );
 				strcat( newSrc, "\\" );
 				strcat( newSrc, FindFileData.cFileName );
 
-				if ( !RecordFiles( newSrc, fileStore, numIgnore, szIgnoreExt ) ) return 0;
+				if ( !RecordFiles( base, newSrc, fileStore, numIgnore, szIgnoreExt ) ) return 0;
 			}
 			else
 			{
@@ -375,7 +458,7 @@ int RecordFiles( const char *src, FileRecord* fileStore, int numIgnore, const ch
 				if ( bSkip ) continue;
 
 				char newSrc[ 1024 ];
-				strcpy( newSrc, src );
+				strcpy( newSrc, sub );
 				strcat( newSrc, "\\" );
 				strcat( newSrc, FindFileData.cFileName );
 

@@ -7,4 +7,5 @@
     <string name="admob_app_id">ca-app-pub-6042722625366627~8152259761</string>
     <string name="snap_chat_id">1cec1943-35cc-49ed-b25e-61c4a9d7e10a</string>
     <string name="project_id" translatable="false">agktest-427a3</string>
+    <color name="ic_launcher_background">#EAE9E9</color>
 </resources>

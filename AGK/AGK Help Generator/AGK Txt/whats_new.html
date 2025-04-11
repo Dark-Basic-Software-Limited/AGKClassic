@@ -32,6 +32,60 @@
 <!--This file is parsed by a script, do not change the formatting-->
 <h1>Change Log</h1>
             
+<h2>Build 2023.01.26</h2>
+
+<ul>
+<li>Fixed Android export using the AGK adaptive icon if only a legacy icon was supplied</li>
+<li>Added support for BMP image files</li>
+<li>Added GetInAppPurchaseIsRenewing to return subscription renewal state on Android</li>
+<li>Fixed a crash when creating a banner ad with CreateAdvert and then sending the app to the background</li>
+<li>Fixed DeleteAdvert not removing the banner ad</li>
+</ul>
+
+<h2>Build 2022.12.13</h2>
+
+<ul>
+<li>Fixed Alt key combinations causing a system sound on Windows</li>
+<li>Fixed InAppPurchaseSetup failing unless both a normal and subscription product are added</li>
+<li>Fixed text shaders not receiving shader constant updates</li>
+<li>Fixed IndexOf when used on arrays of types</li>
+<li>Fixed text not rendering with the correct default shader</li>
+<li>Fixed JSON parser not decoding \u characters</li>
+<li>Fixed apps including the User Tracking description when it isn't used, causing rejections by Apple</li>
+<li>Fixed Chartboost not setting the COPPA restrictions if SetAdMobChildRating is set</li>
+<li>Fixed AdMob not setting MaxAdContentRating if SetAdMobChildRating is set</li>
+</ul>
+
+<h2>Build 2022.09.28</h2>
+
+<ul>
+<li>Fixed compile error when returning a type from a function with more than 256 types defined in the project</li>
+<li>Fixed potential runtime issues when more than 256 types are defined in a project</li>
+<li>Added text shader commands</li>
+<li>Fixed SetPhysicsInitiallyAwake ignoring the provided value and always using true</li>
+<li>Fixed APK export with deep links for Android 12</li>
+<li>Added new In-App Purchase commands to deal with subscriptions with multiple plans and offers</li>
+<li>Added new common code folder for Android Tier 2 apps to simplify updates</li>
+<li>Fixed command name for GetFractalXYZ</li>
+<li>Added GetAppReceipt() command on iOS to return the list of AppStore transactions</li>
+<li>Added commands to return the size and position of any display cutouts on Android</li>
+<li>Added commands to return the safe area that avoids all cutouts on iOS and Android</li>
+<li>Updated Snapchat SDK on Android</li>
+<li>Updated Android target API to 31 (Android 12)</li>
+<li>Removed deprecated expansion file commands on Android</li>
+<li>Updated Chartboost SDK on Android</li>
+<li>Updated Firebase SDK on iOS and Android</li>
+<li>Added support for both Adaptive and Legacy icons in APK export</li>
+<li>Added command to check if the device has a dark theme enabled</li>
+<li>Added command to request the app be pinned on Android</li>
+<li>Fixed Android sometimes returning device width and height as 1 at start before returning the correct values</li>
+<li>Padded short sounds on Android to 400ms to avoid popping and distortion</li>
+<li>Fixed very long Print() string (100,000+ characters) causing a crash</li>
+<li>Fixed SetWindowSize on Windows not allowing windows bigger than the screen when allowOversize parameter is set to 1</li>
+<li>Fixed APK export sometimes not finding java or jarsigner program</li>
+<li>Fixed Android Keytool process sometimes not finding keytool program</li>
+</ul>
+
 <h2>Build 2022.06.27</h2>
 
 <ul>
@@ -115,21 +169,16 @@
 
 <ul>
 <li>Fixed a crash on iOS when attempting to restore purchases</li>
+<li>Updated Android export to enable exporting to an App Bundle for Google Play</li>
+<li>The Java Development Kit (JDK) must now be installed prior to exporting an APK or App Bundle</li>
+<li>APKs are now signed with both V1 and V2 signatures to support future versions of Android</li>
+<li>Fixed array FromJSON() crashing when converting an empty string into an integer or float</li>
 <li>Fixed Google Service App ID field in Android Export dialog being limited to 12 characters</li>
 <li>Fixed a problem with the print command not dealing with more than 20 digits in a float. Previously anything greater than this would cause a silent crash.</li>
 <li>Fixed a crash when using SetMusicLoopTimesOGG.</li>
 <li>Added a new find feature for unsorted arrays called IndexOf.</li>
 <li>SetEditBoxTextSize command reference updated.</li>
 <li>Updated command reference for Len and ByteLen.</li>
-</ul>
-
-<h2>Build 2021.xx.xx</h2>
-
-<ul>
-<li>Updated Android export to enable exporting to an App Bundle for Google Play</li>
-<li>The Java Development Kit (JDK) must now be installed prior to exporting an APK or App Bundle</li>
-<li>APKs are now signed with both V1 and V2 signatures to support future versions of Android</li>
-<li>Fixed array FromJSON() crashing when converting an empty string into an integer or float</li>
 </ul>
 
 <h2>Build 2021.06.14</h2>

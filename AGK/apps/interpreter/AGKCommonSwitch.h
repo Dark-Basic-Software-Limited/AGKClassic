@@ -1348,13 +1348,13 @@ case AGKI_NOP: // do nothing
 			case AGK_DATA_TYPE_INT:
 			{
 				int value = m_pStack [ --m_iStackPtr ].i;
-				m_pStack [ m_iStackPtr - 1 ].i = pArray->IndexOfInt ( value );
+				m_pStack [ m_iStackPtr - 1 ].i = pArray->IndexOfInt ( 0, value );
 				break;
 			}
 			case AGK_DATA_TYPE_FLOAT:
 			{
 				float value = m_pStack [ --m_iStackPtr ].f;
-				m_pStack [ m_iStackPtr - 1 ].i = pArray->IndexOfFloat ( value );
+				m_pStack [ m_iStackPtr - 1 ].i = pArray->IndexOfFloat ( 0, value );
 				break;
 			}
 			case AGK_DATA_TYPE_STRING:
@@ -1372,13 +1372,13 @@ case AGKI_NOP: // do nothing
 				case AGK_DATA_TYPE_INT:
 				{
 					int value = m_pStack [ --m_iStackPtr ].i;
-					m_pStack [ m_iStackPtr - 1 ].i = pArray->IndexOfInt ( value );
+					m_pStack [ m_iStackPtr - 1 ].i = pArray->IndexOfInt ( offset, value );
 					break;
 				}
 				case AGK_DATA_TYPE_FLOAT:
 				{
 					float value = m_pStack [ --m_iStackPtr ].f;
-					m_pStack [ m_iStackPtr - 1 ].i = pArray->IndexOfFloat ( value );
+					m_pStack [ m_iStackPtr - 1 ].i = pArray->IndexOfFloat ( offset, value );
 					break;
 				}
 				case AGK_DATA_TYPE_STRING:
@@ -1511,7 +1511,7 @@ case AGKI_NOP: // do nothing
 			}
 			case AGK_DATA_TYPE_STRING:
 			{
-				m_pStack [ m_iStackPtr++ ].i = pArray->IndexOfString ( pFind->GetStr ( ) );
+				m_pStack [ m_iStackPtr++ ].i = pArray->IndexOfString ( 0, pFind->GetStr ( ) );
 				break;
 			}
 			case AGK_DATA_TYPE_TYPE:
@@ -1533,7 +1533,7 @@ case AGKI_NOP: // do nothing
 				}
 				case AGK_DATA_TYPE_STRING:
 				{
-					m_pStack [ m_iStackPtr++ ].i = pArray->IndexOfString ( pFind->GetStr ( ) );
+					m_pStack [ m_iStackPtr++ ].i = pArray->IndexOfString (offset, pFind->GetStr ( ) );
 					break;
 				}
 				case AGK_DATA_TYPE_TYPE:

@@ -2111,6 +2111,39 @@ extern float(*AGKCommand2096)( float, float, float );
 extern float(*AGKCommand2097)( unsigned int, float );
 extern float(*AGKCommand2098)( unsigned int, float, float );
 extern float(*AGKCommand2099)( unsigned int, float, float, float );
+extern void(*AGKCommand2100)( unsigned int, unsigned int );
+extern void(*AGKCommand2101)( unsigned int, const char*, float, float, float, float );
+extern void(*AGKCommand2102)( unsigned int, const char*, unsigned int, float, float, float, float );
+extern void(*AGKCommand2103)( unsigned int, const char* );
+extern void(*AGKCommand2104)(  );
+extern int(*AGKCommand2105)( const char* );
+extern void(*AGKCommand2106)( const char*, const char*, const char*, const char* );
+extern int(*AGKCommand2107)( const char*, const char*, const char*, const char* );
+extern float(*AGKCommand2108)( const char*, const char*, const char*, const char* );
+extern char*(*AGKCommand2109)( const char*, const char*, const char*, const char* );
+extern char*(*AGKCommand2110)(  );
+extern void(*AGKCommand2111)( int, const char* );
+extern int(*AGKCommand2112)( int );
+extern int(*AGKCommand2113)( int, int );
+extern char*(*AGKCommand2114)( int, int, int );
+extern int(*AGKCommand2115)( int, int, int );
+extern char*(*AGKCommand2116)( int, int, int );
+extern int(*AGKCommand2117)( int, int, int );
+extern char*(*AGKCommand2118)( int, int );
+extern char*(*AGKCommand2119)( int, int );
+extern int(*AGKCommand2120)(  );
+extern float(*AGKCommand2121)( int );
+extern float(*AGKCommand2122)( int );
+extern float(*AGKCommand2123)( int );
+extern float(*AGKCommand2124)( int );
+extern float(*AGKCommand2125)(  );
+extern float(*AGKCommand2126)(  );
+extern float(*AGKCommand2127)(  );
+extern float(*AGKCommand2128)(  );
+extern int(*AGKCommand2129)(  );
+extern void(*AGKCommand2130)( int );
+extern int(*AGKCommand2131)(  );
+extern int(*AGKCommand2132)( int );
 
 class agk
 {
@@ -4214,7 +4247,40 @@ class agk
 		static inline float GetNoiseXYZ( float x, float y, float z ) { return AGKCommand2096( x, y, z ); }
 		static inline float GetFractalX( unsigned int octaves, float x ) { return AGKCommand2097( octaves, x ); }
 		static inline float GetFractalXY( unsigned int octaves, float x, float y ) { return AGKCommand2098( octaves, x, y ); }
-		static inline float GetFractalXZ( unsigned int octaves, float x, float y, float z ) { return AGKCommand2099( octaves, x, y, z ); }
+		static inline float GetFractalXYZ( unsigned int octaves, float x, float y, float z ) { return AGKCommand2099( octaves, x, y, z ); }
+		static inline void SetTextShader( unsigned int iTextIndex, unsigned int shaderID ) { AGKCommand2100( iTextIndex, shaderID ); }
+		static inline void SetTextShaderConstantByName( unsigned int iTextIndex, const char* szName, float value1, float value2, float value3, float value4 ) { AGKCommand2101( iTextIndex, szName, value1, value2, value3, value4 ); }
+		static inline void SetTextShaderConstantArrayByName( unsigned int iTextIndex, const char* szName, unsigned int arrayIndex, float value1, float value2, float value3, float value4 ) { AGKCommand2102( iTextIndex, szName, arrayIndex, value1, value2, value3, value4 ); }
+		static inline void SetTextShaderConstantDefault( unsigned int iTextIndex, const char* szName ) { AGKCommand2103( iTextIndex, szName ); }
+		static inline void InAppPurchaseRedeemOffer(  ) { AGKCommand2104(  ); }
+		static inline int ExternalSDKSupported( const char* sdk ) { return AGKCommand2105( sdk ); }
+		static inline void ExternalCommand( const char* sdk, const char* command, const char* str1, const char* str2 ) { AGKCommand2106( sdk, command, str1, str2 ); }
+		static inline int ExternalCommandInt( const char* sdk, const char* command, const char* str1, const char* str2 ) { return AGKCommand2107( sdk, command, str1, str2 ); }
+		static inline float ExternalCommandFloat( const char* sdk, const char* command, const char* str1, const char* str2 ) { return AGKCommand2108( sdk, command, str1, str2 ); }
+		static inline char* ExternalCommandString( const char* sdk, const char* command, const char* str1, const char* str2 ) { return AGKCommand2109( sdk, command, str1, str2 ); }
+		static inline char* GetAppReceipt(  ) { return AGKCommand2110(  ); }
+		static inline void InAppPurchaseActivateWithPlan( int iID, const char* planToken ) { AGKCommand2111( iID, planToken ); }
+		static inline int GetInAppPurchaseSubNumPlans( int iID ) { return AGKCommand2112( iID ); }
+		static inline int GetInAppPurchaseSubPlanNumPeriods( int iID, int planIndex ) { return AGKCommand2113( iID, planIndex ); }
+		static inline char* GetInAppPurchaseSubPlanPrice( int iID, int planIndex, int periodIndex ) { return AGKCommand2114( iID, planIndex, periodIndex ); }
+		static inline int GetInAppPurchaseSubPlanDuration( int iID, int planIndex, int periodIndex ) { return AGKCommand2115( iID, planIndex, periodIndex ); }
+		static inline char* GetInAppPurchaseSubPlanDurationUnit( int iID, int planIndex, int periodIndex ) { return AGKCommand2116( iID, planIndex, periodIndex ); }
+		static inline int GetInAppPurchaseSubPlanPaymentType( int iID, int planIndex, int periodIndex ) { return AGKCommand2117( iID, planIndex, periodIndex ); }
+		static inline char* GetInAppPurchaseSubPlanTags( int iID, int planIndex ) { return AGKCommand2118( iID, planIndex ); }
+		static inline char* GetInAppPurchaseSubPlanToken( int iID, int planIndex ) { return AGKCommand2119( iID, planIndex ); }
+		static inline int GetDisplayNumCutouts(  ) { return AGKCommand2120(  ); }
+		static inline float GetDisplayCutoutTop( int index ) { return AGKCommand2121( index ); }
+		static inline float GetDisplayCutoutBottom( int index ) { return AGKCommand2122( index ); }
+		static inline float GetDisplayCutoutLeft( int index ) { return AGKCommand2123( index ); }
+		static inline float GetDisplayCutoutRight( int index ) { return AGKCommand2124( index ); }
+		static inline float GetScreenBoundsSafeTop(  ) { return AGKCommand2125(  ); }
+		static inline float GetScreenBoundsSafeBottom(  ) { return AGKCommand2126(  ); }
+		static inline float GetScreenBoundsSafeLeft(  ) { return AGKCommand2127(  ); }
+		static inline float GetScreenBoundsSafeRight(  ) { return AGKCommand2128(  ); }
+		static inline int IsPinAppAvailable(  ) { return AGKCommand2129(  ); }
+		static inline void PinApp( int enable ) { AGKCommand2130( enable ); }
+		static inline int IsDarkTheme(  ) { return AGKCommand2131(  ); }
+		static inline int GetInAppPurchaseIsRenewing( int iID ) { return AGKCommand2132( iID ); }
 };
 
 #endif

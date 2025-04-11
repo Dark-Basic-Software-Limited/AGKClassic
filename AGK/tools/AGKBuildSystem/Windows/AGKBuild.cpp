@@ -193,6 +193,79 @@ template<class T> class DynArrayObject
 
 DynArrayObject<ResourceFile> g_allResources;
 
+int ExtractFile( mz_zip_archive* zip_archive, const char* file, const char* dst_path )
+{
+	unsigned int dataLength = 0;
+	char* pData = (char*)mz_zip_reader_extract_file_to_heap( zip_archive, file, &dataLength, 0 );
+	if ( !pData || dataLength <= 0 ) 
+	{
+		return 0;
+	}
+
+	CreatePath( dst_path );
+				
+	// write it to the build folder
+	FILE *fp = fopen( dst_path, "wb" );
+	if ( !fp )
+	{
+		free(pData);
+		char err[ 1024 ];
+		sprintf_s( err, "Failed to open \"%s\" for writing", dst_path );
+		Error( err );
+		return -1;
+	}
+	fwrite( pData, 1, dataLength, fp );
+	fclose( fp );
+	free(pData);
+
+	return 1;
+}
+
+int ExtractFolder( mz_zip_archive* zip_archive, const char* folder, const char* base_path )
+{
+	int numFiles = mz_zip_reader_get_num_files( zip_archive );
+
+	char szFilename[ 1024 ];
+	char szDstPath[ 1024 ];
+	char szMatch[ 1024 ];
+	strcpy_s( szMatch, folder );
+	char* ptr = szMatch;
+	// replace back slashes with forward slashes
+	while( *ptr )
+	{
+		if ( *ptr == '\\' ) *ptr = '/';
+		ptr++;
+	}
+	// append a forward slash at the end
+	*ptr = '/';
+	*(ptr+1) = 0;
+
+	// find files that match the folder prefix
+	for( int i = 0; i < numFiles; i++ )
+	{
+		mz_zip_reader_get_filename( zip_archive, i, szFilename, 1024 );
+		if ( strnicmp( folder, szFilename, strlen(folder) ) == 0 )
+		{
+			// matches folder, create destination path
+			strcpy_s( szDstPath, base_path );
+			strcat_s( szDstPath, "/" );
+			strcat_s( szDstPath, szFilename );
+
+			// extract it to destination
+			CreatePath( szDstPath );
+			if ( !mz_zip_reader_extract_file_to_file( zip_archive, szFilename, szDstPath, 0 ) )
+			{
+				char err[ 1024 ];
+				sprintf_s( err, "Failed to open \"%s\" for writing", szDstPath );
+				Error( err );
+				return -1;	
+			}
+		}
+	}
+
+	return 1;
+}
+
 int main( int argc, char* argv[] )
 {
 	// set some path variables
@@ -240,7 +313,7 @@ int main( int argc, char* argv[] )
 	const char* szSharedFolder = "E:\\Receive"; // for Mac and Linux access
 	const char* szTortoiseSVN = "C:\\Programs\\TortoiseSVN\\bin\\TortoiseProc.exe";
 	const char* szZipAlign = "E:\\Data\\AndroidSDK\\build-tools\\29.0.3\\zipalign.exe";
-	const char* szJarSigner = "C:\\Programs\\jdk1.8.0_291\\bin\\jarsigner.exe";
+	const char* szJarSigner = "C:\\Programs\\jdk-11.0.15.1\\bin\\jarsigner.exe";
 	const char* szKeyStore = "C:\\Paul\\TGC\\keystore\\keystore.keystore";
 	const char* szGradleRes = "C:\\Users\\PSJoh\\.gradle";
 	const char* szTemp = "E:\\Temp";
@@ -600,6 +673,45 @@ startPoint:
 		}
 	}
 
+	// IDE
+	// must be done before anything modifies the build folders
+	if ( index <= ++indexCheck )
+	{
+		if ( bListCommands ) Message1( "%d: Build IDE", indexCheck );
+		else
+		{
+			Message( "Building IDE" );
+			SetCurrentDirectoryWithCheck( "IDE\\Geany-1.24.1" );
+
+			Message( "  Compiling" );
+			int status = RunCmd( indexCheck, "make", "-f makefile.win32" );
+			if ( status != 0 ) Error( "Failed" );
+			else Message( "  Success" );
+
+			Message( "Building IDE - install" );
+			status = RunCmd( indexCheck, "make", "install -f makefile.win32" );
+			if ( status != 0 ) Error( "Failed" );
+			else Message( "  Success" );
+
+			SetCurrentDirectoryWithCheck( "..\\.." );
+
+			// copy it to build folder
+			Message( "  Copying IDE" );
+			char srcFolder[ 1024 ];
+			char dstFolder[ 1024 ];
+			GetCurrentDirectory( 1024, srcFolder ); strcat( srcFolder, "\\IDE\\Geany_Compiled" );
+			strcpy( dstFolder, szDstFolderWin ); strcat( dstFolder, "\\AGK\\Tier 1\\Editor" );
+			DeleteFolder( dstFolder );
+			CopyFolder( srcFolder, dstFolder );
+
+			Message( "  Deleting iOS files" );
+			strcpy( dstFolder, szDstFolderWin ); strcat( dstFolder, "\\AGK\\Tier 1\\Editor\\data\\ios" ); 
+			DeleteFolder( dstFolder );
+
+			if ( bSingleCommand ) goto endPoint;
+		}
+	}
+
 	// ***************
 	// ANDROID
 	// ***************
@@ -619,26 +731,8 @@ startPoint:
 			status = RunCmd( indexCheck, "cmd.exe", "/C copylibs-nopause.bat" );
 			if ( status != 0 ) Error( "Failed" );
 			else Message( "  Success" );
-			SetCurrentDirectoryWithCheck( "..\\.." );
 
-			// copy ARCore libs to IDE build folder
-			char dstFolder[ 1024 ];
-			strcpy( dstFolder, szDstFolderWin ); 
-			strcat( dstFolder, "\\AGK\\Tier 1\\Editor\\data\\android\\lib\\arm64-v8a\\libarcore_sdk.so" ); 
-			CopyFile2( "platform\\android\\ARCore\\libs\\arm64-v8a\\libarcore_sdk.so", dstFolder );
-
-			strcpy( dstFolder, szDstFolderWin ); 
-			strcat( dstFolder, "\\AGK\\Tier 1\\Editor\\data\\android\\lib\\armeabi-v7a\\libarcore_sdk.so" ); 
-			CopyFile2( "platform\\android\\ARCore\\libs\\armeabi-v7a\\libarcore_sdk.so", dstFolder );
-
-			// copy SnapChat libs to IDE build folder
-			strcpy( dstFolder, szDstFolderWin ); 
-			strcat( dstFolder, "\\AGK\\Tier 1\\Editor\\data\\android\\lib\\arm64-v8a\\libpruneau.so" ); 
-			CopyFile2( "platform\\android\\SnapChat\\arm64-v8a\\libpruneau.so", dstFolder );
-
-			strcpy( dstFolder, szDstFolderWin ); 
-			strcat( dstFolder, "\\AGK\\Tier 1\\Editor\\data\\android\\lib\\armeabi-v7a\\libpruneau.so" ); 
-			CopyFile2( "platform\\android\\SnapChat\\armeabi-v7a\\libpruneau.so", dstFolder );
+			SetCurrentDirectoryWithCheck( "..\\.." ); // AGKTrunk
 			
 			if ( bSingleCommand ) goto endPoint;
 		}
@@ -666,24 +760,23 @@ startPoint:
 			char srcFolder[ 1024 ];
 			char dstFolder[ 1024 ];
 
-			// ARMv8
-			GetCurrentDirectory( 1024, dstFolder );
-			strcat( dstFolder, "\\..\\..\\IDE\\Geany-1.24.1\\data\\android\\lib\\arm64-v8a\\libandroid_player.so" );
-			CopyFile2( "AGKPlayer2\\src\\main\\jniLibs\\arm64-v8a\\libandroid_player.so", dstFolder );
-
-			// ARMv7
-			GetCurrentDirectory( 1024, dstFolder );
-			strcat( dstFolder, "\\..\\..\\IDE\\Geany-1.24.1\\data\\android\\lib\\armeabi-v7a\\libandroid_player.so" );
-			CopyFile2( "AGKPlayer2\\src\\main\\jniLibs\\armeabi-v7a\\libandroid_player.so", dstFolder );
-
 			SetCurrentDirectoryWithCheck( "..\\.." ); // AGKTrunk
 
 			// copy libs to shared folder
 			GetCurrentDirectory( 1024, srcFolder );
-			strcat( srcFolder, "\\IDE\\Geany-1.24.1\\data\\android\\lib" );
+			strcat( srcFolder, "\\apps\\interpreter_android_google\\AGKPlayer2\\src\\main\\jniLibs" );
 			strcpy( dstFolder, szSharedFolder ); strcat( dstFolder, "\\Classic\\Android\\lib" );
 			DeleteFolder( dstFolder );
 			CopyFolder( srcFolder, dstFolder );
+
+			// copy SnapChat libs to shared folder
+			strcpy( dstFolder, szSharedFolder ); 
+			strcat( dstFolder, "\\Classic\\Android\\lib\\arm64-v8a\\libpruneau.so" ); 
+			CopyFile2( "platform\\android\\SnapChat\\arm64-v8a\\libpruneau.so", dstFolder );
+
+			strcpy( dstFolder, szSharedFolder ); 
+			strcat( dstFolder, "\\Classic\\Android\\lib\\armeabi-v7a\\libpruneau.so" ); 
+			CopyFile2( "platform\\android\\SnapChat\\armeabi-v7a\\libpruneau.so", dstFolder );
 
 			if ( bSingleCommand ) goto endPoint;
 		}
@@ -699,13 +792,17 @@ startPoint:
 		{
 			const char *szAndroidIDEFolders[] = { "sourceGoogle", "sourceAmazon", "sourceOuya" };
 			const char *szAndroidProjects[] = { "interpreter_android_google", "interpreter_android_amazon", "interpreter_android_ouya" };
+			char szAndroidBuildPath[ 1024 ];
+			strcpy( szAndroidBuildPath, szDstFolderWin );
+			strcat( szAndroidBuildPath, "\\AGK\\Tier 1\\Editor\\data\\android\\" );
 
 			char srcFolder[ 1024 ];
 			char dstFolder[ 1024 ];
 
 			g_allResources.SetSorted( true, CompareResourceItems );
 
-			for ( int i = 0; i < 3; i++ )
+			const int numApps = sizeof(szAndroidIDEFolders) / sizeof(const char*);
+			for ( int i = 0; i < numApps; i++ )
 			{
 				char msg[ 256 ]; sprintf( msg, "Exporting project %s", szAndroidProjects[i] );
 				Message( msg );
@@ -716,9 +813,9 @@ startPoint:
 				SetCurrentDirectoryWithCheck( path );
 
 				// delete old gradle execution log
-				DeleteFile( ".gradle\\6.5\\executionHistory\\executionHistory.bin" );
-				DeleteFile( ".gradle\\6.5\\executionHistory\\executionHistory.lock" );
-				FILE* pFile = fopen( ".gradle\\6.5\\executionHistory\\executionHistory.bin", "rb" );
+				DeleteFile( ".gradle\\7.5\\executionHistory\\executionHistory.bin" );
+				DeleteFile( ".gradle\\7.5\\executionHistory\\executionHistory.lock" );
+				FILE* pFile = fopen( ".gradle\\7.5\\executionHistory\\executionHistory.bin", "rb" );
 				if ( pFile ) Error( "Failed to delete execution history" );
 
 				// export unsigned unaligned apk
@@ -750,33 +847,70 @@ startPoint:
 				memset(&zip_archive, 0, sizeof(zip_archive));
 				if ( !mz_zip_reader_init_file( &zip_archive, "AGKPlayer2-release-automated.apk", 0 ) ) Error( "Failed to open apk as a zip file" );
 				size_t dataLength = 0;
-				char* pData = (char*)mz_zip_reader_extract_file_to_heap( &zip_archive, "classes.dex", &dataLength, 0 );
-				if ( !pData || dataLength <= 0 ) Error( "Failed to extract classes.dex from APK" );
 
-				// write it to the IDE folder
+				int classesDexNum = 1;
+				char classesDexStr[ 32 ];
+				do
+				{
+					if ( classesDexNum == 1 ) strcpy( classesDexStr, "classes.dex" );
+					else sprintf( classesDexStr, "classes%d.dex", classesDexNum );
+
+					strcpy( dstFolder, szAndroidBuildPath ); 
+					strcat( dstFolder, szAndroidIDEFolders[i] );
+					strcat( dstFolder, "\\" ); 
+					strcat( dstFolder, classesDexStr );
+
+					int result = ExtractFile( &zip_archive, classesDexStr, dstFolder );
+					if ( result < 0 ) break;
+					else if ( result == 0 )
+					{
+						if ( classesDexNum == 1 ) Error( "Failed to extract classes.dex from APK" );
+						break;
+					}
+
+					classesDexNum++;
+					if ( classesDexNum > 30 ) break;
+				} while( 1 );
+
+				// copy additional folders
+				strcpy( dstFolder, szAndroidBuildPath ); 
+				strcat( dstFolder, szAndroidIDEFolders[i] );
+				ExtractFolder( &zip_archive, "com", dstFolder );
+				ExtractFolder( &zip_archive, "kotlin", dstFolder );
+				ExtractFolder( &zip_archive, "assets", dstFolder );
+				strcat( dstFolder, "\\extra_root\\core.properties" );
+				ExtractFile( &zip_archive, "core.properties", dstFolder );
+
+				mz_zip_reader_end( &zip_archive );
+
 				SetCurrentDirectoryWithCheck( "..\\..\\..\\..\\..\\.." ); // AGKTrunk
-				SetCurrentDirectoryWithCheck( "IDE\\Geany-1.24.1\\data\\android" );
-				SetCurrentDirectoryWithCheck( szAndroidIDEFolders[i] );
-				FILE *fp = fopen( "classes.dex", "wb" );
-				if ( !fp ) Error( "Failed to open classes.dex for writing" );
-				fwrite( pData, 1, dataLength, fp );
-				fclose( fp );
-				free(pData);
-				pData = 0;
 
-				SetCurrentDirectoryWithCheck( "..\\..\\..\\..\\.." ); // AGKTrunk
+				// copy mapping file
+				if ( i == 0 || i == 4 )
+				{
+					GetCurrentDirectory( 1024, srcFolder );
+					strcat( srcFolder, "\\apps\\" );
+					strcat( srcFolder, szAndroidProjects[i] );
+					strcat( srcFolder, "\\AGKPlayer2\\build\\outputs\\mapping\\release\\mapping.txt" );
+				
+					strcpy( dstFolder, szAndroidBuildPath );
+					strcat( dstFolder, szAndroidIDEFolders[i] );
+					strcat( dstFolder, "\\mapping" );
+					CreateDirectory( dstFolder, NULL );
+					strcat( dstFolder, "\\mapping.txt" );
+					CopyFile2( srcFolder, dstFolder );
+				}
 
 				// copy resMerged folder
 				GetCurrentDirectory( 1024, srcFolder );
 				strcat( srcFolder, "\\apps\\" );
 				strcat( srcFolder, szAndroidProjects[i] );
-				strcat( srcFolder, "\\AGKPlayer2\\build\\intermediates\\res\\merged\\release" );
+				strcat( srcFolder, "\\AGKPlayer2\\build\\intermediates\\merged_res\\release" );
 				
-				
-				GetCurrentDirectory( 1024, dstFolder );
-				strcat( dstFolder, "\\IDE\\Geany-1.24.1\\data\\android\\" );
+				strcpy( dstFolder, szAndroidBuildPath );
 				strcat( dstFolder, szAndroidIDEFolders[i] );
 				strcat( dstFolder, "\\resMerged" );
+				CreateDirectory( dstFolder, NULL );
 
 				DeleteFolder( dstFolder );
 				CopyFolder( srcFolder, dstFolder );
@@ -784,14 +918,14 @@ startPoint:
 				// collect gradle resources
 				strcpy( srcFolder, "apps\\" ); 
 				strcat( srcFolder, szAndroidProjects[i] );
-				strcat( srcFolder, "\\.gradle\\6.5\\executionHistory\\executionHistory.bin" );
+				strcat( srcFolder, "\\.gradle\\7.5\\executionHistory\\executionHistory.bin" );
 				unsigned char* data = 0;
 				size_t length = GetFileContents( srcFolder, (char**) &data );
 				if ( length == 0 ) Error( "Failed to open executionHistory.bin" );
 
 				int count = 0;
 				unsigned char* ptr = data;
-				const char* find = "caches\\transforms-2\\files-2.1\\";
+				const char* find = "caches\\transforms";
 				int findLen = strlen( find );
 				while( ptr < (data + length - findLen - 1) )
 				{
@@ -831,7 +965,7 @@ startPoint:
 				for( int i = 0; i < g_allResources.m_iCount; i++ )
 				{
 					strcpy( srcFolder, szGradleRes );
-					strcat( srcFolder, "\\caches\\transforms-2\\files-2.1\\" );
+					strcat( srcFolder, "\\caches\\transforms" );
 					strcat( srcFolder, g_allResources.m_pData[ i ]->m_pString );
 
 					char* slash = strrchr( g_allResources.m_pData[ i ]->m_pString, '\\' );
@@ -852,35 +986,34 @@ startPoint:
 				GetCurrentDirectory( 1024, srcFolder );
 				strcat( srcFolder, "\\apps\\" );
 				strcat( srcFolder, szAndroidProjects[i] );
-				strcat( srcFolder, "\\AGKPlayer2\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values\\values.xml" );
+				strcat( srcFolder, "\\AGKPlayer2\\build\\intermediates\\incremental\\release\\mergeReleaseResources\\merged.dir\\values\\values.xml" );
 				
-				GetCurrentDirectory( 1024, dstFolder );
-				strcat( dstFolder, "\\IDE\\Geany-1.24.1\\data\\android\\" );
+				strcpy( dstFolder, szAndroidBuildPath );
 				strcat( dstFolder, szAndroidIDEFolders[i] );
 				strcat( dstFolder, "\\resOrig" );
 				int strend = strlen(dstFolder);
 				CreateDirectory( dstFolder, 0 );
-				if ( i == 2 )
-				{
-					strcpy( dstFolder+strend, "\\drawable-xhdpi-v4" ); CreateDirectory( dstFolder, 0 );
-					strcpy( dstFolder+strend, "\\drawable-hdpi-v4" ); CreateDirectory( dstFolder, 0 );
-					strcpy( dstFolder+strend, "\\drawable-mdpi-v4" ); CreateDirectory( dstFolder, 0 );
-					strcpy( dstFolder+strend, "\\drawable-ldpi-v4" ); CreateDirectory( dstFolder, 0 );
-					strcpy( dstFolder+strend, "\\drawable" ); CreateDirectory( dstFolder, 0 );
-				}
-				else
-				{					
-					strcpy( dstFolder+strend, "\\drawable-xxxhdpi" ); CreateDirectory( dstFolder, 0 );
-					strcpy( dstFolder+strend, "\\drawable-xxhdpi" ); CreateDirectory( dstFolder, 0 );
-					strcpy( dstFolder+strend, "\\drawable-xhdpi" ); CreateDirectory( dstFolder, 0 );
-					strcpy( dstFolder+strend, "\\drawable-hdpi" ); CreateDirectory( dstFolder, 0 );
-					strcpy( dstFolder+strend, "\\drawable-mdpi" ); CreateDirectory( dstFolder, 0 );
-					strcpy( dstFolder+strend, "\\drawable-ldpi" ); CreateDirectory( dstFolder, 0 );
-				}
-				strcpy( dstFolder+strend, "\\values" ); CreateDirectory( dstFolder, 0 );
+				strcat( dstFolder, "\\values" ); 
+				CreateDirectory( dstFolder, 0 );
 				strcat( dstFolder, "\\values.xml" );
 
 				CopyFile2( srcFolder, dstFolder );
+
+				if ( i != 2 )
+				{
+					GetCurrentDirectory( 1024, srcFolder );
+					strcat( srcFolder, "\\apps\\" );
+					strcat( srcFolder, szAndroidProjects[i] );
+					strcat( srcFolder, "\\AGKPlayer2\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml" );
+				
+					strcpy( dstFolder, szAndroidBuildPath );
+					strcat( dstFolder, szAndroidIDEFolders[i] );
+					strcat( dstFolder, "\\resOrig\\mipmap-anydpi-v26" );
+					CreateDirectory( dstFolder, 0 );
+					strcat( dstFolder, "\\ic_launcher.xml" );
+
+					CopyFile2( srcFolder, dstFolder );
+				}
 			}
 
 			// copy Android players to temp folder
@@ -891,6 +1024,22 @@ startPoint:
 			CopyFile2( "apps\\interpreter_android_amazon\\AGKPlayer2\\build\\outputs\\apk\\AGKPlayer2-release-automated.apk", dstFolder );
 			strcpy( dstFolder, szTemp ); strcat( dstFolder, "\\AppGameKit-Ouya.apk" );
 			CopyFile2( "apps\\interpreter_android_ouya\\AGKPlayer2\\build\\outputs\\apk\\AGKPlayer2-release-automated.apk", dstFolder );
+
+			// copy Android files to shared folder
+			strcpy( srcFolder, szDstFolderWin ); strcat( srcFolder, "\\AGK\\Tier 1\\Editor\\data\\android\\sourceAmazon" ); 
+			strcpy( dstFolder, szSharedFolder ); strcat( dstFolder, "\\Classic\\Android\\sourceAmazon" ); 
+			DeleteFolder( dstFolder );
+			CopyFolder( srcFolder, dstFolder );
+
+			strcpy( srcFolder, szDstFolderWin ); strcat( srcFolder, "\\AGK\\Tier 1\\Editor\\data\\android\\sourceGoogle" ); 
+			strcpy( dstFolder, szSharedFolder ); strcat( dstFolder, "\\Classic\\Android\\sourceGoogle" ); 
+			DeleteFolder( dstFolder );
+			CopyFolder( srcFolder, dstFolder );
+
+			strcpy( srcFolder, szDstFolderWin ); strcat( srcFolder, "\\AGK\\Tier 1\\Editor\\data\\android\\sourceOuya" ); 
+			strcpy( dstFolder, szSharedFolder ); strcat( dstFolder, "\\Classic\\Android\\sourceOuya" ); 
+			DeleteFolder( dstFolder );
+			CopyFolder( srcFolder, dstFolder );
 
 			if ( bSingleCommand ) goto endPoint;
 		}
@@ -1047,31 +1196,6 @@ startPoint:
 		}
 	}
 
-	// IDE
-	if ( index <= ++indexCheck )
-	{
-		if ( bListCommands ) Message1( "%d: Build IDE", indexCheck );
-		else
-		{
-			Message( "Building IDE" );
-			SetCurrentDirectoryWithCheck( "IDE\\Geany-1.24.1" );
-
-			Message( "  Compiling" );
-			int status = RunCmd( indexCheck, "make", "-f makefile.win32" );
-			if ( status != 0 ) Error( "Failed" );
-			else Message( "  Success" );
-
-			Message( "Building IDE - install" );
-			status = RunCmd( indexCheck, "make", "install -f makefile.win32" );
-			if ( status != 0 ) Error( "Failed" );
-			else Message( "  Success" );
-
-			SetCurrentDirectoryWithCheck( "..\\.." );
-
-			if ( bSingleCommand ) goto endPoint;
-		}
-	}
-
 	// copy to build folders
 	if ( index <= ++indexCheck )
 	{
@@ -1082,6 +1206,34 @@ startPoint:
 			char dstFolder[ 1024 ];
 			char backupFolder[ 1024 ];
 			FileRecord files;
+
+			// copy ARCore libs to build folder
+			Message( "Copying Android libs to Windows build" );
+			strcpy( dstFolder, szDstFolderWin ); 
+			strcat( dstFolder, "\\AGK\\Tier 1\\Editor\\data\\android\\lib\\arm64-v8a\\libarcore_sdk.so" ); 
+			CopyFile2( "platform\\android\\ARCore\\libs\\arm64-v8a\\libarcore_sdk.so", dstFolder );
+
+			strcpy( dstFolder, szDstFolderWin ); 
+			strcat( dstFolder, "\\AGK\\Tier 1\\Editor\\data\\android\\lib\\armeabi-v7a\\libarcore_sdk.so" ); 
+			CopyFile2( "platform\\android\\ARCore\\libs\\armeabi-v7a\\libarcore_sdk.so", dstFolder );
+
+			// copy SnapChat libs to build folder
+			strcpy( dstFolder, szDstFolderWin ); 
+			strcat( dstFolder, "\\AGK\\Tier 1\\Editor\\data\\android\\lib\\arm64-v8a\\libpruneau.so" ); 
+			CopyFile2( "platform\\android\\SnapChat\\arm64-v8a\\libpruneau.so", dstFolder );
+
+			strcpy( dstFolder, szDstFolderWin ); 
+			strcat( dstFolder, "\\AGK\\Tier 1\\Editor\\data\\android\\lib\\armeabi-v7a\\libpruneau.so" ); 
+			CopyFile2( "platform\\android\\SnapChat\\armeabi-v7a\\libpruneau.so", dstFolder );
+
+			// main Android libs
+			strcpy( dstFolder, szDstFolderWin ); 
+			strcat( dstFolder, "\\AGK\\Tier 1\\Editor\\data\\android\\lib\\arm64-v8a\\libandroid_player.so" ); 
+			CopyFile2( "apps\\interpreter_android_google\\AGKPlayer2\\src\\main\\jniLibs\\arm64-v8a\\libandroid_player.so", dstFolder );
+
+			strcpy( dstFolder, szDstFolderWin ); 
+			strcat( dstFolder, "\\AGK\\Tier 1\\Editor\\data\\android\\lib\\armeabi-v7a\\libandroid_player.so" ); 
+			CopyFile2( "apps\\interpreter_android_google\\AGKPlayer2\\src\\main\\jniLibs\\armeabi-v7a\\libandroid_player.so", dstFolder );
 
 			const char* szBuildFolder[3] = { szDstFolderWin, szDstFolderMac, szDstFolderLinux };
 			const char* szBuildPlatform[3] = { "Windows", "Mac", "Linux" };
@@ -1101,22 +1253,25 @@ startPoint:
 				// update apps folder
 				Message( "    Copying apps folder" );
 				GetCurrentDirectory( 1024, srcFolder ); strcat( srcFolder, "\\apps" );
-				strcpy( dstFolder, szBuildFolder[b] ); strcat( dstFolder, szTier2[b] ); strcat( dstFolder, "\\apps" );
+				strcpy( dstFolder, szBuildFolder[b] ); strcat( dstFolder, szTier2[b] ); 
 				// make a copy of the files in case we ever lose the folder structure
-				files.Reset(); RecordFiles( dstFolder, &files ); sprintf( backupFolder, "tools\\AGKBuildSystem\\Backup\\%s\\appFiles.txt", szBuildPlatform[b] ); files.Save( backupFolder );
+				files.Reset(); RecordFiles( dstFolder, "apps", &files ); sprintf( backupFolder, "tools\\AGKBuildSystem\\Backup\\%s\\appFiles.txt", szBuildPlatform[b] ); files.Save( backupFolder );
+				strcat( dstFolder, "\\apps" );
 				UpdateFolder( srcFolder, dstFolder );
 				
 				// update common folder
 				Message( "    Copying common folder" );
 				GetCurrentDirectory( 1024, srcFolder ); strcat( srcFolder, "\\common\\include" );
-				strcpy( dstFolder, szBuildFolder[b] ); strcat( dstFolder, szTier2[b] ); strcat( dstFolder, "\\common\\include" );
-				//files.Reset(); RecordFiles( dstFolder, &files ); sprintf( backupFolder, "tools\\AGKBuildSystem\\Backup\\%s\\commonIncludeFiles.txt", szBuildPlatform[b] ); files.Save( backupFolder );
+				strcpy( dstFolder, szBuildFolder[b] ); strcat( dstFolder, szTier2[b] ); 
+				//files.Reset(); RecordFiles( dstFolder, "common\\include", &files ); sprintf( backupFolder, "tools\\AGKBuildSystem\\Backup\\%s\\commonIncludeFiles.txt", szBuildPlatform[b] ); files.Save( backupFolder );
+				strcat( dstFolder, "\\common\\include" );
 				DeleteFolder( dstFolder );
 				CopyFolder( srcFolder, dstFolder );
 
 				GetCurrentDirectory( 1024, srcFolder ); strcat( srcFolder, "\\common\\Collision" );
-				strcpy( dstFolder, szBuildFolder[b] ); strcat( dstFolder, szTier2[b] ); strcat( dstFolder, "\\common\\Collision" );
-				//files.Reset(); RecordFiles( dstFolder, &files ); sprintf( backupFolder, "tools\\AGKBuildSystem\\Backup\\%s\\commonCollisionFiles.txt", szBuildPlatform[b] ); files.Save( backupFolder );
+				strcpy( dstFolder, szBuildFolder[b] ); strcat( dstFolder, szTier2[b] ); 
+				//files.Reset(); RecordFiles( dstFolder, "common\\Collision", &files ); sprintf( backupFolder, "tools\\AGKBuildSystem\\Backup\\%s\\commonCollisionFiles.txt", szBuildPlatform[b] ); files.Save( backupFolder );
+				strcat( dstFolder, "\\common\\Collision" );
 				DeleteFolder( dstFolder );
 				const char *szIgnore[] = { ".cpp", ".c", ".CPP", ".C" };
 				CopyFolder( srcFolder, dstFolder, 4, szIgnore );
@@ -1124,16 +1279,18 @@ startPoint:
 				// update bullet folder
 				Message( "    Copying bullet folder" );
 				GetCurrentDirectory( 1024, srcFolder ); strcat( srcFolder, "\\bullet" );
-				strcpy( dstFolder, szBuildFolder[b] ); strcat( dstFolder, szTier2[b] ); strcat( dstFolder, "\\bullet" );
-				//files.Reset(); RecordFiles( dstFolder, &files ); sprintf( backupFolder, "tools\\AGKBuildSystem\\Backup\\%s\\bulletFiles.txt", szBuildPlatform[b] ); files.Save( backupFolder );
+				strcpy( dstFolder, szBuildFolder[b] ); strcat( dstFolder, szTier2[b] ); 
+				//files.Reset(); RecordFiles( dstFolder, "bullet", &files ); sprintf( backupFolder, "tools\\AGKBuildSystem\\Backup\\%s\\bulletFiles.txt", szBuildPlatform[b] ); files.Save( backupFolder );
+				strcat( dstFolder, "\\bullet" );
 				DeleteFolder( dstFolder );
 				CopyFolder( srcFolder, dstFolder, 4, szIgnore );
 
 				// update platform folder
 				Message( "    Copying platform folder" );
 				GetCurrentDirectory( 1024, srcFolder ); strcat( srcFolder, "\\platform" );
-				strcpy( dstFolder, szBuildFolder[b] ); strcat( dstFolder, szTier2[b] ); strcat( dstFolder, "\\platform" );
-				files.Reset(); RecordFiles( dstFolder, &files ); sprintf( backupFolder, "tools\\AGKBuildSystem\\Backup\\%s\\platformFiles.txt", szBuildPlatform[b] ); files.Save( backupFolder );
+				strcpy( dstFolder, szBuildFolder[b] ); strcat( dstFolder, szTier2[b] ); 
+				files.Reset(); RecordFiles( dstFolder, "platform", &files ); sprintf( backupFolder, "tools\\AGKBuildSystem\\Backup\\%s\\platformFiles.txt", szBuildPlatform[b] ); files.Save( backupFolder );
+				strcat( dstFolder, "\\platform" );
 				UpdateFolder( srcFolder, dstFolder );
 
 				// example plugin
@@ -1195,86 +1352,12 @@ startPoint:
 					strcpy( dstFolder, szBuildFolder[b] ); strcat( dstFolder, "\\AGK\\Tier 1\\Utilities\\ImageJoiner\\ImageJoiner.exe" );
 					CopyFile2( "tools\\ImageJoiner.exe", dstFolder );
 
-					Message( "  Copying IDE" );
-					GetCurrentDirectory( 1024, srcFolder ); strcat( srcFolder, "\\IDE\\Geany_Compiled" );
-					strcpy( dstFolder, szBuildFolder[b] ); strcat( dstFolder, "\\AGK\\Tier 1\\Editor" );
-					DeleteFolder( dstFolder );
-					CopyFolder( srcFolder, dstFolder );
-
-					Message( "  Deleting iOS files" );
-					strcpy( dstFolder, szBuildFolder[b] ); strcat( dstFolder, "\\AGK\\Tier 1\\Editor\\data\\ios" ); 
-					DeleteFolder( dstFolder );
-
 					// copy HTML5 files (might be old but can replace them later)
 					strcpy( srcFolder, szSharedFolder ); strcat( srcFolder, "\\Classic\\HTML5" );
 					strcpy( dstFolder, szBuildFolder[b] ); strcat( dstFolder, "\\AGK\\Tier 1\\Editor\\data\\html5" );
 					DeleteFolder( dstFolder );
 					const char *szIgnore[] = { ".DS_Store" };
 					CopyFolder( srcFolder, dstFolder, 1, szIgnore );
-
-					// copy resMerged folder to shared folder
-					GetCurrentDirectory( 1024, srcFolder ); strcat( srcFolder, "\\IDE\\Geany-1.24.1\\data\\android\\sourceGoogle\\resMerged" );
-					strcpy( dstFolder, szSharedFolder ); strcat( dstFolder, "\\Classic\\Android\\sourceGoogle\\resMerged" );
-					DeleteFolder( dstFolder );
-					CopyFolder( srcFolder, dstFolder );
-
-					GetCurrentDirectory( 1024, srcFolder ); strcat( srcFolder, "\\IDE\\Geany-1.24.1\\data\\android\\sourceAmazon\\resMerged" );
-					strcpy( dstFolder, szSharedFolder ); strcat( dstFolder, "\\Classic\\Android\\sourceAmazon\\resMerged" );
-					DeleteFolder( dstFolder );
-					CopyFolder( srcFolder, dstFolder );
-
-					GetCurrentDirectory( 1024, srcFolder ); strcat( srcFolder, "\\IDE\\Geany-1.24.1\\data\\android\\sourceOuya\\resMerged" );
-					strcpy( dstFolder, szSharedFolder ); strcat( dstFolder, "\\Classic\\Android\\sourceOuya\\resMerged" );
-					DeleteFolder( dstFolder );
-					CopyFolder( srcFolder, dstFolder );
-
-					// copy resOrig folder to shared folder
-					GetCurrentDirectory( 1024, srcFolder ); strcat( srcFolder, "\\IDE\\Geany-1.24.1\\data\\android\\sourceGoogle\\resOrig" );
-					strcpy( dstFolder, szSharedFolder ); strcat( dstFolder, "\\Classic\\Android\\sourceGoogle\\resOrig" );
-					DeleteFolder( dstFolder );
-					CopyFolder( srcFolder, dstFolder );
-
-					GetCurrentDirectory( 1024, srcFolder ); strcat( srcFolder, "\\IDE\\Geany-1.24.1\\data\\android\\sourceAmazon\\resOrig" );
-					strcpy( dstFolder, szSharedFolder ); strcat( dstFolder, "\\Classic\\Android\\sourceAmazon\\resOrig" );
-					DeleteFolder( dstFolder );
-					CopyFolder( srcFolder, dstFolder );
-
-					GetCurrentDirectory( 1024, srcFolder ); strcat( srcFolder, "\\IDE\\Geany-1.24.1\\data\\android\\sourceOuya\\resOrig" );
-					strcpy( dstFolder, szSharedFolder ); strcat( dstFolder, "\\Classic\\Android\\sourceOuya\\resOrig" );
-					DeleteFolder( dstFolder );
-					CopyFolder( srcFolder, dstFolder );
-
-					// copy classes.dex to shared folder
-					GetCurrentDirectory( 1024, srcFolder ); strcat( srcFolder, "\\IDE\\Geany-1.24.1\\data\\android\\sourceGoogle\\classes.dex" );
-					strcpy( dstFolder, szSharedFolder ); strcat( dstFolder, "\\Classic\\Android\\sourceGoogle\\classes.dex" );
-					CopyFile2( srcFolder, dstFolder );
-
-					GetCurrentDirectory( 1024, srcFolder ); strcat( srcFolder, "\\IDE\\Geany-1.24.1\\data\\android\\sourceAmazon\\classes.dex" );
-					strcpy( dstFolder, szSharedFolder ); strcat( dstFolder, "\\Classic\\Android\\sourceAmazon\\classes.dex" );
-					CopyFile2( srcFolder, dstFolder );
-
-					GetCurrentDirectory( 1024, srcFolder ); strcat( srcFolder, "\\IDE\\Geany-1.24.1\\data\\android\\sourceOuya\\classes.dex" );
-					strcpy( dstFolder, szSharedFolder ); strcat( dstFolder, "\\Classic\\Android\\sourceOuya\\classes.dex" );
-					CopyFile2( srcFolder, dstFolder );
-
-					// copy manifest to shared folder
-					GetCurrentDirectory( 1024, srcFolder ); strcat( srcFolder, "\\IDE\\Geany-1.24.1\\data\\android\\sourceGoogle\\AndroidManifest.xml" );
-					strcpy( dstFolder, szSharedFolder ); strcat( dstFolder, "\\Classic\\Android\\sourceGoogle\\AndroidManifest.xml" );
-					CopyFile2( srcFolder, dstFolder );
-
-					GetCurrentDirectory( 1024, srcFolder ); strcat( srcFolder, "\\IDE\\Geany-1.24.1\\data\\android\\sourceAmazon\\AndroidManifest.xml" );
-					strcpy( dstFolder, szSharedFolder ); strcat( dstFolder, "\\Classic\\Android\\sourceAmazon\\AndroidManifest.xml" );
-					CopyFile2( srcFolder, dstFolder );
-
-					GetCurrentDirectory( 1024, srcFolder ); strcat( srcFolder, "\\IDE\\Geany-1.24.1\\data\\android\\sourceOuya\\AndroidManifest.xml" );
-					strcpy( dstFolder, szSharedFolder ); strcat( dstFolder, "\\Classic\\Android\\sourceOuya\\AndroidManifest.xml" );
-					CopyFile2( srcFolder, dstFolder );
-
-					// copy libs
-					GetCurrentDirectory( 1024, srcFolder ); strcat( srcFolder, "\\IDE\\Geany-1.24.1\\data\\android\\lib" );
-					strcpy( dstFolder, szSharedFolder ); strcat( dstFolder, "\\Classic\\Android\\lib" );
-					DeleteFolder( dstFolder );
-					CopyFolder( srcFolder, dstFolder );
 
 					// copying example projects
 					Message( "  Copying Example Projects" );

@@ -1,22 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
-    sourceSets.main.jni.srcDirs = []
+    compileSdkVersion 31
+    buildToolsVersion "31.0.0"
 
     defaultConfig {
         applicationId "com.mycompany.mytemplate"
         minSdkVersion 16
-        targetSdkVersion 30
+        targetSdkVersion 31
         ndk{
             abiFilters "armeabi-v7a", "arm64-v8a"
         }
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     buildTypes {
@@ -25,12 +19,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+
+    sourceSets {
+        main.java.srcDirs += '../../android_common/AGKHelper'
+        main.java.srcDirs += '../../android_common/ExternalCommands'
+        main.java.srcDirs += '../../android_common/AmazonInAppPurchase'
+        main.java.srcDirs += '../../android_common/Chartboost'
+        main.java.srcDirs += '../../android_common/PlayVideo'
+        main.java.srcDirs += '../../android_common/Camera'
+        main.java.srcDirs += '../../android_common/RecordScreen'
+        main.java.srcDirs += '../../android_common/TextEntry'
+        main.java.srcDirs += '../../android_common/GooglePermissions' // can be replaced with AlwaysPermissions
+        main.java.srcDirs += '../../android_common/ImmersiveMode'
+    }
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.gms:play-services-ads:15.0.0'
-    implementation 'com.google.android.ads.consent:consent-library:1.0.8'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation files('libs/in-app-purchasing-2.0.76.jar')
-    implementation files('libs/chartboost.jar')
+    implementation 'com.chartboost:chartboost-sdk:8.4.3' // Chartboost
 }

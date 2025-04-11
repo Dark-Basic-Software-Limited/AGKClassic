@@ -1,6 +1,6 @@
 #import <AVFoundation/AVFoundation.h>
 //#import <Cocoa/Cocoa.h>
-#include "AGK.h"
+#include "agk.h"
 #include "../renderer/OpenGL2/OpenGL2.h"
 #include "DDHidLib.h"
 #include <pthread.h>
@@ -566,7 +566,8 @@ void agk::SetWindowSize( int width, int height, int fullscreen, int allowOverSiz
         glfwGetWindowSize(g_pWindow, &ww, &wh);
         monitors = glfwGetMonitors(&nmonitors);
         
-        for (i = 0; i < nmonitors; i++) {
+        for (i = 0; i < nmonitors; i++) 
+		{
             mode = glfwGetVideoMode(monitors[i]);
             glfwGetMonitorPos(monitors[i], &mx, &my);
             mw = mode->width;
@@ -645,6 +646,18 @@ void agk::RestoreApp()
 	[[[[NSApplication sharedApplication] windows] objectAtIndex:0] deminiaturize];
 }
 
+int agk::IsPinAppAvailable()
+//****
+{
+	return 0;
+}
+
+void agk::PinApp( int enable )
+//****
+{
+	// do nothing
+}
+
 void agk::SetImmersiveMode( int mode )
 {
 	
@@ -654,6 +667,14 @@ void agk::SetScreenResolution( int width, int height )
 //****
 {
 	agk::SetWindowSize( width, height, 0 );
+}
+
+int agk::IsDarkTheme()
+//****
+{
+	NSString *theme = [[NSUserDefaults standardUserDefaults] stringForKey:@"AppleInterfaceStyle"];
+	if ( theme && strcmp([theme UTF8String], "Dark") == 0 ) return 1;
+	return 0;
 }
 
 char* agk::GetURLSchemeText()
@@ -1221,6 +1242,60 @@ int agk::GetDeviceDPI()
 //****
 {
 	return 0;
+}
+
+int agk::GetDisplayNumCutouts()
+//****
+{
+	return 0;
+}
+
+float agk::GetDisplayCutoutTop( int index )
+//****
+{
+	return 0;
+}
+
+float agk::GetDisplayCutoutBottom( int index )
+//****
+{
+	return 0;
+}
+
+float agk::GetDisplayCutoutLeft( int index )
+//****
+{
+	return 0;
+}
+
+float agk::GetDisplayCutoutRight( int index )
+//****
+{
+	return 0;
+}
+
+float agk::GetScreenBoundsSafeTop()
+//****
+{
+	return GetScreenBoundsTop();
+}
+
+float agk::GetScreenBoundsSafeBottom()
+//****
+{
+	return GetScreenBoundsBottom();
+}
+
+float agk::GetScreenBoundsSafeLeft()
+//****
+{
+	return GetScreenBoundsLeft();
+}
+
+float agk::GetScreenBoundsSafeRight()
+//****
+{
+	return GetScreenBoundsRight();
 }
 
 char* agk::GetAppPackageName()
@@ -5691,4 +5766,37 @@ void agk::ShareSnapChatImage( const char* imageFile, const char* stickerFile, co
 //****
 {
 
+}
+
+// Extensions
+int agk::ExternalSDKSupported( const char* sdk )
+//****
+{
+	return 0;
+}
+
+void agk::ExternalCommand( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+
+}
+
+int agk::ExternalCommandInt( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+	return 0;
+}
+
+float agk::ExternalCommandFloat( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+	return 0;
+}
+
+char* agk::ExternalCommandString( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+	char* str = new char[1];
+	*str = 0;
+	return str;
 }

@@ -37,6 +37,7 @@ namespace AGK
 			//static int GetUTF8FromChar( unsigned int c, char* szOutput ); // szOutput must be at least 4 chars in size
 			static int GetUTF8FromUnicode( unsigned int c, char* szOutput ); // szOutput must be at least 4 chars in size
 			static int GetUnicodeFromChar( unsigned int c ); // convert pre C++11 char into its Unicode value
+			static unsigned char DecodeHexChar( unsigned char c );
 						
 			uString();
 			uString( const uString &szString );

@@ -25,12 +25,7 @@ using namespace AGK;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    float scale = [[UIScreen mainScreen] scale];
-	if ( scale == 0 ) scale = 1;
-	App.g_dwDeviceWidth = [UIScreen mainScreen].bounds.size.width * scale;
-	App.g_dwDeviceHeight = [UIScreen mainScreen].bounds.size.height * scale;
-    
-	// Tell the UIDevice to send notifications when the orientation changes
+    // Tell the UIDevice to send notifications when the orientation changes
 	[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 	[[NSNotificationCenter defaultCenter] addObserver:self 
 											 selector:@selector(orientationChanged:) 

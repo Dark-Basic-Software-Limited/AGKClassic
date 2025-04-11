@@ -71,9 +71,6 @@ class app
 
 		// Early initialising variables
 		char g_pWindowTitle [ 512 ];
-		unsigned int g_dwDeviceWidth;
-		unsigned int g_dwDeviceHeight;
-		unsigned int g_dwFullScreen;
 		unsigned int g_dwResolutionMode;
 		unsigned int g_dwBroadcastMode;
 		int g_iPrevWidth;

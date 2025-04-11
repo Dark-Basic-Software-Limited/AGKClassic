@@ -32,6 +32,7 @@ namespace AGK
 			~ZipFile();
 
 			void Create( const char* filename );
+			void CreateAppend(const char* filename, int append);
 			bool AddEntry( const char* realPath, const char* zipPath );
 			bool AddEntry( const char* realPath, const char* zipPath, int compressionlevel );
 			void Close();

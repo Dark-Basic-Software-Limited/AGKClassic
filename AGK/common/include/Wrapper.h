@@ -536,16 +536,28 @@ namespace AGK
 			static void  PlatformInAppPurchaseAddProductID    ( const char* szID, int type );
 			static void  PlatformInAppPurchaseSetup           ( void );
 			static void  PlatformInAppPurchaseActivate        ( int iID );
+			static void  PlatformInAppPurchaseActivateWithPlan( int iID, const char* planToken );
 			static void  PlatformInAppPurchaseResetPurchase   ( const char* token );
+			static void  PlatformInAppPurchaseRedeemOffer     ();
 			static int   PlatformGetInAppPurchaseState        ( void );
 			static int   PlatformGetInAppPurchaseAvailable    ( int iID );
 			static int   PlatformGetInAppPurchaseAvailable2   ( int iID );
             static char* PlatformGetInAppPurchaseLocalPrice   ( int iID );
             static char* PlatformGetInAppPurchaseDescription  ( int iID );
+			static int   PlatformGetInAppPurchaseIsRenewing   ( int iID );
 			static bool  PlatformHasInAppPurchase             ( void );
 			static void  PlatformInAppPurchaseRestore		  ();
 			static char* PlatformGetInAppPurchaseSignature    ( int iID );
 			static char* PlatformGetInAppPurchaseToken        ( int iID );
+			static int   PlatformGetInAppPurchaseSubNumPlans  ( int iID );
+			static int   PlatformGetInAppPurchaseSubPlanNumPeriods( int iID, int planIndex );
+			static char* PlatformGetInAppPurchaseSubPlanPrice ( int iID, int planIndex, int periodIndex );
+			static int   PlatformGetInAppPurchaseSubPlanDuration( int iID, int planIndex, int periodIndex );
+			static char* PlatformGetInAppPurchaseSubPlanDurationUnit( int iID, int planIndex, int periodIndex );
+			static int   PlatformGetInAppPurchaseSubPlanPaymentType( int iID, int planIndex, int periodIndex );
+			static char* PlatformGetInAppPurchaseSubPlanTags  ( int iID, int planIndex );
+			static char* PlatformGetInAppPurchaseSubPlanToken ( int iID, int planIndex );
+            static char* PlatformGetAppReceipt();
 
 			// ADMOB COMMANDS
 			static void  PlatformAdMobSetupRelative			  ( const char* szID, int horz, int vert, float offsetX, float offsetY, int type );
@@ -575,12 +587,6 @@ namespace AGK
 			static int   PlatformChartboostGetRewardAdLoaded  ( void );
 			static int   PlatformChartboostGetRewardAdRewarded( void );
 			static void  PlatformChartboostResetRewardAd	  ( void );
-
-			// Amazon Ads
-			static void  PlatformAmazonAdSetup				  ( void );
-            static void  PlatformAmazonAdSetTesting			  ( int testing );
-			static void  PlatformAmazonAdFullscreen			  ( void );
-			static int   PlatformAmazonGetFullscreenLoaded	  ( void );
 
 			// FACEBOOK COMMANDS
 			static void  PlatformFacebookSetup                ( const char* szID );
@@ -785,6 +791,7 @@ namespace AGK
 			static void UpdatePtr2( void* ptr ); // does minimal amount of changes
 			static void WindowMoved();
 			static void ResetAllStates ( void );
+			static void ResetRenderState( void );
 			static void CleanUp();
 			static void CompositionChanged();
 			static void PNToken( const char* token );
@@ -794,6 +801,8 @@ namespace AGK
 			static int CanOrientationChange( int mode );
 			static void SetOrientationMatrix();
 
+			static void AppStart( void* activity ); // only used on Android
+			static void AppStop(); // only used on Android
 			static void AppPausing();
 			static void AppResuming();
 			static void LosingContext();
@@ -909,6 +918,8 @@ namespace AGK
 			static void MaximizeWindow();
 			static void MinimizeApp();
 			static void RestoreApp();
+			static int IsPinAppAvailable();
+			static void PinApp( int enable );
 			static int GetWindowWidth();
 			static int GetWindowHeight();
 			static void SetImmersiveMode( int mode );
@@ -925,17 +936,27 @@ namespace AGK
 			static void SetSyncRate( float fps, int mode );
 			static void SetVirtualResolution( int iWidth, int iHeight );
 			static void SetDisplayAspect( float aspect );
+			static int GetDisplayNumCutouts();
+			static float GetDisplayCutoutTop( int index );
+			static float GetDisplayCutoutBottom( int index );
+			static float GetDisplayCutoutLeft( int index );
+			static float GetDisplayCutoutRight( int index );
 			static int GetVirtualWidth();
 			static int GetVirtualHeight();
 			static float GetScreenBoundsLeft();
 			static float GetScreenBoundsRight();
 			static float GetScreenBoundsTop();
 			static float GetScreenBoundsBottom();
+			static float GetScreenBoundsSafeTop();
+			static float GetScreenBoundsSafeBottom();
+			static float GetScreenBoundsSafeLeft();
+			static float GetScreenBoundsSafeRight();
 			static float GetDisplayAspect();
 			static int GetOrientation();
 			static int GetPaused();
 			static int GetResumed();
 			static int GetResumed2();
+			static int IsDarkTheme();
 			static char* GetURLSchemeText();
 			static void ClearURLSchemeText();
 			static char* GetDeviceName();
@@ -1580,6 +1601,11 @@ namespace AGK
 			static void SetTextScissor( UINT iTextIndex, float x, float y, float x2, float y2 );
 			static void SetTextTransparency( UINT iTextIndex, int mode );
 			static void SetTextBold( UINT iTextIndex, UINT bold );
+
+			static void SetTextShader(UINT iTextIndex, UINT shaderID);
+			static void SetTextShaderConstantByName(UINT iTextIndex, const char* szName, float value1, float value2, float value3, float value4);
+			static void SetTextShaderConstantArrayByName(UINT iTextIndex, const char* szName, UINT arrayIndex, float value1, float value2, float value3, float value4);
+			static void SetTextShaderConstantDefault(UINT iTextIndex, const char* szName);
 			
 			static UINT GetTextColorRed( UINT iTextIndex );
 			static UINT GetTextColorGreen( UINT iTextIndex );
@@ -2634,15 +2660,27 @@ namespace AGK
 			static void  InAppPurchaseAddProductID    ( const char* szID, int type );
 			static void  InAppPurchaseSetup           ( void );
 			static void  InAppPurchaseActivate        ( int iID );
+			static void  InAppPurchaseActivateWithPlan( int iID, const char* planToken );
 			static void  InAppPurchaseResetPurchase   ( const char* token );
+			static void  InAppPurchaseRedeemOffer     ();
 			static int   GetInAppPurchaseState        ( void );
 			static int   GetInAppPurchaseAvailable    ( int iID );
 			static int   GetInAppPurchaseAvailable2   ( int iID );
             static char* GetInAppPurchaseLocalPrice   ( int iID );
             static char* GetInAppPurchaseDescription  ( int iID );
+			static int   GetInAppPurchaseIsRenewing   ( int iID );
 			static void  InAppPurchaseRestore		  ();
 			static char* GetInAppPurchaseSignature    ( int iID );
 			static char* GetInAppPurchaseToken        ( int iID );
+			static int   GetInAppPurchaseSubNumPlans  ( int iID );
+			static int   GetInAppPurchaseSubPlanNumPeriods( int iID, int planIndex );
+			static char* GetInAppPurchaseSubPlanPrice ( int iID, int planIndex, int periodIndex );
+			static int   GetInAppPurchaseSubPlanDuration( int iID, int planIndex, int periodIndex );
+			static char* GetInAppPurchaseSubPlanDurationUnit( int iID, int planIndex, int periodIndex );
+			static int   GetInAppPurchaseSubPlanPaymentType( int iID, int planIndex, int periodIndex );
+			static char* GetInAppPurchaseSubPlanTags  ( int iID, int planIndex );
+			static char* GetInAppPurchaseSubPlanToken ( int iID, int planIndex );
+			static char* GetAppReceipt();
 
 			// FACEBOOK COMMANDS
 			static void  FacebookSetup                ( const char* szID );
@@ -2720,6 +2758,7 @@ namespace AGK
 
 			// zip functions
 			static void CreateZip( UINT zipID, const char* filename );
+			static void CreateZip(UINT zipID, const char* filename, int append);
 			static UINT CreateZip( const char* filename );
 			static void AddZipEntry( UINT zipID, const char* path, const char* zipPath );
 			static void CloseZip( UINT zipID );
@@ -3554,7 +3593,14 @@ namespace AGK
 			static float GetNoiseXYZ ( float x, float y, float z );
 			static float GetFractalX ( uint32_t octaves, float x );
 			static float GetFractalXY ( uint32_t octaves, float x, float y );
-			static float GetFractalXZ ( uint32_t octaves, float x, float y, float z );
+			static float GetFractalXYZ ( uint32_t octaves, float x, float y, float z );
+
+			// Extensions
+			static int ExternalSDKSupported( const char* sdk );
+			static void ExternalCommand( const char* sdk, const char* command, const char* str1, const char* str2 );
+			static int ExternalCommandInt( const char* sdk, const char* command, const char* str1, const char* str2 );
+			static float ExternalCommandFloat( const char* sdk, const char* command, const char* str1, const char* str2 );
+			static char* ExternalCommandString( const char* sdk, const char* command, const char* str1, const char* str2 );
 	};
 }
 

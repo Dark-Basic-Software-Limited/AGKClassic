@@ -111,7 +111,7 @@ struct stArray
 	int GetTypeType() { return m_iDataType >> 9; }
 	void SetDataType( UINT currType, UINT typetype, UINT dimensions, UINT endtype ) { m_iDataType = (typetype << 9) | ((endtype & 0x07) << 6) | ((dimensions & 0x07) << 3) | (currType & 0x07); }
 
-	int IndexOfInt ( int value )
+	int IndexOfInt (int offset, int value )
 	{
 		if ( m_iLength == 0 ) return -1;
 
@@ -125,7 +125,7 @@ struct stArray
 		{
 			if ( varType == AGK_DATA_TYPE_TYPE )
 			{
-				if ( ( *( int* ) ( m_pT [ i ]->m_pData ) ) == value )
+				if ( ( *( int* ) ( m_pT [ i ]->m_pData+offset ) ) == value )
 					return i;
 			}
 			else
@@ -197,7 +197,7 @@ struct stArray
 		}
 	}
 
-	int IndexOfFloat ( float value )
+	int IndexOfFloat (int offset, float value )
 	{
 		if ( m_iLength == 0 ) return -1;
 
@@ -213,7 +213,7 @@ struct stArray
 		{
 			if ( varType == AGK_DATA_TYPE_TYPE )
 			{
-				if ( ( *( float* ) ( m_pT [ i ]->m_pData ) ) == value )
+				if ( ( *( float* ) ( m_pT [ i ]->m_pData+offset ) ) == value )
 					return i;
 			}
 			else
@@ -285,7 +285,7 @@ struct stArray
 		}
 	}
 
-	int IndexOfString ( const char* value )
+	int IndexOfString (int offset, const char* value )
 	{
 		if ( m_iLength == 0 ) return -1;
 
@@ -301,7 +301,7 @@ struct stArray
 		{
 			if ( varType == AGK_DATA_TYPE_TYPE )
 			{
-				uString *pString = ( uString* ) ( m_pT [ i ]->m_pData );
+				uString *pString = ( uString* ) ( m_pT [ i ]->m_pData+offset );
 
 				if ( pString->CompareTo ( value ) == 0 )
 					return i;

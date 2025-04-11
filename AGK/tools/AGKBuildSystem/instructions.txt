@@ -38,7 +38,7 @@ Run AGKBuild
 
 **Switch to MAC**
 Update SVN
-If doing a clean build then IDE ./autogen.sh --prefix="$HOME/Programs/AGKIDE" -- disable-vte
+If doing a clean build then IDE sh ./autogen.sh --prefix="$HOME/Programs/AGKIDE" --disable-vte
 Activate Receive and FilesMacAlpha folders for file copying (/Volumes)
 Change interpreter_ios build number
 Browse to AGKTrunk/tools/AGKBuildSystem/Mac

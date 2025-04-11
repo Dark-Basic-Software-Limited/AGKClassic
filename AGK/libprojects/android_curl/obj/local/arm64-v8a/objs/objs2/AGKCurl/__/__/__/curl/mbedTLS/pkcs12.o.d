@@ -1,0 +1,32 @@
+./obj/local/arm64-v8a/objs/objs2/AGKCurl/__/__/__/curl/mbedTLS/pkcs12.o: \
+  jni\..\..\..\curl\mbedTLS\pkcs12.c \
+  jni\..\..\..\curl\include\mbedtls\config.h \
+  jni\..\..\..\curl\include\mbedtls\check_config.h \
+  jni\..\..\..\curl\include\mbedtls\pkcs12.h \
+  jni\..\..\..\curl\include\mbedtls\md.h \
+  jni\..\..\..\curl\include\mbedtls\cipher.h \
+  jni\..\..\..\curl\include\mbedtls\asn1.h \
+  jni\..\..\..\curl\include\mbedtls\bignum.h \
+  jni\..\..\..\curl\include\mbedtls\platform_util.h \
+  jni\..\..\..\curl\include\mbedtls\arc4.h \
+  jni\..\..\..\curl\include\mbedtls\des.h
+
+jni\..\..\..\curl\include\mbedtls\config.h:
+
+jni\..\..\..\curl\include\mbedtls\check_config.h:
+
+jni\..\..\..\curl\include\mbedtls\pkcs12.h:
+
+jni\..\..\..\curl\include\mbedtls\md.h:
+
+jni\..\..\..\curl\include\mbedtls\cipher.h:
+
+jni\..\..\..\curl\include\mbedtls\asn1.h:
+
+jni\..\..\..\curl\include\mbedtls\bignum.h:
+
+jni\..\..\..\curl\include\mbedtls\platform_util.h:
+
+jni\..\..\..\curl\include\mbedtls\arc4.h:
+
+jni\..\..\..\curl\include\mbedtls\des.h:

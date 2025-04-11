@@ -1,0 +1,27 @@
+./obj/local/arm64-v8a/objs/objs2/AGKAndroid/__/__/__/zlib/trees.o: \
+  jni\..\..\..\zlib\trees.c jni\..\..\..\zlib\deflate.h \
+  jni\..\..\..\zlib\zutil.h jni\..\..\..\zlib\zlib.h \
+  jni\..\..\..\zlib\zconf.h \
+  D:\AGK\External\android-ndk-r20b\build\\..\sources\cxx-stl\llvm-libc++\include\stddef.h \
+  D:\AGK\External\android-ndk-r20b\build\\..\sources\cxx-stl\llvm-libc++\include\string.h \
+  D:\AGK\External\android-ndk-r20b\build\\..\sources\cxx-stl\llvm-libc++\include\__config \
+  D:\AGK\External\android-ndk-r20b\build\\..\sources\cxx-stl\llvm-libc++\include\stdlib.h \
+  jni\..\..\..\zlib\trees.h
+
+jni\..\..\..\zlib\deflate.h:
+
+jni\..\..\..\zlib\zutil.h:
+
+jni\..\..\..\zlib\zlib.h:
+
+jni\..\..\..\zlib\zconf.h:
+
+D:\AGK\External\android-ndk-r20b\build\\..\sources\cxx-stl\llvm-libc++\include\stddef.h:
+
+D:\AGK\External\android-ndk-r20b\build\\..\sources\cxx-stl\llvm-libc++\include\string.h:
+
+D:\AGK\External\android-ndk-r20b\build\\..\sources\cxx-stl\llvm-libc++\include\__config:
+
+D:\AGK\External\android-ndk-r20b\build\\..\sources\cxx-stl\llvm-libc++\include\stdlib.h:
+
+jni\..\..\..\zlib\trees.h:

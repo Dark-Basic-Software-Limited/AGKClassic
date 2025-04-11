@@ -632,7 +632,7 @@ void agk::PlatformRateApp( const char* szID, const char* title, const char* mess
 
 void agk::PlatformInAppPurchaseReset()
 {
-    [ StoreManager reset ];
+    [ [StoreManager sharedManager] reset ];
 }
 
 void agk::PlatformInAppPurchaseSetKeys ( const char* szData1, const char* szData2 )
@@ -640,63 +640,30 @@ void agk::PlatformInAppPurchaseSetKeys ( const char* szData1, const char* szData
     // do nothing on iOS
 }
 
-//****f* Extras/In App Purchase/InAppPurchaseSetTitle
-// FUNCTION
-//   Sets the name of your application so that it can be displayed on any dialogs
-//   that get displayed when using the in app purchase commands.
-// INPUTS
-//   title -- Name of your application
-// SOURCE
 void agk::PlatformInAppPurchaseSetTitle ( const char* szTitle )
 {
-//****
     
     // set the title
-    [ StoreManager setTitle: szTitle ];
+    [ [StoreManager sharedManager] setTitle: szTitle ];
 }
 
-//****f* Extras/In App Purchase/InAppPurchaseAddProductID
-// FUNCTION
-//   Use this command to add any product IDs into the list e.g. com.yourcompany.yourproduct.iap.
-//   The first product ID you add becomes 0, the second is 1 etc.
-// INPUTS
-//   ID -- product ID
-// SOURCE
 void agk::PlatformInAppPurchaseAddProductID ( const char* szID, int type )
 {
-//****
-    
     // add the product ID
-    [ StoreManager addProductID: szID ];
+    [ [StoreManager sharedManager] addProductID: szID ];
 }
 
-//****f* Extras/In App Purchase/InAppPurchaseSetup
-// FUNCTION
-//   After setting the in app purchase title and adding product IDs call InAppPurchaseSetup
-//   to finalise the process. After this point you can attempt to purchase unlockable content.
-// SOURCE
 void agk::PlatformInAppPurchaseSetup ( void )
 {
-//****
-    
     // final set up, must be called after setting title and adding product IDs
-    [ StoreManager setup ];
+    [ [StoreManager sharedManager] setup ];
 }
 
-//****f* Extras/In App Purchase/GetInAppPurchaseAvailable
-// FUNCTION
-//   Returns 1 if the extra content has been purchased and is therefore available. Returns 0
-//   if the content is not available.
-// INPUTS
-//   ID -- this ID corresponds to the product IDs that have been added e.g. your first product
-//         ID is 0, your second is 1 etc.
-// SOURCE
 int agk::PlatformGetInAppPurchaseAvailable ( int iID )
 {
-//****
     
     // find out if content is available
-    if ( [ StoreManager isUnlockableContentAvailable: iID ] == YES )
+    if ( [ [StoreManager sharedManager] isUnlockableContentAvailable: iID ] == YES )
         return 1;
     
     // not available yet
@@ -705,34 +672,23 @@ int agk::PlatformGetInAppPurchaseAvailable ( int iID )
 
 int agk::PlatformGetInAppPurchaseAvailable2 ( int iID )
 {
-    return [ StoreManager getContentState: iID ];
+    return [ [StoreManager sharedManager] getContentState: iID ];
 }
 
-//****f* Extras/In App Purchase/InAppPurchaseActivate
-// FUNCTION
-//   Call this when you want to start the process of activating / unlocking extra content.
-// INPUTS
-//   ID -- this ID corresponds to the product IDs that have been added e.g. your first product
-//         ID is 0, your second is 1 etc.
-// SOURCE
 void agk::PlatformInAppPurchaseActivate ( int iID )
 {
-//****
+    [ [ StoreManager sharedManager ] purchaseUnlockableContent: iID ];
+}
     
-    // attempt to unlock the content
+void agk::PlatformInAppPurchaseActivateWithPlan( int iID, const char* planToken )
+{    
+    // todo
     [ [ StoreManager sharedManager ] purchaseUnlockableContent: iID ];
 }
 
-//****f* Extras/In App Purchase/GetInAppPurchaseState
-// FUNCTION
-//   Return the current state of the attempt to activate content. A value of 0 indicates that
-//   the process is on going, while 1 confirms the process is complete.
-// SOURCE
 int agk::PlatformGetInAppPurchaseState ( void )
 {
-   
-    // get the state of purchase process
-    return [ StoreManager getState ];
+    return [ [StoreManager sharedManager] getState ];
 }
 
 char* agk::PlatformGetInAppPurchaseLocalPrice ( int iID )
@@ -772,9 +728,57 @@ void agk::PlatformInAppPurchaseResetPurchase( const char* token )
     [[StoreManager sharedManager] resetPurchase: token];
 }
 
+void agk::PlatformInAppPurchaseRedeemOffer()
+{
+    if (@available(iOS 14.0, *))
+    {
+        [[SKPaymentQueue defaultQueue] presentCodeRedemptionSheet];
+    }
+}
+
 char* agk::PlatformGetInAppPurchaseToken( int iID )
 {
     return [[StoreManager sharedManager] getToken: iID];
+}
+
+int agk::PlatformGetInAppPurchaseSubNumPlans( int iID )
+{
+    return [[StoreManager sharedManager] getNumPlans:iID];
+}
+
+int agk::PlatformGetInAppPurchaseSubPlanNumPeriods( int iID, int planIndex )
+{
+    return [[StoreManager sharedManager] getPlanNumPeriods: iID plan:planIndex];
+}
+
+char* agk::PlatformGetInAppPurchaseSubPlanPrice( int iID, int planIndex, int periodIndex )
+{
+    return [[StoreManager sharedManager] getPlanPrice:iID plan:planIndex period:periodIndex];
+}
+
+int agk::PlatformGetInAppPurchaseSubPlanDuration( int iID, int planIndex, int periodIndex )
+{
+    return [[StoreManager sharedManager] getPlanDuration:iID plan:planIndex period:periodIndex];
+}
+
+char* agk::PlatformGetInAppPurchaseSubPlanDurationUnit( int iID, int planIndex, int periodIndex )
+{
+    return [[StoreManager sharedManager] getPlanDurationUnit:iID plan:planIndex period:periodIndex];
+}
+
+int agk::PlatformGetInAppPurchaseSubPlanPaymentType( int iID, int planIndex, int periodIndex )
+{
+    return [[StoreManager sharedManager] getPlanPaymentType:iID plan:planIndex period:periodIndex];
+}
+
+char* agk::PlatformGetInAppPurchaseSubPlanTags( int iID, int planIndex )
+{
+    return [[StoreManager sharedManager] getPlanTags:iID plan:planIndex];
+}
+
+char* agk::PlatformGetInAppPurchaseSubPlanToken( int iID, int planIndex )
+{
+    return [[StoreManager sharedManager] getPlanToken:iID plan:planIndex];
 }
 
 #pragma mark -
@@ -919,7 +923,7 @@ void agk::OverrideConsentChartboost( int consent )
 //****
 {
 #ifndef LITEVERSION
-    g_iChartboostConsentStatus = 1;
+	g_iChartboostConsentStatus = 1;
     if ( consent == 2 ) g_iChartboostConsentStatus = 2;
     
     UpdateChartboostConsent();
@@ -1219,7 +1223,7 @@ int  agk::PlatformAdMobGetFullscreenLoaded ()
 {
 	if ( !g_pInterstitialListener ) return 0;
 	
-    return g_pInterstitialListener->pInterstitial ? 1 : 0;
+	return g_pInterstitialListener->pInterstitial ? 1 : 0;
 }
 
 void agk::PlatformAdMobRewardAd()
@@ -1295,7 +1299,7 @@ void  agk::PlatformChartboostSetup ()
     [Chartboost startWithAppId:[ NSString stringWithUTF8String:m_sChartboostCode1.GetStr() ]
                   appSignature:[ NSString stringWithUTF8String:m_sChartboostCode2.GetStr() ]
                   delegate:g_pChartboostListener];
-    
+        
     [g_pChartboostListener reset];
     [g_pChartboostListener load];
 #else

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D67F2C9286AF86B00D5E8FF /* SimplexNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D67F2C8286AF86B00D5E8FF /* SimplexNoise.cpp */; };
+		2D67F2CB286AF87E00D5E8FF /* SimplexNoise.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D67F2CA286AF87E00D5E8FF /* SimplexNoise.h */; };
 		4A104FDA1DA5560700343096 /* sha2.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A104FD91DA5560700343096 /* sha2.h */; };
 		4A104FDC1DA5561300343096 /* sha2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A104FDB1DA5561300343096 /* sha2.cpp */; };
 		4A12DDA51DFA605F00BD53CA /* DefaultFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A12DDA41DFA605F00BD53CA /* DefaultFont.h */; };
@@ -1429,6 +1431,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D67F2C8286AF86B00D5E8FF /* SimplexNoise.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = SimplexNoise.cpp; sourceTree = "<group>"; };
+		2D67F2CA286AF87E00D5E8FF /* SimplexNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimplexNoise.h; path = common/include/SimplexNoise.h; sourceTree = SOURCE_ROOT; };
 		4A104FD91DA5560700343096 /* sha2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sha2.h; path = common/include/sha2.h; sourceTree = SOURCE_ROOT; };
 		4A104FDB1DA5561300343096 /* sha2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sha2.cpp; sourceTree = "<group>"; };
 		4A12DDA41DFA605F00BD53CA /* DefaultFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefaultFont.h; path = common/include/DefaultFont.h; sourceTree = SOURCE_ROOT; };
@@ -4315,6 +4319,7 @@
 				4A8567401BCEC95D00224EAA /* CollisionShapes.h */,
 				4A8567411BCEC95D00224EAA /* ContactReport.h */,
 				4A8567421BCEC95D00224EAA /* DynamicsWorld.h */,
+				2D67F2CA286AF87E00D5E8FF /* SimplexNoise.h */,
 				4A8567431BCEC95D00224EAA /* GLDebugDrawer.h */,
 				4A8567441BCEC95D00224EAA /* Joint.h */,
 				4A8567451BCEC95D00224EAA /* Joints.h */,
@@ -4422,6 +4427,7 @@
 				D8897DBD12ADA81600573108 /* cSpriteMgr.cpp */,
 				D8897DBE12ADA81600573108 /* cText.cpp */,
 				D8A12BCC1288534C003BFB21 /* cTouch.cpp */,
+				2D67F2C8286AF86B00D5E8FF /* SimplexNoise.cpp */,
 				D806E353124A5D210067F527 /* cImage.cpp */,
 				D806E354124A5D210067F527 /* cSprite.cpp */,
 				D806E46D124AD51D0067F527 /* uString.cpp */,
@@ -5158,6 +5164,7 @@
 				4A45AB1F1D00E96900CF29C4 /* psych_16.h in Headers */,
 				4AF8F8071BCEB3C800850A31 /* btGhostObject.h in Headers */,
 				D899C9C7140D1DEC005A5A3A /* b2Math.h in Headers */,
+				2D67F2CB286AF87E00D5E8FF /* SimplexNoise.h in Headers */,
 				4A8567521BCEC95D00224EAA /* cMesh.h in Headers */,
 				4AF8FC051BCEB85100850A31 /* XFileParser.h in Headers */,
 				D899C9C9140D1DEC005A5A3A /* b2Settings.h in Headers */,
@@ -5895,6 +5902,7 @@
 				4AF8F8481BCEB3C800850A31 /* btPolyhedralConvexShape.cpp in Sources */,
 				4AF8F8161BCEB3C800850A31 /* btUnionFind.cpp in Sources */,
 				D899C9AD140D1DDA005A5A3A /* b2CircleShape.cpp in Sources */,
+				2D67F2C9286AF86B00D5E8FF /* SimplexNoise.cpp in Sources */,
 				4AF8FAC71BCEB85100850A31 /* BlenderLoader.cpp in Sources */,
 				4A96E86118D74CFF002655A6 /* Skeleton2D.cpp in Sources */,
 				D899C9AF140D1DDA005A5A3A /* b2EdgeShape.cpp in Sources */,

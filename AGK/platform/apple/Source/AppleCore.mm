@@ -1538,6 +1538,18 @@ void agk::RestoreApp()
 	// do nothing
 }
 
+void agk::PinApp( int enable )
+//****
+{
+	UIAccessibilityRequestGuidedAccessSession( (enable != 0) ? TRUE : FALSE, nil );
+}
+
+int agk::IsPinAppAvailable()
+//****
+{
+	return 0;
+}
+
 void agk::SetImmersiveMode( int mode )
 {
 	g_iImmersiveMode = mode ? 1 : 0;
@@ -1574,6 +1586,17 @@ void agk::SetScreenResolution( int width, int height )
     agk::SetVideoDimensions(m_fVideoX, m_fVideoY, m_fVideoWidth, m_fVideoHeight);
     
     agk::ClearScreen();
+}
+
+int agk::IsDarkTheme()
+//****
+{
+	if (@available(iOS 12.0, *)) 
+	{
+		return (g_pViewController.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) ? 1 : 0;
+	}
+
+	return 0;
 }
 
 char* agk::GetURLSchemeText()
@@ -2176,6 +2199,8 @@ void agk::PlatformInitConsole()
 
 void agk::UpdatePtr( void *ptr )
 {    
+	if( !ptr ) return;
+	
     g_pViewController = (UIViewController*) ptr;
 	g_pMainWindow = g_pViewController.view;
 		
@@ -2457,6 +2482,82 @@ int agk::GetDeviceDPI()
 	
 	delete [] szType;
 	return result;
+}
+
+int agk::GetDisplayNumCutouts()
+//****
+{
+    return 0;
+}
+
+float agk::GetDisplayCutoutTop( int index )
+//****
+{
+    return 0;
+}
+
+float agk::GetDisplayCutoutBottom( int index )
+//****
+{
+    return 0;
+}
+
+float agk::GetDisplayCutoutLeft( int index )
+//****
+{
+    return 0;
+}
+
+float agk::GetDisplayCutoutRight( int index )
+//****
+{
+    return 0;
+}
+
+float agk::GetScreenBoundsSafeTop()
+//****
+{
+	if (@available(iOS 11.0, *)) {
+        float value = (float) [[UIApplication sharedApplication] keyWindow].safeAreaInsets.top;
+		return agk::DeviceToScreenY( value );
+    } 
+
+	return GetScreenBoundsTop();
+}
+
+float agk::GetScreenBoundsSafeBottom()
+//****
+{
+	if (@available(iOS 11.0, *)) {
+        float value = (float) [[UIApplication sharedApplication] keyWindow].safeAreaInsets.bottom;
+        value = m_iRealDeviceHeight - value;
+		return agk::DeviceToScreenY( value );
+    } 
+
+	return GetScreenBoundsBottom();
+}
+
+float agk::GetScreenBoundsSafeLeft()
+//****
+{
+	if (@available(iOS 11.0, *)) {
+        float value = (float) [[UIApplication sharedApplication] keyWindow].safeAreaInsets.left;
+		return agk::DeviceToScreenX( value );
+    } 
+
+	return GetScreenBoundsLeft();
+}
+
+float agk::GetScreenBoundsSafeRight()
+//****
+{
+	if (@available(iOS 11.0, *)) {
+        float value = (float) [[UIApplication sharedApplication] keyWindow].safeAreaInsets.right;
+        value = m_iRealDeviceWidth - value;
+		return agk::DeviceToScreenX( value );
+    } 
+
+	return GetScreenBoundsRight();
 }
 
 char* agk::GetAppPackageName()
@@ -6520,9 +6621,7 @@ void agk::ShareFile( const char* szFilename )
 void agk::FacebookActivateAppTracking()
 //****
 {
-#if !defined(LITEVERSION) && defined(USE_FACEBOOK_SDK)
-    [FBAppEvents activateApp];
-#endif
+
 }
 
 int agk::GetInternetState()
@@ -6592,6 +6691,7 @@ int agk::PushNotificationSetup()
 //****
 {
 #ifndef LITEVERSION
+    
     
     if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)])
     {
@@ -8157,3 +8257,66 @@ void agk::ShareSnapChatImage( const char* imageFile, const char* stickerFile, co
   #endif
 #endif
 }
+
+char* agk::PlatformGetAppReceipt()
+{
+    NSURL* url = [[NSBundle mainBundle] appStoreReceiptURL];
+    NSData* receipt = [NSData dataWithContentsOfURL:url];
+    if ( !receipt )
+    {
+        char* str = new char[1];
+        *str = 0;
+        return str;
+    }
+    else
+    {
+        NSString* nsStr = [receipt base64EncodedStringWithOptions:0];
+        unsigned long length = [nsStr length];
+        char* str = new char[ length + 1 ];
+        strcpy( str, [nsStr UTF8String] );
+        return str;
+    }
+}
+
+extern "C" __attribute__((weak)) int ExternExternalSDKSupported( const char* sdk ) { return 0; }
+extern "C" __attribute__((weak)) void ExternExternalCommand( const char* sdk, const char* command, const char* str1, const char* str2 ) {}
+extern "C" __attribute__((weak)) int ExternExternalCommandInt( const char* sdk, const char* command, const char* str1, const char* str2 ) { return 0; }
+extern "C" __attribute__((weak)) float ExternExternalCommandFloat( const char* sdk, const char* command, const char* str1, const char* str2 ) { return 0; }
+extern "C" __attribute__((weak)) char* ExternExternalCommandString( const char* sdk, const char* command, const char* str1, const char* str2 )
+{
+    char* str = new char[1];
+    *str = 0;
+    return str;
+}
+
+// Extensions
+int agk::ExternalSDKSupported( const char* sdk )
+//****
+{
+	return ExternExternalSDKSupported( sdk );
+}
+
+void agk::ExternalCommand( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+    ExternExternalCommand( sdk, command, str1, str2 );
+}
+
+int agk::ExternalCommandInt( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+    return ExternExternalCommandInt( sdk, command, str1, str2 );
+}
+
+float agk::ExternalCommandFloat( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+    return ExternExternalCommandFloat( sdk, command, str1, str2 );
+}
+
+char* agk::ExternalCommandString( const char* sdk, const char* command, const char* str1, const char* str2 )
+//****
+{
+    return ExternExternalCommandString( sdk, command, str1, str2 );
+}
+

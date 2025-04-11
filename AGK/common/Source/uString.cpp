@@ -759,6 +759,17 @@ int uString::UnicodeLowerCaseChar( int input )
 	}
 }
 
+unsigned char uString::DecodeHexChar( unsigned char c )
+{
+	if ( c < 48 ) return 0xFF;
+	if ( c < 58 ) return c - 48;
+	if ( c < 65 ) return 0xFF;
+	if ( c < 71 ) return c - 55;
+	if ( c < 97 ) return 0xFF;
+	if ( c < 103 ) return c - 87;
+	return 0xFF;
+}
+
 uString::uString()
 {
 	m_pData = 0;
@@ -2268,6 +2279,8 @@ uString& uString::ReplaceStr( const char* find, const char *replace, int qty )
 	if ( !IsUTF8( find ) ) szUTF8Find = (const unsigned char*)ConvertToUTF8( find, &lengthFind, &numCharsFind );
 	else numCharsFind = CountUTF8Chars( find, &lengthFind );
 
+	if ( lengthFind == 0 ) return *this;
+
 	if ( lengthFind > (int)m_iLength ) 
 	{
 		if ( szUTF8Find != (const unsigned char*)find ) delete [] szUTF8Find;
@@ -2320,6 +2333,8 @@ uString& uString::ReplaceStr( const char* find, const char *replace, int qty )
 				if ( shift2 > shift ) shift = shift2;
 
 				if ( (char*)str+shift+lengthFind > m_pData+m_iLength ) shift = m_iLength - (int)((char*)str-m_pData);
+
+				if ( shift <= 0 ) shift = 1;
 
 				if ( lengthFind == lengthReplace ) 
 				{
@@ -2594,6 +2609,7 @@ uString& uString::Lower( )
 uString& uString::Unescape()
 {
 	if ( m_iLength == 0 ) return *this;
+	// string is guaranteed to be smaller than it was before, so we can do it in place
 	char *str = m_pData;
 	char *str2 = m_pData;
 	
@@ -2612,6 +2628,22 @@ uString& uString::Unescape()
 				case 'f': *str2 = '\f'; break;
 				case 't': *str2 = '\t'; break;
 				case '/': *str2 = '/'; break;
+				case 'u': 
+				{
+					str++;
+					if ( str[0] == 0 || str[1] == 0 || str[2] == 0 || str[3] == 0  ) break;
+					unsigned int c1 = DecodeHexChar( (unsigned char)str[0] );
+					unsigned int c2 = DecodeHexChar( (unsigned char)str[1] );
+					unsigned int c3 = DecodeHexChar( (unsigned char)str[2] );
+					unsigned int c4 = DecodeHexChar( (unsigned char)str[3] );
+					str += 3; // extra 1 will be added later
+					if ( c1 != 0xFF && c2 != 0xFF && c3 != 0xFF && c4 != 0xFF ) 
+					{
+						unsigned int unicode = (c1 << 12) | (c2 << 8) | (c3 << 4) | c4;
+						int count = GetUTF8FromUnicode( unicode, str2 ) - 1; // extra 1 will be added later
+						if ( count > 0 ) str2 += count;
+					}
+				} break;
 				case '\\': *str2 = '\\'; break;
 				default: *str2 = *str;
 			}

@@ -583,6 +583,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			return DefWindowProc(hWnd, message, wParam, lParam);
 		}
 
+		case WM_GETMINMAXINFO:
+		{
+			MINMAXINFO* minMaxInfo = (MINMAXINFO*) lParam;
+			minMaxInfo->ptMaxSize.x = 8192;
+			minMaxInfo->ptMaxSize.y = 8192;
+			minMaxInfo->ptMaxTrackSize.x = 8192;
+			minMaxInfo->ptMaxTrackSize.y = 8192;
+			break;
+		}
+
 		case WM_ACTIVATE:
 		{
 			// if being made inactive and currently we are topmost temporarily remove topmost until we are active again.
@@ -674,6 +684,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		case WM_SYSCOMMAND:
 		{
 			if ( wParam == SC_SIZE && !agk::CanResize() ) return 0;
+			else if ( wParam == SC_KEYMENU && lParam != 32 ) return 0;
 			else return DefWindowProc(hWnd, message, wParam, lParam);
 			break;
 		}
@@ -793,10 +804,10 @@ HWND CreateWin32Window( HINSTANCE hInstance, int width, int height, uString &szT
 	
 	if ( x == -1 ) x = ((rc.right-rc.left)-width)/2 + rc.left;
 	if ( y == -1 ) y = ((rc.bottom-rc.top-50)-height)/2 + rc.top;
-	if ( x < 0 ) x = 0;
-	if ( y < 0 ) y = 0;
 	if ( x+width > rc.right ) x = rc.right-width;
 	if ( y+height > rc.bottom ) y = rc.bottom-height;
+	if ( x < 0 ) x = 0;
+	if ( y < 0 ) y = 0;
 
 	// check if window has a previous position
 	
@@ -817,6 +828,8 @@ HWND CreateWin32Window( HINSTANCE hInstance, int width, int height, uString &szT
 		y = rc2.top;
 		width = rc2.right - rc2.left;
 		height = rc2.bottom - rc2.top;
+		if ( width < 100 ) width = 100;
+		if ( height < 100 ) height = 100;
 
 		int vLeft = GetSystemMetrics( SM_XVIRTUALSCREEN );
 		int vTop = GetSystemMetrics( SM_YVIRTUALSCREEN );
@@ -930,9 +943,9 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 		agk::InitFilePaths();
 	}
 	
-	App.g_dwDeviceWidth = DEVICE_WIDTH;
-	App.g_dwDeviceHeight = DEVICE_HEIGHT;
-	App.g_dwFullScreen = FULLSCREEN ? 1 : 0;
+	int width = DEVICE_WIDTH;
+	int height = DEVICE_HEIGHT;
+	int fullscreen = FULLSCREEN ? 1 : 0;
 
 	char* pSetupFile = (char*)"setup.agc";
 	if ( agk::GetFileExists ( pSetupFile )==1 )
@@ -944,9 +957,9 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 		{
 			char* pLineToRead = agk::ReadLine ( 1 );
 			pField=(char*)"title="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	strcpy ( App.g_pWindowTitle, pLineToRead+strlen(pField) );
-			pField=(char*)"width="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	App.g_dwDeviceWidth = (unsigned int)atoi(pLineToRead+strlen(pField));
-			pField=(char*)"height="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	App.g_dwDeviceHeight = (unsigned int)atoi(pLineToRead+strlen(pField));
-			pField=(char*)"fullscreen="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	App.g_dwFullScreen = (unsigned int)atoi(pLineToRead+strlen(pField));
+			pField=(char*)"width="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	width = (unsigned int)atoi(pLineToRead+strlen(pField));
+			pField=(char*)"height="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	height = (unsigned int)atoi(pLineToRead+strlen(pField));
+			pField=(char*)"fullscreen="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	fullscreen = (unsigned int)atoi(pLineToRead+strlen(pField));
 			pField=(char*)"resolutionmode="; if ( strncmp ( pLineToRead, pField, strlen(pField) )==0 )	App.g_dwResolutionMode = (unsigned int)atoi(pLineToRead+strlen(pField));
 		}
 		agk::CloseFile ( 1 );
@@ -954,7 +967,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 
 	// create a win32 window for the app
 	uString szTitle( App.g_pWindowTitle );
-	HWND hWnd = CreateWin32Window( hInstance, App.g_dwDeviceWidth, App.g_dwDeviceHeight, szTitle, -1, -1, App.g_dwFullScreen==1 );
+	HWND hWnd = CreateWin32Window( hInstance, width, height, szTitle, -1, -1, fullscreen==1 );
 
 	agk::SetExtraAGKPlayerAssetsMode ( 2 ); // 0-no assets, 1-minimum assets, 2-extra AGK Player assets
 

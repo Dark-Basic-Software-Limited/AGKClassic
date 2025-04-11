@@ -104,6 +104,15 @@ static gint ios_exporting_player = 0;
 
 #define AGK_CLEAR_STR(dst) if((dst)) g_free((dst)); (dst)
 
+void make_path( char* path )
+{
+	char* slash = strrchr( path, '/' );
+	if ( !slash ) return;
+	*slash = 0;
+	g_mkdir_with_parents( path, 0755 );
+	*slash = '/';
+}
+
 /* TODO: this should be ported to Glade like the project preferences dialog,
  * then we can get rid of the PropertyDialogElements struct altogether as
  * widgets pointers can be accessed through ui_lookup_widget(). */
@@ -887,7 +896,7 @@ static void on_android_dialog_response(GtkDialog *dialog, gint response, gpointe
 	running = 1;
     
 #ifdef __APPLE__
-    gchar* android_path = g_build_path( "/", app->configdir, "AndroidExport", "aapt2", NULL );
+    gchar* android_path = g_build_path( "/", app->configdir, "AndroidExport", "aapt2-bundle", NULL );
     if ( !g_file_test(android_path, G_FILE_TEST_EXISTS) )
     {
         g_free( android_path);
@@ -911,6 +920,9 @@ static void on_android_dialog_response(GtkDialog *dialog, gint response, gpointe
 
 		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_app_icon_entry");
 		AGK_CLEAR_STR(app->project->apk_settings.app_icon_path) = g_strdup(gtk_entry_get_text(GTK_ENTRY(widget)));
+
+		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_app_icon_new_entry");
+		AGK_CLEAR_STR(app->project->apk_settings.app_icon_new_path) = g_strdup(gtk_entry_get_text(GTK_ENTRY(widget)));
 
 		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_notif_icon_entry");
 		AGK_CLEAR_STR(app->project->apk_settings.notif_icon_path) = g_strdup(gtk_entry_get_text(GTK_ENTRY(widget)));
@@ -986,8 +998,8 @@ static void on_android_dialog_response(GtkDialog *dialog, gint response, gpointe
 		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_permission_camera");
 		if ( gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget)) ) app->project->apk_settings.permission_flags |= AGK_ANDROID_PERMISSION_CAMERA;
 
-		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_permission_expansion");
-		if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget)) ) app->project->apk_settings.permission_flags |= AGK_ANDROID_PERMISSION_EXPANSION;
+		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_permission_notifications");
+		if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget)) ) app->project->apk_settings.permission_flags |= AGK_ANDROID_PERMISSION_NOTIFY;
 
 		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_permission_vibrate");
 		if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget)) ) app->project->apk_settings.permission_flags |= AGK_ANDROID_PERMISSION_VIBRATE;
@@ -1041,6 +1053,9 @@ static void on_android_dialog_response(GtkDialog *dialog, gint response, gpointe
 
 		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_app_icon_entry");
 		gchar *app_icon = g_strdup(gtk_entry_get_text(GTK_ENTRY(widget)));
+
+		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_app_icon_new_entry");
+		gchar *app_icon_new = g_strdup(gtk_entry_get_text(GTK_ENTRY(widget)));
 
 		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_notif_icon_entry");
 		gchar *notif_icon = g_strdup(gtk_entry_get_text(GTK_ENTRY(widget)));
@@ -1121,8 +1136,8 @@ static void on_android_dialog_response(GtkDialog *dialog, gint response, gpointe
 		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_permission_camera");
 		int permission_camera = gtk_toggle_button_get_active( GTK_TOGGLE_BUTTON(widget) );
 
-		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_permission_expansion");
-		int permission_expansion = gtk_toggle_button_get_active( GTK_TOGGLE_BUTTON(widget) );
+		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_permission_notifications");
+		int permission_notifications = gtk_toggle_button_get_active( GTK_TOGGLE_BUTTON(widget) );
 
 		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_permission_vibrate");
 		int permission_vibrate = gtk_toggle_button_get_active( GTK_TOGGLE_BUTTON(widget) );
@@ -1298,8 +1313,14 @@ static void on_android_dialog_response(GtkDialog *dialog, gint response, gpointe
 		//if ( !app_icon || !*app_icon ) { SHOW_ERR(_("You must select an app icon")); goto android_dialog_clean_up; }
 		if ( app_icon && *app_icon )
 		{
-			if ( !strrchr( app_icon, '.' ) || utils_str_casecmp( strrchr( app_icon, '.' ), ".png" ) != 0 ) { SHOW_ERR(_("App icon must be a PNG file")); goto android_dialog_clean_up; }
-			if ( !g_file_test( app_icon, G_FILE_TEST_EXISTS ) ) { SHOW_ERR(_("Could not find app icon location")); goto android_dialog_clean_up; }
+			if ( !strrchr( app_icon, '.' ) || utils_str_casecmp( strrchr( app_icon, '.' ), ".png" ) != 0 ) { SHOW_ERR(_("Legacy app icon must be a PNG file")); goto android_dialog_clean_up; }
+			if ( !g_file_test( app_icon, G_FILE_TEST_EXISTS ) ) { SHOW_ERR(_("Could not find legacy app icon location")); goto android_dialog_clean_up; }
+		}
+
+		if ( app_icon_new && *app_icon_new )
+		{
+			if ( !strrchr( app_icon_new, '.' ) || utils_str_casecmp( strrchr( app_icon_new, '.' ), ".png" ) != 0 ) { SHOW_ERR(_("App icon must be a PNG file")); goto android_dialog_clean_up; }
+			if ( !g_file_test( app_icon_new, G_FILE_TEST_EXISTS ) ) { SHOW_ERR(_("Could not find app icon location")); goto android_dialog_clean_up; }
 		}
 
 		if ( notif_icon && *notif_icon )
@@ -1375,6 +1396,7 @@ android_dialog_clean_up:
 		if ( app_name ) g_free(app_name);
 		if ( package_name ) g_free(package_name);
 		if ( app_icon ) g_free(app_icon);
+		if ( app_icon_new ) g_free(app_icon_new);
 		if ( ouya_icon ) g_free(ouya_icon);
 		if ( notif_icon ) g_free(notif_icon);
 		if ( firebase_config ) g_free(firebase_config);
@@ -1404,7 +1426,7 @@ android_dialog_continue:
 
 		// CHECKS COMPLETE, START EXPORT
 
-		const char* androidJar = "android30.jar";
+		const char* androidJar = "android31.jar";
 
 #if defined(G_OS_WIN32)
 		gchar* path_to_aapt2 = g_build_path( "\\", app->datadir, "android", "aapt2-bundle.exe", NULL );
@@ -1428,8 +1450,8 @@ android_dialog_continue:
 #elif defined(__APPLE__)
         gchar* path_to_aapt2 = g_build_path( "/", app->configdir, "AndroidExport", "aapt2-bundle", NULL );
         gchar* path_to_android_jar = g_build_path( "/", app->configdir, "AndroidExport", androidJar, NULL );
-        gchar* path_to_bundletool = g_build_path( "\\", app->configdir, "android", "bundletool.jar", NULL );
-		gchar* path_to_apksigner = g_build_path( "\\", app->configdir, "android", "apksigner.jar", NULL );
+        gchar* path_to_bundletool = g_build_path( "/", app->configdir, "AndroidExport", "bundletool.jar", NULL );
+		gchar* path_to_apksigner = g_build_path( "/", app->configdir, "AndroidExport", "apksigner.jar", NULL );
         gchar* path_to_zipalign = g_build_path( "/", app->configdir, "AndroidExport", "zipalign", NULL );
         
         gchar* android_folder = g_build_filename( app->configdir, "AndroidExport", NULL );
@@ -1438,22 +1460,18 @@ android_dialog_continue:
         else if ( isAmazon ) src_folder = g_build_path( "/", app->configdir, "AndroidExport", "sourceAmazon", NULL );
         else src_folder = g_build_path( "/", app->configdir, "AndroidExport", "sourceGoogle", NULL );
 #else
-		
-	gchar* path_to_aapt2 = g_build_path( "/", app->datadir, "android", "aapt2-bundle", NULL );
-	gchar* path_to_android_jar = g_build_path( "/", app->datadir, "android", androidJar, NULL );
-	// mike - paths are wrong
-	gchar* path_to_bundletool = g_build_path( "\\", app->datadir, "android", "bundletool.jar", NULL );
-	gchar* path_to_apksigner = g_build_path( "\\", app->datadir, "android", "apksigner.jar", NULL );
-	//gchar* path_to_bundletool = g_build_path( "/", app->datadir, "android", "bundletool.jar", NULL );
-	//gchar* path_to_apksigner = g_build_path( "/", app->datadir, "android", "apksigner.jar", NULL );
-	gchar* path_to_zipalign = g_build_path( "/", app->datadir, "android", "zipalign", NULL );
-	
+		//SHOW_ERR1 ( _ ( "Path: %s" ), app->datadir );
+		gchar* path_to_aapt2 = g_build_path( "/", app->datadir, "android", "aapt2-bundle", NULL );
+		gchar* path_to_android_jar = g_build_path( "/", app->datadir, "android", androidJar, NULL );
+        gchar* path_to_bundletool = g_build_path( "/", app->datadir, "android", "bundletool.jar", NULL );
+		gchar* path_to_apksigner = g_build_path( "/", app->datadir, "android", "apksigner.jar", NULL );
+		gchar* path_to_zipalign = g_build_path( "/", app->datadir, "android", "zipalign", NULL );
+        
         gchar* android_folder = g_build_filename( app->datadir, "android", NULL );
         gchar* src_folder;
         if ( isOuya ) src_folder = g_build_path( "/", app->datadir, "android", "sourceOuya", NULL );
         else if ( isAmazon ) src_folder = g_build_path( "/", app->datadir, "android", "sourceAmazon", NULL );
         else src_folder = g_build_path( "/", app->datadir, "android", "sourceGoogle", NULL );
-     
 #endif
 
 		// make temporary folder
@@ -1529,13 +1547,17 @@ android_dialog_continue:
 		gint package_count = 0;
 		gint package_index = 0;
 
+		gchar* path_to_java = 0;
+		gchar* path_to_jarsigner = 0;
+
 		// check for java
 		argv = g_new0( gchar*, 3 );
-		argv[0] = g_strdup( "which" );
+		argv[0] = g_strdup( "/usr/bin/which" );
 		argv[1] = g_strdup( "java" );
 		argv[2] = NULL;
 
 		#ifdef G_OS_WIN32
+			g_free(argv [ 0 ]);
 			argv [ 0 ] = g_strdup ( "where" );
 		#endif
 
@@ -1553,8 +1575,40 @@ android_dialog_continue:
 		if ( !str_out || str_out[0] != '/' ) 
 #endif
 		{
-			SHOW_ERR( _("Could not find Java, make sure you have the Java Development Kit (JDK) 8 or above installed") );
-			goto android_dialog_cleanup2;
+			const char* java_home = getenv( "JAVA_HOME" );
+			if ( !java_home )
+			{
+				SHOW_ERR( _("Could not find Java, make sure you have the Java Development Kit (JDK) 8 or above installed. If it is installed then make sure that the JAVA_HOME environment variable is defined or that the Java bin folder is in your PATH environment variable") );
+				goto android_dialog_cleanup2;
+			}
+			else
+			{
+				const char* separator = "/";
+				const char* binary = "java";
+#ifdef G_OS_WIN32
+				separator = "\\";
+				binary = "java.exe";
+#endif
+				path_to_java = g_build_path( separator, java_home, "bin", binary, NULL );
+
+				if ( !g_file_test( path_to_java, G_FILE_TEST_EXISTS ) )
+				{
+					SHOW_ERR1( _("Could not find java program, expected to find it in \"%s\", make sure your JAVA_HOME environment variable is correct"), path_to_java );
+					goto android_dialog_cleanup2;
+				}
+			}
+		}
+		else
+		{
+#ifdef G_OS_WIN32
+			path_to_java = g_strdup( "java" );
+#else
+			path_to_java = g_strdup( str_out );
+			if ( path_to_java[ strlen(path_to_java)-1 ] == '\n' )
+			{
+				path_to_java[ strlen(path_to_java)-1 ] = 0;
+			}
+#endif
 		}
 
 		if ( str_out ) g_free(str_out);
@@ -1576,8 +1630,40 @@ android_dialog_continue:
 		if ( !str_out || str_out[0] != '/' ) 
 #endif
 		{
-			SHOW_ERR( _("Could not find Jarsigner, make sure you have the Java Development Kit (JDK) 8 or above installed") );
-			goto android_dialog_cleanup2;
+			const char* java_home = getenv( "JAVA_HOME" );
+			if ( !java_home )
+			{
+				SHOW_ERR( _("Could not find jarsigner, make sure you have the Java Development Kit (JDK) 8 or above installed. If it is installed then make sure that the JAVA_HOME environment variable is defined or that the Java bin folder is in your PATH environment variable") );
+				goto android_dialog_cleanup2;
+			}
+			else
+			{
+				const char* separator = "/";
+				const char* binary = "jarsigner";
+#ifdef G_OS_WIN32
+				separator = "\\";
+				binary = "jarsigner.exe";
+#endif
+				path_to_jarsigner = g_build_path( separator, java_home, "bin", binary, NULL );
+
+				if ( !g_file_test( path_to_jarsigner, G_FILE_TEST_EXISTS ) )
+				{
+					SHOW_ERR1( _("Could not find jarsigner program, expected to find it in \"%s\", make sure your JAVA_HOME environment variable is correct"), path_to_jarsigner );
+					goto android_dialog_cleanup2;
+				}
+			}
+		}
+		else
+		{
+#ifdef G_OS_WIN32
+			path_to_jarsigner = g_strdup( "jarsigner" );
+#else
+			path_to_jarsigner = g_strdup( str_out );
+			if ( path_to_jarsigner[ strlen(path_to_jarsigner)-1 ] == '\n' )
+			{
+				path_to_jarsigner[ strlen(path_to_jarsigner)-1 ] = 0;
+			}
+#endif
 		}
 
 		if ( str_out ) g_free(str_out);
@@ -1625,47 +1711,38 @@ android_dialog_continue:
 		
 		// mike - 021221 - ensure we target SDK version 30
 		strcat( newcontents, "\" android:targetSdkVersion=\"" );
-		if ( isGoogle ) strcat( newcontents, "30" );
-		else if ( isAmazon ) strcat( newcontents, "22" );
-		else strcat( newcontents, "16" );
+		if ( isOuya ) strcat( newcontents, "16" );
+		else strcat( newcontents, "31" );
 		strcat( newcontents, "\" />\n\n" );
 
-		if ( permission_external_storage ) strcat( newcontents, "    <uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"></uses-permission>\n" );
+		if ( permission_external_storage ) strcat( newcontents, "    <uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />\n" );
 		if ( permission_internet ) 
 		{
-			strcat( newcontents, "    <uses-permission android:name=\"android.permission.INTERNET\"></uses-permission>\n" );
-			strcat( newcontents, "    <uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"></uses-permission>\n" );
-			strcat( newcontents, "    <uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"></uses-permission>\n" );
+			strcat( newcontents, "    <uses-permission android:name=\"android.permission.INTERNET\" />\n" );
+			strcat( newcontents, "    <uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />\n" );
+			strcat( newcontents, "    <uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />\n" );
 		}
-		if ( permission_wake ) strcat( newcontents, "    <uses-permission android:name=\"android.permission.WAKE_LOCK\"></uses-permission>\n" );
-		if ( permission_location_coarse && isGoogle ) strcat( newcontents, "    <uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"></uses-permission>\n" );
-		if ( permission_location_fine && isGoogle ) strcat( newcontents, "    <uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"></uses-permission>\n" );
-		if ( permission_billing && isGoogle ) strcat( newcontents, "    <uses-permission android:name=\"com.android.vending.BILLING\"></uses-permission>\n" );
-		if ( permission_camera ) strcat( newcontents, "    <uses-permission android:name=\"android.permission.CAMERA\"></uses-permission>\n" );
-		if ( ((google_play_app_id && *google_play_app_id) || permission_push) && isGoogle ) strcat( newcontents, "    <uses-permission android:name=\"com.google.android.c2dm.permission.RECEIVE\" />\n" );
-		if ( permission_push && isGoogle ) 
+		if ( permission_wake ) strcat( newcontents, "    <uses-permission android:name=\"android.permission.WAKE_LOCK\" />\n" );
+		if ( isGoogle )
 		{
-			strcat( newcontents, "    <permission android:name=\"" );
-			strcat( newcontents, package_name );
-			strcat( newcontents, ".permission.C2D_MESSAGE\" android:protectionLevel=\"signature\" />\n" );
-			strcat( newcontents, "    <uses-permission android:name=\"" );
-			strcat( newcontents, package_name );
-			strcat( newcontents, ".permission.C2D_MESSAGE\" />\n" );
+			if ( permission_location_coarse || permission_location_fine ) strcat( newcontents, "    <uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />\n" );
+			if ( permission_location_fine ) strcat( newcontents, "    <uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />\n" );
+			if ( permission_billing ) strcat( newcontents, "    <uses-permission android:name=\"com.android.vending.BILLING\" />\n" );
+			if ( permission_push ) 
+			{
+				strcat( newcontents, "    <permission android:name=\"" );
+				strcat( newcontents, package_name );
+				strcat( newcontents, ".permission.C2D_MESSAGE\" android:protectionLevel=\"signature\" />\n" );
+				strcat( newcontents, "    <uses-permission android:name=\"" );
+				strcat( newcontents, package_name );
+				strcat( newcontents, ".permission.C2D_MESSAGE\" />\n" );
+			}
+			if ( (google_play_app_id && *google_play_app_id) || permission_push ) strcat( newcontents, "    <uses-permission android:name=\"com.google.android.c2dm.permission.RECEIVE\" />\n" );
 		}
-		if ( permission_expansion && isGoogle ) 
-		{
-			//strcat( newcontents, "    <uses-permission android:name=\"android.permission.GET_ACCOUNTS\"></uses-permission>\n" );
-			strcat( newcontents, "    <uses-permission android:name=\"com.android.vending.CHECK_LICENSE\"></uses-permission>\n" );
-			strcat( newcontents, "    <uses-permission android:name=\"android.permission.FOREGROUND_SERVICE\"></uses-permission>\n" );
-		}
-		if ( permission_vibrate ) strcat( newcontents, "    <uses-permission android:name=\"android.permission.VIBRATE\"></uses-permission>\n" );
-		if ( permission_record_audio ) strcat( newcontents, "    <uses-permission android:name=\"android.permission.RECORD_AUDIO\"></uses-permission>\n" );
-		
-		// supports FireTV
-		if ( 0 )
-		{
-			strcat( newcontents, "    <uses-feature android:name=\"android.hardware.touchscreen\" android:required=\"false\" />\n" );
-		}
+		if ( permission_camera ) strcat( newcontents, "    <uses-permission android:name=\"android.permission.CAMERA\" />\n" );
+		if ( permission_push || permission_notifications ) strcat(newcontents, "    <uses-permission android:name=\"android.permission.POST_NOTIFICATIONS\" />\n" );
+		if ( permission_vibrate ) strcat( newcontents, "    <uses-permission android:name=\"android.permission.VIBRATE\" />\n" );
+		if ( permission_record_audio ) strcat( newcontents, "    <uses-permission android:name=\"android.permission.RECORD_AUDIO\" />\n" );
 
 		// if ARCore required
 		if ( arcore_mode == 2 )
@@ -1673,10 +1750,34 @@ android_dialog_continue:
 			strcat( newcontents, "    <uses-feature android:name=\"android.hardware.camera.ar\" android:required=\"true\" />" );
 		}
 
+		/*<uses-permission android:name="com.google.android.gms.permission.AD_ID" /> Required on Android 13*/
+
 		contents2 = contents;
 		contents3 = 0;
 
 		// the order of these relacements is important, they must occur in the same order as they occur in the file
+
+		// package queries
+		contents3 = strstr(contents2, "<!--ADDITIONAL_QUERIES-->");
+		if (contents3)
+		{
+			*contents3 = 0;
+			contents3 += strlen("<!--ADDITIONAL_QUERIES-->");
+
+			strcat(newcontents, contents2);
+					
+			if ( snapchat_client_id && *snapchat_client_id )
+			{
+				strcat(newcontents, "<package android:name=\"com.snapchat.android\" />\n" );
+			}
+
+			if ( arcore_mode > 0 )
+			{
+				strcat(newcontents, "<package android:name=\"com.google.ar.core\" />\n" );
+			}
+
+			contents2 = contents3;
+		}
 
 		// replace orientation
 		contents3 = strstr( contents2, "screenOrientation=\"fullSensor\"" );
@@ -1713,7 +1814,7 @@ android_dialog_continue:
 
 			if ( url_scheme && *url_scheme )
 			{
-				strcat( newcontents, "<intent-filter>\n\
+				strcat( newcontents, "<intent-filter android:autoVerify=\"true\">\n\
 			<action android:name=\"android.intent.action.VIEW\" />\n\
 			<category android:name=\"android.intent.category.DEFAULT\" />\n\
 			<category android:name=\"android.intent.category.BROWSABLE\" />\n\
@@ -1749,7 +1850,7 @@ android_dialog_continue:
 
 				if ( szScheme && *szScheme )
 				{
-					strcat( newcontents, "<intent-filter>\n\
+					strcat( newcontents, "<intent-filter android:autoVerify=\"true\">\n\
 			<action android:name=\"android.intent.action.VIEW\" />\n\
 			<category android:name=\"android.intent.category.DEFAULT\" />\n\
 			<category android:name=\"android.intent.category.BROWSABLE\" />\n\
@@ -1808,15 +1909,6 @@ android_dialog_continue:
 		// write the rest of the manifest file
 		strcat( newcontents, contents2 );
 
-		if ( permission_expansion && isGoogle ) 
-		{
-			strcat( newcontents, "\n\
-		<service android:name=\"com.google.android.vending.expansion.downloader.impl.DownloaderService\"\n\
-            android:enabled=\"true\"/>\n\
-        <receiver android:name=\"com.google.android.vending.expansion.downloader.impl.DownloaderService$AlarmReceiver\"\n\
-            android:enabled=\"true\"/>" );
-		}
-
 		// Google sign in
 		if ( isGoogle )
 		{
@@ -1836,7 +1928,7 @@ android_dialog_continue:
 			strcat(newcontents, "\n\
 			<meta-data\n\
 				android:name=\"com.google.android.play.billingclient.version\"\n\
-				android:value=\"3.0.3\" />\n\
+				android:value=\"5.0.0\" />\n\
 			<activity\n\
 				android:name=\"com.android.billingclient.api.ProxyBillingActivity\"\n\
 				android:configChanges=\"keyboard|keyboardHidden|screenLayout|screenSize|orientation\"\n\
@@ -2440,6 +2532,59 @@ android_dialog_continue:
 			g_error_free(error);
 			error = NULL;
 		}
+
+		// Adaptive icon
+		if ( !app_icon_new || !*app_icon_new || isOuya )
+		{
+			
+			gchar* nicon_file = g_build_path( "/", tmp_folder, "resMerged", "mipmap-anydpi-v26_ic_launcher.xml.flat", NULL );
+			g_unlink( nicon_file );
+			g_free( nicon_file );
+		}
+		else
+		{
+			if ( icon_image ) gdk_pixbuf_unref(icon_image);
+			icon_image = gdk_pixbuf_new_from_file( app_icon_new, &error );
+			if ( !icon_image || error )
+			{
+				SHOW_ERR1( _("Failed to load image icon: %s"), error->message );
+				g_error_free(error);
+				error = NULL;
+				goto android_dialog_cleanup2;
+			}
+
+			const char* szMipmapFolder[] = { "mipmap-xxxhdpi", "mipmap-xxhdpi", "mipmap-xhdpi", "mipmap-hdpi", "mipmap-mdpi" };
+			int iIconSize[] = { 432, 324, 216, 162, 108 };
+			const char* szMainIcon = "ic_launcher_foreground.png";
+			char tmp_path[1024];
+
+			int numIcons = sizeof(szMipmapFolder) / sizeof(const char*);
+			int i;
+			for( i = 0; i < numIcons; i++ )
+			{
+				image_filename = g_build_path( "/", tmp_folder, "resOrig", szMipmapFolder[i], szMainIcon, NULL );
+				icon_scaled_image = gdk_pixbuf_scale_simple( icon_image, iIconSize[i], iIconSize[i], GDK_INTERP_HYPER );
+				make_path( image_filename );
+				if ( !gdk_pixbuf_save( icon_scaled_image, image_filename, "png", &error, "compression", "9", NULL ) )
+				{
+					SHOW_ERR1( _("Failed to save icon: %s"), error->message );
+					g_error_free(error);
+					error = NULL;
+					goto android_dialog_cleanup2;
+				}
+				gdk_pixbuf_unref( icon_scaled_image );
+				g_free( image_filename );
+				image_filename = NULL;
+
+			#ifdef G_OS_WIN32
+				sprintf(tmp_path, "compile\n-o\nresMerged\nresOrig\\%s\\%s\n\n", szMipmapFolder[i], szMainIcon );
+			#else
+				sprintf(tmp_path, "compile\n-o\nresMerged\nresOrig/%s/%s\n\n", szMipmapFolder[i], szMainIcon );
+			#endif
+				strcpy( aaptcommand, tmp_path );
+				write(aapt2_in.fd, aaptcommand, strlen(aaptcommand) );
+			}
+		}
 		
 		// load icon file
 		if ( app_icon && *app_icon )
@@ -2458,11 +2603,12 @@ android_dialog_continue:
 			if ( isGoogle || isAmazon )
 			{
 				// 192x192
-				image_filename = g_build_path( "/", tmp_folder, "resOrig", "drawable-xxxhdpi", "icon.png", NULL );
+				image_filename = g_build_path( "/", tmp_folder, "resOrig", "mipmap-xxxhdpi", "ic_launcher.png", NULL );
 				icon_scaled_image = gdk_pixbuf_scale_simple( icon_image, 192, 192, GDK_INTERP_HYPER );
+				make_path( image_filename );
 				if ( !gdk_pixbuf_save( icon_scaled_image, image_filename, "png", &error, "compression", "9", NULL ) )
 				{
-					SHOW_ERR1( _("Failed to save xxxhdpi icon: %s"), error->message );
+					SHOW_ERR1( _("Failed to save icon: %s"), error->message );
 					g_error_free(error);
 					error = NULL;
 					goto android_dialog_cleanup2;
@@ -2471,18 +2617,19 @@ android_dialog_continue:
 				g_free( image_filename );
 
 			#ifdef G_OS_WIN32
-				strcpy( aaptcommand, "compile\n-o\nresMerged\nresOrig\\drawable-xxxhdpi\\icon.png\n\n" );
+				strcpy( aaptcommand, "compile\n-o\nresMerged\nresOrig\\mipmap-xxxhdpi\\ic_launcher.png\n\n" );
 			#else
-				strcpy( aaptcommand, "compile\n-o\nresMerged\nresOrig/drawable-xxxhdpi/icon.png\n\n" );
+				strcpy( aaptcommand, "compile\n-o\nresMerged\nresOrig/mipmap-xxxhdpi/ic_launcher.png\n\n" );
 			#endif
 				write(aapt2_in.fd, aaptcommand, strlen(aaptcommand) );
 
 				// 144x144
-				image_filename = g_build_path( "/", tmp_folder, "resOrig", "drawable-xxhdpi", "icon.png", NULL );
+				image_filename = g_build_path( "/", tmp_folder, "resOrig", "mipmap-xxhdpi", "ic_launcher.png", NULL );
 				icon_scaled_image = gdk_pixbuf_scale_simple( icon_image, 144, 144, GDK_INTERP_HYPER );
+				make_path( image_filename );
 				if ( !gdk_pixbuf_save( icon_scaled_image, image_filename, "png", &error, "compression", "9", NULL ) )
 				{
-					SHOW_ERR1( _("Failed to save xxhdpi icon: %s"), error->message );
+					SHOW_ERR1( _("Failed to save icon: %s"), error->message );
 					g_error_free(error);
 					error = NULL;
 					goto android_dialog_cleanup2;
@@ -2491,23 +2638,24 @@ android_dialog_continue:
 				g_free( image_filename );
 
 			#ifdef G_OS_WIN32
-				strcpy( aaptcommand, "compile\n-o\nresMerged\nresOrig\\drawable-xxhdpi\\icon.png\n\n" );
+				strcpy( aaptcommand, "compile\n-o\nresMerged\nresOrig\\mipmap-xxhdpi\\ic_launcher.png\n\n" );
 			#else
-				strcpy( aaptcommand, "compile\n-o\nresMerged\nresOrig/drawable-xxhdpi/icon.png\n\n" );
+				strcpy( aaptcommand, "compile\n-o\nresMerged\nresOrig/mipmap-xxhdpi/ic_launcher.png\n\n" );
 			#endif
 				write(aapt2_in.fd, aaptcommand, strlen(aaptcommand) );
 			}
 
-			const gchar* szDrawable_xhdpi = (isOuya) ? "drawable-xhdpi-v4" : "drawable-xhdpi";
-			const gchar* szDrawable_hdpi = (isOuya) ? "drawable-hdpi-v4" : "drawable-hdpi";
-			const gchar* szDrawable_mdpi = (isOuya) ? "drawable-mdpi-v4" : "drawable-mdpi";
-			const gchar* szDrawable_ldpi = (isOuya) ? "drawable-ldpi-v4" : "drawable-ldpi";
+			const gchar* szDrawable_xhdpi = (isOuya) ? "drawable-xhdpi-v4" : "mipmap-xhdpi";
+			const gchar* szDrawable_hdpi = (isOuya) ? "drawable-hdpi-v4" : "mipmap-hdpi";
+			const gchar* szDrawable_mdpi = (isOuya) ? "drawable-mdpi-v4" : "mipmap-mdpi";
+			const gchar* szDrawable_ldpi = (isOuya) ? "drawable-ldpi-v4" : "mipmap-ldpi";
 
-			const gchar* szMainIcon = (isOuya) ? "app_icon.png" : "icon.png";
+			const gchar* szMainIcon = (isOuya) ? "app_icon.png" : "ic_launcher.png";
 			
 			// 96x96
 			image_filename = g_build_path( "/", tmp_folder, "resOrig", szDrawable_xhdpi, szMainIcon, NULL );
 			icon_scaled_image = gdk_pixbuf_scale_simple( icon_image, 96, 96, GDK_INTERP_HYPER );
+			make_path( image_filename );
 			if ( !gdk_pixbuf_save( icon_scaled_image, image_filename, "png", &error, "compression", "9", NULL ) )
 			{
 				SHOW_ERR1( _("Failed to save xhdpi icon: %s"), error->message );
@@ -2530,6 +2678,7 @@ android_dialog_continue:
 			// 72x72
 			image_filename = g_build_path( "/", tmp_folder, "resOrig", szDrawable_hdpi, szMainIcon, NULL );
 			icon_scaled_image = gdk_pixbuf_scale_simple( icon_image, 72, 72, GDK_INTERP_HYPER );
+			make_path( image_filename );
 			if ( !gdk_pixbuf_save( icon_scaled_image, image_filename, "png", &error, "compression", "9", NULL ) )
 			{
 				SHOW_ERR1( _("Failed to save hdpi icon: %s"), error->message );
@@ -2552,6 +2701,7 @@ android_dialog_continue:
 			// 48x48
 			image_filename = g_build_path( "/", tmp_folder, "resOrig", szDrawable_mdpi, szMainIcon, NULL );
 			icon_scaled_image = gdk_pixbuf_scale_simple( icon_image, 48, 48, GDK_INTERP_HYPER );
+			make_path( image_filename );
 			if ( !gdk_pixbuf_save( icon_scaled_image, image_filename, "png", &error, "compression", "9", NULL ) )
 			{
 				SHOW_ERR1( _("Failed to save mdpi icon: %s"), error->message );
@@ -2574,6 +2724,7 @@ android_dialog_continue:
 			// 36x36
 			image_filename = g_build_path( "/", tmp_folder, "resOrig", szDrawable_ldpi, szMainIcon, NULL );
 			icon_scaled_image = gdk_pixbuf_scale_simple( icon_image, 36, 36, GDK_INTERP_HYPER );
+			make_path( image_filename );
 			if ( !gdk_pixbuf_save( icon_scaled_image, image_filename, "png", &error, "compression", "9", NULL ) )
 			{
 				SHOW_ERR1( _("Failed to save ldpi icon: %s"), error->message );
@@ -2615,6 +2766,7 @@ android_dialog_continue:
 			// 96x96
 			image_filename = g_build_path( "/", tmp_folder, "resOrig", "drawable-xxxhdpi", "icon_white.png", NULL );
 			icon_scaled_image = gdk_pixbuf_scale_simple( icon_image, 96, 96, GDK_INTERP_HYPER );
+			make_path( image_filename );
 			if ( !gdk_pixbuf_save( icon_scaled_image, image_filename, "png", &error, "compression", "9", NULL ) )
 			{
 				SHOW_ERR1( _("Failed to save xxxhdpi icon: %s"), error->message );
@@ -2635,6 +2787,7 @@ android_dialog_continue:
 			// 72x72
 			image_filename = g_build_path( "/", tmp_folder, "resOrig", "drawable-xxhdpi", "icon_white.png", NULL );
 			icon_scaled_image = gdk_pixbuf_scale_simple( icon_image, 72, 72, GDK_INTERP_HYPER );
+			make_path( image_filename );
 			if ( !gdk_pixbuf_save( icon_scaled_image, image_filename, "png", &error, "compression", "9", NULL ) )
 			{
 				SHOW_ERR1( _("Failed to save xxhdpi icon: %s"), error->message );
@@ -2660,6 +2813,7 @@ android_dialog_continue:
 			// 48x48
 			image_filename = g_build_path( "/", tmp_folder, "resOrig", szDrawable_xhdpi, "icon_white.png", NULL );
 			icon_scaled_image = gdk_pixbuf_scale_simple( icon_image, 48, 48, GDK_INTERP_HYPER );
+			make_path( image_filename );
 			if ( !gdk_pixbuf_save( icon_scaled_image, image_filename, "png", &error, "compression", "9", NULL ) )
 			{
 				SHOW_ERR1( _("Failed to save xhdpi icon: %s"), error->message );
@@ -2682,6 +2836,7 @@ android_dialog_continue:
 			// 36x36
 			image_filename = g_build_path( "/", tmp_folder, "resOrig", szDrawable_hdpi, "icon_white.png", NULL );
 			icon_scaled_image = gdk_pixbuf_scale_simple( icon_image, 36, 36, GDK_INTERP_HYPER );
+			make_path( image_filename );
 			if ( !gdk_pixbuf_save( icon_scaled_image, image_filename, "png", &error, "compression", "9", NULL ) )
 			{
 				SHOW_ERR1( _("Failed to save hdpi icon: %s"), error->message );
@@ -2704,6 +2859,7 @@ android_dialog_continue:
 			// 24x24
 			image_filename = g_build_path( "/", tmp_folder, "resOrig", szDrawable_mdpi, "icon_white.png", NULL );
 			icon_scaled_image = gdk_pixbuf_scale_simple( icon_image, 24, 24, GDK_INTERP_HYPER );
+			make_path( image_filename );
 			if ( !gdk_pixbuf_save( icon_scaled_image, image_filename, "png", &error, "compression", "9", NULL ) )
 			{
 				SHOW_ERR1( _("Failed to save mdpi icon: %s"), error->message );
@@ -2726,6 +2882,7 @@ android_dialog_continue:
 			// 24x24
 			image_filename = g_build_path( "/", tmp_folder, "resOrig", szDrawable_ldpi, "icon_white.png", NULL );
 			icon_scaled_image = gdk_pixbuf_scale_simple( icon_image, 24, 24, GDK_INTERP_HYPER );
+			make_path( image_filename );
 			if ( !gdk_pixbuf_save( icon_scaled_image, image_filename, "png", &error, "compression", "9", NULL ) )
 			{
 				SHOW_ERR1( _("Failed to save ldpi icon: %s"), error->message );
@@ -2784,6 +2941,7 @@ android_dialog_continue:
 			// 320x180
 			image_filename = g_build_path( "/", tmp_folder, "resOrig", "drawable", "icon.png", NULL );
 			icon_scaled_image = gdk_pixbuf_scale_simple( icon_image, 320, 180, GDK_INTERP_HYPER );
+			make_path( image_filename );
 			if ( !gdk_pixbuf_save( icon_scaled_image, image_filename, "png", &error, "compression", "9", NULL ) )
 			{
 				SHOW_ERR1( _("Failed to save lean back icon: %s"), error->message );
@@ -2829,11 +2987,6 @@ android_dialog_continue:
 		foreach_dir(filename, dir)
 		{
 			gchar* fullsrcpath = g_build_filename( tmp_folder, "resMerged", filename, NULL );
-			
-			#ifdef MIKE_DEBUG
-				//printf ( fullsrcpath );
-				//printf ( "\n" );
-			#endif
 
 			if ( g_file_test( fullsrcpath, G_FILE_TEST_IS_REGULAR ) )
 			{
@@ -2867,15 +3020,10 @@ android_dialog_continue:
 		}
 	#endif
 
-		//
 		//gchar* logpath = g_build_filename( tmp_folder, "log.txt", NULL );
 		//FILE *pFile = fopen( logpath, "wb" );
 		//fputs( aaptcommand, pFile );
 		//fclose( pFile );
-		//
-		
-		// mike	
-		//dialogs_show_msgbox ( GTK_MESSAGE_ERROR, "mike - check log.txt" );
 
 		write(aapt2_in.fd, aaptcommand, strlen(aaptcommand) );
 
@@ -2885,10 +3033,6 @@ android_dialog_continue:
 		waitpid( aapt2_pid, &status, 0 );
 	#endif
 		aapt2_pid = 0;
-
-
-		// mike - zip appears to be wrong at this point
-		//dialogs_show_msgbox ( GTK_MESSAGE_ERROR, "CHECK TEST.ZIP" );
 
 		// if we have previously called g_spawn_async then g_spawn_sync will never return the correct exit status due to ECHILD being returned from waitpid()
 		
@@ -2906,10 +3050,6 @@ android_dialog_continue:
 
 		if ( isBundle )
 		{
-		
-			// mike - where is the bundle folder?
-			//dialogs_show_msgbox ( GTK_MESSAGE_ERROR, "BUILD_TMP IS FINE AT THIS POINT" );
-		
 			// need to extract and recreate zip file to move AndroidManifest.xml file
 			mz_zip_archive zip_archive;
 			memset(&zip_archive, 0, sizeof(zip_archive));
@@ -2927,12 +3067,6 @@ android_dialog_continue:
 			int numFiles = mz_zip_reader_get_num_files( &zip_archive );
 			char filename[ 1024 ];
 			int i;
-			
-			//dialogs_show_msgbox ( GTK_MESSAGE_ERROR, "build_bundle" );
-			
-			// mike
-			//SHOW_ERR1 ( _ ( "numFiles: %i" ), numFiles );
-			
 			for( i = 0; i < numFiles; i++ )
 			{
 				mz_zip_reader_get_filename( &zip_archive, i, filename, 1024 );
@@ -2975,10 +3109,6 @@ android_dialog_continue:
 				}
             
 				free(withoutFile);
-				
-				// mike
-				//SHOW_ERR1 ( _ ( "extract: %i" ), i );
-				//SHOW_ERR1 ( _ ( "extract: %s" ), final_path );
             
 				mz_zip_reader_extract_to_file( &zip_archive, i, final_path, 0 );
             
@@ -3034,13 +3164,6 @@ android_dialog_continue:
 				g_free(bundle_folder);
 				goto android_dialog_cleanup2;
 			}
-			
-			
-			
-			// mike - where is the bundle folder?
-			//dialogs_show_msgbox ( GTK_MESSAGE_ERROR, "about to make zip" );
-			//dialogs_show_msgbox ( GTK_MESSAGE_ERROR, output_file_zip );
-			//dialogs_show_msgbox ( GTK_MESSAGE_ERROR, bundle_folder );
 		
 			if ( !utils_add_folder_to_zip( &zip_archive, bundle_folder, "", TRUE, TRUE ) )
 			{
@@ -3082,6 +3205,49 @@ android_dialog_continue:
 		// copy in extra files
 		zip_add_file = g_build_path( "/", src_folder, "classes.dex", NULL );
 		mz_zip_writer_add_file( &zip_archive, (isBundle) ? "dex/classes.dex" : "classes.dex", zip_add_file, NULL, 0, 9 );
+
+		g_free( zip_add_file );
+		zip_add_file = g_build_path( "/", src_folder, "classes2.dex", NULL );
+		if ( g_file_test( zip_add_file, G_FILE_TEST_EXISTS ) )
+		{
+			mz_zip_writer_add_file( &zip_archive, (isBundle) ? "dex/classes2.dex" : "classes2.dex", zip_add_file, NULL, 0, 9 );
+		}
+
+		g_free( zip_add_file );
+		zip_add_file = g_build_path( "/", src_folder, "classes3.dex", NULL );
+		if ( g_file_test( zip_add_file, G_FILE_TEST_EXISTS ) )
+		{
+			mz_zip_writer_add_file( &zip_archive, (isBundle) ? "dex/classes3.dex" : "classes3.dex", zip_add_file, NULL, 0, 9 );
+		}
+
+		// copy extra files
+		g_free( zip_add_file );
+		zip_add_file = g_build_path( "/", src_folder, "com", NULL );
+		if ( g_file_test( zip_add_file, G_FILE_TEST_EXISTS ) )
+		{
+			utils_add_folder_to_zip( &zip_archive, zip_add_file, (isBundle) ? "root/com" : "com", TRUE, TRUE );
+		}
+
+		g_free( zip_add_file );
+		zip_add_file = g_build_path( "/", src_folder, "kotlin", NULL );
+		if ( g_file_test( zip_add_file, G_FILE_TEST_EXISTS ) )
+		{
+			utils_add_folder_to_zip( &zip_archive, zip_add_file, (isBundle) ? "root/kotlin" : "kotlin", TRUE, TRUE );
+		}
+
+		g_free( zip_add_file );
+		zip_add_file = g_build_path( "/", src_folder, "okhttp3", NULL );
+		if ( g_file_test( zip_add_file, G_FILE_TEST_EXISTS ) )
+		{
+			utils_add_folder_to_zip( &zip_archive, zip_add_file, (isBundle) ? "root/okhttp3" : "okhttp3", TRUE, TRUE );
+		}
+
+		g_free( zip_add_file );
+		zip_add_file = g_build_path( "/", src_folder, "extra_root", NULL );
+		if ( g_file_test( zip_add_file, G_FILE_TEST_EXISTS ) )
+		{
+			utils_add_folder_to_zip( &zip_archive, zip_add_file, (isBundle) ? "root" : "", TRUE, TRUE );
+		}
 		
 		g_free( zip_add_file );
 		zip_add_file = g_build_path( "/", android_folder, "lib", "arm64-v8a", "libandroid_player.so", NULL );
@@ -3117,18 +3283,18 @@ android_dialog_continue:
 		while (gtk_events_pending())
 			gtk_main_iteration();
 
-		if ( !isOuya )
+		// copy assets
+		g_free( zip_add_file );
+		zip_add_file = g_build_path( "/", src_folder, "assets", NULL );
+		if ( g_file_test (zip_add_file, G_FILE_TEST_EXISTS) )
 		{
-			// copy assets for Google and Amazon
-			g_free( zip_add_file );
-			zip_add_file = g_build_path( "/", android_folder, "assets", NULL );
 			if ( !utils_add_folder_to_zip( &zip_archive, zip_add_file, "assets", TRUE, TRUE ) )
 			{
 				SHOW_ERR( _("Failed to add media files to APK") );
 				goto android_dialog_cleanup2;
 			}
 		}
-
+		
 		// copy in media files
 		g_free( zip_add_file );
 		zip_add_file = g_build_path( "/", app->project->base_path, "media", NULL );
@@ -3156,7 +3322,7 @@ android_dialog_continue:
 		{
 			// run bundletool
 			argv = g_new0( gchar*, 11 );
-			argv[0] = g_strdup( "java" );
+			argv[0] = g_strdup( path_to_java );
 			argv[1] = g_strdup( "-jar" );
 			argv[2] = g_strdup( path_to_bundletool );
 			argv[3] = g_strdup( "build-bundle" );
@@ -3244,7 +3410,7 @@ android_dialog_continue:
 		// sign apk
 		int argIndex = 0;
 		argv = g_new0( gchar*, 14 );
-		argv[argIndex++] = g_strdup( "jarsigner" );
+		argv[argIndex++] = g_strdup( path_to_jarsigner );
 		if ( !isBundle )
 		{
 			argv[argIndex++] = g_strdup("-sigalg");
@@ -3270,15 +3436,6 @@ android_dialog_continue:
 		argv[argIndex++] = g_strdup( alias_password );
 #endif
 		argv[argIndex++] = NULL;
-		
-		// MIKE - need to look at all params for this AND TEST IT IN THE TERMINAL
-		
-		// mike			
-		//dialogs_show_msgbox ( GTK_MESSAGE_ERROR, tmp_folder );
-		
-		// mike
-		//for ( unsigned int i = 0; i < argIndex; i++ )
-			//dialogs_show_msgbox ( GTK_MESSAGE_ERROR, argv [ i ] );
 
 		if ( !utils_spawn_sync( tmp_folder, argv, NULL, 0, NULL, NULL, &str_out, NULL, &status, &error) )
 		{
@@ -3311,13 +3468,6 @@ android_dialog_continue:
 		argv[3] = g_strdup(output_file);
 		argv[4] = NULL;
 
-
-		// mike			
-		//dialogs_show_msgbox ( GTK_MESSAGE_ERROR, "zipalign" );
-		
-		//for ( unsigned int i = 0; i < 4; i++ )
-			//dialogs_show_msgbox ( GTK_MESSAGE_ERROR, argv [ i ] );
-
 		if ( !utils_spawn_sync( tmp_folder, argv, NULL, 0, NULL, NULL, &str_out, NULL, &status, &error) )
 		{
 			SHOW_ERR1( _("Failed to run zipalign tool: %s"), error->message );
@@ -3331,7 +3481,7 @@ android_dialog_continue:
 			SHOW_ERR1( _("Zip align tool returned error: %s"), str_out );
 			goto android_dialog_cleanup2;
 		}
-		
+
 		if ( str_out ) g_free(str_out);
 		str_out = 0;
 
@@ -3341,15 +3491,12 @@ android_dialog_continue:
 		while (gtk_events_pending())
 			gtk_main_iteration();
 
-		// mike			
-		//dialogs_show_msgbox ( GTK_MESSAGE_ERROR, "alignment complete" );
-
 		if ( !isBundle )
 		{
 			// sign with V2 signature
 			argIndex = 0;
 			argv = g_new0( gchar*, 15 );
-			argv[argIndex++] = g_strdup( "java" );
+			argv[argIndex++] = g_strdup( path_to_java );
 			argv[argIndex++] = g_strdup( "-jar" );
 			argv[argIndex++] = g_strdup( path_to_apksigner );
 			argv[argIndex++] = g_strdup( "sign" );
@@ -3371,13 +3518,6 @@ android_dialog_continue:
 	#endif
 			argv[argIndex++] = g_strdup( output_file );
 			argv[argIndex++] = NULL;
-
-			// mike			
-			//dialogs_show_msgbox ( GTK_MESSAGE_ERROR, tmp_folder );
-			
-			// mike
-			//for ( unsigned int i = 0; i < argIndex; i++ )
-				//dialogs_show_msgbox ( GTK_MESSAGE_ERROR, argv [ i ] );
 
 			if ( !utils_spawn_sync( tmp_folder, argv, NULL, 0, NULL, NULL, &str_out, NULL, &status, &error) )
 			{
@@ -3422,6 +3562,8 @@ android_dialog_cleanup2:
 		g_unlink( output_file_zip );
 		utils_remove_folder_recursive( tmp_folder );
 
+		if ( path_to_java ) g_free(path_to_java);
+		if ( path_to_jarsigner ) g_free(path_to_jarsigner);
 		if ( path_to_aapt2 ) g_free(path_to_aapt2);
 		if ( path_to_android_jar ) g_free(path_to_android_jar);
 		if ( path_to_bundletool ) g_free(path_to_bundletool);
@@ -3564,7 +3706,7 @@ static gchar *last_proj_path_android = 0;
         
         mz_zip_reader_end( &zip_archive );
         
-        gchar* file_path = g_build_path( "/", app->configdir, "AndroidExport", "aapt2", NULL );
+        gchar* file_path = g_build_path( "/", app->configdir, "AndroidExport", "aapt2-bundle", NULL );
         chmod( file_path, 0755 );
         g_free( file_path );
         
@@ -3627,10 +3769,6 @@ static gchar *last_proj_path_android = 0;
 HTTPListener* m_listener = 0;
 #endif
 
-
-
-#define MIKE_DEBUG
-
 void project_export_apk()
 {
 	if ( !app->project ) 
@@ -3651,14 +3789,16 @@ void project_export_apk()
         return;
     }
     
-    gchar* android_path = g_build_path( "/", app->configdir, "AndroidExport", "aapt2", NULL );
+    gchar* android_path = g_build_path( "/", app->configdir, "AndroidExport", "aapt2-bundle", NULL );
     if ( !g_file_test(android_path, G_FILE_TEST_EXISTS) )
     {
         if ( !m_connection )
         {
             if ( dialogs_show_question("The Android export files must be downloaded separately. Would you like to download them now?") )
             {
-                NSString* sURL = [ [ NSString alloc ] initWithUTF8String:"https://www.appgamekit.com/agkclassicfiles/AndroidExport.zip" ];
+				char url[ 1024 ];
+				sprintf( url, "https://www.appgamekit.com/agkclassicfiles/AndroidExport%d.zip", AGK_VERSION_INT );
+                NSString* sURL = [ [ NSString alloc ] initWithUTF8String:url ];
                 NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:sURL] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0 ];
                 if ( !m_listener ) m_listener = [[HTTPListener alloc] init];
                 else [ m_listener reset ];
@@ -3691,6 +3831,8 @@ void project_export_apk()
 
 		ui_setup_open_button_callback_android(ui_lookup_widget(ui_widgets.android_dialog, "android_app_icon_path"), NULL,
 			GTK_FILE_CHOOSER_ACTION_OPEN, GTK_ENTRY(ui_lookup_widget(ui_widgets.android_dialog, "android_app_icon_entry")));
+		ui_setup_open_button_callback_android(ui_lookup_widget(ui_widgets.android_dialog, "android_app_icon_new_path"), NULL,
+			GTK_FILE_CHOOSER_ACTION_OPEN, GTK_ENTRY(ui_lookup_widget(ui_widgets.android_dialog, "android_app_icon_new_entry")));
 		ui_setup_open_button_callback_android(ui_lookup_widget(ui_widgets.android_dialog, "android_notif_icon_path"), NULL,
 			GTK_FILE_CHOOSER_ACTION_OPEN, GTK_ENTRY(ui_lookup_widget(ui_widgets.android_dialog, "android_notif_icon_entry")));
 		ui_setup_open_button_callback_android(ui_lookup_widget(ui_widgets.android_dialog, "android_ouya_icon_path"), NULL,
@@ -3726,6 +3868,9 @@ void project_export_apk()
 
 		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_app_icon_entry");
 		gtk_entry_set_text( GTK_ENTRY(widget), FALLBACK(app->project->apk_settings.app_icon_path, "") );
+
+		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_app_icon_new_entry");
+		gtk_entry_set_text( GTK_ENTRY(widget), FALLBACK(app->project->apk_settings.app_icon_new_path, "") );
 
 		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_notif_icon_entry");
 		gtk_entry_set_text( GTK_ENTRY(widget), FALLBACK(app->project->apk_settings.notif_icon_path, "") );
@@ -3795,8 +3940,8 @@ void project_export_apk()
 		mode = (app->project->apk_settings.permission_flags & AGK_ANDROID_PERMISSION_CAMERA) ? 1 : 0;
 		gtk_toggle_button_set_active( GTK_TOGGLE_BUTTON(widget), mode );
 
-		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_permission_expansion");
-		mode = (app->project->apk_settings.permission_flags & AGK_ANDROID_PERMISSION_EXPANSION) ? 1 : 0;
+		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_permission_notifications");
+		mode = (app->project->apk_settings.permission_flags & AGK_ANDROID_PERMISSION_NOTIFY) ? 1 : 0;
 		gtk_toggle_button_set_active( GTK_TOGGLE_BUTTON(widget), mode );
 
 		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_permission_vibrate");
@@ -3916,6 +4061,9 @@ void on_android_all_dialog_response(GtkDialog *dialog, gint response, gpointer u
 		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_app_icon_entry");
 		gtk_entry_set_text( GTK_ENTRY(widget), FALLBACK(app->project->apk_settings.app_icon_path, "") );
 
+		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_app_icon_new_entry");
+		gtk_entry_set_text( GTK_ENTRY(widget), FALLBACK(app->project->apk_settings.app_icon_new_path, "") );
+
 		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_notif_icon_entry");
 		gtk_entry_set_text( GTK_ENTRY(widget), FALLBACK(app->project->apk_settings.notif_icon_path, "") );
 
@@ -3984,8 +4132,8 @@ void on_android_all_dialog_response(GtkDialog *dialog, gint response, gpointer u
 		mode = (app->project->apk_settings.permission_flags & AGK_ANDROID_PERMISSION_CAMERA) ? 1 : 0;
 		gtk_toggle_button_set_active( GTK_TOGGLE_BUTTON(widget), mode );
 
-		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_permission_expansion");
-		mode = (app->project->apk_settings.permission_flags & AGK_ANDROID_PERMISSION_EXPANSION) ? 1 : 0;
+		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_permission_notifications");
+		mode = (app->project->apk_settings.permission_flags & AGK_ANDROID_PERMISSION_NOTIFY) ? 1 : 0;
 		gtk_toggle_button_set_active( GTK_TOGGLE_BUTTON(widget), mode );
 		
 		widget = ui_lookup_widget(ui_widgets.android_dialog, "android_permission_vibrate");
@@ -4072,6 +4220,8 @@ void project_export_apk_all()
 
 		ui_setup_open_button_callback_android(ui_lookup_widget(ui_widgets.android_dialog, "android_app_icon_path"), NULL,
 			GTK_FILE_CHOOSER_ACTION_OPEN, GTK_ENTRY(ui_lookup_widget(ui_widgets.android_dialog, "android_app_icon_entry")));
+		ui_setup_open_button_callback_android(ui_lookup_widget(ui_widgets.android_dialog, "android_app_icon_new_path"), NULL,
+			GTK_FILE_CHOOSER_ACTION_OPEN, GTK_ENTRY(ui_lookup_widget(ui_widgets.android_dialog, "android_app_icon_new_entry")));
 		ui_setup_open_button_callback_android(ui_lookup_widget(ui_widgets.android_dialog, "android_notif_icon_path"), NULL,
 			GTK_FILE_CHOOSER_ACTION_OPEN, GTK_ENTRY(ui_lookup_widget(ui_widgets.android_dialog, "android_notif_icon_entry")));
 		ui_setup_open_button_callback_android(ui_lookup_widget(ui_widgets.android_dialog, "android_ouya_icon_path"), NULL,
@@ -4158,6 +4308,10 @@ static void on_keystore_dialog_response(GtkDialog *dialog, gint response, gpoint
 			if ( !dialogs_show_question(_("\"%s\" already exists. Do you want to overwrite it?"), output_file) )
 			{
 				goto keystore_dialog_clean_up;
+			}
+			else
+			{
+				g_unlink( output_file );
 			}
 		}
 
@@ -4257,53 +4411,82 @@ keystore_dialog_continue:
 
 		;
 
-		FILE* fp = NULL;
-		gchar* buffer = NULL;
-		long lSize = 0;
+		gchar* path_to_keytool = 0;
+		gchar* str_out = 0;
+		int status = 0;
+		GError *error = 0;
 
-		gchar* keytoolFile = g_build_path ( "/", app->datadir, "keytool.txt", NULL );
+		gchar** argv = g_new0( gchar*, 3 );
+		argv[0] = g_strdup( "/usr/bin/which" );
+		argv[1] = g_strdup( "keytool" );
+		argv[2] = NULL;
 
-		fp = fopen ( keytoolFile, "rt" );
+		#ifdef G_OS_WIN32
+			g_free(argv [ 0 ]);
+			argv [ 0 ] = g_strdup ( "where" );
+		#endif
 
-		if ( fp )
+		if ( !utils_spawn_sync( app->project->base_path, argv, NULL, 0, NULL, NULL, &str_out, NULL, &status, &error) )
 		{
-			fseek ( fp, 0, SEEK_END );
-			lSize = ftell ( fp );
-			rewind ( fp );
-
-			// allocate memory to contain the whole file:
-			buffer = ( gchar* ) malloc ( sizeof ( gchar ) * lSize );
-
-			fread ( buffer, 1, lSize, fp );
-
-			fclose ( fp );
+			SHOW_ERR1( _("Failed to check for Keytool: %s"), error->message );
+			g_error_free(error);
+			error = NULL;
+			goto keystore_dialog_cleanup2;
 		}
+
+#ifdef G_OS_WIN32
+		if ( !str_out || str_out[0] == 0 || str_out[1] != ':' ) 
+#else
+		if ( !str_out || str_out[0] != '/' ) 
+#endif
+		{
+			const char* java_home = getenv( "JAVA_HOME" );
+			if ( !java_home )
+			{
+				SHOW_ERR( _("Could not find Keytool, make sure you have the Java Development Kit (JDK) 8 or above installed. If it is installed then make sure that the JAVA_HOME environment variable is defined or that the Java bin folder is in your PATH environment variable") );
+				goto keystore_dialog_cleanup2;
+			}
+			else
+			{
+				const char* separator = "/";
+				const char* binary = "keytool";
+#ifdef G_OS_WIN32
+				separator = "\\";
+				binary = "keytool.exe";
+#endif
+				path_to_keytool = g_build_path( separator, java_home, "bin", binary, NULL );
+
+				if ( !g_file_test( path_to_keytool, G_FILE_TEST_EXISTS ) )
+				{
+					SHOW_ERR1( _("Could not find keytool program, expected to find it in \"%s\", make sure your JAVA_HOME environment variable is correct"), path_to_keytool );
+					goto keystore_dialog_cleanup2;
+				}
+			}
+		}
+		else
+		{
+#ifdef G_OS_WIN32
+			path_to_keytool = g_strdup( "keytool" );
+#else
+			path_to_keytool = g_strdup( str_out );
+			if ( path_to_keytool[ strlen(path_to_keytool)-1 ] == '\n' )
+			{
+				path_to_keytool[ strlen(path_to_keytool)-1 ] = 0;
+			}
+#endif
+		}
+
+		if ( str_out ) g_free(str_out);
+		str_out = 0;
+
+		g_strfreev( argv );
+		argv = 0;
 
 		// CHECKS COMPLETE, START KEY GENERATION
 
-#if defined(G_OS_WIN32)
-		gchar* path_to_keytool = g_build_path( "/", app->datadir, "android", "jre", "bin", "keytool.exe", NULL );
-#elif defined(__APPLE__)
-        gchar* path_to_keytool = g_strdup( "/usr/bin/keytool" );
-#else
-        gchar* path_to_keytool = g_build_path( "/", app->datadir, "android", "jre", "bin", "keytool", NULL );
-#endif
-
-		if ( buffer )
-		{
-			path_to_keytool = g_build_path ( "/", buffer, NULL );
-
-			free ( buffer );
-			buffer = NULL;
-		}
-
 		// decalrations
-		gchar **argv = NULL;
 		gchar *dname = NULL;
-		int status = 0;
-		GError *error = 0;
 		gchar *keystore_name = NULL;
-		gchar* str_out = 0;
 
 		utils_str_replace_char( output_file, '\\', '/' );
 		gchar* slash = strrchr( output_file, '/' );
@@ -4317,13 +4500,6 @@ keystore_dialog_continue:
 			keystore_name = g_strdup( output_file );
 			g_free(output_file);
 			output_file = global_project_prefs.project_file_path;
-		}
-
-
-		if ( !g_file_test( path_to_keytool, G_FILE_TEST_EXISTS ) )
-		{
-			SHOW_ERR1( _("Could not find keytool program, the path \"%s\" is incorrect"), path_to_keytool );
-			goto keystore_dialog_cleanup2;
 		}
 
 		dname = g_strdup_printf( "CN=%s, O=%s, L=%s, C=%s", full_name, company_name, city, country );
@@ -5202,9 +5378,12 @@ ios_dialog_continue:
 		strcat( newcontents, team_id );
 		strcat( newcontents, "</string>\n" );
 		
+		// mike 120723 - new apps need to specify this
+		strcat ( newcontents, "  <key>UIRequiredDeviceCapabilities</key><array><string>arm64</string></array>\n" );
+
 		if ( betaReports )
 			strcat( newcontents, "	<key>beta-reports-active</key>\n	<true/>\n" );
-			
+		
 
 		if ( pushNotifications == 1 )
 			strcat( newcontents, "	<key>aps-environment</key>\n	<string>development</string>\n" );
@@ -6755,6 +6934,7 @@ void init_android_settings( GeanyProject* project )
 {
 	project->apk_settings.alias = 0;
 	project->apk_settings.app_icon_path = 0;
+	project->apk_settings.app_icon_new_path = 0;
 	project->apk_settings.notif_icon_path = 0;
 	project->apk_settings.app_name = 0;
 	project->apk_settings.app_type = 0; // Google
@@ -6808,6 +6988,7 @@ void free_android_settings( GeanyProject* project )
 {
 	if ( project->apk_settings.alias ) g_free(project->apk_settings.alias);
 	if ( project->apk_settings.app_icon_path ) g_free(project->apk_settings.app_icon_path);
+	if ( project->apk_settings.app_icon_new_path ) g_free(project->apk_settings.app_icon_new_path);
 	if ( project->apk_settings.notif_icon_path ) g_free(project->apk_settings.notif_icon_path);
 	if ( project->apk_settings.app_name ) g_free(project->apk_settings.app_name);
 	if ( project->apk_settings.url_scheme ) g_free(project->apk_settings.url_scheme);
@@ -6849,6 +7030,7 @@ void save_android_settings( GKeyFile *config, GeanyProject* project )
 {
 	g_key_file_set_string( config, "apk_settings", "alias", FALLBACK(project->apk_settings.alias,"") );
 	g_key_file_set_string( config, "apk_settings", "app_icon_path", FALLBACK(project->apk_settings.app_icon_path,"") );
+	g_key_file_set_string( config, "apk_settings", "app_icon_new_path", FALLBACK(project->apk_settings.app_icon_new_path,"") );
 	g_key_file_set_string( config, "apk_settings", "notif_icon_path", FALLBACK(project->apk_settings.notif_icon_path,"") );
 	g_key_file_set_string( config, "apk_settings", "app_name", FALLBACK(project->apk_settings.app_name,"") );
 	g_key_file_set_integer( config, "apk_settings", "app_type", project->apk_settings.app_type ); 
@@ -6902,6 +7084,7 @@ void load_android_settings( GKeyFile *config, GeanyProject* project )
 {
 	project->apk_settings.alias = g_key_file_get_string( config, "apk_settings", "alias", 0 );
 	project->apk_settings.app_icon_path = g_key_file_get_string( config, "apk_settings", "app_icon_path", 0 );
+	project->apk_settings.app_icon_new_path = g_key_file_get_string( config, "apk_settings", "app_icon_new_path", 0 );
 	project->apk_settings.notif_icon_path = g_key_file_get_string( config, "apk_settings", "notif_icon_path", 0 );
 	project->apk_settings.app_name = g_key_file_get_string( config, "apk_settings", "app_name", 0 );
 	project->apk_settings.app_type = utils_get_setting_integer( config, "apk_settings", "app_type", 0 ); 

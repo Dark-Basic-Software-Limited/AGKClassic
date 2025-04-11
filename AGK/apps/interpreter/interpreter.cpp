@@ -52,7 +52,6 @@ void app::UpdateInterpreterAspect ( void )
 	g_iPrevWidth = agk::GetDeviceWidth();
 	g_iPrevHeight = agk::GetDeviceHeight();
 
-	//static float fAspect = agk::GetDisplayAspect();
 	agk::SetVirtualResolution ( 100, 100 );
 	float fAspect = agk::GetDeviceWidth() / float(agk::GetDeviceHeight());
 	agk::SetDisplayAspect(fAspect);
@@ -174,7 +173,8 @@ void app::Begin( void )
 	agk::MakeFolder ( "media" );
 	agk::SetCurrentDir ( "media" );
 
-	agk::SetDisplayAspect( (float)g_dwDeviceWidth/(float)g_dwDeviceHeight );
+	float fAspect = agk::GetDeviceWidth() / float(agk::GetDeviceHeight());
+	agk::SetDisplayAspect(fAspect);
 
 	if ( agk::GetFileExists( "bytecode.byc" ) == 1 )
 	{

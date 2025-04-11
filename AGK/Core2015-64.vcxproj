@@ -80,39 +80,39 @@
     <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSdk_71A_IncludePath);$(DIRECTX_SDK_PATH)\Include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSdk_71A_LibraryPath_x64);$(DIRECTX_SDK_PATH)\Lib\x64</LibraryPath>
+    <IncludePath>$(DIRECTX_SDK_PATH)\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DIRECTX_SDK_PATH)\Lib\x64;$(LibraryPath)</LibraryPath>
     <TargetName>AGKWindows64</TargetName>
     <OutDir>platform\windows\Lib\VS2015\Debug64\</OutDir>
     <IntDir>platform\windows\Lib\VS2015\Debug64\</IntDir>
-    <ExecutablePath>$(VC_ExecutablePath_x64);$(WindowsSdk_71A_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(FxCopDir);$(PATH);</ExecutablePath>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
     <ExcludePath>$(VC_IncludePath);$(MSBuild_ExecutablePath);$(VC_LibraryPath_x64);</ExcludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSdk_71A_IncludePath);$(DIRECTX_SDK_PATH)\Include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSdk_71A_LibraryPath_x64);$(DIRECTX_SDK_PATH)\Lib\x64</LibraryPath>
+    <IncludePath>$(DIRECTX_SDK_PATH)\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DIRECTX_SDK_PATH)\Lib\x64;$(LibraryPath)</LibraryPath>
     <TargetName>AGKWindows64</TargetName>
     <OutDir>platform\windows\Lib\VS2015\Release64\</OutDir>
     <IntDir>platform\windows\Lib\VS2015\Release64\</IntDir>
-    <ExecutablePath>$(VC_ExecutablePath_x64);$(WindowsSdk_71A_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(FxCopDir);$(PATH);</ExecutablePath>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
     <ExcludePath>$(VC_IncludePath);$(MSBuild_ExecutablePath);$(VC_LibraryPath_x64);</ExcludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseFREE|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSdk_71A_IncludePath);$(DIRECTX_SDK_PATH)\Include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSdk_71A_LibraryPath_x64);$(DIRECTX_SDK_PATH)\Lib\x64</LibraryPath>
+    <IncludePath>$(DIRECTX_SDK_PATH)\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DIRECTX_SDK_PATH)\Lib\x64;$(LibraryPath)</LibraryPath>
     <TargetName>AGKWindows64</TargetName>
     <OutDir>platform\windows\Lib\VS2015\Free64\</OutDir>
     <IntDir>platform\windows\Lib\VS2015\Free64\</IntDir>
-    <ExecutablePath>$(VC_ExecutablePath_x64);$(WindowsSdk_71A_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(FxCopDir);$(PATH);</ExecutablePath>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
     <ExcludePath>$(VC_IncludePath);$(MSBuild_ExecutablePath);$(VC_LibraryPath_x64);</ExcludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugCompatible|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSdk_71A_IncludePath);$(DIRECTX_SDK_PATH)\Include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSdk_71A_LibraryPath_x64);$(DIRECTX_SDK_PATH)\Lib\x64</LibraryPath>
+    <IncludePath>$(DIRECTX_SDK_PATH)\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DIRECTX_SDK_PATH)\Lib\x64;$(LibraryPath)</LibraryPath>
     <TargetName>AGKWindows64</TargetName>
     <OutDir>platform\windows\Lib\VS2015\Debug64\</OutDir>
     <IntDir>platform\windows\Lib\VS2015\Debug64\</IntDir>
-    <ExecutablePath>$(VC_ExecutablePath_x64);$(WindowsSdk_71A_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(FxCopDir);$(PATH);</ExecutablePath>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
     <ExcludePath>$(VC_IncludePath);$(MSBuild_ExecutablePath);$(VC_LibraryPath_x64);</ExcludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

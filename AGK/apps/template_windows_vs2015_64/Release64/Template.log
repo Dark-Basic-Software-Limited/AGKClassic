@@ -1,0 +1,14 @@
+﻿  Core.cpp
+Core.cpp(612): warning C4244: 'argument': conversion from 'WPARAM' to 'unsigned int', possible loss of data
+Core.cpp(613): warning C4244: 'argument': conversion from 'WPARAM' to 'unsigned int', possible loss of data
+Core.cpp(626): warning C4244: 'argument': conversion from 'WPARAM' to 'unsigned int', possible loss of data
+Core.cpp(627): warning C4244: 'argument': conversion from 'WPARAM' to 'unsigned int', possible loss of data
+Core.cpp(633): warning C4244: 'argument': conversion from 'WPARAM' to 'unsigned int', possible loss of data
+Core.cpp(640): warning C4244: 'argument': conversion from 'WPARAM' to 'unsigned int', possible loss of data
+Core.cpp(646): warning C4244: 'argument': conversion from 'WPARAM' to 'unsigned int', possible loss of data
+Core.cpp(647): warning C4244: 'argument': conversion from 'WPARAM' to 'unsigned int', possible loss of data
+Core.cpp(653): warning C4244: 'argument': conversion from 'WPARAM' to 'unsigned int', possible loss of data
+Core.cpp(654): warning C4244: 'argument': conversion from 'WPARAM' to 'unsigned int', possible loss of data
+  template.cpp
+  Generating Code...
+  Template.vcxproj -> D:\AGK\Classic\apps\template_windows_vs2015_64\Final\Template64.exe

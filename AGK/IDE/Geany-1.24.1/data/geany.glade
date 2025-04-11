@@ -206,7 +206,7 @@
                               <object class="GtkTable" id="table22">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="n_rows">9</property>
+                                <property name="n_rows">10</property>
                                 <property name="n_columns">2</property>
                                 <property name="column_spacing">5</property>
                                 <property name="row_spacing">3</property>
@@ -243,11 +243,11 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="xalign">0</property>
-                                    <property name="label" translatable="yes">App Icon:</property>
+                                    <property name="label" translatable="yes">App Icon (Legacy):</property>
                                   </object>
                                   <packing>
-                                    <property name="top_attach">3</property>
-                                    <property name="bottom_attach">4</property>
+                                    <property name="top_attach">4</property>
+                                    <property name="bottom_attach">5</property>
                                     <property name="x_options">GTK_FILL</property>
                                     <property name="y_options"/>
                                   </packing>
@@ -260,8 +260,8 @@
                                     <property name="label" translatable="yes">Orientation:</property>
                                   </object>
                                   <packing>
-                                    <property name="top_attach">6</property>
-                                    <property name="bottom_attach">7</property>
+                                    <property name="top_attach">7</property>
+                                    <property name="bottom_attach">8</property>
                                     <property name="x_options">GTK_FILL</property>
                                     <property name="y_options"/>
                                   </packing>
@@ -295,7 +295,7 @@
                                       <object class="GtkEntry" id="android_app_icon_entry">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
-                                        <property name="tooltip_text" translatable="yes">should be at least 192x192 pixels, PNG only, can contain transparency</property>
+                                        <property name="tooltip_text" translatable="yes">should be at least 192x192 pixels, PNG only, should contain transparency for rounded corners. Used on devices running Android 7 or below</property>
                                         <property name="invisible_char">●</property>
                                         <property name="invisible_char_set">True</property>
                                         <property name="primary_icon_activatable">False</property>
@@ -332,8 +332,8 @@
                                   <packing>
                                     <property name="left_attach">1</property>
                                     <property name="right_attach">2</property>
-                                    <property name="top_attach">3</property>
-                                    <property name="bottom_attach">4</property>
+                                    <property name="top_attach">4</property>
+                                    <property name="bottom_attach">5</property>
                                     <property name="x_options">GTK_FILL</property>
                                     <property name="y_options"/>
                                   </packing>
@@ -366,8 +366,8 @@
                                   <packing>
                                     <property name="left_attach">1</property>
                                     <property name="right_attach">2</property>
-                                    <property name="top_attach">6</property>
-                                    <property name="bottom_attach">7</property>
+                                    <property name="top_attach">7</property>
+                                    <property name="bottom_attach">8</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -458,8 +458,8 @@
                                     <property name="label" translatable="yes">Ouya Large Icon:</property>
                                   </object>
                                   <packing>
-                                    <property name="top_attach">5</property>
-                                    <property name="bottom_attach">6</property>
+                                    <property name="top_attach">6</property>
+                                    <property name="bottom_attach">7</property>
                                     <property name="x_options">GTK_FILL</property>
                                     <property name="y_options"/>
                                   </packing>
@@ -511,8 +511,8 @@
                                   <packing>
                                     <property name="left_attach">1</property>
                                     <property name="right_attach">2</property>
-                                    <property name="top_attach">5</property>
-                                    <property name="bottom_attach">6</property>
+                                    <property name="top_attach">6</property>
+                                    <property name="bottom_attach">7</property>
                                     <property name="x_options">GTK_FILL</property>
                                     <property name="y_options"/>
                                   </packing>
@@ -525,8 +525,8 @@
                                     <property name="label" translatable="yes">Notification Icon:</property>
                                   </object>
                                   <packing>
-                                    <property name="top_attach">4</property>
-                                    <property name="bottom_attach">5</property>
+                                    <property name="top_attach">5</property>
+                                    <property name="bottom_attach">6</property>
                                     <property name="x_options">GTK_FILL</property>
                                     <property name="y_options"/>
                                   </packing>
@@ -576,8 +576,8 @@
                                   <packing>
                                     <property name="left_attach">1</property>
                                     <property name="right_attach">2</property>
-                                    <property name="top_attach">4</property>
-                                    <property name="bottom_attach">5</property>
+                                    <property name="top_attach">5</property>
+                                    <property name="bottom_attach">6</property>
                                     <property name="x_options">GTK_FILL</property>
                                     <property name="y_options"/>
                                   </packing>
@@ -590,8 +590,8 @@
                                     <property name="label" translatable="yes">Minimum Android Version:</property>
                                   </object>
                                   <packing>
-                                    <property name="top_attach">7</property>
-                                    <property name="bottom_attach">8</property>
+                                    <property name="top_attach">8</property>
+                                    <property name="bottom_attach">9</property>
                                     <property name="x_options">GTK_FILL</property>
                                     <property name="y_options"/>
                                   </packing>
@@ -604,7 +604,7 @@
                                       <object class="GtkComboBoxText" id="android_sdk_combo">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="tooltip_text" translatable="yes">Only applies to Google and Amazon export. For maximum compatibility choose 4.0.3, or restrict your app to chosen minimum version. If you choose 6.0 (API 23) or above then you must use the RequestPermission command to request any required permissions before using certain commands </property>
+                                        <property name="tooltip_text" translatable="yes">For maximum compatibility choose 4.1, or restrict your app to chosen minimum version, some features like AdMob will only work on devices running 5.0 or higher</property>
                                         <property name="active">0</property>
                                         <items>
                                           <item>4.1 (API 16)</item>
@@ -620,6 +620,8 @@
                                           <item>8.1 (API 27)</item>
                                           <item>9.0 (API 28)</item>
                                           <item translatable="yes">10.0 (API 29)</item>
+                                          <item translatable="yes">11.0 (API 30)</item>
+                                          <item translatable="yes">12.0 (API 31)</item>
                                         </items>
                                       </object>
                                       <packing>
@@ -635,8 +637,8 @@
                                   <packing>
                                     <property name="left_attach">1</property>
                                     <property name="right_attach">2</property>
-                                    <property name="top_attach">7</property>
-                                    <property name="bottom_attach">8</property>
+                                    <property name="top_attach">8</property>
+                                    <property name="bottom_attach">9</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -647,8 +649,8 @@
                                     <property name="label" translatable="yes">ARCore:</property>
                                   </object>
                                   <packing>
-                                    <property name="top_attach">8</property>
-                                    <property name="bottom_attach">9</property>
+                                    <property name="top_attach">9</property>
+                                    <property name="bottom_attach">10</property>
                                     <property name="x_options">GTK_FILL</property>
                                     <property name="y_options"/>
                                   </packing>
@@ -683,8 +685,73 @@
                                   <packing>
                                     <property name="left_attach">1</property>
                                     <property name="right_attach">2</property>
-                                    <property name="top_attach">8</property>
-                                    <property name="bottom_attach">9</property>
+                                    <property name="top_attach">9</property>
+                                    <property name="bottom_attach">10</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkHBox" id="hbox46">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <object class="GtkEntry" id="android_app_icon_new_entry">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="tooltip_text" translatable="yes">Should be at least 432x432 pixels with all important elements within a 288 pixel diameter circle in the centre. PNG only. Should not contain transparency. Used on Google devices running Android 8 and above. If this is left blank then only the legacy icon will be used</property>
+                                        <property name="invisible_char">●</property>
+                                        <property name="invisible_char_set">True</property>
+                                        <property name="primary_icon_activatable">False</property>
+                                        <property name="secondary_icon_activatable">False</property>
+                                        <property name="primary_icon_sensitive">True</property>
+                                        <property name="secondary_icon_sensitive">True</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">True</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkButton" id="android_app_icon_new_path">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">True</property>
+                                        <child>
+                                          <object class="GtkImage" id="image_project_dialog_base_path13">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="stock">gtk-open</property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">3</property>
+                                    <property name="bottom_attach">4</property>
+                                    <property name="x_options">GTK_FILL</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="android_app_icon_new_label">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="xalign">0</property>
+                                    <property name="label" translatable="yes">App Icon:</property>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">3</property>
+                                    <property name="bottom_attach">4</property>
+                                    <property name="x_options">GTK_FILL</property>
+                                    <property name="y_options"/>
                                   </packing>
                                 </child>
                               </object>
@@ -733,7 +800,7 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
-                                    <property name="tooltip_text" translatable="yes">Only needed if writing files directly to the external storage using "raw:" file paths on Android 9 or below </property>
+                                    <property name="tooltip_text" translatable="yes">Only needed if writing files directly to the external storage using "raw:" file paths on Android 9 or below. No longer works on Android 10 or above</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                 </child>
@@ -828,12 +895,12 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkCheckButton" id="android_permission_expansion">
-                                    <property name="label" translatable="yes">Expansion Files</property>
+                                  <object class="GtkCheckButton" id="android_permission_notifications">
+                                    <property name="label" translatable="yes">Local Notifications</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
-                                    <property name="tooltip_text" translatable="yes">Adds the Get Accounts and Google Licensing permissions used by the expansion file commands</property>
+                                    <property name="tooltip_text" translatable="yes">Required to create local notifications on the device</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
@@ -1455,12 +1522,12 @@
                                             <property name="can_focus">True</property>
                                             <property name="tooltip_text" translatable="yes">The password used to create the keystore</property>
                                             <property name="visibility">False</property>
+                                            <property name="invisible_char">●</property>
+                                            <property name="invisible_char_set">True</property>
                                             <property name="primary_icon_activatable">False</property>
                                             <property name="secondary_icon_activatable">False</property>
                                             <property name="primary_icon_sensitive">True</property>
                                             <property name="secondary_icon_sensitive">True</property>
-                                            <property name="invisible_char">●</property>
-                                            <property name="invisible_char_set">True</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -1964,12 +2031,12 @@
                                     <property name="can_focus">True</property>
                                     <property name="tooltip_text" translatable="yes">The password used to create the keystore</property>
                                     <property name="visibility">False</property>
+                                    <property name="invisible_char">●</property>
+                                    <property name="invisible_char_set">True</property>
                                     <property name="primary_icon_activatable">False</property>
                                     <property name="secondary_icon_activatable">False</property>
                                     <property name="primary_icon_sensitive">True</property>
                                     <property name="secondary_icon_sensitive">True</property>
-                                    <property name="invisible_char">●</property>
-                                    <property name="invisible_char_set">True</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -9821,6 +9888,9 @@ To generate a keystore file you need to submit some information about you or you
                                   <placeholder/>
                                 </child>
                                 <child>
+                                  <placeholder/>
+                                </child>
+                                <child>
                                   <object class="GtkButton" id="button_grep">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
@@ -9841,6 +9911,9 @@ To generate a keystore file you need to submit some information about you or you
                                     <property name="x_options">GTK_FILL</property>
                                     <property name="y_options"/>
                                   </packing>
+                                </child>
+                                <child>
+                                  <placeholder/>
                                 </child>
                                 <child>
                                   <placeholder/>

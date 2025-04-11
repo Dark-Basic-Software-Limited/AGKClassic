@@ -10,7 +10,7 @@
 	<key>UIRequiresFullScreen</key>
 	<true/>
 	<key>BuildMachineOSBuild</key>
-	<string>20F71</string>
+	<string>21F79</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleDisplayName</key>
@@ -39,7 +39,6 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>${URLSCHEMES}</string>
-				<string>fb358083327620324</string>
 			</array>
 		</dict>
 	</array>
@@ -48,21 +47,21 @@
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
-	<string>18E182</string>
+	<string>19F64</string>
 	<key>DTPlatformName</key>
 	<string>iphoneos</string>
 	<key>DTPlatformVersion</key>
-	<string>14.5</string>
+	<string>15.5</string>
 	<key>DTSDKBuild</key>
-	<string>18E182</string>
+	<string>19F64</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>DTSDKName</key>
-	<string>iphoneos14.5</string>
+	<string>iphoneos15.5</string>
 	<key>DTXcode</key>
-	<string>1250</string>
+	<string>1341</string>
 	<key>DTXcodeBuild</key>
-	<string>12E262</string>
+	<string>13F100</string>
 	<key>FacebookAppID</key>
 	<string>358083327620324</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -107,14 +106,14 @@
 	<string>Provide your current GPS coordinates to the app</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Provide your current GPS coordinates to the app</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Connect to other devices on the local network</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Advertisement would like to create a calendar event</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Save image to the camera roll</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>fb</string>
-		<string>fbauth</string>
 		<string>snapchat</string>
 	</array>
 	<key>CFBundleIcons</key>
@@ -149,6 +148,7 @@
 	<string>AppIcon</string>
 	<key>GADDelayAppMeasurementInit</key>
 	<true/>
-	<key>${ADVERT_ITEMS}</key><string></string>
+	<key>${ADVERT_ITEMS}</key>
+	<string></string>
 </dict>
 </plist>

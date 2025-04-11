@@ -13,6 +13,8 @@
     #import <StoreKit/StoreKit.h>
 #endif
 
+#define AGK_MAX_PRINT_LENGTH 100000
+
 extern unsigned int libImageTrialWatermark[];
 
 extern "C" void AGKError( const char* msg )
@@ -568,18 +570,24 @@ void agk::MasterReset()
 	agk::StopScreenRecording();
 	agk::StopSpeaking();
 
+	agk::DeleteAdvert();
 	agk::ARDestroy();
 
 	agk::UseNewDefaultFonts( 0 );
 	agk::RestoreWriteDir();
 
 	SetWindowTitle( "AppGameKit Player" );
+	SetWindowSize( 1024, 768, 0 );
 	SetSyncRate( 60, 0 );
 	SetErrorMode( 1 );
 	agk::SetScreenResolution( 0,0 );
 	agk::SetVirtualResolution( 100, 100 );
 	SetAntialiasMode( 0 );
-	SetPrintFont( 0 );
+	if ( m_pPrintText )
+	{
+		m_pPrintText->SetFontImage( 0 );
+		m_pPrintText->SetExtendedFontImage( 0 );
+	}
 	SetImmersiveMode( 0 );
 
 	SetShadowMappingMode( 0 );
@@ -2045,6 +2053,26 @@ void agk::ResetAllStates ( void )
 	for ( int i = 0; i < AGK_MAX_KEYS; i++ ) m_iPrevKeyDown[ i ] = 0;
 	for ( int i = 0; i < AGK_MAX_KEYS; i++ ) m_iKeyDown[ i ] = 0;
 	for ( int i = 0; i < AGK_MAX_KEYS; i++ ) m_iResetKey[ i ] = 0;
+}
+
+void agk::ResetRenderState()
+{
+	cImage::BindTexture(0, 0);
+	PlatformBindBuffer(0);
+	PlatformBindIndexBuffer(0);
+
+	m_iCurrentBlendEnabled = -1;
+	m_iCurrentBlendFunc1 = -1;
+	m_iCurrentBlendFunc2 = -1;
+	m_iCurrentBoundVBO = 0;
+	m_iCurrentBoundIndexVBO = 0;
+	m_iCurrentDepthTest = -1;
+	m_iCurrentDepthFunc = -1;
+	m_iCurrentDepthWrite = -1;
+	m_iCurrentCullMode = -1;
+	m_fCurrentDepthBias = 0;
+	m_fCurrentDepthNear = 0;
+	m_fCurrentDepthFar = 1;
 }
 
 //****f* Core/Display/SetSyncRate
@@ -10892,7 +10920,7 @@ void agk::SetSpritePhysicsInitiallyAwake ( UINT iSpriteIndex, int awake )
 		return;
 	}
 
-	pSprite->SetPhysicsInitiallyAwake ( awake );
+	pSprite->SetPhysicsInitiallyAwake ( awake != 0 );
 }
 
 //****f* Sprite/Physics/SetSpritePhysicsAllowSleep
@@ -10915,7 +10943,7 @@ void agk::SetSpritePhysicsAllowSleep ( UINT iSpriteIndex, int sleep )
 		return;
 	}
 
-	pSprite->SetPhysicsAllowSleep ( sleep );
+	pSprite->SetPhysicsAllowSleep ( sleep != 0 );
 }
 
 //****f* Sprite/Physics/GetSpritePhysicsInertia
@@ -17960,6 +17988,134 @@ void agk::SetTextBold( UINT iTextIndex, UINT bold )
 	pText->SetBold( bold );
 }
 
+//****f* Text/Properties/SetTextShader
+// FUNCTION
+//   Sets the shader used to draw this Text, loaded with <i>Loadshader</i>.
+//   By default Text objects are assigned an internal shader that can handle 1 texture and a color.
+//   If you use a shader ID of 0 the Text is assigned the internal shader.
+// INPUTS
+//   iTextIndex -- The ID of the text to modify.
+//   shaderID	-- The ID of the shader to use.
+// SOURCE
+void agk::SetTextShader(UINT iTextIndex, UINT shaderID)
+//****
+{
+	cText* pText = m_cTextList.GetItem(iTextIndex);
+	if (!pText)
+	{
+#ifdef _AGK_ERROR_CHECK
+		uString errStr("Failed to set shader for text ");
+		errStr.AppendUInt(iTextIndex).Append(" - text does not exist");
+		Error(errStr);
+#endif
+		return;
+	}
+
+	AGKShader* pShader = 0;
+	if (shaderID > 0)
+	{
+		pShader = m_cShaderList.GetItem(shaderID);
+		if (!pText)
+		{
+#ifdef _AGK_ERROR_CHECK
+			uString errStr("Failed to set shader for text ");
+			errStr.AppendUInt(iTextIndex).Append(" - shader ");
+			errStr.AppendUInt(shaderID).Append(" does not exist");
+			Error(errStr);
+#endif
+			return;
+		}
+	}
+
+	pText->SetShader(pShader);
+}
+
+//****f* Text/Properties/SetTextShaderConstantByName
+// FUNCTION
+//   Sets a shader constant for a text by name, the constant must be marked as "uniform" in the shader source.
+//   The Text will set the specified constant to this value for any shader that it is applied to it.
+//   All shader values have 1 to 4 components, this command accepts 4 values and discards any that are not used 
+//   by the named variable.
+// INPUTS
+//   textID	  -- The ID of the text to modify.
+//   szName   -- The name of the constant to change, as defined in the shader source file.
+//   value1   -- The X or R component of the new value, this value will always be used.
+//   value2   -- The Y or G component of the new value, if the constant only uses 1 component this value is discarded.
+//   value3   -- The Z or B component of the new value, if the constant only uses 2 components this value is discarded.
+//   value4   -- The W or A component of the new value, if the constant only uses 3 components this value is discarded.
+// SOURCE
+void agk::SetTextShaderConstantByName(UINT iTextIndex, const char* szName, float value1, float value2, float value3, float value4)
+//****
+{
+	cText* pText = m_cTextList.GetItem(iTextIndex);
+	if (!pText) {
+#ifdef _AGK_ERROR_CHECK
+		uString errStr("Failed to set shader constant for object ");
+		errStr.AppendUInt(iTextIndex).Append(" - text does not exist");
+		Error(errStr);
+#endif
+		return;
+	}
+
+	pText->SetShaderConstantByName(szName, value1, value2, value3, value4);
+}
+
+//****f* Text/Properties/SetTextShaderConstantArrayByName
+// FUNCTION
+//   Sets a shader constant array index by name, the constant must be marked as "uniform" in the shader source.
+//   Array indices start at 0, if the array index is out of bounds then it will be ignored and no changes will 
+//   be made.
+//   This will affect only the specified text this shader.
+//   All shader values have 1 to 4 components, this command accepts 4 values and discards any that are not used 
+//   by the named variable.
+// INPUTS
+//   textID     -- The ID of the text to modify.
+//   szName     -- The name of the constant to change, as defined in the shader source file.
+//   arrayIndex -- The element of the array to modify.
+//   value1     -- The X or R component of the new value, this value will always be used.
+//   value2     -- The Y or G component of the new value, if the constant only uses 1 component this value is discarded.
+//   value3     -- The Z or B component of the new value, if the constant only uses 2 components this value is discarded.
+//   value4     -- The W or A component of the new value, if the constant only uses 3 components this value is discarded.
+// SOURCE
+void agk::SetTextShaderConstantArrayByName(UINT iTextIndex, const char* szName, UINT arrayIndex, float value1, float value2, float value3, float value4)
+//****
+{
+	cText* pText = m_cTextList.GetItem(iTextIndex);
+	if (!pText) {
+#ifdef _AGK_ERROR_CHECK
+		uString errStr("Failed to set shader constant for object ");
+		errStr.AppendUInt(iTextIndex).Append(" - text does not exist");
+		Error(errStr);
+#endif
+		return;
+	}
+
+	pText->SetShaderConstantArrayByName(szName, arrayIndex, value1, value2, value3, value4);
+}
+
+//****f* Text/Properties/SetTextShaderConstantDefault
+// FUNCTION
+//   Stops a text setting the given constant name in its shaders and uses the shader's default value from now on.
+// INPUTS
+//   iTextIndex	-- The ID of the text to modify.
+//   szName     -- The name of the constant to stop changing.
+// SOURCE
+void agk::SetTextShaderConstantDefault(UINT iTextIndex, const char* szName)
+//****
+{
+	cText* pText = m_cTextList.GetItem(iTextIndex);
+	if (!pText) {
+#ifdef _AGK_ERROR_CHECK
+		uString errStr("Failed to set shader constant default for object ");
+		errStr.AppendUInt(iTextIndex).Append(" - text does not exist");
+		Error(errStr);
+#endif
+		return;
+	}
+
+	pText->SetShaderConstantDefault(szName);
+}
+
 //****f* Text/Properties/GetTextVisible
 // FUNCTION
 //   Returns 0 if the current text has been set as invisible using <i>SetTextVisible</i>, 1 if it is set as visible (default).
@@ -18280,12 +18436,14 @@ void agk::DeleteFont( UINT iFontID )
 void agk::Print( const char *szString )
 //****
 {
+	if ( m_cPrintStr.GetLength() > AGK_MAX_PRINT_LENGTH ) return;
 	if ( szString && *szString ) m_cPrintStr.Append( szString );
 	m_cPrintStr.AppendAscii( '\n' );
 }
 
 void agk::Print( const uString &string )
 {
+	if ( m_cPrintStr.GetLength() > AGK_MAX_PRINT_LENGTH ) return;
 	if ( string.GetLength() > 0 ) m_cPrintStr.Append( string );
 	m_cPrintStr.AppendAscii( '\n' );
 }
@@ -18300,12 +18458,14 @@ void agk::Print( const uString &string )
 void agk::Print( int i )
 //****
 {
+	if ( m_cPrintStr.GetLength() > AGK_MAX_PRINT_LENGTH ) return;
 	sprintf( m_szConvStr, "%d\n", i );
 	m_cPrintStr.AppendUTF8( m_szConvStr );
 }
 
 void agk::Print( UINT u )
 {
+	if ( m_cPrintStr.GetLength() > AGK_MAX_PRINT_LENGTH ) return;
 	sprintf( m_szConvStr, "%u\n", u );
 	m_cPrintStr.AppendUTF8( m_szConvStr );
 }
@@ -18320,6 +18480,7 @@ void agk::Print( UINT u )
 void agk::Print( float f )
 //****
 {
+	if ( m_cPrintStr.GetLength() > AGK_MAX_PRINT_LENGTH ) return;
 	sprintf( m_szConvStr, "%.6f\n", f );
 	m_cPrintStr.AppendUTF8( m_szConvStr );
 }
@@ -18334,11 +18495,13 @@ void agk::Print( float f )
 void agk::PrintC( const char *szString )
 //****
 {
+	if ( m_cPrintStr.GetLength() > AGK_MAX_PRINT_LENGTH ) return;
 	if ( szString && *szString ) m_cPrintStr.Append( szString );
 }
 
 void agk::PrintC( const uString &string )
 {
+	if ( m_cPrintStr.GetLength() > AGK_MAX_PRINT_LENGTH ) return;
 	if ( string.GetLength() > 0 ) m_cPrintStr.Append( string );
 }
 
@@ -18352,12 +18515,14 @@ void agk::PrintC( const uString &string )
 void agk::PrintC( int i )
 //****
 {
+	if ( m_cPrintStr.GetLength() > AGK_MAX_PRINT_LENGTH ) return;
 	sprintf( m_szConvStr, "%d", i );
 	m_cPrintStr.AppendUTF8( m_szConvStr );
 }
 
 void agk::PrintC( UINT u )
 {
+	if ( m_cPrintStr.GetLength() > AGK_MAX_PRINT_LENGTH ) return;
 	sprintf( m_szConvStr, "%u", u );
 	m_cPrintStr.AppendUTF8( m_szConvStr );
 }
@@ -18372,6 +18537,7 @@ void agk::PrintC( UINT u )
 void agk::PrintC( float f )
 //****
 {
+	if ( m_cPrintStr.GetLength() > AGK_MAX_PRINT_LENGTH ) return;
 	sprintf( m_szConvStr, "%.6f", f );
 	m_cPrintStr.AppendUTF8( m_szConvStr );
 }
@@ -37356,6 +37522,23 @@ void agk::CreateZip( UINT zipID, const char* filename )
 	m_cZipFileList.AddItem( pZipFile, zipID );
 }
 
+void agk::CreateZip(UINT zipID, const char* filename,int append)
+{
+	if (m_cZipFileList.GetItem(zipID))
+	{
+#ifdef _AGK_ERROR_CHECK
+		uString errStr("Failed to create zip file ");
+		errStr.AppendUInt(zipID).Append(" - ID already exists");
+		Error(errStr);
+#endif
+		return;
+	}
+
+	ZipFile *pZipFile = new ZipFile();
+	pZipFile->CreateAppend(filename, append);
+	m_cZipFileList.AddItem(pZipFile, zipID);
+}
+
 //****f* File/Zip/CreateZip
 // FUNCTION
 //   Creates a zip file at the specified location and opens it ready for files to be added. Files cannot be read or extracted
@@ -37769,6 +37952,25 @@ void agk::InAppPurchaseActivate ( int iID )
     PlatformInAppPurchaseActivate(iID);
 }
 
+//****f* Extras/In App Purchase/InAppPurchaseActivateWithPlan
+// FUNCTION
+//   Call this when you want to start the process of purchasing a product with a specific plan.
+//   Subscriptions can have multiple purchase plans which you can enumerate with <i>GetInAppPurchaseSubNumPlans</i>.
+//   To start a purchase with a specific plan get the plan token with <i>GetInAppPurchaseSubPlanToken</i> and then 
+//   pass it to this command.
+//   Currently this command is only supported on iOS and Android.
+// INPUTS
+//   iID -- this ID corresponds to the product IDs that have been added e.g. your first product
+//         ID is 0, your second is 1 etc.
+// SOURCE
+void agk::InAppPurchaseActivateWithPlan( int iID, const char* planToken )
+//****
+{
+#if defined(AGK_ANDROID) || defined(AGK_IOS)
+    PlatformInAppPurchaseActivateWithPlan(iID, planToken);
+#endif
+}
+
 //****f* Extras/In App Purchase/InAppPurchaseResetPurchase
 // FUNCTION
 //   Call this command to reset the purchase state of an individual product. On Android this must be called 
@@ -37794,6 +37996,20 @@ void agk::InAppPurchaseResetPurchase( const char* token )
     PlatformInAppPurchaseResetPurchase(token);
 #endif
 }
+
+//****f* Extras/In App Purchase/InAppPurchaseRedeemOffer
+// FUNCTION
+//   Call this command to show the redeem offer dialog provided by the device (if any).
+//   This currently only applies to iOS, and will only work on iOS 14 or above, otherwise it will do nothing.<br/>
+//   Android displays this option automatically when a user starts a purchase.
+// SOURCE
+void agk::InAppPurchaseRedeemOffer()
+//****
+{
+#if defined(AGK_IOS)
+    PlatformInAppPurchaseRedeemOffer();
+#endif
+}
     
 //****f* Extras/In App Purchase/GetInAppPurchaseLocalPrice
 // FUNCTION
@@ -37801,7 +38017,7 @@ void agk::InAppPurchaseResetPurchase( const char* token )
 //   this will be a string with the currency symbol included where possible.
 //   It may take a few seconds after calling <i>InAppPurchaseSetup</i> for this data to become 
 //   available, so if you get an empty string try again later.
-//   When calling this from Tier 2 you must deleted the returned string when you are done with
+//   When calling this from Tier 2 you must delete the returned string when you are done with
 //   it.
 // INPUTS
 //   iID -- this ID corresponds to the product IDs that have been added e.g. your first product
@@ -37818,7 +38034,7 @@ char* agk::GetInAppPurchaseLocalPrice ( int iID )
 //   Returns the description for the specified product, as defined by the current platform store.
 //   It may take a few seconds after calling <i>InAppPurchaseSetup</i> for this data to become 
 //   available, so if you get an empty string try again later.
-//   When calling this from Tier 2 you must deleted the returned string when you are done with
+//   When calling this from Tier 2 you must delete the returned string when you are done with
 //   it.
 // INPUTS
 //   iID -- this ID corresponds to the product IDs that have been added e.g. your first product
@@ -37828,6 +38044,26 @@ char* agk::GetInAppPurchaseDescription ( int iID )
 //****
 {
     return PlatformGetInAppPurchaseDescription(iID);
+}
+
+//****f* Extras/In App Purchase/GetInAppPurchaseIsRenewing
+// FUNCTION
+//   This command returns 1 if the product is a subscription and it is set to auto-renew, 0 if it 
+//   is a subscription that will not auto-renew, or -1 if the renew status could not be determined.
+//   This command will only work on Android. iOS requires that you process the app receipt with 
+//   <i>GetAppReceipt</i> to detect renewal status.
+// INPUTS
+//   iID -- this ID corresponds to the product IDs that have been added e.g. your first product
+//         ID is 0, your second is 1 etc.
+// SOURCE
+int agk::GetInAppPurchaseIsRenewing( int iID )
+//****
+{
+#ifdef AGK_ANDROID
+	return PlatformGetInAppPurchaseIsRenewing( iID );
+#else
+    return -1;
+#endif
 }
 
 //****f* Extras/In App Purchase/GetInAppPurchaseState
@@ -37865,7 +38101,9 @@ void agk::InAppPurchaseRestore()
 // FUNCTION
 //   Returns the signature for the last purchase of the given item, this can be checked against your public 
 //   key to confirm the purchase was valid. It is recommended that you pass this signature to a server to do 
-//   the check so that the check cannot be bypassed.
+//   the check so that the check cannot be bypassed.<br/><br/>
+//   This has been deprecated on iOS, you should use the <i>GetAppReceipt</i> command instead that will return
+//   a list of all purchases related to the app.
 // INPUTS
 //   iID -- The ID of the product to check. e.g. your first product ID is 0, your second is 1 etc.
 // SOURCE
@@ -37901,6 +38139,164 @@ char* agk::GetInAppPurchaseToken(int iID)
 #else
 	char* str = new char[1]; *str = 0;
 	return str;
+#endif
+}
+
+//****f* Extras/In App Purchase/GetInAppPurchaseSubNumPlans
+// FUNCTION
+//   
+// INPUTS
+//   iID -- this ID corresponds to the product IDs that have been added e.g. your first product
+//         ID is 0, your second is 1 etc.
+// SOURCE
+int agk::GetInAppPurchaseSubNumPlans( int iID )
+//****
+{
+#if defined(AGK_ANDROID) || defined(AGK_IOS)
+	return PlatformGetInAppPurchaseSubNumPlans(iID);
+#else
+	return 0;
+#endif
+}
+
+//****f* Extras/In App Purchase/GetInAppPurchaseSubPlanNumPeriods
+// FUNCTION
+//   
+// INPUTS
+//   iID -- this ID corresponds to the product IDs that have been added e.g. your first product
+//         ID is 0, your second is 1 etc.
+// SOURCE
+int agk::GetInAppPurchaseSubPlanNumPeriods( int iID, int planIndex )
+//****
+{
+#if defined(AGK_ANDROID) || defined(AGK_IOS)
+	return PlatformGetInAppPurchaseSubPlanNumPeriods(iID, planIndex);
+#else
+	return 0;
+#endif
+}
+
+//****f* Extras/In App Purchase/GetInAppPurchaseSubPlanPrice
+// FUNCTION
+//   
+// INPUTS
+//   iID -- this ID corresponds to the product IDs that have been added e.g. your first product
+//         ID is 0, your second is 1 etc.
+// SOURCE
+char* agk::GetInAppPurchaseSubPlanPrice( int iID, int planIndex, int periodIndex )
+//****
+{
+#if defined(AGK_ANDROID) || defined(AGK_IOS)
+	return PlatformGetInAppPurchaseSubPlanPrice(iID, planIndex, periodIndex);
+#else
+	char* str = new char[1]; *str = 0;
+	return str;
+#endif
+}
+
+//****f* Extras/In App Purchase/GetInAppPurchaseSubPlanDuration
+// FUNCTION
+//   
+// INPUTS
+//   iID -- this ID corresponds to the product IDs that have been added e.g. your first product
+//         ID is 0, your second is 1 etc.
+// SOURCE
+int agk::GetInAppPurchaseSubPlanDuration( int iID, int planIndex, int periodIndex )
+//****
+{
+#if defined(AGK_ANDROID) || defined(AGK_IOS)
+	return PlatformGetInAppPurchaseSubPlanDuration(iID, planIndex, periodIndex);
+#else
+	return 0;
+#endif
+}
+
+//****f* Extras/In App Purchase/GetInAppPurchaseSubPlanDurationUnit
+// FUNCTION
+//   
+// INPUTS
+//   iID -- this ID corresponds to the product IDs that have been added e.g. your first product
+//         ID is 0, your second is 1 etc.
+// SOURCE
+char* agk::GetInAppPurchaseSubPlanDurationUnit( int iID, int planIndex, int periodIndex )
+//****
+{
+#if defined(AGK_ANDROID) || defined(AGK_IOS)
+	return PlatformGetInAppPurchaseSubPlanDurationUnit(iID, planIndex, periodIndex);
+#else
+	char* str = new char[1]; *str = 0;
+	return str;
+#endif
+}
+
+//****f* Extras/In App Purchase/GetInAppPurchaseSubPlanPaymentType
+// FUNCTION
+//   
+// INPUTS
+//   iID -- this ID corresponds to the product IDs that have been added e.g. your first product
+//         ID is 0, your second is 1 etc.
+// SOURCE
+int agk::GetInAppPurchaseSubPlanPaymentType( int iID, int planIndex, int periodIndex )
+//****
+{
+#if defined(AGK_ANDROID) || defined(AGK_IOS)
+	return PlatformGetInAppPurchaseSubPlanPaymentType(iID, planIndex, periodIndex);
+#else
+	return 0;
+#endif
+}
+
+//****f* Extras/In App Purchase/GetInAppPurchaseSubPlanTags
+// FUNCTION
+//   
+// INPUTS
+//   iID -- this ID corresponds to the product IDs that have been added e.g. your first product
+//         ID is 0, your second is 1 etc.
+// SOURCE
+char* agk::GetInAppPurchaseSubPlanTags( int iID, int planIndex )
+//****
+{
+	#if defined(AGK_ANDROID) || defined(AGK_IOS)
+	return PlatformGetInAppPurchaseSubPlanTags(iID, planIndex);
+#else
+	char* str = new char[1]; *str = 0;
+	return str;
+#endif
+}
+
+//****f* Extras/In App Purchase/GetInAppPurchaseSubPlanToken
+// FUNCTION
+//   
+// INPUTS
+//   iID -- this ID corresponds to the product IDs that have been added e.g. your first product
+//         ID is 0, your second is 1 etc.
+// SOURCE
+char* agk::GetInAppPurchaseSubPlanToken( int iID, int planIndex )
+//****
+{
+	#if defined(AGK_ANDROID) || defined(AGK_IOS)
+	return PlatformGetInAppPurchaseSubPlanToken(iID, planIndex);
+#else
+	char* str = new char[1]; *str = 0;
+	return str;
+#endif
+}
+
+//****f* Extras/In App Purchase/GetAppReceipt
+// FUNCTION
+//   Returns the app receipt that contains a list of all purchases as a base64 encoded string.
+//   This can be sent to a server you control to validate the purchases, including the purchase of the app itself.
+//   Only available on iOS, other platforms will return an empty string.
+// SOURCE
+char* agk::GetAppReceipt()
+//****
+{
+#if defined(AGK_IOS)
+    return PlatformGetAppReceipt();
+#else
+    char* str = new char[1];
+    *str = 0;
+    return str;
 #endif
 }
 
@@ -43618,7 +44014,7 @@ void agk::SetObjectMeshCollisionMode(UINT objID,int meshIndex, int mode)
 #endif
 		return;
 	}
-	if (meshIndex == 0 || meshIndex > pObject->GetNumMeshes())
+	if (meshIndex == 0 || meshIndex > (int)pObject->GetNumMeshes())
 	{
 #ifdef _AGK_ERROR_CHECK
 		uString errStr;
@@ -57212,7 +57608,7 @@ float agk::GetFractalXY ( uint32_t octaves, float x, float y )
 //  y -- y float coordinate
 //  z -- z float coordinate
 // SOURCE
-float agk::GetFractalXZ ( uint32_t octaves, float x, float y, float z )
+float agk::GetFractalXYZ ( uint32_t octaves, float x, float y, float z )
 //****
 {
 	if ( !m_pNoise )

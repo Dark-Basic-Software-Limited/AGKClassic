@@ -59,6 +59,25 @@ void ZipFile::Create( const char* filename )
 	}
 }
 
+void ZipFile::CreateAppend(const char* filename,int append)
+{
+	uString sPath(filename);
+	if (strncmp(filename, "raw:", 4) == 0) sPath.SetStr(filename + 4);
+	else agk::PlatformGetFullPathWrite(sPath);
+
+	if (!agk::PlatformCreateRawPath(sPath)) return;
+
+	m_zf = zipOpen(sPath.GetStr(), append); //PE: test append. 2
+
+	if (!m_zf)
+	{
+#ifdef _AGK_ERROR_CHECK
+		agk::Error("Failed to open zip file");
+#endif
+		return;
+	}
+}
+
 bool ZipFile::AddEntry( const char* realPath, const char* zipPath )
 {
 	return AddEntry( realPath, zipPath, -1 );

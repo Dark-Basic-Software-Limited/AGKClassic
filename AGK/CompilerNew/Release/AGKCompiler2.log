@@ -1,0 +1,10 @@
+﻿  uString.cpp
+  AGKCompiler2.cpp
+  cFile.cpp
+  DynArray.cpp
+  Parser1.cpp
+  Parser2.cpp
+  ProgramData.cpp
+  WindowsCompiler.cpp
+  Generating Code...
+  AGKCompiler2.vcxproj -> D:\AGK\Classic\CompilerNew\Final\AGKCompiler.exe

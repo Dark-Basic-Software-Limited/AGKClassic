@@ -1,0 +1,6 @@
+﻿  Assembling Win64Plugins.asm...
+  Core.cpp
+  interpreter.cpp
+  ProgramData.cpp
+  Generating Code...
+  interpreter.vcxproj -> D:\AGK\Classic\apps\interpreter\Final\Windows.exe

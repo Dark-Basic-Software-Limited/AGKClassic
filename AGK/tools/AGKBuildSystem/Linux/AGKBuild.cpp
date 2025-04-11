@@ -12,8 +12,7 @@
 int main( int argc, char* argv[] )
 {
 	// set some path variables
-	//const char* szSharedFolder = "/home/paul/Shares/"; // for Mac and Linux access
-	const char* szSharedFolder = "/home/michael/Shares/"; // for Mac and Linux access
+	const char* szSharedFolder = "/home/paul/Shares/"; // for Mac and Linux access
 	
 	SetCurrentDirectoryWithCheck( "../../.." ); // AGKTrunk
 
