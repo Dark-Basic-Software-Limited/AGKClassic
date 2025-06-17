@@ -1,5 +1,5 @@
 # AppGameKit Classic
-The home of the last version of that incredible cross-platform programming language AppGameKit Classic. The product was retired after 10 years on Steam and is no longer officially supported by TGC.
+The home of the last version of that incredible cross-platform programming language AppGameKit Classic. The product was retired after 10 years on Steam and is no longer officially supported by DBS.
 
 ## Introduction
 
@@ -15,7 +15,7 @@ Where possible we recommend any new commands are coded in C++ so that they are c
 
 ## Permitted Usage (License)
 
-It is expressly made clear that this is NOT an open source project and all material is copyright The Game Creators Ltd, and any work submitted to the repository is automatically given over to The Game Creators Ltd to use for any purpose and all Intellectual Property and copyright transferred over to The Game Creators Ltd. You may use this repository to help improve AppGameKit Classic Tier 2, to work on freelance contracts from The Game Creators Ltd, and also to compile a new Tier 2 library for your own use under the terms of the AppGameKit Classic EULA. You may not distribute compiled versions of this code, nor use this code in a product that competes with the AppGameKit product range, such as a game maker or app maker. If you have any doubts about the usage rights, you can contact us directly at lee@thegamecreators.com
+It is expressly made clear that this is NOT an open source project and all material is copyright Dark Basic Software Ltd, and any work submitted to the repository is automatically given over to Dark Basic Software Ltd to use for any purpose and all Intellectual Property and copyright transferred over to Dark Basic Software Ltd. You may use this repository to help improve AppGameKit Classic Tier 2, to work on freelance contracts from Dark Basic Software Ltd, and also to compile a new Tier 2 library for your own use under the terms of the AppGameKit Classic EULA. You may not distribute compiled versions of this code, nor use this code in a product that competes with the AppGameKit product range, such as a game maker or app maker. If you have any doubts about the usage rights, you can contact us directly at lee@thegamecreators.com
 
 ## AGK Studio Links
 
